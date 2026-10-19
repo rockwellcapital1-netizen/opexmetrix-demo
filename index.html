@@ -1,0 +1,2131 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpexMetrix Business — Автономна операційна система для малого та середнього бізнесу</title>
+  <link rel="icon" type="image/png" href="./opex-logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --bg-app: #F8FAFC;
+      --bg-card: #FFFFFF;
+      --bg-subtle: #F1F5F9;
+      --bg-hover: #F8FAFC;
+      --border: #E2E8F0;
+      --border-strong: #CBD5E1;
+      --text-main: #0F172A;
+      --text-secondary: #475569;
+      --text-muted: #94A3B8;
+      --primary: #0F172A;
+      --primary-hover: #1E293B;
+      --primary-soft: #F1F5F9;
+      --primary-border: #E2E8F0;
+      --accent-blue: #2563EB;
+      --accent-blue-hover: #1D4ED8;
+      --accent-blue-soft: #EFF6FF;
+      --accent-blue-border: #BFDBFE;
+      --success: #16A34A;
+      --success-hover: #15803D;
+      --success-soft: #F0FDF4;
+      --success-border: #BBF7D0;
+      --warning: #D97706;
+      --warning-soft: #FFFBEB;
+      --warning-border: #FDE68A;
+      --danger: #DC2626;
+      --danger-soft: #FEF2F2;
+      --danger-border: #FECACA;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
+      --shadow-card: 0 1px 3px rgba(15, 23, 42, 0.04), 0 1px 2px rgba(15, 23, 42, 0.02);
+      --font-serif: 'Cormorant Garamond', 'Newsreader', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    @font-face {
+      font-family: 'Cormorant Garamond';
+      src: local('Inter'), local('Arial');
+      unicode-range: U+20B4;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-app);
+      color: var(--text-main);
+      line-height: 1.5;
+      font-size: 14px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Layout */
+    .app-shell {
+      display: grid;
+      grid-template-columns: 268px 1fr;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      background: var(--bg-card);
+      border-right: 1px solid var(--border);
+      padding: 20px 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    .brand-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 4px 10px 18px 10px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--primary);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: -0.03em;
+      box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+      flex-shrink: 0;
+    }
+
+    .brand-title {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    .brand-subtitle {
+      color: #94A3B8 !important;
+      font-size: 11px !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.08em !important;
+      font-weight: 500 !important;
+    }
+
+    .nav-section-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      padding: 0 12px;
+      margin-bottom: 8px;
+    }
+
+    .nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      list-style: none;
+    }
+
+    .nav-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--text-secondary);
+      font-family: var(--font-sans);
+      font-size: 13.5px;
+      font-weight: 500;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .nav-btn:hover {
+      background: var(--bg-subtle);
+      color: var(--text-main);
+    }
+
+    .nav-btn.active {
+      background: var(--bg-subtle) !important;
+      color: var(--text-main) !important;
+      border: 1px solid var(--border) !important;
+      border-left: 3px solid var(--accent-blue) !important;
+      font-weight: 600 !important;
+    }
+
+    .nav-btn.active .nav-icon-svg {
+      stroke: var(--accent-blue) !important;
+    }
+
+    .nav-btn-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .nav-icon {
+      font-size: 16px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .nav-badge {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: var(--bg-subtle);
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+    }
+
+    .nav-btn.active .nav-badge {
+      background: var(--bg-card) !important;
+      color: var(--text-main) !important;
+      border: 1px solid var(--border) !important;
+      font-weight: 600 !important;
+    }
+
+    .nav-badge.amber {
+      background: var(--warning-soft);
+      color: var(--warning);
+      border: 1px solid var(--warning-border);
+    }
+
+    .sidebar-footer {
+      border-top: 1px solid var(--border);
+      padding: 14px 10px 4px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .niche-pill-card {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      cursor: pointer;
+      transition: border-color 0.15s ease;
+    }
+
+    .niche-pill-card:hover {
+      border-color: var(--primary);
+    }
+
+    .niche-pill-label {
+      color: #64748B !important;
+      font-size: 10.5px !important;
+      text-transform: uppercase !important;
+      font-weight: 600 !important;
+      letter-spacing: 0.04em !important;
+    }
+
+    .niche-pill-value {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-top: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Main Content Area */
+    .main-area {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .top-header {
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .page-title {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.01em;
+    }
+
+    .company-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .sync-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: var(--success-soft);
+      border: 1px solid var(--success-border);
+      color: var(--success);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .sync-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--success);
+    }
+
+    .inline-feedback {
+      display: none;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      border: 1px solid var(--primary-border);
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .inline-feedback.visible {
+      display: inline-flex;
+    }
+
+    .content-container {
+      padding: 28px 32px 48px 32px;
+      max-width: 1440px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* Views */
+    .view-section {
+      display: none;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .view-section.active {
+      display: flex;
+    }
+
+    /* Cards & Grids */
+    .kpi-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .card-title {
+      font-family: var(--font-serif);
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text-main);
+      letter-spacing: -0.01em;
+    }
+
+    .card-subtitle {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Owner KPI Cards */
+    .kpi-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .kpi-label {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .kpi-value {
+      font-family: var(--font-serif);
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+      font-variant-numeric: tabular-nums lining-nums;
+    }
+
+    .kpi-breakdown {
+      font-size: 12px;
+      color: var(--text-secondary);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding-top: 8px;
+      border-top: 1px solid var(--bg-subtle);
+    }
+
+    .kpi-breakdown-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .kpi-highlight-pill {
+      padding: 7px 10px;
+      border-radius: var(--radius-sm);
+      font-size: 11.5px;
+      font-weight: 600;
+      line-height: 1.35;
+    }
+
+    .kpi-highlight-pill.green {
+      background: var(--success-soft);
+      color: var(--success-hover);
+      border: 1px solid var(--success-border);
+    }
+
+    .kpi-highlight-pill.blue {
+      background: var(--primary-soft);
+      color: var(--primary-hover);
+      border: 1px solid var(--primary-border);
+    }
+
+    .kpi-highlight-pill.amber {
+      background: var(--warning-soft);
+      color: var(--warning);
+      border: 1px solid var(--warning-border);
+    }
+
+    /* Action Items ("Що зробити сьогодні") */
+    .action-stream {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .action-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 16px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--bg-app);
+      transition: border-color 0.15s ease;
+    }
+
+    .action-item:hover {
+      border-color: var(--border-strong);
+    }
+
+    .action-item-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .action-tag {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .action-tag.bank {
+      background: var(--warning-soft);
+      color: var(--warning);
+      border: 1px solid var(--warning-border);
+    }
+
+    .action-tag.debt {
+      background: var(--danger-soft);
+      color: var(--danger);
+      border: 1px solid var(--danger-border);
+    }
+
+    .action-tag.stock {
+      background: var(--primary-soft);
+      color: var(--primary);
+      border: 1px solid var(--primary-border);
+    }
+
+    .action-title {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .action-desc {
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    .action-buttons {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      flex-shrink: 0;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-main);
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      background: var(--bg-subtle);
+      border-color: var(--border-strong);
+    }
+
+    .btn-sm {
+      padding: 6px 10px;
+      font-size: 12px;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #FFFFFF;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      border-color: var(--primary-hover);
+    }
+
+    .btn-success {
+      background: var(--success);
+      border-color: var(--success);
+      color: #FFFFFF;
+    }
+
+    .btn-success:hover {
+      background: var(--success-hover);
+      border-color: var(--success-hover);
+    }
+
+    .btn-soft-blue {
+      background: var(--primary-soft);
+      border-color: var(--primary-border);
+      color: var(--primary);
+    }
+
+    .btn-soft-blue:hover {
+      background: #DBEAFE;
+    }
+
+    .btn-soft-green {
+      background: var(--success-soft);
+      border-color: var(--success-border);
+      color: var(--success-hover);
+    }
+
+    .btn-soft-green:hover {
+      background: #DCFCE7;
+    }
+
+    /* Forms & Inputs */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      align-items: end;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .field-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .input,
+    .select,
+    .textarea {
+      width: 100%;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background: var(--bg-card);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      font-size: 13.5px;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .input:focus,
+    .select:focus,
+    .textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    }
+
+    /* Tables */
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      background: var(--bg-card);
+    }
+
+    th {
+      background: var(--bg-app);
+      padding: 11px 14px;
+      font-size: 11.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      font-size: 13.5px;
+      color: var(--text-main);
+      vertical-align: middle;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background: var(--bg-hover);
+    }
+
+    .mono {
+      font-family: var(--font-mono);
+      white-space: nowrap;
+    }
+
+    .text-right {
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    /* Status Badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .badge-green {
+      background: var(--success-soft);
+      color: var(--success-hover);
+      border: 1px solid var(--success-border);
+    }
+
+    .badge-blue {
+      background: var(--primary-soft);
+      color: var(--primary);
+      border: 1px solid var(--primary-border);
+    }
+
+    .badge-amber {
+      background: var(--warning-soft);
+      color: var(--warning);
+      border: 1px solid var(--warning-border);
+    }
+
+    .badge-red {
+      background: var(--danger-soft);
+      color: var(--danger);
+      border: 1px solid var(--danger-border);
+    }
+
+    .badge-slate {
+      background: var(--bg-subtle);
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+    }
+
+    /* Margin Guard Banner */
+    .margin-guard-box {
+      margin-top: 14px;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .margin-guard-box.safe {
+      background: var(--success-soft);
+      border: 1px solid var(--success-border);
+      color: var(--success-hover);
+    }
+
+    .margin-guard-box.warn {
+      background: var(--danger-soft);
+      border: 1px solid var(--danger-border);
+      color: var(--danger);
+    }
+
+    /* Inline Document Preview Container */
+    .inline-doc-viewer {
+      border: 1px solid var(--primary-border);
+      background: #F8FAFC;
+      border-radius: var(--radius-md);
+      padding: 20px;
+      margin-top: 8px;
+    }
+
+    .doc-paper {
+      background: #FFFFFF;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      padding: 28px 32px;
+      max-width: 920px;
+      margin: 0 auto;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Progress Bar */
+    .progress-track {
+      width: 100%;
+      height: 10px;
+      background: var(--bg-subtle);
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 8px 0;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--primary);
+      border-radius: 999px;
+      transition: width 0.3s ease;
+    }
+
+    /* Niche Profile Cards */
+    .niche-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .niche-card {
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      background: var(--bg-card);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .niche-card:hover {
+      border-color: var(--primary-border);
+      background: var(--bg-app);
+    }
+
+    .niche-card.selected {
+      border-color: var(--primary);
+      background: var(--primary-soft);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    /* Stepper for 1C Migration */
+    .steps-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .step-box {
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--bg-app);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .step-box.active {
+      border-color: var(--primary);
+      background: var(--primary-soft);
+    }
+
+    .step-box.done {
+      border-color: var(--success-border);
+      background: var(--success-soft);
+    }
+
+    .step-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--border-strong);
+      color: var(--text-main);
+      font-weight: 700;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step-box.active .step-num {
+      background: var(--primary);
+      color: #FFFFFF;
+    }
+
+    .step-box.done .step-num {
+      background: var(--success);
+      color: #FFFFFF;
+    }
+
+    @media (max-width: 1180px) {
+      .kpi-grid-4,
+      .niche-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .grid-2,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 840px) {
+      .app-shell {
+        grid-template-columns: 1fr;
+      }
+      .sidebar {
+        height: auto;
+        position: static;
+      }
+      .kpi-grid-4,
+      .niche-grid,
+      .steps-bar {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media print {
+      .sidebar,
+      .top-header,
+      .no-print {
+        display: none !important;
+      }
+      .app-shell {
+        display: block;
+      }
+      .content-container {
+        padding: 0;
+      }
+    }
+
+    /* Clean Sidebar & Brand */
+    .sidebar {
+      background: var(--bg-card);
+      border-right: 1px solid var(--border);
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100vh;
+      position: sticky;
+      top: 0;
+    }
+
+    .brand-box {
+      padding: 0 8px 18px 8px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+    }
+
+    .nav-section-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      padding: 0 10px;
+      margin-bottom: 8px;
+    }
+
+    .nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      list-style: none;
+    }
+
+    .nav-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 9px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--text-secondary);
+      font-size: 13.5px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      text-align: left;
+    }
+
+    .nav-btn:hover {
+      background: var(--bg-subtle);
+      color: var(--text-main);
+    }
+
+    .nav-btn.active {
+      background: var(--bg-subtle);
+      color: var(--text-main);
+      border-color: var(--border);
+      font-weight: 600;
+    }
+
+    .nav-btn-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-icon-svg {
+      width: 16px;
+      height: 16px;
+      stroke-width: 1.75;
+      stroke: currentColor;
+      fill: none;
+      flex-shrink: 0;
+    }
+
+    .nav-badge {
+      background: var(--bg-subtle);
+      color: var(--text-muted);
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 1px 6px;
+      font-family: var(--font-mono);
+      border: 1px solid var(--border);
+    }
+
+    .nav-btn.active .nav-badge {
+      background: #FFFFFF;
+      color: var(--text-main);
+    }
+
+    .nav-badge.danger {
+      background: #FEF2F2;
+      color: #DC2626;
+      border-color: #FECACA;
+    }
+
+    /* Sidebar Footer User Profile */
+    .sidebar-footer {
+      border-top: 1px solid var(--border);
+      padding: 14px 6px 0 6px;
+    }
+
+    .user-profile-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 8px;
+      border-radius: var(--radius-sm);
+    }
+
+    .user-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #0F172A;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .user-info {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .user-name {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-main);
+      line-height: 1.2;
+    }
+
+    .user-role {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.2;
+      margin-top: 2px;
+    }
+
+    /* Clean Card & KPI Elements */
+    .kpi-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .kpi-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background: var(--bg-card);
+      padding: 18px 20px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 136px;
+      transition: all 0.15s ease;
+    }
+
+    .kpi-card:hover {
+      border-color: var(--border-focus);
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+    }
+
+    .kpi-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .kpi-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: -0.01em;
+    }
+
+    .kpi-value {
+      font-family: var(--font-serif);
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.15;
+      margin: 6px 0 6px 0;
+      letter-spacing: -0.01em;
+      font-variant-numeric: tabular-nums lining-nums;
+    }
+
+    .kpi-context-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+
+    .kpi-context-label {
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    .kpi-context-value {
+      font-family: var(--font-serif);
+      font-weight: 700;
+      font-size: 15px;
+      font-variant-numeric: tabular-nums lining-nums;
+    }
+
+    .kpi-context-value.emerald {
+      color: #047857;
+    }
+
+    .kpi-context-value.amber {
+      color: #B45309;
+    }
+
+    .kpi-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11.5px;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+      padding-top: 6px;
+      border-top: 1px solid var(--border);
+    }
+
+    .kpi-meta-row strong {
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .meta-sep {
+      color: var(--border-strong);
+    }
+
+    /* Action Stream: Clean Minimal Tasks */
+    .action-stream {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .action-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      transition: all 0.15s ease;
+    }
+
+    .action-item:hover {
+      border-color: var(--border-focus);
+      background: var(--bg-subtle);
+    }
+
+    .action-item-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .action-tag-quiet {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      padding: 2px 7px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    .action-title {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .action-desc {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .action-amount {
+      font-family: var(--font-serif);
+      font-weight: 700;
+      color: var(--text-main);
+      font-size: 15px;
+      font-variant-numeric: tabular-nums lining-nums;
+    }
+
+    .action-buttons {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .btn-subtle {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      font-weight: 500;
+      font-size: 12px;
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      transition: all 0.15s ease;
+      cursor: pointer;
+    }
+
+    .btn-subtle:hover {
+      background: var(--bg-subtle);
+      border-color: var(--border-focus);
+      color: var(--text-main);
+    }
+
+    .btn-action-primary {
+      background: #0F172A;
+      border: 1px solid #0F172A;
+      color: #FFFFFF;
+      font-weight: 500;
+      font-size: 12px;
+      padding: 6px 13px;
+      border-radius: var(--radius-sm);
+      transition: all 0.15s ease;
+      cursor: pointer;
+    }
+
+    .btn-action-primary:hover {
+      background: #1E293B;
+      border-color: #1E293B;
+    }
+
+    .quiet-metric {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 4px 10px;
+    }
+
+    .quiet-counter {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: var(--bg-subtle);
+      padding: 2px 8px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+    }
+
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Left Sidebar: Strictly 6 Clear Sections for SMB Owner -->
+    <aside class="sidebar">
+      <div>
+        <div class="brand-box">
+          <div class="brand-title">OpexMetrix</div>
+        </div>
+
+        <div class="nav-section-label">Управління</div>
+        <ul class="nav-list" id="main-nav">
+          <li>
+            <button type="button" class="nav-btn active" data-tab="pulse">
+              <span class="nav-btn-left">
+                <svg class="nav-icon-svg" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                <span>Головна</span>
+              </span>
+              <span class="nav-badge" id="nav-badge-pulse">3</span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="nav-btn" data-tab="sales">
+              <span class="nav-btn-left">
+                <svg class="nav-icon-svg" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                <span>Продажі та Рахунки</span>
+              </span>
+              <span class="nav-badge" id="nav-badge-sales" style="display:none;"></span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="nav-btn" data-tab="stock">
+              <span class="nav-btn-left">
+                <svg class="nav-icon-svg" viewBox="0 0 24 24"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                <span>Склад та Закупівлі</span>
+              </span>
+              <span class="nav-badge" id="nav-badge-stock" style="display:none;"></span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="nav-btn" data-tab="bank">
+              <span class="nav-btn-left">
+                <svg class="nav-icon-svg" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                <span>Банк і Каса</span>
+              </span>
+              <span class="nav-badge danger" id="nav-badge-bank" style="display:none;"></span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="nav-btn" data-tab="taxes">
+              <span class="nav-btn-left">
+                <svg class="nav-icon-svg" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                <span>Податки та Команда</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="nav-btn" data-tab="ai-sales">
+              <span class="nav-btn-left">
+                <svg class="nav-icon-svg" viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" x2="12" y1="19" y2="22"></line></svg>
+                <span>AI Відділ продажів</span>
+              </span>
+              <span class="nav-badge" id="nav-badge-ai-sales" style="background: var(--primary-soft); color: var(--primary); border: 1px solid var(--primary-border);">+25%</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="user-profile-badge">
+          <div class="user-avatar">ОК</div>
+          <div class="user-info">
+            <span class="user-name">Олександр К.</span>
+            <span class="user-role">Власник бізнесу</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Area -->
+    <div class="main-area">
+      <!-- Clean Top Header -->
+      <header class="top-header">
+        <div class="header-left">
+          <h1 class="page-title" id="header-page-title">Пульс бізнесу</h1>
+          <span class="company-chip" id="header-company-chip">ТОВ "Альфа Трейд Груп"</span>
+          <span id="header-niche-badge" style="display: none;"></span>
+        </div>
+        <div class="header-right">
+          <a href="./pitch.html" target="_blank" class="btn btn-sm btn-subtle" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px; font-size:12.5px; font-weight:500; color:var(--text-secondary); border:1px solid var(--border); padding:6px 12px; border-radius:6px; background:#FFFFFF;">
+            <span>КП та Презентація</span>
+            <span style="font-size:11px; color:var(--accent-blue);">↗</span>
+          </a>
+          <div class="inline-feedback" id="global-inline-status">
+            <span>✓ Збережено</span>
+          </div>
+        </div>
+      </header>
+
+      <main class="content-container">
+        <!-- ================================================================
+             1. ГОЛОВНА (ПУЛЬС БІЗНЕСУ)
+             ================================================================ -->
+        <section class="view-section active" id="view-pulse">
+          <!-- 4 Owner KPI Cards (Quiet Luxury Private Banking Hierarchy) -->
+          <div class="kpi-grid-4">
+            <!-- Card 1: Вільні кошти -->
+            <div class="kpi-card">
+              <div class="kpi-header">
+                <span class="kpi-title">Вільні кошти</span>
+              </div>
+              <div class="kpi-value" id="kpi-cash-total">₴ 1 344 300</div>
+              <div class="kpi-context-row" id="kpi-safe-dividend">
+                <span class="kpi-context-label">Безпечні дивіденди:</span>
+                <span class="kpi-context-value emerald">₴ 385 554</span>
+              </div>
+              <div class="kpi-meta-row">
+                <span>Моно: <strong id="kpi-cash-mono">₴ 482 100</strong></span>
+                <span class="meta-sep">·</span>
+                <span>Приват: <strong id="kpi-cash-privat">₴ 798 200</strong></span>
+                <span class="meta-sep">·</span>
+                <span>Каса: <strong id="kpi-cash-register">₴ 64 000</strong></span>
+              </div>
+            </div>
+
+            <!-- Card 2: Чистий прибуток -->
+            <div class="kpi-card">
+              <div class="kpi-header">
+                <span class="kpi-title">Чистий прибуток</span>
+              </div>
+              <div class="kpi-value" id="kpi-net-profit">₴ 284 600</div>
+              <div class="kpi-context-row" id="kpi-profit-context">
+                <span class="kpi-context-label">Рентабельність:</span>
+                <span class="kpi-context-value emerald" id="kpi-profit-margin-badge">28.4%</span>
+              </div>
+              <div class="kpi-meta-row" id="kpi-profit-formula">
+                <span>Виручка: <strong>+₴ 1 002 100</strong></span>
+                <span class="meta-sep">·</span>
+                <span>Витрати: <strong>−₴ 717 500</strong></span>
+              </div>
+            </div>
+
+            <!-- Card 3: Дебіторська заборгованість -->
+            <div class="kpi-card">
+              <div class="kpi-header">
+                <span class="kpi-title">Дебіторська заборгованість</span>
+              </div>
+              <div class="kpi-value" id="kpi-receivables-total">₴ 235 100</div>
+              <div class="kpi-context-row" id="kpi-receivables-overdue">
+                <span class="kpi-context-label">Прострочено &gt; 5 днів:</span>
+                <span class="kpi-context-value amber">₴ 38 500</span>
+              </div>
+              <div class="kpi-meta-row" id="kpi-receivables-list">
+                <span>Контрагентів: <strong id="kpi-receivables-count">3</strong></span>
+                <span class="meta-sep">·</span>
+                <span>ТОВ Розетка: <strong>₴ 180 500</strong></span>
+              </div>
+            </div>
+
+            <!-- Card 4: Планові виплати 7 днів -->
+            <div class="kpi-card">
+              <div class="kpi-header">
+                <span class="kpi-title">Планові виплати 7 днів</span>
+              </div>
+              <div class="kpi-value" id="kpi-payables-total">₴ 143 680</div>
+              <div class="kpi-context-row" id="kpi-cashgap-status">
+                <span class="kpi-context-label">Касові розриви:</span>
+                <span class="kpi-context-value emerald">відсутні (запас 30 дн)</span>
+              </div>
+              <div class="kpi-meta-row">
+                <span>Постачальникам: <strong id="kpi-payables-suppliers">₴ 84 000</strong></span>
+                <span class="meta-sep">·</span>
+                <span>Податки: <strong id="kpi-payables-tax">₴ 35 680</strong></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Block: Завдання, що потребують уваги -->
+          <div class="card action-card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Завдання, що потребують уваги</div>
+                <div class="card-subtitle">Операції проведено автоматично. Питання, що очікують вашого підтвердження:</div>
+              </div>
+              <span class="quiet-counter" id="today-actions-counter">3 задачі</span>
+            </div>
+
+            <div class="action-stream" id="owner-today-stream">
+              <!-- Populated dynamically by app.js -->
+            </div>
+          </div>
+
+          <!-- Clean Cashflow & 30-Day Balance Forecast Chart -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Прогноз залишку коштів на 30 днів</div>
+                <div class="card-subtitle">Базовий платіжний календар з урахуванням очікуваних надходжень, зобов'язань та стрес-моделі.</div>
+              </div>
+              <div style="display: flex; gap: 8px; align-items: center;">
+                <span class="quiet-metric" id="chart-min-balance-badge">Мін. залишок (30 дн): ₴ 980 000</span>
+                <span class="quiet-metric" id="chart-reserve-badge">Незнижуваний резерв: ₴ 250 000</span>
+              </div>
+            </div>
+            <div style="height: 290px; width: 100%; position: relative;">
+              <canvas id="cashflowChart"></canvas>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             2. 💼 ПРОДАЖІ ТА РАХУНКИ
+             ================================================================ -->
+        <section class="view-section" id="view-sales">
+          <!-- Quick Order / Invoice Form with Live Margin Guard -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Швидке виставлення рахунку / замовлення</div>
+                <div class="card-subtitle">Вбудований контроль маржі перевіряє рентабельність кожного замовлення.</div>
+              </div>
+              <div style="display: flex; gap: 8px; align-items: center;">
+                <span class="badge badge-green">● ПРРО Checkbox Онлайн (ФН 4000918274)</span>
+                <span class="badge badge-blue" id="sales-niche-hint">Рахунок з QR НБУ</span>
+              </div>
+            </div>
+
+            <form id="quick-invoice-form" onsubmit="return false;">
+              <div class="form-grid">
+                <div class="field-group" style="grid-column: span 2;">
+                  <label class="field-label" for="inv-client-name">Клієнт (Компанія або ФОП)</label>
+                  <input type="text" id="inv-client-name" class="input" value='ТОВ "Розетка Маркетплейс Україна"' required />
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="inv-client-edrpou">Код ЄДРПОУ / ІПН</label>
+                  <input type="text" id="inv-client-edrpou" class="input mono" value="00482194" required />
+                </div>
+                <div class="field-group" style="grid-column: span 2;">
+                  <label class="field-label" for="inv-item-select">Товар або послуга з каталогу</label>
+                  <select id="inv-item-select" class="select">
+                    <option value="PRD-101" data-name="Кавомашина професійна Delonghi Dinamica Plus" data-cost="18500" data-price="26900" data-unit="шт.">Кавомашина Delonghi Dinamica Plus — ₴ 26 900</option>
+                    <option value="PRD-204" data-name="Кава в зернах Lavazza Qualita Oro (1 кг)" data-cost="620" data-price="920" data-unit="уп.">Кава в зернах Lavazza Qualita Oro 1 кг — ₴ 920</option>
+                    <option value="PRD-309" data-name="Термопринтер чеків та етикеток Xprinter XP-365B" data-cost="2850" data-price="4200" data-unit="шт.">Термопринтер чеків Xprinter XP-365B — ₴ 4 200</option>
+                    <option value="PRD-412" data-name="Сканер штрих-кодів бездротовий Zebra DS2278" data-cost="4200" data-price="6150" data-unit="шт.">Сканер штрих-кодів Zebra DS2278 — ₴ 6 150</option>
+                    <option value="SRV-100" data-name="Комплексне сервісне налаштування та інтеграція POS" data-cost="2200" data-price="6500" data-unit="посл.">Послуга: Налаштування та інтеграція — ₴ 6 500</option>
+                  </select>
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="inv-qty">Кількість</label>
+                  <input type="number" id="inv-qty" class="input mono" value="4" min="1" step="1" />
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="inv-price">Ціна за од. (₴)</label>
+                  <input type="number" id="inv-price" class="input mono" value="26900" min="1" step="10" />
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="inv-discount">Знижка (%)</label>
+                  <input type="number" id="inv-discount" class="input mono" value="0" min="0" max="50" step="1" />
+                </div>
+                <div class="field-group">
+                  <button type="button" class="btn btn-action-primary" id="btn-create-invoice" style="width: 100%; height: 38px;">
+                    + Створити рахунок
+                  </button>
+                </div>
+              </div>
+            </form>
+
+            <!-- Compact Margin Guard -->
+            <div class="margin-guard-box safe" id="margin-guard-banner" style="margin-top: 14px; padding: 10px 14px; display: flex; align-items: center; justify-content: space-between;">
+              <div style="font-size: 13px; color: var(--text-secondary);" id="margin-guard-details">
+                Сума: <strong>₴ 107 600</strong> • Чистий прибуток: <strong style="color: var(--success);">₴ 33 600</strong>
+              </div>
+              <span class="badge badge-green" id="margin-guard-pill">Маржа 31.2% • Безпечно</span>
+            </div>
+          </div>
+
+          <!-- Orders & Invoices Table -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Усі замовлення та виставлені рахунки</div>
+                <div class="card-subtitle">Змінюйте статус оплати чи відвантаження в 1 клік. Документи з QR НБУ відкриваються прямо під таблицею.</div>
+              </div>
+              <span class="badge badge-slate" id="orders-total-summary">Всього замовлень: 4</span>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>№ Рахунку / Дата</th>
+                    <th>Клієнт</th>
+                    <th>Номенклатура замовлення</th>
+                    <th class="text-right">Сума (₴)</th>
+                    <th class="text-right">Маржа</th>
+                    <th>Статус</th>
+                    <th class="text-right">Документ</th>
+                  </tr>
+                </thead>
+                <tbody id="sales-orders-tbody">
+                  <!-- Populated by app.js -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Inline Document Preview (Рахунок / Видаткова накладна / Акт / Гарантія з QR НБУ) -->
+            <div class="inline-doc-viewer" id="inline-doc-container" style="margin-top: 20px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 16px;" class="no-print">
+                <div>
+                  <div style="font-size: 14px; font-weight: 700; color: var(--text-main);" id="inline-doc-header-title">
+                    Вбудований перегляд документа: Рахунок-фактура № INV-2026-104
+                  </div>
+                  <div style="font-size: 12px; color: var(--text-secondary);">
+                    Офіційний QR-код НБУ (стандарт V002 BCD) для миттєвої оплати у додатку Монобанк або Приват24
+                  </div>
+                </div>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                  <button type="button" class="btn btn-sm btn-action-primary doc-type-switch" data-doctype="INVOICE">Рахунок з QR НБУ</button>
+                  <button type="button" class="btn btn-sm btn-subtle doc-type-switch" data-doctype="WAYBILL">Видаткова накладна</button>
+                  <button type="button" class="btn btn-sm btn-subtle doc-type-switch" data-doctype="ACT">Акт виконаних робіт</button>
+                  <button type="button" class="btn btn-sm btn-subtle doc-type-switch" data-doctype="WARRANTY">Гарантійний талон</button>
+                  <button type="button" class="btn btn-sm btn-subtle" id="btn-print-inline-doc">Друкувати</button>
+                </div>
+              </div>
+              <div id="inline-doc-render-body" class="doc-paper">
+                <!-- Populated inline by app.js -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             3. 📦 СКЛАД ТА ЗАКУПІВЛІ
+             ================================================================ -->
+        <section class="view-section" id="view-stock">
+          <!-- Quick Stock Receipt Form -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">📥 Швидке оприбуткування поставки / додавання товару</div>
+                <div class="card-subtitle">Додайте нову поставку в 1 клік — залишки та собівартість оновляться миттєво.</div>
+              </div>
+              <span class="badge badge-green" id="stock-total-val-badge">Вартість складу: ₴ 912 400</span>
+            </div>
+
+            <form id="stock-add-form" onsubmit="return false;">
+              <div class="form-grid">
+                <div class="field-group">
+                  <label class="field-label" for="stk-sku">Артикул (SKU)</label>
+                  <input type="text" id="stk-sku" class="input mono" value="PRD-510" required />
+                </div>
+                <div class="field-group" style="grid-column: span 2;">
+                  <label class="field-label" for="stk-name">Назва товару / матеріалу</label>
+                  <input type="text" id="stk-name" class="input" value="Кавомолка професійна Fiorenzato F64E" required />
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="stk-category">Категорія</label>
+                  <select id="stk-category" class="select">
+                    <option value="Обладнання та техніка">Обладнання та техніка</option>
+                    <option value="Товари та сировина">Товари та сировина</option>
+                    <option value="POS та комплектуючі">POS та комплектуючі</option>
+                    <option value="Пакування та витратні">Пакування та витратні</option>
+                  </select>
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="stk-qty">Кількість</label>
+                  <input type="number" id="stk-qty" class="input mono" value="10" min="1" required />
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="stk-cost">Собівартість (₴)</label>
+                  <input type="number" id="stk-cost" class="input mono" value="14200" min="1" required />
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="stk-price">Ціна продажу (₴)</label>
+                  <input type="number" id="stk-price" class="input mono" value="19800" min="1" required />
+                </div>
+                <div class="field-group">
+                  <button type="button" class="btn btn-primary" id="btn-add-stock" style="width: 100%; height: 38px;">
+                    + Додати поставку
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Inventory Catalog & Filter -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">📦 Каталог товарів, матеріалів і послуг (Актуальні залишки)</div>
+                <div class="card-subtitle">Повний контроль собівартості (FIFO), ціни реалізації, маржі та мінімального запасу по кожній позиції.</div>
+              </div>
+              <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <input type="text" id="stock-search-input" class="input" placeholder="🔍 Пошук за назвою або артикулом..." style="width: 250px;" />
+                <select id="stock-category-filter" class="select" style="width: 210px;">
+                  <option value="ALL">Всі категорії</option>
+                  <option value="Обладнання та техніка">Обладнання та техніка</option>
+                  <option value="Товари та сировина">Товари та сировина</option>
+                  <option value="POS та комплектуючі">POS та комплектуючі</option>
+                  <option value="Пакування та витратні">Пакування та витратні</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Артикул</th>
+                    <th>Назва позиції</th>
+                    <th>Категорія</th>
+                    <th class="text-right">Залишок</th>
+                    <th class="text-right">Собівартість</th>
+                    <th class="text-right">Ціна продажу</th>
+                    <th class="text-right">Маржа %</th>
+                    <th>Статус запасу</th>
+                    <th class="text-right">Дія в 1 клік</th>
+                  </tr>
+                </thead>
+                <tbody id="stock-catalog-tbody">
+                  <!-- Populated by app.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Auto-Reorder to Suppliers Block -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">🚚 Автоматичне замовлення постачальникам (Позиції, що закінчуються)</div>
+                <div class="card-subtitle">Готові повідомлення для відправки постачальнику у Viber / Telegram або миттєвого поповнення складу.</div>
+              </div>
+              <span class="badge badge-amber" id="reorder-alerts-badge">Потребують уваги: 2 позиції</span>
+            </div>
+            <div id="stock-reorder-list" class="action-stream">
+              <!-- Populated by app.js -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             4. 🏦 БАНК І КАСА (АВТОПІЛОТ)
+             ================================================================ -->
+        <section class="view-section" id="view-bank">
+          <!-- 3 Bank & Cash Account Cards -->
+          <div class="grid-3">
+            <div class="kpi-card">
+              <div class="kpi-label">
+                <span>Монобанк ФОП (UAH)</span>
+                <span class="badge badge-green">Вебхук активний</span>
+              </div>
+              <div class="kpi-value" id="bank-card-mono">₴ 482 100</div>
+              <div style="font-size: 12px; color: var(--text-muted);" class="mono">UA213223130000026007233566001</div>
+              <div class="kpi-highlight-pill green">ФОП 3 група (5%) • Авто-рознесення оплат клієнтів</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-label">
+                <span>Приват24 Бізнес ТОВ (UAH)</span>
+                <span class="badge badge-green">Синхронізовано</span>
+              </div>
+              <div class="kpi-value" id="bank-card-privat">₴ 798 200</div>
+              <div style="font-size: 12px; color: var(--text-muted);" class="mono">UA82305299000002600123456789</div>
+              <div class="kpi-highlight-pill blue">ТОВ з ПДВ 20% • Авто-виділення ПДВ з призначення</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-label">
+                <span>Готівкова каса та ПРРО</span>
+                <span class="badge badge-slate">Checkbox ПРРО</span>
+              </div>
+              <div class="kpi-value" id="bank-card-cash">₴ 64 000</div>
+              <div style="font-size: 12px; color: var(--text-muted);">Торгова точка + Офісна каса</div>
+              <div class="kpi-highlight-pill green">Z-звіт сформовано автоматично о 23:59</div>
+            </div>
+          </div>
+
+          <!-- Statement Import Box -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Синхронізація та імпорт банківської виписки</div>
+                <div class="card-subtitle">Підтримуються формати 1CClientBankExchange, CSV або прямий вебхук API Monobank / Приват24.</div>
+              </div>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <button type="button" class="btn btn-sm btn-subtle" id="btn-fill-demo-bank">Завантажити демо-виписку</button>
+                <button type="button" class="btn btn-sm btn-action-primary" id="btn-run-bank-import">Провести виписку</button>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center; background: var(--bg-app); border: 1.5px dashed var(--border-strong); border-radius: var(--radius-sm); padding: 16px 20px;" id="bank-dropzone">
+              <div style="display: flex; align-items: center; gap: 14px;">
+                <div style="width: 40px; height: 40px; border-radius: 8px; background: var(--primary-soft); color: var(--primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                </div>
+                <div>
+                  <div style="font-size: 13.5px; font-weight: 600; color: var(--text-main);" id="bank-dropzone-status">Перетягніть файл виписки (TXT / CSV) або оберіть з диска</div>
+                  <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Система автоматично виділить ПДВ 20%, зв'яже платежі з рахунками за ЄДРПОУ та рознесе доходи/витрати.</div>
+                </div>
+              </div>
+              <div style="display: flex; gap: 8px;">
+                <label class="btn btn-sm btn-subtle" style="cursor: pointer; margin: 0;">
+                  Обрати файл
+                  <input type="file" id="bank-file-input" accept=".txt,.csv,.xml" style="display: none;" />
+                </label>
+              </div>
+            </div>
+
+            <textarea id="bank-raw-textarea" class="textarea mono" rows="3" style="display: none; margin-top: 12px;" placeholder="1CClientBankExchange або CSV-рядки..."></textarea>
+          </div>
+
+          <!-- Live Bank Transactions Table -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Журнал банківських платежів</div>
+                <div class="card-subtitle">Для нетипових платежів категорія призначається в 1 клік — система запам'ятовує правило.</div>
+              </div>
+              <span class="badge badge-green" id="bank-auto-rate-badge">Автопілот: 95%</span>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Дата / №</th>
+                    <th>Контрагент та ЄДРПОУ</th>
+                    <th>Призначення платежу</th>
+                    <th class="text-right">Сума (₴)</th>
+                    <th class="text-right">В т.ч. ПДВ</th>
+                    <th>Категорія / Правило</th>
+                    <th>Статус / Рішення в 1 клік</th>
+                  </tr>
+                </thead>
+                <tbody id="bank-tx-tbody">
+                  <!-- Populated by app.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             5. 🏛️ ПОДАТКИ ТА КОМАНДА (БЕЗ БУХГАЛТЕРА)
+             ================================================================ -->
+        <section class="view-section" id="view-taxes">
+          <div class="grid-2">
+            <!-- Card 1: ФОП 3 група -->
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <div class="card-title">Податковий розрахунок: ФОП 3 група (5% ЄП + 1% ВЗ + ЄСВ)</div>
+                  <div class="card-subtitle">Розраховано автоматично за надходженнями на рахунок Монобанк ФОП</div>
+                </div>
+                <span class="badge badge-green">Ліміт у нормі</span>
+              </div>
+
+              <div style="background: var(--bg-app); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px; margin-bottom: 16px;">
+                <div style="display: flex; justify-content: space-between; font-size: 12.5px; font-weight: 600;">
+                  <span>Річний ліміт доходу ФОП 3 гр. (1167 МЗП):</span>
+                  <span class="mono" id="fop-limit-label">₴ 2 840 200 / ₴ 9 336 000 (30.4%)</span>
+                </div>
+                <div class="progress-track">
+                  <div class="progress-fill" id="fop-limit-bar" style="width: 30.4%;"></div>
+                </div>
+                <div style="font-size: 11.5px; color: var(--text-muted);">
+                  Залишок ліміту до кінця року: <strong>₴ 6 495 800</strong> (безпечний запас)
+                </div>
+              </div>
+
+              <div class="kpi-breakdown" style="font-size: 13.5px; gap: 8px; border-top: none; padding-top: 0;">
+                <div class="kpi-breakdown-row">
+                  <span>Оподатковуваний дохід за квартал:</span>
+                  <strong class="mono" id="tax-fop-income">₴ 840 200.00</strong>
+                </div>
+                <div class="kpi-breakdown-row">
+                  <span>Єдиний податок (5%):</span>
+                  <strong class="mono" id="tax-fop-ep">₴ 42 010.00</strong>
+                </div>
+                <div class="kpi-breakdown-row">
+                  <span>Військовий збір (1%):</span>
+                  <strong class="mono" id="tax-fop-vz">₴ 8 402.00</strong>
+                </div>
+                <div class="kpi-breakdown-row">
+                  <span>ЄСВ за себе (мінімальний страховий внесок за квартал):</span>
+                  <strong class="mono" id="tax-fop-esv">₴ 5 280.00</strong>
+                </div>
+                <div class="kpi-breakdown-row" style="padding-top: 8px; border-top: 1px solid var(--border); font-size: 15px;">
+                  <strong>Разом до сплати за квартал:</strong>
+                  <strong class="mono" style="color: var(--primary);" id="tax-fop-total">₴ 55 692.00</strong>
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px;">
+                <button type="button" class="btn btn-subtle" id="btn-copy-tax-iban">
+                  Скопіювати реквізити сплати
+                </button>
+                <button type="button" class="btn btn-action-primary" id="btn-download-tax-xml">
+                  Завантажити декларацію XML
+                </button>
+              </div>
+            </div>
+
+            <!-- Card 2: ТОВ з ПДВ 20% -->
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <div class="card-title">Податковий розрахунок: ТОВ з ПДВ (20%)</div>
+                  <div class="card-subtitle">Оперативний розрахунок зобов'язань та кредиту за зареєстрованими ПН</div>
+                </div>
+                <span class="badge badge-blue" id="tax-vat-status-badge">Контроль ЄРПН</span>
+              </div>
+
+              <div style="background: var(--bg-subtle); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 12.5px; color: var(--text-secondary);">Податковий період: <strong>Поточний квартал</strong></span>
+                <span class="badge badge-blue">Контроль ЄРПН</span>
+              </div>
+
+              <div class="kpi-breakdown" style="font-size: 13.5px; gap: 10px; border-top: none; padding-top: 0;">
+                <div class="kpi-breakdown-row">
+                  <span>1. ПДВ з наших продажів (Податкове зобов'язання):</span>
+                  <strong class="mono" id="tax-vat-liability">₴ 41 500.00</strong>
+                </div>
+                <div class="kpi-breakdown-row">
+                  <span>2. ПДВ із закупівель товару та оренди (Податковий кредит):</span>
+                  <strong class="mono" style="color: var(--success);" id="tax-vat-credit">−₴ 28 333.33</strong>
+                </div>
+                <div class="kpi-breakdown-row" style="padding-top: 10px; border-top: 1px solid var(--border); font-size: 15px;">
+                  <strong>Чистий ПДВ до сплати в бюджет:</strong>
+                  <strong class="mono" style="color: var(--primary);" id="tax-vat-net">₴ 13 166.67</strong>
+                </div>
+              </div>
+
+              <div class="kpi-highlight-pill green" style="margin-top: 18px;" id="tax-vat-tip">
+                Запланована закупівля товару у ТОВ "Імпорт-Логістик Сервіс" на ₴ 84 000 з ПДВ додасть ₴ 14 000 податкового кредиту до кінця місяця.
+              </div>
+            </div>
+          </div>
+
+          <!-- Team Payroll Table -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">👥 Розрахунок зарплати команди (Ставка + Бонус/КПІ)</div>
+                <div class="card-subtitle">Проста відомість без складних табелів: бачите скільки співробітник заробив і скільки переказати на картку.</div>
+              </div>
+              <button type="button" class="btn btn-success" id="btn-pay-all-team">
+                ✓ Виплатити зарплату всій команді в 1 клік
+              </button>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Співробітник</th>
+                    <th>Посада / Роль</th>
+                    <th class="text-right">Фіксована ставка</th>
+                    <th class="text-right">Бонус / КПІ продажів</th>
+                    <th class="text-right">Податки на ЗП</th>
+                    <th class="text-right">До видачі на руки</th>
+                    <th>Статус</th>
+                    <th class="text-right">Дія (1 клік)</th>
+                  </tr>
+                </thead>
+                <tbody id="payroll-tbody">
+                  <!-- Populated by app.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             6. 🎙️ AI ВІДДІЛ ПРОДАЖІВ ТА ТЕЛЕФОНІЯ (WHISPER AI + QC)
+             ================================================================ -->
+        <section class="view-section" id="view-ai-sales">
+          <!-- KPI Cards -->
+          <div class="kpi-grid-4">
+            <div class="kpi-card">
+              <div class="kpi-header">
+                <span class="kpi-title">Конверсія дзвінків</span>
+              </div>
+              <div class="kpi-value" id="ai-stat-conv">34.2%</div>
+              <div class="kpi-context-row">
+                <span class="kpi-context-label">Приріст конверсії:</span>
+                <span class="kpi-context-value emerald">+25.0%</span>
+              </div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-header">
+                <span class="kpi-title">Середній бал скрипта</span>
+              </div>
+              <div class="kpi-value" id="ai-stat-qc">89 / 100</div>
+              <div class="kpi-context-row">
+                <span class="kpi-context-label">Контроль якості:</span>
+                <span class="kpi-context-value">Whisper AI QC</span>
+              </div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-header">
+                <span class="kpi-title">Збережена маржа</span>
+              </div>
+              <div class="kpi-value" id="ai-stat-margin">₴ 48 200</div>
+              <div class="kpi-context-row">
+                <span class="kpi-context-label">Margin Guard:</span>
+                <span class="kpi-context-value emerald">Блок зливу знижок</span>
+              </div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-header">
+                <span class="kpi-title">Генерація рахунку</span>
+              </div>
+              <div class="kpi-value">&lt; 30 сек</div>
+              <div class="kpi-context-row">
+                <span class="kpi-context-label">З розмови в рахунок:</span>
+                <span class="kpi-context-value">1 клік</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Scored Calls Stream -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Моніторинг дзвінків та автоматичне розпізнавання замовлень</div>
+                <div class="card-subtitle">Інтеграція з телефонією (Binotel / Ringostat / Phonet). ШІ транскрибує розмову, оцінює відпрацювання заперечень та готує чернетку рахунку.</div>
+              </div>
+              <span class="badge badge-green">4 лінії онлайн</span>
+            </div>
+
+            <div id="ai-calls-list" class="action-stream">
+              <!-- Populated by app.js -->
+            </div>
+          </div>
+
+          <!-- Battle Differentiators vs Competitors -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Бойові переваги перед конкурентами (Odoo, Бітрікс, прості AI-боти)</div>
+                <div class="card-subtitle">Чому звичайні AI-розмовники програють повному контуру OpexMetrix Business</div>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px;">
+              <div style="border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px; background: var(--bg-app);">
+                <div style="font-weight: 700; font-size: 14px; color: var(--text-main); margin-bottom: 6px;">1. Зв'язка зі складом та рахунком</div>
+                <div style="font-size: 12.5px; color: var(--text-secondary); line-height: 1.5;">
+                  Звичайний бот конкурента просто пересилає текст у Telegram. В OpexMetrix AI одразу резервує реальний залишок на складі, створює рахунок-фактуру з QR-кодом НБУ і контролює надходження грошей з банку.
+                </div>
+              </div>
+
+              <div style="border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px; background: var(--bg-app);">
+                <div style="font-weight: 700; font-size: 14px; color: var(--text-main); margin-bottom: 6px;">2. Margin Guard (Захист прибутку)</div>
+                <div style="font-size: 12.5px; color: var(--text-secondary); line-height: 1.5;">
+                  Менеджери не можуть роздавати знижки нижче 25% маржі за спиною власника. Система миттєво сигналізує під час дзвінка і блокує нерентабельні пропозиції.
+                </div>
+              </div>
+
+              <div style="border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px; background: var(--bg-app);">
+                <div style="font-weight: 700; font-size: 14px; color: var(--text-main); margin-bottom: 6px;">3. Запуск за 48 годин під NDA</div>
+                <div style="font-size: 12.5px; color: var(--text-secondary); line-height: 1.5;">
+                  Замість 6 місяців впровадження Odoo/1C за $15,000+ — переїзд за фіксовані 48 годин і збереження комерційної таємниці на приватному сервері.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>

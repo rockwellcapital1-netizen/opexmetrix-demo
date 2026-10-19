@@ -1,0 +1,395 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700;1,800&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg-main: #F8FAFC;
+  --sidebar-bg: #FFFFFF;
+  --sidebar-header: #0F172A;
+  --text-main: #0F172A;
+  --text-dim: #64748B;
+  --accent-blue: #3B82F6;
+  --accent-red: #DC2626;
+  --accent-green: #10B981;
+  --card-bg: #FFFFFF;
+  --card-dark: #0F172A;
+  --border: #E2E8F0;
+  
+  --font-sans: 'Inter', sans-serif;
+  --font-head: 'Montserrat', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  height: 100vh;
+  overflow: hidden;
+  font-size: 14px;
+}
+
+/* ─── TYPOGRAPHY ─────────────────────────────────────────── */
+h1 {
+  font-family: var(--font-head);
+  font-size: 32px;
+  font-weight: 800;
+  font-style: italic;
+  text-transform: uppercase;
+  color: var(--sidebar-header);
+  letter-spacing: -0.5px;
+  margin-bottom: 4px;
+}
+.page-header p {
+  color: var(--text-dim);
+  font-size: 14px;
+  font-weight: 500;
+}
+h2 {
+  font-family: var(--font-head);
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--sidebar-header);
+}
+
+/* ─── LOGIN VIEW ───────────────────────────────────────── */
+.login-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: var(--bg-main);
+}
+.login-box {
+  background: var(--sidebar-header);
+  color: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  width: 360px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+.login-box h1 { color: #fff; font-size: 24px; margin-bottom: 20px; text-align: center; }
+.login-box select, .login-box input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+  font-family: var(--font-sans);
+}
+.login-box button {
+  width: 100%;
+  padding: 12px;
+  background: var(--accent-blue);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* ─── APP LAYOUT ───────────────────────────────────────── */
+.app {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
+/* ─── SIDEBAR ──────────────────────────────────────────── */
+.sidebar {
+  width: 260px;
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+}
+.sidebar-logo {
+  background: var(--sidebar-header);
+  color: #fff;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  font-family: var(--font-head);
+  font-size: 20px;
+  font-weight: 800;
+  font-style: italic;
+  gap: 12px;
+}
+.sidebar-logo .icon {
+  background: var(--accent-blue);
+  width: 28px; height: 32px;
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-style: normal; font-size: 14px;
+}
+
+.sidebar-nav {
+  padding: 24px 0;
+  flex: 1;
+  overflow-y: auto;
+}
+.sidebar-section {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin: 16px 24px 8px;
+}
+.sidebar a {
+  display: flex;
+  align-items: center;
+  padding: 10px 24px;
+  color: var(--sidebar-header);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  border-left: 3px solid transparent;
+}
+.sidebar a:hover {
+  background: var(--bg-main);
+}
+.sidebar a.active {
+  background: var(--bg-main);
+  border-left-color: var(--sidebar-header);
+}
+.sidebar-bottom {
+  padding: 20px;
+  border-top: 1px solid var(--border);
+}
+.sidebar-bottom a {
+  color: var(--accent-red);
+  padding: 10px 0;
+  border: none;
+}
+
+/* ─── MAIN CONTENT ─────────────────────────────────────── */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.topbar {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  border-bottom: 1px solid var(--border);
+  background: #fff;
+}
+.badge-node, .badge-secure {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.badge-node {
+  background: var(--sidebar-header);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+.badge-secure {
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+.content {
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+}
+
+.section { display: none; flex-direction: column; gap: 24px; }
+.section.active { display: flex; }
+
+/* ─── CARDS & GRID ─────────────────────────────────────── */
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.grid-2 { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; }
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  display: flex; flex-direction: column; gap: 16px;
+}
+.card-dark {
+  background: var(--card-dark);
+  color: #fff;
+  border: none;
+}
+
+.metric-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+}
+.card-dark .metric-label { color: rgba(255,255,255,0.6); }
+
+.metric-value {
+  font-size: 40px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  font-family: var(--font-head);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+.card-dark .metric-value { color: #fff; text-shadow: 0 0 20px rgba(59,130,246,0.4); }
+
+.sub-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  background: var(--bg-main);
+  color: var(--text-dim);
+}
+.card-dark .sub-badge {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+/* ─── RED LIQUIDATION CARD ─────────────────────────────── */
+.card-red {
+  background: #111827;
+  border: 1px solid rgba(220,38,38,0.2);
+}
+.card-red .metric-label { color: var(--accent-red); }
+.card-red .metric-value { color: #fff; }
+.card-red .sub-badge { background: transparent; color: var(--text-dim); padding:0; }
+.btn-red {
+  background: var(--accent-red);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 12px;
+  width: 100%;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: auto;
+  cursor: pointer;
+}
+
+/* ─── TABLES ───────────────────────────────────────────── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th {
+  text-align: left;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-dim);
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+td {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+  font-weight: 500;
+}
+td strong {
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+}
+tr:last-child td { border-bottom: none; }
+
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.status-new { background: #F3F4F6; color: #4B5563; }
+.status-active { background: #D1FAE5; color: #065F46; }
+.status-warning { background: #FEF3C7; color: #92400E; }
+
+/* ─── BUTTONS ──────────────────────────────────────────── */
+.btn {
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-primary { background: var(--accent-blue); color: #fff; }
+.btn-dark { background: var(--card-dark); color: #fff; }
+.btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text-main); }
+.btn-sm { padding: 6px 12px; font-size: 11px; }
+
+/* ─── FLEX HEADERS ─────────────────────────────────────── */
+.header-row {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  margin-bottom: 24px;
+}
+.date-picker-badge {
+  background: #fff;
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  color: var(--sidebar-header);
+  display: flex; align-items: center; gap: 8px;
+}
+
+/* ─── HR CARDS ─────────────────────────────────────────── */
+.hr-metrics {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px;
+}
+.hr-card {
+  background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+.hr-card .val { font-size: 28px; font-weight: 800; margin-top: 8px; font-family: var(--font-head); }
+.hr-card.red .val { color: var(--accent-red); }
+.hr-card.orange .val { color: #F59E0B; }
+.hr-card.green .val { color: var(--accent-green); }
+
+/* ─── TRIAL BALANCE BOTTOM ENGINE BAR ──────────────────── */
+.engine-bar {
+  background: var(--card-dark);
+  color: #fff;
+  border-radius: 8px;
+  padding: 20px 24px;
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 24px;
+}
+.engine-left { display: flex; flex-direction: column; gap: 4px; }
+.engine-left .title { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.6); font-weight: 700;}
+.engine-left .sub { font-size: 14px; font-weight: 600; font-family: var(--font-head); font-style: italic; }
+.engine-right { display: flex; gap: 40px; }
+.engine-right .stat { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.engine-right .stat span { font-size: 10px; color: rgba(255,255,255,0.6); text-transform: uppercase; font-weight: 700;}
+.engine-right .stat strong { font-size: 24px; font-weight: 700; }
+
+/* ─── NUMBER HIGHLIGHTS ────────────────────────────────── */
+.card-red .metric-value { color: #FF6B6B; text-shadow: 0 0 30px rgba(220,38,38,0.5); font-size: 44px; }
+.card b, .card-dark b { font-size: 22px; font-weight: 800; font-family: var(--font-head); letter-spacing: -0.5px; }
+.card-red b { color: #FF6B6B; text-shadow: 0 0 15px rgba(220,38,38,0.3); }
+td span[style*="font-weight:600"] { font-size: 13px; }

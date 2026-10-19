@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OPEX METRIX — Executive Pitch & Комерційна Пропозиція для Власника Бізнесу</title>
+  <style>
+    :root {
+      --navy: #0A0F1D;
+      --navy-mid: #14284B;
+      --gold: #B89146;
+      --gold-bright: #C8A25A;
+      --paper: #F5F3EE;
+      --card: #FFFFFF;
+      --border: #D8D3C8;
+      --text: #0F141C;
+      --muted: #4A5568;
+      --green: #15803D;
+      --red: #B91C1C;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Times New Roman', Georgia, serif;
+      background: var(--paper);
+      color: var(--text);
+      line-height: 1.5;
+      padding: 32px 20px 60px;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--navy);
+      color: #FAF8F5;
+      padding: 14px 24px;
+      border-radius: 6px;
+      border-bottom: 3px solid var(--gold);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 18px;
+      border-radius: 4px;
+      font-family: 'Times New Roman', Georgia, serif;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid var(--gold);
+      background: var(--gold-bright);
+      color: var(--navy);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #FAF8F5;
+      border-color: rgba(200, 162, 90, 0.6);
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #080D1A 0%, #132242 100%);
+      color: #FFFFFF;
+      border: 1px solid var(--gold);
+      border-left: 6px solid var(--gold-bright);
+      border-radius: 6px;
+      padding: 36px 40px;
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 28px;
+      align-items: center;
+      box-shadow: 0 10px 30px rgba(10, 15, 29, 0.15);
+    }
+
+    .hero-logo {
+      width: 110px;
+      height: 110px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 2px solid var(--gold-bright);
+      box-shadow: 0 4px 18px rgba(200, 162, 90, 0.35);
+    }
+
+    .eyebrow {
+      color: var(--gold-bright);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .hero h1 {
+      font-size: 32px;
+      line-height: 1.18;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .hero p {
+      font-size: 16.5px;
+      color: #E2E8F0;
+      max-width: 820px;
+    }
+
+    .section-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--navy-mid);
+      border-radius: 6px;
+      padding: 28px 32px;
+      box-shadow: 0 2px 8px rgba(15, 20, 28, 0.05);
+    }
+
+    .section-card.gold-top {
+      border-top-color: var(--gold);
+    }
+
+    .section-title {
+      font-size: 23px;
+      color: var(--navy);
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .section-sub {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .tier-box {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 22px;
+      background: #FDFCFA;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .tier-box.featured {
+      border: 2px solid var(--gold);
+      background: #FFFDF7;
+      box-shadow: 0 6px 18px rgba(184, 145, 70, 0.14);
+    }
+
+    .tier-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      border-radius: 4px;
+      background: #EDF1F7;
+      color: var(--navy-mid);
+      width: fit-content;
+    }
+
+    .tier-box.featured .tier-badge {
+      background: var(--gold-bright);
+      color: var(--navy);
+    }
+
+    .price-big {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th {
+      background: var(--navy);
+      color: #FFFFFF;
+      padding: 11px 14px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      text-align: left;
+    }
+
+    td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      font-size: 15px;
+      vertical-align: top;
+    }
+
+    tr:nth-child(even) td {
+      background: #FAF9F5;
+    }
+
+    .nda-stamp {
+      display: inline-block;
+      padding: 2px 8px;
+      border: 1px solid var(--red);
+      color: var(--red);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      border-radius: 3px;
+      text-transform: uppercase;
+    }
+
+    .roi-calc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: center;
+      background: #FAF8F3;
+      border: 1px solid var(--gold);
+      padding: 22px;
+      border-radius: 6px;
+    }
+
+    .slider-group {
+      margin-bottom: 14px;
+    }
+
+    .slider-group label {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--navy-mid);
+      cursor: pointer;
+    }
+
+    @media print {
+      .no-print {
+        display: none !important;
+      }
+      body {
+        padding: 0;
+        background: #FFFFFF;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Navigation & Print Action Bar -->
+    <div class="top-bar no-print">
+      <div style="display: flex; align-items: center; gap: 14px;">
+        <strong style="font-size: 16px; letter-spacing: 0.04em;">🏛️ OPEX METRIX • КОМЕРЦІЙНА ПРОПОЗИЦІЯ ТА ФІНАНСОВА МОДЕЛЬ</strong>
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <a href="./index.html" class="btn btn-outline">← Повернутися в Кабінет Власника (ERP)</a>
+        <button type="button" class="btn" onclick="window.print()">🖨️ Зберегти КП у PDF для клієнта</button>
+      </div>
+    </div>
+
+    <!-- Hero Header with Real OpexMetrix Neural Brain Logo -->
+    <header class="hero">
+      <img src="./opex-logo.png" alt="OpexMetrix Logo" class="hero-logo" />
+      <div>
+        <div class="eyebrow">OPEX METRIX / AXIOM CORE • EXECUTIVE OPERATING SYSTEM</div>
+        <h1>Цифрова Нервова Система Вашого Бізнесу: Переїзд з 1С за 48 годин та Управління Капіталом без Штатного Бухгалтера</h1>
+        <p>
+          Ми замінюємо застарілу 1С/BAS, хаос в Excel та витрати $1,200/міс на штатного бухгалтера єдиним автономним Кабінетом Власника.
+          <strong>95% рутини виконує алгоритм. 100% контролю над прибутком, маржею та дивідендами — у ваших руках 24/7.</strong>
+        </p>
+      </div>
+    </header>
+
+    <!-- Section 1: Why OpexMetrix vs 1C vs Classic Odoo Integrators (ToDo) -->
+    <section class="section-card gold-top">
+      <div class="section-title">1. Чому ми запускаємо 16 проектів за 1 рік, поки класичні інтегратори (Odoo / 1С) роблять 4 проекти на рік?</div>
+      <div class="section-sub">Чесне порівняння трьох підходів на ринку України у 2026 році</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Критерій для власника</th>
+            <th>Стара 1С / BAS + Штатний бухгалтер</th>
+            <th>Класичні інтегратори (Odoo / ToDo тощо)</th>
+            <th style="background: #B89146; color: #0A0F1D;">👑 OPEX METRIX (Autonomous OS)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Бізнес-модель підрядника</strong></td>
+            <td>Залежність від бухгалтера ($1,000–$1,500/міс) та платних оновлень</td>
+            <td>Продаж людино-годин програмістів ($45–$60/год). Їм вигідно тягнути проект 6–12 місяців</td>
+            <td><strong>Готове стандартизоване українське ядро + ШІ-мігратор. Оплата за результат, а не за години!</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Швидкість запуску</strong></td>
+            <td>Постійні дописки, «червоні мінуси» на складі</td>
+            <td>Від 4 до 9 місяців написання ТЗ та адаптації під український облік</td>
+            <td><strong>48 – 72 години (Авто-очистка бази 1С та запуск за 2 дні)</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Українська специфіка (ФОП, ПДВ, QR НБУ, ЄДРПОУ)</strong></td>
+            <td>Є, але створена для податкової, а не для власника (мова Дт/Кт)</td>
+            <td>У базовій Odoo відсутня — клієнт платить тисячі доларів за милиці</td>
+            <td><strong>Вшита в ядро з коробки: ФОП 3 гр. (XML Дія), ПДВ, рахунки з QR НБУ, виписки Моно/Приват</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Захист прибутку власника</strong></td>
+            <td>Бухгалтер констатує збитки постфактум 15-го числа</td>
+            <td>Менеджери дають знижки, зливаючи маржу</td>
+            <td><strong>Вбудований Margin Guard (блокує збиткові знижки) + Стоп-кран відвантажень боржникам</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Section 2: Interactive Owner ROI Calculator -->
+    <section class="section-card">
+      <div class="section-title">2. Інтерактивний Калькулятор Вигоди Власника (Порахуйте економію для вашої компанії за 10 секунд)</div>
+      <div class="section-sub">Пересуньте повзунки відповідно до параметрів вашого бізнесу:</div>
+
+      <div class="roi-calc-grid">
+        <div>
+          <div class="slider-group">
+            <label>
+              <span>Витрати на бухгалтера + 1С/сервери зараз (грн/міс):</span>
+              <span id="lbl-acc-cost" style="color: var(--navy-mid);">₴ 45 000 / міс</span>
+            </label>
+            <input type="range" id="rng-acc-cost" min="15000" max="120000" step="2500" value="45000" oninput="recalcPitchRoi()" />
+          </div>
+
+          <div class="slider-group">
+            <label>
+              <span>Щомісячний оборот компанії (грн/міс):</span>
+              <span id="lbl-rev" style="color: var(--navy-mid);">₴ 1 500 000 / міс</span>
+            </label>
+            <input type="range" id="rng-rev" min="300000" max="15000000" step="100000" value="1500000" oninput="recalcPitchRoi()" />
+          </div>
+
+          <div class="slider-group" style="margin-bottom: 0;">
+            <label>
+              <span>Втрати на знижках менеджерів та простроченій дебіторці (% від обороту):</span>
+              <span id="lbl-leak" style="color: var(--red);">2.0% (₴ 30 000 / міс)</span>
+            </label>
+            <input type="range" id="rng-leak" min="1" max="6" step="0.5" value="2" oninput="recalcPitchRoi()" />
+          </div>
+        </div>
+
+        <div style="background: var(--navy); color: #FFFFFF; padding: 22px 24px; border-radius: 6px; border-left: 5px solid var(--gold-bright);">
+          <div class="eyebrow">ФІНАНСОВИЙ РЕЗУЛЬТАТ ПЕРЕХОДУ НА OPEX METRIX</div>
+          <div style="font-size: 30px; font-weight: 700; color: #4ADE80; margin: 4px 0;" id="out-monthly-save">
+            +₴ 63 100 / місяць
+          </div>
+          <div style="font-size: 14px; color: #CBD5E1; margin-bottom: 12px;">
+            Чиста щомісячна економія у ваш дивідендний фонд власника
+          </div>
+          <div style="border-top: 1px solid rgba(200,162,90,0.3); padding-top: 10px; display: flex; flex-direction: column; gap: 6px; font-size: 14.5px;">
+            <div style="display: flex; justify-content: space-between;">
+              <span>Додатковий прибуток власника за 12 місяців:</span>
+              <strong style="color: #F6E3BA;" id="out-yearly-save">+₴ 757 200 / рік</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span>Повна окупність впровадження (ROI Payback):</span>
+              <strong style="color: #4ADE80;" id="out-payback-days">19 днів (у перший же місяць!)</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Validated 16 NDA Projects Portfolio -->
+    <section class="section-card">
+      <div class="section-title">3. Доказова База: Реєстр 16 Бойових Проектів за 12 місяців (Протокол захисту даних клієнтів Mutual NDA)</div>
+      <div class="section-sub">
+        Ми підписуємо суворий 5-річний договір про нерозголошення (Mutual NDA) з кожним клієнтом, тому комерційні таємниці, ЄДРПОУ та обороти наших замовників надійно захищені. Нижче наведено знеособлений галузевий реєстр наших впроваджень:
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Галузевий Кластер</th>
+            <th>К-сть проектів</th>
+            <th>Статус безпеки</th>
+            <th>Ключовий бізнес-результат для Власника</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Промисловість та Виробництво (Бетон, ФЕМ, ЗБВ, Профільні системи)</strong></td>
+            <td><strong>4 об'єкти</strong></td>
+            <td><span class="nda-stamp">🔒 PROTECTED BY 5-YR NDA</span></td>
+            <td>Інтеграція з базою 1С, автоматичний контроль маржі дилерів, блокування відвантажень при простроченні дебіторки, списання сировини в 1 клік.</td>
+          </tr>
+          <tr>
+            <td><strong>Девелопмент та Будівництво (ЖК преміум-класу, генпідрядники)</strong></td>
+            <td><strong>3 об'єкти</strong></td>
+            <td><span class="nda-stamp">🔒 PROTECTED BY 5-YR NDA</span></td>
+            <td>Real-time Dashboard CEO, прозора економіка кожного об'єкта, AI-антифрод актів виконаних робіт та блокування переплат підрядникам (зниження втрат на 15–20%).</td>
+          </tr>
+          <tr>
+            <td><strong>Оптова Дистрибуція, Рітейл та E-Commerce</strong></td>
+            <td><strong>4 об'єкти</strong></td>
+            <td><span class="nda-stamp">🔒 PROTECTED BY 5-YR NDA</span></td>
+            <td>Автопілот рознесення банківських виписок (95% без бухгалтера), контроль залишків складу (Out-of-Stock), авто-замовлення постачальникам.</td>
+          </tr>
+          <tr>
+            <td><strong>Агентства Нерухомості та Сервісні B2B-Компанії</strong></td>
+            <td><strong>3 об'єкти</strong></td>
+            <td><span class="nda-stamp">🔒 PROTECTED BY 5-YR NDA</span></td>
+            <td>Алгоритм «Ні кроку без задачі», автоматична реанімація «мертвої бази» клієнтів (+25% до конверсії в угоду), прогноз грошового потоку власника.</td>
+          </tr>
+          <tr>
+            <td><strong>Агро-сектор, B2B-платформи та Логістика</strong></td>
+            <td><strong>2 об'єкти</strong></td>
+            <td><span class="nda-stamp">🔒 PROTECTED BY 5-YR NDA</span></td>
+            <td>Автогенерація договорів, рахунків із QR НБУ та актів, наскрізна юніт-економіка кожного замовлення.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Section 4: Transparent Pricing Tiers -->
+    <section class="section-card gold-top">
+      <div class="section-title">4. Тарифні Пакети та Умови Переїзду за 48 годин</div>
+      <div class="section-sub">Ми пропонуємо прозору гібридну модель: швидкий запуск «під ключ» з гарантією окупності у перший місяць</div>
+
+      <div class="grid-3">
+        <!-- Tier 1: SMB Fast-Start -->
+        <div class="tier-box featured">
+          <div>
+            <span class="tier-badge">★ ХІТ ДЛЯ МАЛОГО БІЗНЕСУ (ДО 15 ОСІБ)</span>
+            <h3 style="font-size: 21px; margin: 10px 0 4px; color: var(--navy);">SMB FAST-START (Під ключ за 48 год)</h3>
+            <p style="font-size: 14px; color: var(--muted); margin-bottom: 14px;">
+              Для оптової/роздрібної торгівлі, E-Commerce, сфери послуг та невеликого виробництва (ФОП + ТОВ).
+            </p>
+            <div class="price-big">$950 <span style="font-size: 15px; font-weight: 400; color: var(--muted);">разово за переїзд з 1С</span></div>
+            <div style="font-size: 16px; font-weight: 700; color: var(--green); margin-top: 4px;">
+              + ₴ 7 900 / міс (абонплата та підтримка)
+            </div>
+            <hr style="border: none; border-top: 1px solid var(--border); margin: 14px 0;" />
+            <ul style="font-size: 14.5px; padding-left: 18px; display: flex; flex-direction: column; gap: 6px;">
+              <li><strong>Повне перенесення та авто-очистка бази 1С/Excel за 48 годин</strong></li>
+              <li>Кабінет Власника (Пульс грошей, Дивіденди, Юніт-економіка)</li>
+              <li>Продажі з контролем маржі (Margin Guard) + Первинка з QR НБУ</li>
+              <li>Автопілот банку (Моно / Приват24) та Податки ФОП 3 гр. (XML Дія) + ПДВ</li>
+              <li><strong>Спец-умова тижня:</strong> 50% на старті, 50% — після запуску та перевірки!</li>
+            </ul>
+          </div>
+          <div style="padding-top: 10px; font-size: 13px; color: var(--navy-mid); font-weight: 700;">
+            ✓ У 6 разів дешевше за штатного бухгалтера
+          </div>
+        </div>
+
+        <!-- Tier 2: Business Core -->
+        <div class="tier-box">
+          <div>
+            <span class="tier-badge">СЕРЕДНІЙ БІЗНЕС (15–60 ОСІБ)</span>
+            <h3 style="font-size: 21px; margin: 10px 0 4px; color: var(--navy);">BUSINESS CORE (Масштабування)</h3>
+            <p style="font-size: 14px; color: var(--muted); margin-bottom: 14px;">
+              Для дистриб'юторів, виробничих компаній, мережевих бізнесів та агентств.
+            </p>
+            <div class="price-big">$3,500 <span style="font-size: 15px; font-weight: 400; color: var(--muted);">впровадження (5–10 днів)</span></div>
+            <div style="font-size: 16px; font-weight: 700; color: var(--navy-mid); margin-top: 4px;">
+              + $450 / міс (хмарне ядро + SLA)
+            </div>
+            <hr style="border: none; border-top: 1px solid var(--border); margin: 14px 0;" />
+            <ul style="font-size: 14.5px; padding-left: 18px; display: flex; flex-direction: column; gap: 6px;">
+              <li>Все з пакету SMB Fast-Start + мульти-компанії (група ФОПів + ТОВ з ПДВ)</li>
+              <li>Дилерський портал та автоматичний стоп-кран відвантажень боржникам</li>
+              <li>Цеховий QR-трекінг етапів замовлень та авто-нарахування відрядної ЗП</li>
+              <li>Глибока інтеграція з Новою Поштою, ПРРО, CRM та телефонією</li>
+            </ul>
+          </div>
+          <div style="padding-top: 10px; font-size: 13px; color: var(--muted); font-weight: 700;">
+            ✓ Окупність за 30–45 днів
+          </div>
+        </div>
+
+        <!-- Tier 3: Enterprise Axiom -->
+        <div class="tier-box">
+          <div>
+            <span class="tier-badge">КОРПОРАЦІЇ, ЗАВОДИ ТА ДЕВЕЛОПЕРИ</span>
+            <h3 style="font-size: 21px; margin: 10px 0 4px; color: var(--navy);">ENTERPRISE AXIOM CORE</h3>
+            <p style="font-size: 14px; color: var(--muted); margin-bottom: 14px;">
+              Для великих виробництв, будівельних холдингів та національних рітейл-мереж.
+            </p>
+            <div class="price-big">$17,000 – $32,000 <span style="font-size: 15px; font-weight: 400; color: var(--muted);">ліцензія та розгортання</span></div>
+            <div style="font-size: 16px; font-weight: 700; color: var(--navy-mid); margin-top: 4px;">
+              + $1,500 / міс (або Perpetual License)
+            </div>
+            <hr style="border: none; border-top: 1px solid var(--border); margin: 14px 0;" />
+            <ul style="font-size: 14.5px; padding-left: 18px; display: flex; flex-direction: column; gap: 6px;">
+              <li>Виділений кластер Geo-Redundancy (Zero Trust Security, ISO 27001)</li>
+              <li>AI-Антифрод підрядників, комп'ютерний зір (QC) та Predictive Demand Oracle</li>
+              <li>Повна консолідація холдингу, Бюджетування, Казначейство та МСФЗ</li>
+              <li>Індивідуальна інженерна команда супроводу 24/7</li>
+            </ul>
+          </div>
+          <div style="padding-top: 10px; font-size: 13px; color: var(--muted); font-weight: 700;">
+            ✓ Зниження втрат від фроду на 15–20%
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer / Contact -->
+    <footer class="section-card" style="background: var(--navy); color: #FFFFFF; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+      <div>
+        <div class="eyebrow">НАСТУПНИЙ КРОК ДЛЯ ВЛАСНИКА (БЕЗКОШТОВНО ЗА 15 ХВИЛИН)</div>
+        <div style="font-size: 20px; font-weight: 700;">Дайте нам файл вивантаження з вашої 1С або виписку — і ми за 15 хвилин покажемо ваш бізнес у Кабінеті Власника</div>
+        <div style="font-size: 14px; color: #CBD5E1; margin-top: 4px;">
+          Михайло Кузьміч • CEO OpexMetrix / Axiom Core / OptiMind • <em>Powered by vision. Run by results.</em>
+        </div>
+      </div>
+      <div style="text-align: right; font-size: 15px;">
+        <div>📱 <strong>+380 66 117 67 45</strong></div>
+        <div>📧 <strong>rockwellcapital1@gmail.com</strong></div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    function recalcPitchRoi() {
+      const accCost = Number(document.getElementById('rng-acc-cost').value || 45000);
+      const rev = Number(document.getElementById('rng-rev').value || 1500000);
+      const leakPct = Number(document.getElementById('rng-leak').value || 2);
+
+      const leakUah = Math.round(rev * (leakPct / 100));
+      const opexSub = 7900; // SMB monthly fee
+      const outAcc = 4000;  // Optional quarterly/monthly FOP/LLC tax submission check
+      const monthlySave = Math.max(0, (accCost + leakUah) - (opexSub + outAcc));
+      const yearlySave = monthlySave * 12;
+      const setupUah = 39500;
+      const paybackDays = monthlySave > 0 ? Math.max(5, Math.round((setupUah / monthlySave) * 30)) : 30;
+
+      document.getElementById('lbl-acc-cost').textContent = '₴ ' + accCost.toLocaleString('uk-UA') + ' / міс';
+      document.getElementById('lbl-rev').textContent = '₴ ' + rev.toLocaleString('uk-UA') + ' / міс';
+      document.getElementById('lbl-leak').textContent = leakPct.toFixed(1) + '% (₴ ' + leakUah.toLocaleString('uk-UA') + ' / міс)';
+
+      document.getElementById('out-monthly-save').textContent = '+₴ ' + monthlySave.toLocaleString('uk-UA') + ' / місяць';
+      document.getElementById('out-yearly-save').textContent = '+₴ ' + yearlySave.toLocaleString('uk-UA') + ' / рік';
+      document.getElementById('out-payback-days').textContent = paybackDays + ' днів (окупається в 1-й місяць!)';
+    }
+  </script>
+</body>
+</html>
