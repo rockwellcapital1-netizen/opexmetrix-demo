@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="./opex-logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <style>
     :root {
@@ -43,15 +43,9 @@
       --radius-lg: 14px;
       --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
       --shadow-card: 0 1px 3px rgba(15, 23, 42, 0.04), 0 1px 2px rgba(15, 23, 42, 0.02);
-      --font-serif: 'Cormorant Garamond', 'Newsreader', Georgia, serif;
-      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
-    }
-
-    @font-face {
-      font-family: 'Cormorant Garamond';
-      src: local('Inter'), local('Arial');
-      unicode-range: U+20B4;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      --font-serif: var(--font-sans);
+      --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
     }
 
     * {
@@ -116,11 +110,11 @@
     }
 
     .brand-title {
-      font-family: var(--font-serif);
-      font-size: 22px;
+      font-family: var(--font-sans);
+      font-size: 19px;
       font-weight: 700;
       color: var(--text-main);
-      letter-spacing: -0.01em;
+      letter-spacing: -0.02em;
       line-height: 1.2;
     }
 
@@ -288,11 +282,11 @@
     }
 
     .page-title {
-      font-family: var(--font-serif);
-      font-size: 24px;
+      font-family: var(--font-sans);
+      font-size: 20px;
       font-weight: 700;
       color: var(--text-main);
-      letter-spacing: -0.01em;
+      letter-spacing: -0.02em;
     }
 
     .company-chip {
@@ -406,8 +400,8 @@
     }
 
     .card-title {
-      font-family: var(--font-serif);
-      font-size: 17px;
+      font-family: var(--font-sans);
+      font-size: 15px;
       font-weight: 600;
       color: var(--text-main);
       letter-spacing: -0.01em;
@@ -442,11 +436,11 @@
     }
 
     .kpi-value {
-      font-family: var(--font-serif);
-      font-size: 32px;
+      font-family: var(--font-sans);
+      font-size: 28px;
       font-weight: 700;
       color: var(--text-main);
-      letter-spacing: -0.01em;
+      letter-spacing: -0.02em;
       line-height: 1.15;
       font-variant-numeric: tabular-nums lining-nums;
     }
@@ -1164,13 +1158,13 @@
     }
 
     .kpi-value {
-      font-family: var(--font-serif);
-      font-size: 32px;
+      font-family: var(--font-sans);
+      font-size: 28px;
       font-weight: 700;
       color: var(--text-main);
       line-height: 1.15;
       margin: 6px 0 6px 0;
-      letter-spacing: -0.01em;
+      letter-spacing: -0.02em;
       font-variant-numeric: tabular-nums lining-nums;
     }
 
@@ -1189,9 +1183,10 @@
     }
 
     .kpi-context-value {
-      font-family: var(--font-serif);
-      font-weight: 700;
-      font-size: 15px;
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: -0.01em;
       font-variant-numeric: tabular-nums lining-nums;
     }
 
@@ -1279,10 +1274,11 @@
     }
 
     .action-amount {
-      font-family: var(--font-serif);
-      font-weight: 700;
+      font-family: var(--font-sans);
+      font-weight: 600;
       color: var(--text-main);
-      font-size: 15px;
+      font-size: 14.5px;
+      letter-spacing: -0.01em;
       font-variant-numeric: tabular-nums lining-nums;
     }
 
@@ -2139,7 +2135,7 @@
           <!-- Hero Overview Card -->
           <div class="panel" style="margin-bottom: 24px; background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); color: #FFFFFF; border: none; padding: 28px 32px;">
             <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: #94A3B8; margin-bottom: 8px;">Цифрова Нервова Система • Executive Operating System</div>
-            <h2 style="font-family: var(--font-serif); font-size: 30px; font-weight: 700; color: #FFFFFF; margin-bottom: 12px; line-height: 1.2;">
+            <h2 style="font-family: var(--font-sans); font-size: 26px; font-weight: 700; color: #FFFFFF; margin-bottom: 12px; line-height: 1.25; letter-spacing: -0.02em;">
               OpexMetrix Business: Автономна ERP для малого та середнього бізнесу в Україні
             </h2>
             <p style="font-size: 14.5px; color: #CBD5E1; line-height: 1.6; max-width: 840px; margin-bottom: 20px;">
