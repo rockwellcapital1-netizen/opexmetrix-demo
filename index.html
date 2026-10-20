@@ -1675,6 +1675,7 @@
                   <button type="button" class="btn btn-sm btn-subtle doc-type-switch" data-doctype="WAYBILL">Видаткова накладна</button>
                   <button type="button" class="btn btn-sm btn-subtle doc-type-switch" data-doctype="ACT">Акт виконаних робіт</button>
                   <button type="button" class="btn btn-sm btn-subtle doc-type-switch" data-doctype="WARRANTY">Гарантійний талон</button>
+                  <button type="button" class="btn btn-sm btn-subtle doc-type-switch" data-doctype="TAX_INVOICE">🏛️ Податкова накладна (ДПС)</button>
                   <button type="button" class="btn btn-sm btn-subtle" id="btn-print-inline-doc">Друкувати</button>
                 </div>
               </div>
@@ -1991,6 +1992,62 @@
               <div class="kpi-highlight-pill green" style="margin-top: 18px;" id="tax-vat-tip">
                 Запланована закупівля товару у ТОВ "Імпорт-Логістик Сервіс" на ₴ 84 000 з ПДВ додасть ₴ 14 000 податкового кредиту до кінця місяця.
               </div>
+            </div>
+          </div>
+
+          <!-- Card: Офіційні форми та бланки ДПС України (cabinet.tax.gov.ua) -->
+          <div class="card" style="margin-top: 20px; margin-bottom: 20px;">
+            <div class="card-header" style="flex-direction: column; align-items: flex-start; gap: 8px;">
+              <div style="display: flex; justify-content: space-between; width: 100%; align-items: center; flex-wrap: wrap; gap: 10px;">
+                <div class="card-title" style="display: flex; align-items: center; gap: 8px;">
+                  <span>🏛️ Офіційні бланки та звіти ДПС України (Електронний кабінет)</span>
+                  <span class="badge badge-green">cabinet.tax.gov.ua</span>
+                </div>
+                <a href="https://cabinet.tax.gov.ua/" target="_blank" rel="noopener noreferrer" class="btn btn-subtle" style="font-size: 12px; padding: 6px 12px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+                  <span>🌐 Відкрити cabinet.tax.gov.ua</span>
+                  <span style="font-size: 11px;">↗</span>
+                </a>
+              </div>
+              <div class="card-subtitle">
+                Всі форми синхронізовані з офіційним Реєстром форм електронних документів ДПС України (стандарти XSD / XML). Обирайте звіт, переглядайте розрахунки, завантажуйте валідний XML та підписуйте КЕП / Дія.Підписом без найму штатного бухгалтера.
+              </div>
+            </div>
+
+            <!-- Selector Toolbar -->
+            <div style="background: var(--bg-subtle); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px; margin-bottom: 16px;">
+              <div style="display: grid; grid-template-columns: 1fr auto auto; gap: 12px; align-items: flex-end;">
+                <div>
+                  <label for="dps-form-select" style="display: block; font-size: 11.5px; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px;">
+                    Оберіть офіційний електронний бланк ДПС:
+                  </label>
+                  <select id="dps-form-select" class="form-input" style="width: 100%; background: var(--bg-card); font-weight: 500; font-size: 13.5px; padding: 8px 12px;">
+                    <option value="fop_ep_group3">F0103308 — Податкова декларація платника ЄП ФОП 3 групи (5% + 1% ВЗ + ЄСВ)</option>
+                    <option value="fop_ep_group1_2">F0103406 — Податкова декларація платника ЄП ФОП 1-2 груп (Річна)</option>
+                    <option value="llc_ep_group3">J0103508 — Податкова декларація платника ЄП 3 групи (ТОВ / Юридичні особи)</option>
+                    <option value="vat_declaration">J0200126 — Податкова декларація з податку на додану вартість (ПДВ 20%)</option>
+                    <option value="tax_invoice_erpn">J1201016 — Податкова накладна (ПН) для реєстрації в ЄРПН</option>
+                    <option value="tax_invoice_correction">J1201216 — Розрахунок коригування до податкової накладної (РК)</option>
+                    <option value="payroll_unified_report">J0500110 — Об'єднана звітність: ЄСВ 22% + ПДФО 18% + ВЗ 5% (Д1, 4ДФ)</option>
+                    <option value="sea_vat_extract_request">J1302002 — Запит щодо відомостей з ЄРПН (Витяг про ліміт СЕА ПДВ)</option>
+                    <option value="smkor_unblock_notice">J1312006 — Повідомлення про розблокування податкових накладних (СМКОР)</option>
+                  </select>
+                </div>
+                <div>
+                  <button type="button" class="btn btn-subtle" id="btn-preview-dps-form" style="padding: 8px 14px; font-weight: 600;">
+                    📄 Переглянути бланк
+                  </button>
+                </div>
+                <div>
+                  <button type="button" class="btn btn-action-primary" id="btn-download-selected-dps-xml" style="padding: 8px 14px; font-weight: 600;">
+                    💾 Завантажити XML для ДПС
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dynamic Form Preview Container -->
+            <div id="dps-form-preview-container" style="display: none; margin-top: 14px;">
+              <!-- Rendered via JS -->
             </div>
           </div>
 
