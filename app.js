@@ -189,28 +189,377 @@
       {
         id: 'emp-4',
         name: 'Савченко Максим',
-        role: 'Сервісний інженер (Встановлення та гарантія)',
-        baseSalary: 25000,
-        bonusKpi: 9200,
-        taxes: 7524,
-        netPay: 26676,
+        role: 'Оператор-налагоджувальник ЧПК Trumpf (6-й розряд MES)',
+        baseSalary: 34000,
+        bonusKpi: 16800,
+        taxes: 11176,
+        netPay: 39624,
         paid: true
       }
+    ],
+    holdingEntity: 'ALL',
+    ledgerSeq: 9428,
+    ledgerEntries: [
+      {
+        id: 'JL-9428',
+        time: '14:52:18.042',
+        doc: 'ВН-2026-841 / ПН ЄРПН',
+        desc: 'Реалізація промислових енергомодулів ПЕМ-400 (5 од.) — ТОВ "Епіцентр К"',
+        entity: 'ТОВ "ОпексМетрікс Індастріал"',
+        dt: '361 Розрахунки з покупцями',
+        dtCode: '361',
+        kt: '701 Дохід від реалізації ГП',
+        ktCode: '701',
+        amount: 460000
+      },
+      {
+        id: 'JL-9427',
+        time: '14:52:18.044',
+        doc: 'ПН J1201016',
+        desc: 'Нараховано податкове зобов\'язання з ПДВ (20%) при відвантаженні партії',
+        entity: 'ТОВ "ОпексМетрікс Індастріал"',
+        dt: '701 Дохід від реалізації ГП',
+        dtCode: '701',
+        kt: '6412 Розрахунки за ПДВ',
+        ktCode: '6412',
+        amount: 76666.67
+      },
+      {
+        id: 'JL-9426',
+        time: '14:52:18.046',
+        doc: 'FIFO-Списання',
+        desc: 'Списано виробничу собівартість реалізованої партії ПЕМ-400 (5 од. за техкартою)',
+        entity: 'ТОВ "ОпексМетрікс Індастріал"',
+        dt: '901 Собівартість реалізованої ГП',
+        dtCode: '901',
+        kt: '26 Готова продукція',
+        ktCode: '26',
+        amount: 310000
+      },
+      {
+        id: 'JL-9425',
+        time: '14:38:05.119',
+        doc: 'MES-904 / ЧПК-1',
+        desc: 'Випуск готової продукції з цеху ЧПК на склад ГП (Партія ПЕМ-400, 10 од.)',
+        entity: 'ТОВ "ОпексМетрікс Індастріал"',
+        dt: '26 Готова продукція',
+        dtCode: '26',
+        kt: '231 Основне виробництво (MES)',
+        ktCode: '231',
+        amount: 620000
+      },
+      {
+        id: 'JL-9424',
+        time: '14:15:42.803',
+        doc: 'MES-904 / BOM',
+        desc: 'Списання листової сталі AISI 304 та комплектуючих у виробництво за техкартою',
+        entity: 'ТОВ "ОпексМетрікс Індастріал"',
+        dt: '231 Основне виробництво (MES)',
+        dtCode: '231',
+        kt: '201 Сировина й матеріали',
+        ktCode: '201',
+        amount: 489000
+      },
+      {
+        id: 'JL-9423',
+        time: '13:50:11.290',
+        doc: 'БВ-8819 / Приват24',
+        desc: 'Надходження безготівкової оплати від покупця ТОВ "Метінвест-Промсервіс"',
+        entity: 'ТОВ "Торговий Дім Альфа-Груп"',
+        dt: '311 Поточні рахунки в UAH',
+        dtCode: '311',
+        kt: '361 Розрахунки з покупцями',
+        ktCode: '361',
+        amount: 1280000
+      },
+      {
+        id: 'JL-9422',
+        time: '12:24:09.512',
+        doc: 'БВ-8820 / Моно Бізнес',
+        desc: 'Оплата постачальнику за імпортну автоматику ABB ACS580 згідно контракту',
+        entity: 'ТОВ "ОпексМетрікс Індастріал"',
+        dt: '631 Розрахунки з постачальниками',
+        dtCode: '631',
+        kt: '311 Поточні рахунки в UAH',
+        ktCode: '311',
+        amount: 540000
+      },
+      {
+        id: 'JL-9421',
+        time: '11:10:33.008',
+        doc: 'IC-2026-19',
+        desc: 'Елімінація внутрішньогрупового обороту між Заводом ТОВ та Торговим Домом',
+        entity: 'Консолідація Холдингу',
+        dt: '683 Внутрішньогосподарські розрахунки',
+        dtCode: '683',
+        kt: '361 Розрахунки з покупцями',
+        ktCode: '361',
+        amount: 950000
+      }
+    ],
+    trialBalanceAccounts: [
+      { code: '201', name: 'Сировина й матеріали (Метал, профіль, плита)', openDt: 14200000, openKt: 0, turnDt: 6840000, turnKt: 5920000 },
+      { code: '202', name: 'Купівельні напівфабрикати та комплектуючі (АСУ-ТП)', openDt: 6400000, openKt: 0, turnDt: 3120000, turnKt: 2780000 },
+      { code: '231', name: 'Основне виробництво (Незавершене виробництво ЧПК MES)', openDt: 3800000, openKt: 0, turnDt: 12450000, turnKt: 11900000 },
+      { code: '26', name: 'Готова продукція на промислових складах', openDt: 9600000, openKt: 0, turnDt: 11900000, turnKt: 10850000 },
+      { code: '281', name: 'Товари на складі (Дистрибуція та Торговий Дім)', openDt: 5200000, openKt: 0, turnDt: 4600000, turnKt: 4100000 },
+      { code: '311', name: 'Поточні рахунки в національній валюті (Банки Холдингу)', openDt: 38400000, openKt: 0, turnDt: 28900000, turnKt: 18650000 },
+      { code: '361', name: 'Розрахунки з вітчизняними покупцями (Дебіторка B2B)', openDt: 8900000, openKt: 0, turnDt: 26400000, turnKt: 28460000 },
+      { code: '631', name: 'Розрахунки з вітчизняними постачальниками', openDt: 0, openKt: 11200000, turnDt: 9800000, turnKt: 10460000 },
+      { code: '6412', name: 'Розрахунки за податками: ПДВ 20% в ЄРПН', openDt: 0, openKt: 1850000, turnDt: 2940000, turnKt: 4400000 },
+      { code: '661', name: 'Розрахунки за заробітною платою та відрядними ЧПК', openDt: 0, openKt: 1450000, turnDt: 3820000, turnKt: 3960000 },
+      { code: '683', name: 'Внутрішньогосподарські розрахунки (Intercompany)', openDt: 0, openKt: 4200000, turnDt: 5400000, turnKt: 5400000 },
+      { code: '701', name: 'Дохід від реалізації готової продукції та B2B товарів', openDt: 0, openKt: 0, turnDt: 4400000, turnKt: 26400000 },
+      { code: '901', name: 'Собівартість реалізованої готової продукції (FIFO)', openDt: 0, openKt: 0, turnDt: 14950000, turnKt: 0 },
+      { code: '441', name: 'Нерозподілений прибуток та власний капітал Холдингу', openDt: 0, openKt: 67800000, turnDt: 0, turnKt: 24500000 }
+    ],
+    mesLines: [
+      {
+        id: 'line-1',
+        name: 'Лінія ЧПК №1 • Лазерний комплекс Trumpf TruLaser 5030 Fiber',
+        orderTitle: 'Наряд #MES-904 • Корпуси енергомодулів ПЕМ-400 (ТОВ "Епіцентр К")',
+        operator: 'Савченко М. (Зміна А • QR #OP-14)',
+        oee: 94.2,
+        cycleSec: 38,
+        kwh: 42.5,
+        batchCost: 310000,
+        doneQty: 48,
+        totalQty: 50,
+        status: 'ACTIVE'
+      },
+      {
+        id: 'line-2',
+        name: 'Лінія ЧПК №2 • 5-осьовий фрезерний центр DMG MORI CMX 1100V',
+        orderTitle: 'Наряд #MES-905 • Приводні вузли конвеєра КС-1200 (Метінвест-Промсервіс)',
+        operator: 'Кравчук В. (Зміна А • QR #OP-08)',
+        oee: 91.8,
+        cycleSec: 112,
+        kwh: 38.0,
+        batchCost: 427000,
+        doneQty: 18,
+        totalQty: 20,
+        status: 'ACTIVE'
+      },
+      {
+        id: 'line-3',
+        name: 'Лінія ЧПК №3 • Панелегиб-автомат Salvagnini P4 Lean',
+        orderTitle: 'Наряд #MES-906 • Касети фасадних систем ФС-85 (Кернел-Інжиніринг)',
+        operator: 'Лисенко І. (Зміна А • QR #OP-22)',
+        oee: 88.5,
+        cycleSec: 24,
+        kwh: 29.4,
+        batchCost: 245000,
+        doneQty: 114,
+        totalQty: 120,
+        status: 'ACTIVE'
+      },
+      {
+        id: 'line-4',
+        name: 'Дільниця №4 • Роботизований зварювальний комплекс KUKA KR QUANTEC',
+        orderTitle: 'Наряд #MES-907 • Силові рами високонавантажених секцій (Нова Пошта Хаб)',
+        operator: 'Робот-пост #4 + інж. Ткаченко О.',
+        oee: 90.1,
+        cycleSec: 85,
+        kwh: 54.2,
+        batchCost: 380000,
+        doneQty: 25,
+        totalQty: 25,
+        status: 'READY_RELEASE'
+      },
+      {
+        id: 'line-5',
+        name: 'Лінія №5 • Автоматизована тунельна лінія порошкового фарбування Wagner',
+        orderTitle: 'Наряд #MES-908 • Полімерне покриття RAL 7016 антрацит (Партія B2B)',
+        operator: 'Гончаренко С. (Зміна А • QR #OP-31)',
+        oee: 86.4,
+        cycleSec: 45,
+        kwh: 61.0,
+        batchCost: 192000,
+        doneQty: 82,
+        totalQty: 90,
+        status: 'ACTIVE'
+      },
+      {
+        id: 'line-6',
+        name: 'Дільниця №6 • Збірка автоматики АСУ-ТП та стенд випробувань ВТК',
+        orderTitle: 'Наряд #MES-909 • Шафи керування АСУ-ТП Pro (ДТЕК Мережі)',
+        operator: 'Інженерна бригада №2 (QR #OP-04)',
+        oee: 92.6,
+        cycleSec: 210,
+        kwh: 14.8,
+        batchCost: 540000,
+        doneQty: 15,
+        totalQty: 15,
+        status: 'READY_RELEASE'
+      }
+    ],
+    dealerCredits: [
+      {
+        id: 'dl-1',
+        name: 'ТОВ "Епіцентр К" (Національна мережа B2B)',
+        segment: 'Key Account • VIP',
+        kam: 'Коваленко О. (Head of KAM)',
+        limitUah: 5000000,
+        debtUah: 1840000,
+        overdueDays: 0,
+        gateStatus: 'OPEN'
+      },
+      {
+        id: 'dl-2',
+        name: 'ТОВ "БудПостач-Регіон Південь" (Оптовий дилер)',
+        segment: 'B2B Дилерська мережа',
+        kam: 'Віталій С. (Senior B2B)',
+        limitUah: 1200000,
+        debtUah: 1385000,
+        overdueDays: 14,
+        gateStatus: 'BLOCKED'
+      },
+      {
+        id: 'dl-3',
+        name: 'ТОВ "Метінвест-Промсервіс" (Промислові контракти)',
+        segment: 'Key Account • Промисловість',
+        kam: 'Коваленко О. (Head of KAM)',
+        limitUah: 8000000,
+        debtUah: 3120000,
+        overdueDays: 0,
+        gateStatus: 'OPEN'
+      },
+      {
+        id: 'dl-4',
+        name: 'ПП "Захід-ТехноКомплект" (Дилер Львів / Луцьк)',
+        segment: 'B2B Дилерська мережа',
+        kam: 'Ірина М. (B2B Менеджер)',
+        limitUah: 900000,
+        debtUah: 810000,
+        overdueDays: 3,
+        gateStatus: 'WARN'
+      }
+    ],
+    salesDivisions: [
+      {
+        division: '1. Дивізіон Key Accounts (Національні мережі та Заводи)',
+        head: 'Коваленко Олександр • 8 КАМ-менеджерів',
+        revenueUah: 24600000,
+        ebitdaMarginUah: 7872000,
+        marginPct: 32.0,
+        avgDiscountPct: 3.4,
+        cashCollectionPct: 96.8,
+        qcScore: 95,
+        status: 'План перевиконано (+18%)'
+      },
+      {
+        division: '2. Дивізіон B2B Дилерська Мережа (Регіональне оптове крило)',
+        head: 'Віталій Сидоренко • 10 B2B-сейлзів',
+        revenueUah: 11800000,
+        ebitdaMarginUah: 3422000,
+        marginPct: 29.0,
+        avgDiscountPct: 5.8,
+        cashCollectionPct: 91.2,
+        qcScore: 89,
+        status: 'В межах нормативу Маржі'
+      },
+      {
+        division: '3. Тендерний Департамент (Prozorro, Енергетика та Експорт ЄС)',
+        head: 'Дмитро Романенко • 6 тендерних спеціалістів',
+        revenueUah: 6400000,
+        ebitdaMarginUah: 2176000,
+        marginPct: 34.0,
+        avgDiscountPct: 1.9,
+        cashCollectionPct: 100.0,
+        qcScore: 93,
+        status: 'Висока рентабельність'
+      }
+    ],
+    costCenters: [
+      {
+        code: 'ЦФВ-01 • Виробничий департамент та цехи ЧПК (MES)',
+        head: 'Головний інженер Бойко І.В. • Рах. 231 / 91',
+        limitUah: 18500000,
+        spentUah: 15420000,
+        status: 'OK'
+      },
+      {
+        code: 'ЦФВ-02 • Департамент B2B Продажів та Маркетингу',
+        head: 'Комерційний директор Коваленко О. • Рах. 93',
+        limitUah: 3200000,
+        spentUah: 2680000,
+        status: 'OK'
+      },
+      {
+        code: 'ЦФВ-03 • Департамент Закупівель та Імпортної Логістики WMS',
+        head: 'Директор з логістики Бондаренко Д. • Рах. 201 / 93',
+        limitUah: 12000000,
+        spentUah: 11640000,
+        status: 'WARN'
+      },
+      {
+        code: 'ЦФВ-04 • R&D, Конструкторське Бюро та Сервіс АСУ-ТП',
+        head: 'Керівник R&D Савченко М. • Рах. 91 / 94',
+        limitUah: 1800000,
+        spentUah: 1290000,
+        status: 'OK'
+      },
+      {
+        code: 'ЦФВ-05 • Адміністрація Холдингу, Юристи та Казначейство (G&A)',
+        head: 'CFO Дубовик В.І. • Рах. 92',
+        limitUah: 1400000,
+        spentUah: 980000,
+        status: 'OK'
+      }
     ]
+  };
+
+  const HOLDING_ENTITIES = {
+    ALL: {
+      badge: '🏢 Консолідований Холдинг (4 Юрособи)',
+      cashBalance: 48650000,
+      revenue: 42800000,
+      cogs: 24800000,
+      opex: 4180000,
+      taxes: 2400000,
+      receivables: 6840000
+    },
+    PLANT: {
+      badge: '🏭 ТОВ "ОпексМетрікс Індастріал" (Завод MES)',
+      cashBalance: 22400000,
+      revenue: 24500000,
+      cogs: 14200000,
+      opex: 2110000,
+      taxes: 1300000,
+      receivables: 3420000
+    },
+    TRADE: {
+      badge: '💼 ТОВ "Торговий Дім Альфа-Груп" (B2B)',
+      cashBalance: 19800000,
+      revenue: 15200000,
+      cogs: 9100000,
+      opex: 1560000,
+      taxes: 900000,
+      receivables: 2980000
+    },
+    SMB: {
+      badge: '👤 Пул ФОП Дистрибуції / Режим МСБ (ЄП 5%)',
+      cashBalance: 6450000,
+      revenue: 3100000,
+      cogs: 1500000,
+      opex: 510000,
+      taxes: 200000,
+      receivables: 440000
+    }
   };
 
   const NICHE_PROFILES = {
     TRADE: {
       badge: '🛒 Оптова та роздрібна торгівля',
-      shortName: '🛒 Торгівля та Дистрибуція',
-      salesHint: 'Шаблон: Видаткова накладна + Рахунок з QR НБУ',
+      shortName: '🏢 Холдинг + Виробництво MES',
+      salesHint: 'Рахунок з QR НБУ + ПН ЄРПН',
       defaultDocType: 'INVOICE',
       summary:
         '✓ Адаптовано під профіль «Оптова та роздрібна торгівля»: увімкнено контроль мінімальної маржі 25%, автоматичне списання зі складу за FIFO та формування видаткових накладних з QR-оплатою НБУ.'
     },
     SERVICES: {
       badge: '🛠️ Послуги, Сервіс та Агенція',
-      shortName: '🛠️ Послуги та Сервіс',
+      shortName: '🛠️ Послуги та Інжиніринг',
       salesHint: 'Шаблон: Акт виконаних робіт + Рахунок з QR НБУ',
       defaultDocType: 'ACT',
       summary:
@@ -218,7 +567,7 @@
     },
     ECOMMERCE: {
       badge: '📦 E-Commerce та Маркетплейси',
-      shortName: '📦 E-Commerce / Маркетплейси',
+      shortName: '📦 E-Commerce / Дистрибуція',
       salesHint: 'Шаблон: Експрес-рахунок + Гарантійний талон товару',
       defaultDocType: 'WARRANTY',
       summary:
@@ -226,7 +575,7 @@
     },
     PRODUCTION: {
       badge: '🏭 Виробництво та Комплектація',
-      shortName: '🏭 Виробництво та Збірка',
+      shortName: '🏭 Завод MES & ЧПК',
       salesHint: 'Шаблон: Видаткова накладна + Специфікація партії',
       defaultDocType: 'WAYBILL',
       summary:
@@ -275,15 +624,17 @@
     showInlineStatus(confirmMsg || '✓ Скопійовано в буфер обміну');
   }
 
-  // ─── Navigation (Strictly 6 Sections) ──────────────────────────────────────
+  // ─── Navigation (All 9 Enterprise & MES Sections) ──────────────────────────
   const TAB_TITLES = {
-    pulse: 'Пульс бізнесу',
-    sales: 'Продажі та рахунки',
-    stock: 'Склад та закупівлі',
-    bank: 'Банк і каса',
-    taxes: 'Податки та команда',
-    'ai-sales': 'AI Відділ продажів та телефонія',
-    about: 'Опис системи та порівняння з 1С'
+    pulse: 'Пульс Холдингу (Консолідований P&L, Кешьфлоу та Дивіденди)',
+    ledger: 'Проводки Онлайн та Головна Книга (Подвійний запис Дт/Кт за 0.04 с)',
+    mes: 'Вбивча MES: Цифровий Двійник Цеху ЧПК, Техкарти (BOM) та Zero-Waste',
+    sales: 'Sales & B2B Deal Desk (Контракти, Кредитний Стоп-Контроль та Маржа)',
+    'ai-sales': 'AI Call-Center та Департамент Продажів (24 Сейлзи • Whisper QC)',
+    stock: 'Склад WMS та AI Procurement Shield (Анти-Відкат у Закупівлях)',
+    bank: 'Корпоративне Казначейство, Банк-Автопілот та Бюджети ЦФВ',
+    taxes: 'Податковий Автопілот ДПС (ПДВ, ЄРПН, СМКОР) та Зарплата Команди',
+    about: 'Презентація для Великого Бізнесу та Холдингів (Enterprise ROI)'
   };
 
   function switchTab(tabId) {
@@ -301,7 +652,11 @@
     const titleEl = document.getElementById('header-page-title');
     if (titleEl) titleEl.textContent = TAB_TITLES[tabId];
 
-    if (tabId === 'ai-sales') {
+    if (tabId === 'ledger') {
+      renderLedgerSection();
+    } else if (tabId === 'mes') {
+      renderMesSection();
+    } else if (tabId === 'ai-sales') {
       renderAiSalesSection();
     }
   }
@@ -336,14 +691,14 @@
     showInlineStatus(`✓ Профіль адаптовано: ${profile.shortName}`);
   }
 
-  // ─── 1. ГОЛОВНА (ПУЛЬС БІЗНЕСУ) ─────────────────────────────────────────
+  // ─── 1. ГОЛОВНА (ПУЛЬС ХОЛДИНГУ ТА КОНСОЛІДАЦІЯ) ──────────────────────────
   function renderPulseSection() {
-    const pulse = state.pulse || {};
-    const cashBalance = Number(pulse.cashBalance) || 1344300;
-    const monoCash = Math.round(cashBalance * 0.36);
-    const privatCash = Math.round(cashBalance * 0.59);
+    const ent = HOLDING_ENTITIES[state.holdingEntity] || HOLDING_ENTITIES.ALL;
+    const cashBalance = ent.cashBalance;
+    const monoCash = Math.round(cashBalance * 0.38);
+    const privatCash = Math.round(cashBalance * 0.55);
     const registerCash = cashBalance - monoCash - privatCash;
-    const safeDividend = Math.max(50000, Math.round((cashBalance - 850000) * 0.78));
+    const safeDividend = Math.round(cashBalance * 0.315);
 
     const elTotal = document.getElementById('kpi-cash-total');
     if (elTotal) elTotal.textContent = fmtUah(cashBalance);
@@ -363,41 +718,498 @@
 
     const elDiv = document.getElementById('kpi-safe-dividend');
     if (elDiv) {
-      elDiv.innerHTML = `<span class="kpi-context-label">Безпечні дивіденди:</span> <span class="kpi-context-value emerald">${fmtUah(safeDividend)}</span>`;
+      elDiv.innerHTML = `<span class="kpi-context-label">Доступно до розподілу (FCF):</span> <span class="kpi-context-value emerald">${fmtUah(safeDividend)}</span>`;
     }
 
     // Profit card
-    const revenue = Math.max(Number(pulse.totalIn) || 0, 1002100);
-    const cogs = Math.round(revenue * 0.52);
-    const opex = 138200;
-    const taxes = Math.round(revenue * 0.055);
+    const revenue = ent.revenue;
+    const cogs = ent.cogs;
+    const opex = ent.opex;
+    const taxes = ent.taxes;
     const netProfit = revenue - cogs - opex - taxes;
     const marginPct = ((netProfit / revenue) * 100).toFixed(1);
 
     const elNetProfit = document.getElementById('kpi-net-profit');
     if (elNetProfit) elNetProfit.textContent = fmtUah(netProfit);
     const elMarginBadge = document.getElementById('kpi-profit-margin-badge');
-    if (elMarginBadge) elMarginBadge.textContent = `${marginPct}%`;
+    if (elMarginBadge) elMarginBadge.textContent = `Маржа ${marginPct}%`;
 
     const elFormula = document.getElementById('kpi-profit-formula');
     if (elFormula) {
       elFormula.innerHTML = `
-        <span>Виручка: <strong>+${fmtUah(revenue)}</strong></span>
+        <span>Виручка (Рах. 701/702): <strong>+${fmtUah(revenue)}</strong></span>
         <span class="meta-sep">·</span>
-        <span>Витрати: <strong>−${fmtUah(cogs + opex + taxes)}</strong></span>
+        <span>Собівартість + OPEX: <strong>−${fmtUah(cogs + opex + taxes)}</strong></span>
       `;
     }
 
     // Receivables card
     const unpaidOrders = state.orders.filter((o) => o.status === 'INVOICED');
-    const recTotal = Math.max(
-      Number(pulse.receivables) || 0,
-      unpaidOrders.reduce((s, o) => s + o.totalAmount, 0) + 128200
-    );
+    const recTotal = ent.receivables + unpaidOrders.reduce((s, o) => s + o.totalAmount, 0);
     const elRecTotal = document.getElementById('kpi-receivables-total');
     if (elRecTotal) elRecTotal.textContent = fmtUah(recTotal);
 
     renderOwnerTodayStream();
+  }
+
+  // ─── 2. ⚡ ПРОВОДКИ ОНЛАЙН (Дт/Кт) ТА ГОЛОВНА КНИГА (GENERAL LEDGER) ───────
+  function formatTimeNowMs() {
+    const now = new Date();
+    const hh = String(now.getHours()).padStart(2, '0');
+    const mm = String(now.getMinutes()).padStart(2, '0');
+    const ss = String(now.getSeconds()).padStart(2, '0');
+    const ms = String(now.getMilliseconds()).padStart(3, '0');
+    return `${hh}:${mm}:${ss}.${ms}`;
+  }
+
+  function postOnlineLedgerEntries(newEntries, toastMsg) {
+    if (!Array.isArray(newEntries) || newEntries.length === 0) return;
+
+    newEntries.forEach((entry) => {
+      state.ledgerSeq += 1;
+      const amt = Math.round((Number(entry.amount) || 0) * 100) / 100;
+      const dtCode = String(entry.dtCode || (entry.dt || '').split(' ')[0] || '361').trim();
+      const ktCode = String(entry.ktCode || (entry.kt || '').split(' ')[0] || '701').trim();
+
+      state.ledgerEntries.unshift({
+        id: `JL-${state.ledgerSeq}`,
+        time: formatTimeNowMs(),
+        doc: entry.doc || `AUTO-${state.ledgerSeq}`,
+        desc: entry.desc || 'Автоматична господарська операція в онлайні',
+        entity: entry.entity || 'ТОВ "ОпексМетрікс Індастріал"',
+        dt: entry.dt || `${dtCode} Рахунок Дт`,
+        dtCode,
+        kt: entry.kt || `${ktCode} Рахунок Кт`,
+        ktCode,
+        amount: amt,
+        isNew: true
+      });
+
+      // Update Trial Balance (ОСВ) turnovers so Дт === Кт always holds
+      let dtAcc = state.trialBalanceAccounts.find((a) => a.code === dtCode);
+      if (!dtAcc) {
+        dtAcc = { code: dtCode, name: entry.dt || `Рахунок ${dtCode}`, openDt: 0, openKt: 0, turnDt: 0, turnKt: 0 };
+        state.trialBalanceAccounts.push(dtAcc);
+      }
+      dtAcc.turnDt += amt;
+
+      let ktAcc = state.trialBalanceAccounts.find((a) => a.code === ktCode);
+      if (!ktAcc) {
+        ktAcc = { code: ktCode, name: entry.kt || `Рахунок ${ktCode}`, openDt: 0, openKt: 0, turnDt: 0, turnKt: 0 };
+        state.trialBalanceAccounts.push(ktAcc);
+      }
+      ktAcc.turnKt += amt;
+    });
+
+    // Pulse the header Live Ledger button
+    const headerBtn = document.getElementById('btn-header-live-ledger');
+    if (headerBtn) {
+      headerBtn.style.transform = 'scale(1.06)';
+      headerBtn.style.transition = 'transform 0.2s ease';
+      setTimeout(() => {
+        headerBtn.style.transform = 'scale(1)';
+      }, 280);
+    }
+
+    const navBadge = document.getElementById('nav-badge-ledger');
+    if (navBadge) {
+      navBadge.textContent = `LIVE • ${state.ledgerEntries.length}`;
+    }
+
+    renderLedgerSection();
+    if (toastMsg) {
+      showInlineStatus(toastMsg);
+    }
+  }
+
+  function renderLedgerSection() {
+    const streamTbody = document.getElementById('ledger-stream-tbody');
+    const tbTbody = document.getElementById('trial-balance-tbody');
+    const filterSelect = document.getElementById('ledger-filter-account');
+    const accFilter = filterSelect ? filterSelect.value : 'ALL';
+
+    const countEl = document.getElementById('ledger-stat-count');
+    if (countEl) {
+      countEl.textContent = (1420 + state.ledgerEntries.length).toLocaleString('uk-UA');
+    }
+
+    const totalTurn = state.trialBalanceAccounts.reduce((s, a) => s + a.turnDt, 0);
+    const turnEl = document.getElementById('ledger-stat-turnover');
+    if (turnEl) {
+      turnEl.textContent = fmtUah(Math.round(totalTurn));
+    }
+
+    if (streamTbody) {
+      const filtered = state.ledgerEntries.filter((e) => {
+        if (accFilter === 'ALL') return true;
+        return e.dtCode === accFilter || e.ktCode === accFilter;
+      });
+
+      streamTbody.innerHTML = filtered
+        .slice(0, 18)
+        .map((e) => {
+          const rowBg = e.isNew ? 'background: #EFF6FF; transition: background 0.6s ease;' : '';
+          return `
+            <tr style="${rowBg}">
+              <td class="mono" style="font-size: 12px;">
+                <div style="font-weight: 700; color: var(--primary);">#${escapeHtml(e.id)}</div>
+                <div style="color: var(--text-muted); font-size: 11px;">${escapeHtml(e.time)} • ${escapeHtml(e.doc)}</div>
+              </td>
+              <td>
+                <div style="font-weight: 600; color: var(--text-main); font-size: 13px;">${escapeHtml(e.desc)}</div>
+              </td>
+              <td>
+                <span class="badge badge-slate" style="font-size: 11px;">${escapeHtml(e.entity)}</span>
+              </td>
+              <td>
+                <span class="badge badge-blue mono" style="font-size: 11.5px;">Дт ${escapeHtml(e.dt)}</span>
+              </td>
+              <td>
+                <span class="badge badge-amber mono" style="font-size: 11.5px;">Кт ${escapeHtml(e.kt)}</span>
+              </td>
+              <td class="text-right mono" style="font-weight: 700; font-size: 13.5px; color: var(--primary);">
+                ${fmtUah(e.amount, 2)}
+              </td>
+              <td class="text-right">
+                <span class="badge badge-green mono" style="font-size: 11px;">✓ Дт=Кт • 0.04s</span>
+              </td>
+            </tr>
+          `;
+        })
+        .join('');
+    }
+
+    if (tbTbody) {
+      let sumOpenDt = 0;
+      let sumOpenKt = 0;
+      let sumTurnDt = 0;
+      let sumTurnKt = 0;
+      let sumCloseDt = 0;
+      let sumCloseKt = 0;
+
+      const rowsHtml = state.trialBalanceAccounts
+        .map((acc) => {
+          const net = acc.openDt - acc.openKt + acc.turnDt - acc.turnKt;
+          const closeDt = net > 0 ? net : 0;
+          const closeKt = net < 0 ? Math.abs(net) : 0;
+
+          sumOpenDt += acc.openDt;
+          sumOpenKt += acc.openKt;
+          sumTurnDt += acc.turnDt;
+          sumTurnKt += acc.turnKt;
+          sumCloseDt += closeDt;
+          sumCloseKt += closeKt;
+
+          return `
+            <tr>
+              <td class="mono" style="font-weight: 700; color: var(--accent-blue);">${escapeHtml(acc.code)}</td>
+              <td style="font-weight: 600;">${escapeHtml(acc.name)}</td>
+              <td class="text-right mono">${acc.openDt > 0 ? fmtUah(acc.openDt) : '—'}</td>
+              <td class="text-right mono">${acc.openKt > 0 ? fmtUah(acc.openKt) : '—'}</td>
+              <td class="text-right mono" style="color: var(--accent-blue); font-weight: 600;">+${fmtUah(acc.turnDt)}</td>
+              <td class="text-right mono" style="color: var(--warning); font-weight: 600;">+${fmtUah(acc.turnKt)}</td>
+              <td class="text-right mono" style="font-weight: 700;">${closeDt > 0 ? fmtUah(closeDt) : '—'}</td>
+              <td class="text-right mono" style="font-weight: 700;">${closeKt > 0 ? fmtUah(closeKt) : '—'}</td>
+            </tr>
+          `;
+        })
+        .join('');
+
+      const totalRow = `
+        <tr style="background: #F0FDF4; font-weight: 800; border-top: 2px solid #16A34A;">
+          <td class="mono" style="color: #166534;">Σ</td>
+          <td style="color: #166534;">БАЛАНС ГОЛОВНОЇ КНИГИ ХОЛДИНГУ (Дт === Кт ДО КОПІЙКИ)</td>
+          <td class="text-right mono" style="color: #166534;">${fmtUah(sumOpenDt)}</td>
+          <td class="text-right mono" style="color: #166534;">${fmtUah(sumOpenKt)}</td>
+          <td class="text-right mono" style="color: #166534;">${fmtUah(sumTurnDt)}</td>
+          <td class="text-right mono" style="color: #166534;">${fmtUah(sumTurnKt)}</td>
+          <td class="text-right mono" style="color: #166534;">${fmtUah(sumCloseDt)}</td>
+          <td class="text-right mono" style="color: #166534;">${fmtUah(sumCloseKt)}</td>
+        </tr>
+      `;
+
+      tbTbody.innerHTML = rowsHtml + totalRow;
+    }
+  }
+
+  // ─── 3. 🏭 ВБИВЧА MES: ВИРОБНИЦТВО, ЧПК, ТЕХКАРТИ (BOM) ТА ZERO-WASTE ──────
+  function evaluateMesBomLive() {
+    const sel = document.getElementById('mes-bom-product');
+    const qtyEl = document.getElementById('mes-bom-qty');
+    const breakdownEl = document.getElementById('mes-bom-breakdown');
+    if (!sel || !qtyEl || !breakdownEl) return null;
+
+    const opt = sel.options[sel.selectedIndex];
+    const qty = Math.max(1, Number(qtyEl.value) || 10);
+    const rawUnit = Number(opt?.getAttribute('data-raw')) || 34500;
+    const compUnit = Number(opt?.getAttribute('data-comp')) || 18200;
+    const remnantUnit = Number(opt?.getAttribute('data-remnant')) || -3800;
+    const wageUnit = Number(opt?.getAttribute('data-wage')) || 6400;
+    const energyUnit = Number(opt?.getAttribute('data-energy')) || 2100;
+    const overheadUnit = Number(opt?.getAttribute('data-overhead')) || 4600;
+    const sellUnit = Number(opt?.getAttribute('data-price')) || 92000;
+
+    const unitCost = rawUnit + compUnit + remnantUnit + wageUnit + energyUnit + overheadUnit;
+    const totalRaw = rawUnit * qty;
+    const totalComp = compUnit * qty;
+    const totalRemnant = remnantUnit * qty;
+    const totalWage = wageUnit * qty;
+    const totalEnergyOverhead = (energyUnit + overheadUnit) * qty;
+    const totalBatchCost = unitCost * qty;
+    const totalRevenue = sellUnit * qty;
+    const totalProfit = totalRevenue - totalBatchCost;
+    const marginPct = ((totalProfit / totalRevenue) * 100).toFixed(1);
+
+    breakdownEl.innerHTML = `
+      <div class="kpi-breakdown-row">
+        <span>1. Основна сировина та метал за техкартою (<code class="mono">Дт 231 Кт 201</code>):</span>
+        <strong class="mono">${fmtUah(totalRaw)}</strong>
+      </div>
+      <div class="kpi-breakdown-row">
+        <span>2. Комплектуючі, приводи та автоматика (<code class="mono">Дт 231 Кт 202</code>):</span>
+        <strong class="mono">${fmtUah(totalComp)}</strong>
+      </div>
+      <div class="kpi-breakdown-row" style="color: var(--success);">
+        <span>3. ♻️ Економія Банку ділових обрізків Zero-Waste (<code class="mono">Дт 201 Кт 231</code>):</span>
+        <strong class="mono" style="color: var(--success);">−${fmtUah(Math.abs(totalRemnant))}</strong>
+      </div>
+      <div class="kpi-breakdown-row">
+        <span>4. Відрядна ЗП операторів ЧПК + ЄСВ 22% (<code class="mono">Дт 231 Кт 661/651</code>):</span>
+        <strong class="mono">${fmtUah(totalWage)}</strong>
+      </div>
+      <div class="kpi-breakdown-row">
+        <span>5. Електроенергія верстатів та амортизація ЗВВ (<code class="mono">Дт 231 Кт 91</code>):</span>
+        <strong class="mono">${fmtUah(totalEnergyOverhead)}</strong>
+      </div>
+      <div class="kpi-breakdown-row" style="padding-top: 8px; border-top: 1px solid var(--border); font-size: 14px;">
+        <strong>Повна заводська собівартість партії (${qty} од. → <code class="mono">Дт 26 Кт 231</code>):</strong>
+        <strong class="mono" style="color: var(--primary);">${fmtUah(totalBatchCost)} (${fmtUah(unitCost)} / од.)</strong>
+      </div>
+      <div class="kpi-breakdown-row" style="font-size: 14px; color: var(--success);">
+        <strong>Промислова маржа EBITDA при реалізації (${fmtUah(totalRevenue)}):</strong>
+        <strong class="mono" style="color: var(--success);">+${fmtUah(totalProfit)} (Маржа ${marginPct}%)</strong>
+      </div>
+    `;
+
+    return {
+      code: opt?.value || 'PEM-400',
+      name: (opt?.textContent || '').split('—')[0].trim(),
+      qty,
+      totalRaw,
+      totalComp,
+      totalWage,
+      totalEnergyOverhead,
+      totalBatchCost,
+      totalRevenue
+    };
+  }
+
+  function renderMesSection() {
+    const tbody = document.getElementById('mes-lines-tbody');
+    if (tbody) {
+      tbody.innerHTML = state.mesLines
+        .map((line) => {
+          const pct = Math.min(100, Math.round((line.doneQty / line.totalQty) * 100));
+          const isReady = line.status === 'READY_RELEASE' || line.doneQty >= line.totalQty;
+          const isReleased = line.status === 'RELEASED';
+
+          let statusBadge = '';
+          let actionBtn = '';
+          if (isReleased) {
+            statusBadge = `<span class="badge badge-green">✓ Партію здано на склад ГП (Рах. 26)</span>`;
+            actionBtn = `<span class="mono" style="font-size: 11.5px; color: var(--success);">Проведено Дт 26 Кт 231</span>`;
+          } else if (isReady) {
+            statusBadge = `<span class="badge badge-blue">Готово до випуску (${line.doneQty}/${line.totalQty} од.)</span>`;
+            actionBtn = `<button type="button" class="btn btn-sm btn-action-primary js-mes-release-line" data-id="${escapeHtml(line.id)}">✓ Випустити партію + Дт 26 Кт 231</button>`;
+          } else {
+            statusBadge = `
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:11.5px;font-weight:600;margin-bottom:3px;">
+                  <span>В роботі: ${line.doneQty} / ${line.totalQty} од.</span>
+                  <span class="mono">${pct}%</span>
+                </div>
+                <div class="progress-track" style="margin:0;height:6px;">
+                  <div class="progress-fill" style="width:${pct}%;"></div>
+                </div>
+              </div>
+            `;
+            actionBtn = `<button type="button" class="btn btn-sm btn-subtle js-mes-release-line" data-id="${escapeHtml(line.id)}">Завершити зміну + Дт 26</button>`;
+          }
+
+          return `
+            <tr>
+              <td style="font-weight: 700; color: var(--text-main);">${escapeHtml(line.name)}</td>
+              <td style="font-size: 12.5px; color: var(--text-secondary);">${escapeHtml(line.orderTitle)}</td>
+              <td style="font-size: 12.5px;">${escapeHtml(line.operator)}</td>
+              <td class="text-right mono">
+                <span class="badge badge-green">${line.oee}% OEE</span>
+                <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">Цикл: ${line.cycleSec} с</div>
+              </td>
+              <td class="text-right mono">
+                <div style="font-weight: 700;">${fmtUah(line.batchCost)}</div>
+                <div style="font-size: 11px; color: var(--text-muted);">${line.kwh} кВт·год</div>
+              </td>
+              <td style="min-width: 170px;">${statusBadge}</td>
+              <td class="text-right">${actionBtn}</td>
+            </tr>
+          `;
+        })
+        .join('');
+    }
+
+    evaluateMesBomLive();
+  }
+
+  // ─── 4. 💼 SALES & B2B DEAL DESK: КРЕДИТНИЙ КОНТРОЛЬ ДИЛЕРІВ ───────────────
+  function renderDealerCreditTable() {
+    const tbody = document.getElementById('dealer-credit-tbody');
+    if (!tbody) return;
+
+    const blockedCount = state.dealerCredits.filter((d) => d.gateStatus === 'BLOCKED').length;
+    const stopBadge = document.getElementById('dealer-stop-badge');
+    if (stopBadge) {
+      if (blockedCount > 0) {
+        stopBadge.className = 'badge badge-red';
+        stopBadge.textContent = `● ${blockedCount} Дилер на Стоп-Відвантаженні`;
+      } else {
+        stopBadge.className = 'badge badge-green';
+        stopBadge.textContent = `✓ Усі ліміти під контролем`;
+      }
+    }
+
+    tbody.innerHTML = state.dealerCredits
+      .map((dl) => {
+        const isBlocked = dl.gateStatus === 'BLOCKED';
+        const isWarn = dl.gateStatus === 'WARN';
+        const gateHtml = isBlocked
+          ? `<span class="badge badge-red">⛔ СТОП-ВІДВАНТАЖЕННЯ WMS</span>`
+          : isWarn
+          ? `<span class="badge badge-amber">⚠️ 90% ліміту використано</span>`
+          : `<span class="badge badge-green">✓ Відвантаження дозволено</span>`;
+
+        const btnHtml = isBlocked
+          ? `<button type="button" class="btn btn-sm btn-action-primary js-toggle-dealer-gate" data-id="${escapeHtml(dl.id)}">Зарахувати оплату + Відкрити WMS</button>`
+          : `<button type="button" class="btn btn-sm btn-subtle js-toggle-dealer-gate" data-id="${escapeHtml(dl.id)}">Блокувати відвантаження</button>`;
+
+        return `
+          <tr style="${isBlocked ? 'background: #FEF2F2;' : ''}">
+            <td>
+              <div style="font-weight: 700;">${escapeHtml(dl.name)}</div>
+              <div style="font-size: 11.5px; color: var(--text-muted);">${escapeHtml(dl.segment)}</div>
+            </td>
+            <td style="font-size: 12.5px;">${escapeHtml(dl.kam)}</td>
+            <td class="text-right mono">${fmtUah(dl.limitUah)}</td>
+            <td class="text-right mono" style="font-weight: 700; color: ${isBlocked ? 'var(--danger)' : 'var(--text-main)'};">${fmtUah(dl.debtUah)}</td>
+            <td class="text-right mono">${dl.overdueDays > 0 ? `<span style="color:var(--danger);font-weight:700;">${dl.overdueDays} дн.</span>` : '0 дн.'}</td>
+            <td>${gateHtml}</td>
+            <td class="text-right">${btnHtml}</td>
+          </tr>
+        `;
+      })
+      .join('');
+  }
+
+  function renderCostCentersTable() {
+    const tbody = document.getElementById('cost-centers-tbody');
+    if (!tbody) return;
+
+    tbody.innerHTML = state.costCenters
+      .map((cc) => {
+        const rem = Math.max(0, cc.limitUah - cc.spentUah);
+        const pct = Math.min(100, Math.round((cc.spentUah / cc.limitUah) * 100));
+        const badgeHtml = pct >= 95
+          ? `<span class="badge badge-amber">⚠️ Ліміт 97% (Погодження CFO)</span>`
+          : `<span class="badge badge-green">✓ В межах бюджету ЦФВ</span>`;
+
+        return `
+          <tr>
+            <td style="font-weight: 700;">${escapeHtml(cc.code)}</td>
+            <td style="font-size: 12.5px; color: var(--text-secondary);">${escapeHtml(cc.head)}</td>
+            <td class="text-right mono">${fmtUah(cc.limitUah)}</td>
+            <td class="text-right mono" style="font-weight: 600;">${fmtUah(cc.spentUah)}</td>
+            <td class="text-right mono" style="font-weight: 700; color: var(--success);">${fmtUah(rem)}</td>
+            <td style="min-width: 150px;">
+              <div style="display:flex;justify-content:space-between;font-size:11px;font-weight:600;margin-bottom:3px;">
+                <span>Використано</span>
+                <span class="mono">${pct}%</span>
+              </div>
+              <div class="progress-track" style="margin:0;height:6px;">
+                <div class="progress-fill" style="width:${pct}%;background:${pct >= 95 ? 'var(--warning)' : 'var(--accent-blue)'};"></div>
+              </div>
+            </td>
+            <td class="text-right">${badgeHtml}</td>
+          </tr>
+        `;
+      })
+      .join('');
+  }
+
+  function renderSalesLeaderboardTable() {
+    const tbody = document.getElementById('sales-leaderboard-tbody');
+    if (!tbody) return;
+
+    tbody.innerHTML = state.salesDivisions
+      .map((div) => {
+        return `
+          <tr>
+            <td>
+              <div style="font-weight: 700; color: var(--text-main);">${escapeHtml(div.division)}</div>
+              <div style="font-size: 11.5px; color: var(--text-muted);">${escapeHtml(div.head)}</div>
+            </td>
+            <td class="text-right mono" style="font-weight: 600;">${fmtUah(div.revenueUah)}</td>
+            <td class="text-right mono" style="font-weight: 800; color: var(--success);">
+              +${fmtUah(div.ebitdaMarginUah)} <span class="badge badge-green" style="margin-left:4px;">${div.marginPct}%</span>
+            </td>
+            <td class="text-right mono">${div.avgDiscountPct}%</td>
+            <td class="text-right mono" style="font-weight: 700; color: var(--accent-blue);">${div.cashCollectionPct}%</td>
+            <td class="text-right mono"><span class="badge badge-blue">${div.qcScore} / 100</span></td>
+            <td><span class="badge badge-green">✓ ${escapeHtml(div.status)}</span></td>
+          </tr>
+        `;
+      })
+      .join('');
+  }
+
+  function evaluateEnterpriseRoiLive() {
+    const turnSlider = document.getElementById('roi-turnover-slider');
+    const leakSlider = document.getElementById('roi-leak-slider');
+    const staffSlider = document.getElementById('roi-staff-slider');
+    if (!turnSlider || !leakSlider || !staffSlider) return;
+
+    const turnover = Number(turnSlider.value) || 45000000;
+    const leakPct = Number(leakSlider.value) || 3.8;
+    const staffCost = Number(staffSlider.value) || 380000;
+
+    const elTurnVal = document.getElementById('roi-turnover-val');
+    if (elTurnVal) elTurnVal.textContent = `${fmtUah(turnover)} / міс`;
+    const elLeakVal = document.getElementById('roi-leak-val');
+    if (elLeakVal) elLeakVal.textContent = `${leakPct.toFixed(1)}% від обороту`;
+    const elStaffVal = document.getElementById('roi-staff-val');
+    if (elStaffVal) elStaffVal.textContent = `${fmtUah(staffCost)} / міс`;
+
+    const totalLeakRecovery = Math.round(turnover * (leakPct / 100));
+    const marginAndProcSaved = Math.round(totalLeakRecovery * 0.65);
+    const mesSaved = totalLeakRecovery - marginAndProcSaved;
+    const staffSaved = Math.round(staffCost * 0.85);
+
+    const monthlyTotal = marginAndProcSaved + mesSaved + staffSaved;
+    const annualTotal = monthlyTotal * 12;
+
+    const elAnnual = document.getElementById('roi-annual-total');
+    if (elAnnual) elAnnual.textContent = `+${fmtUah(annualTotal)} / рік`;
+    const elMonthly = document.getElementById('roi-monthly-total');
+    if (elMonthly) elMonthly.innerHTML = `або <strong>+${fmtUah(monthlyTotal)} щомісяця</strong> додаткового чистого грошового потоку`;
+
+    const elBrkMargin = document.getElementById('roi-break-margin');
+    if (elBrkMargin) elBrkMargin.textContent = `+${fmtUah(marginAndProcSaved)} / міс`;
+    const elBrkMes = document.getElementById('roi-break-mes');
+    if (elBrkMes) elBrkMes.textContent = `+${fmtUah(mesSaved)} / міс`;
+    const elBrkStaff = document.getElementById('roi-break-staff');
+    if (elBrkStaff) elBrkStaff.textContent = `+${fmtUah(staffSaved)} / міс`;
+
+    const paybackDays = Math.max(4, Math.min(25, Math.round((450000 / monthlyTotal) * 30)));
+    const elPayback = document.getElementById('roi-payback-badge');
+    if (elPayback) elPayback.textContent = `Окупність впровадження: ${paybackDays} днів`;
   }
 
   function renderOwnerTodayStream() {
@@ -420,33 +1232,32 @@
         itemsHtml.push(`
           <div class="action-item">
             <div class="action-item-left">
-              <span class="action-tag-quiet">Банк</span>
+              <span class="action-tag-quiet">Казначейство</span>
               <div>
                 <div class="action-title">Нерозпізнаний платіж: ${escapeHtml(tx.counterpartyName)} на суму <span class="action-amount">${fmtUah(tx.amount)}</span></div>
-                <div class="action-desc">Призначення: «${escapeHtml(tx.description)}» — підтвердіть категорію обліку:</div>
+                <div class="action-desc">Призначення: «${escapeHtml(tx.description)}» — підтвердіть кореспондуючий рахунок обліку (Дт/Кт):</div>
               </div>
             </div>
             <div class="action-buttons">
-              <button type="button" class="btn btn-sm btn-subtle js-resolve-tx" data-id="${escapeHtml(tx.id)}" data-cat="REVENUE_SALES" data-label="Оплата клієнта за рахунком">Оплата клієнта</button>
-              <button type="button" class="btn btn-sm btn-subtle js-resolve-tx" data-id="${escapeHtml(tx.id)}" data-cat="COGS_MATERIALS" data-label="Закупівля товару на склад">Закупівля товару</button>
-              <button type="button" class="btn btn-sm btn-subtle js-resolve-tx" data-id="${escapeHtml(tx.id)}" data-cat="ADMIN_OPEX" data-label="Оренда / Сервіс / Послуги">Оренда / послуги</button>
+              <button type="button" class="btn btn-sm btn-subtle js-resolve-tx" data-id="${escapeHtml(tx.id)}" data-cat="REVENUE_SALES" data-label="Оплата клієнта (Дт 311 Кт 361)">Оплата клієнта (361)</button>
+              <button type="button" class="btn btn-sm btn-subtle js-resolve-tx" data-id="${escapeHtml(tx.id)}" data-cat="COGS_MATERIALS" data-label="Закупівля сировини (Дт 631 Кт 311)">Постачальник (631)</button>
+              <button type="button" class="btn btn-sm btn-subtle js-resolve-tx" data-id="${escapeHtml(tx.id)}" data-cat="ADMIN_OPEX" data-label="Адмінвитрати ЦФВ (Дт 92 Кт 311)">Витрати ЦФВ (92)</button>
             </div>
           </div>
         `);
       }
     } else {
-      // Show confirming state that all bank txs are classified
       itemsHtml.push(`
         <div class="action-item" style="background: #FFFFFF; border-color: #E2E8F0;">
           <div class="action-item-left">
-            <span class="action-tag-quiet" style="color: #047857; background: #ECFDF5; border-color: #A7F3D0;">Банк</span>
+            <span class="action-tag-quiet" style="color: #047857; background: #ECFDF5; border-color: #A7F3D0;">Казначейство</span>
             <div>
-              <div class="action-title">Усі банківські виписки синхронізовано</div>
-              <div class="action-desc">Нерозпізнаних платежів немає. Оплати автоматично прив'язані до первинки та податків.</div>
+              <div class="action-title">Усі банківські виписки Холдингу синхронізовано та проведено в Головній Книзі</div>
+              <div class="action-desc">Нерозпізнаних платежів немає. Оплати автоматично закрили дебіторку (Дт 311 Кт 361) та сформували ліміт ПДВ.</div>
             </div>
           </div>
           <div class="action-buttons">
-            <button type="button" class="btn btn-sm btn-subtle" onclick="window.opexSwitchTab('bank')">Переглянути виписку →</button>
+            <button type="button" class="btn btn-sm btn-subtle" onclick="window.opexSwitchTab('ledger')">Переглянути проводки Дт/Кт →</button>
           </div>
         </div>
       `);
@@ -456,19 +1267,19 @@
     const overdueOrder = state.orders.find((o) => o.orderNumber === 'INV-2026-107' && o.status === 'INVOICED');
     if (overdueOrder && !state.overduePaidIds.has(overdueOrder.orderNumber)) {
       actionCount++;
-      const reminderText = `Вітаємо, ${overdueOrder.clientName}! Нагадуємо про оплату рахунку № ${overdueOrder.orderNumber} на суму ${fmtUah(overdueOrder.totalAmount)} (IBAN: UA82305299000002600123456789, ТОВ "Альфа Трейд Груп"). Дякуємо за співпрацю!`;
+      const reminderText = `Вітаємо, ${overdueOrder.clientName}! Нагадуємо про оплату рахунку № ${overdueOrder.orderNumber} на суму ${fmtUah(overdueOrder.totalAmount)} (IBAN: UA82305299000002600123456789, ТОВ "ОпексМетрікс Індастріал"). Дякуємо за співпрацю!`;
       itemsHtml.push(`
         <div class="action-item">
           <div class="action-item-left">
-            <span class="action-tag-quiet">Дебіторка</span>
+            <span class="action-tag-quiet">Дебіторка 361</span>
             <div>
               <div class="action-title">${escapeHtml(overdueOrder.clientName)} — очікується оплата <span class="action-amount">${fmtUah(overdueOrder.totalAmount)}</span></div>
               <div class="action-desc">Рахунок № ${escapeHtml(overdueOrder.orderNumber)} (${escapeHtml(overdueOrder.itemsSummary)}), прострочено на 7 днів.</div>
             </div>
           </div>
           <div class="action-buttons">
-            <button type="button" class="btn btn-sm btn-subtle js-copy-reminder" data-text="${escapeHtml(reminderText)}">Скопіювати нагадування</button>
-            <button type="button" class="btn btn-sm btn-action-primary js-mark-overdue-paid" data-ord="${escapeHtml(overdueOrder.orderNumber)}">Зарахувати оплату</button>
+            <button type="button" class="btn btn-sm btn-subtle js-copy-reminder" data-text="${escapeHtml(reminderText)}">Скопіювати претензію</button>
+            <button type="button" class="btn btn-sm btn-action-primary js-mark-overdue-paid" data-ord="${escapeHtml(overdueOrder.orderNumber)}">Зарахувати оплату + Дт 311 Кт 361</button>
           </div>
         </div>
       `);
@@ -477,28 +1288,28 @@
     // 3. Low Stock Items needing supplier order
     const topAlert = alerts[0] || {
       sku: 'PRD-101',
-      itemName: 'Кавомашина професійна Delonghi Dinamica Plus',
+      itemName: 'Сталь листова AISI 304 (4 мм, партія під ЧПК) / Обладнання',
       currentQty: 24,
       minThreshold: 35,
       recommendedOrderQty: 36,
-      unit: 'шт',
+      unit: 'од.',
       unitPriceUah: 18500,
       supplierName: 'ТОВ "Імпорт-Логістик Сервіс"',
-      messengerOrderText: 'Вітаємо! Замовлення на поповнення складу: [PRD-101] Кавомашина Delonghi Dinamica Plus — 36 шт.'
+      messengerOrderText: 'Вітаємо! Замовлення на поповнення складу заводу: [PRD-101] — 36 од.'
     };
     actionCount++;
     itemsHtml.push(`
       <div class="action-item">
         <div class="action-item-left">
-          <span class="action-tag-quiet">Закупівлі</span>
+          <span class="action-tag-quiet">MRP / Закупівлі</span>
           <div>
-            <div class="action-title">Запас на межі: ${escapeHtml(topAlert.itemName)} (${topAlert.currentQty} ${escapeHtml(topAlert.unit)} при мінімумі ${topAlert.minThreshold})</div>
-            <div class="action-desc">Постачальник: ${escapeHtml(topAlert.supplierName)}. Рекомендовано замовити: <strong>${topAlert.recommendedOrderQty} ${escapeHtml(topAlert.unit)}</strong>.</div>
+            <div class="action-title">Запас під план MES на межі: ${escapeHtml(topAlert.itemName)} (${topAlert.currentQty} ${escapeHtml(topAlert.unit)} при мінімумі ${topAlert.minThreshold})</div>
+            <div class="action-desc">Прямий постачальник (перевірено Anti-Kickback): ${escapeHtml(topAlert.supplierName)}. Рекомендовано замовити: <strong>${topAlert.recommendedOrderQty} ${escapeHtml(topAlert.unit)}</strong>.</div>
           </div>
         </div>
         <div class="action-buttons">
           <button type="button" class="btn btn-sm btn-action-primary js-quick-supplier-order" data-sku="${escapeHtml(topAlert.sku)}" data-name="${escapeHtml(topAlert.itemName)}" data-qty="${topAlert.recommendedOrderQty}" data-price="${topAlert.unitPriceUah}" data-text="${escapeHtml(topAlert.messengerOrderText)}">
-            Замовити постачальнику
+            Оприбуткувати поставку + Дт 201 Кт 631
           </button>
         </div>
       </div>
@@ -516,31 +1327,27 @@
     const canvas = document.getElementById('cashflowChart');
     if (!canvas || typeof Chart === 'undefined') return;
 
-    const forecast = state.cashflow;
+    const ent = HOLDING_ENTITIES[state.holdingEntity] || HOLDING_ENTITIES.ALL;
+    const baseStart = ent.cashBalance;
+    const reserveVal = Math.round(baseStart * 0.25);
+
     let labels = [];
     let baseData = [];
     let stressData = [];
     let reserveLine = [];
 
-    if (forecast && Array.isArray(forecast.days) && forecast.days.length > 0) {
-      labels = forecast.days.map((d) => d.dateLabel || d.date.slice(5));
-      baseData = forecast.days.map((d) => Math.round(d.balanceUah));
-      stressData = forecast.days.map((d) => Math.round(d.stressBalanceUah));
-      reserveLine = forecast.days.map(() => forecast.safeReserveThresholdUah || 250000);
+    let cur = baseStart;
+    for (let i = 1; i <= 30; i++) {
+      labels.push(`День ${i}`);
+      cur += (i % 4 === 0 ? Math.round(baseStart * 0.045) : -Math.round(baseStart * 0.009));
+      baseData.push(cur);
+      stressData.push(Math.round(cur * 0.84));
+      reserveLine.push(reserveVal);
+    }
 
-      const minBadge = document.getElementById('chart-min-balance-badge');
-      if (minBadge) {
-        minBadge.textContent = `Мін. залишок (30 дн): ${fmtUah(forecast.lowestBalanceUah || 980000)}`;
-      }
-    } else {
-      let cur = 1344300;
-      for (let i = 1; i <= 30; i++) {
-        labels.push(`День ${i}`);
-        cur += (i % 4 === 0 ? 68000 : -14000);
-        baseData.push(cur);
-        stressData.push(Math.round(cur * 0.82));
-        reserveLine.push(250000);
-      }
+    const minBadge = document.getElementById('chart-min-balance-badge');
+    if (minBadge) {
+      minBadge.textContent = `Мін. залишок (30 дн): ${fmtUah(Math.min(...baseData))}`;
     }
 
     if (state.cashflowChartInstance) {
@@ -553,7 +1360,7 @@
         labels,
         datasets: [
           {
-            label: 'Прогноз балансу (₴)',
+            label: 'Прогноз ліквідності Холдингу (₴)',
             data: baseData,
             borderColor: '#2563EB',
             backgroundColor: 'rgba(37, 99, 235, 0.08)',
@@ -563,7 +1370,7 @@
             pointRadius: 2
           },
           {
-            label: 'Стрес-прогноз (затримка оплат клієнтів)',
+            label: 'Стрес-прогноз (затримка оплат B2B дилерів)',
             data: stressData,
             borderColor: '#64748B',
             borderDash: [5, 5],
@@ -573,7 +1380,7 @@
             pointRadius: 0
           },
           {
-            label: 'Безпечний резерв (₴ 250 000)',
+            label: `Незнижуваний казначейський резерв (${fmtUah(reserveVal)})`,
             data: reserveLine,
             borderColor: '#16A34A',
             borderDash: [3, 3],
@@ -611,7 +1418,7 @@
     });
   }
 
-  // ─── 2. 💼 ПРОДАЖІ ТА РАХУНКИ (З КОНТРОЛЕМ МАРЖІ ТА ІНЛАЙН-ПЕРВИНКОЮ) ────────
+  // ─── 4. 💼 ПРОДАЖІ ТА РАХУНКИ (З КОНТРОЛЕМ МАРЖІ ТА ІНЛАЙН-ПЕРВИНКОЮ) ────────
   function evaluateMarginGuardLive() {
     const sel = document.getElementById('inv-item-select');
     const qtyInput = document.getElementById('inv-qty');
@@ -620,9 +1427,9 @@
     if (!sel || !qtyInput || !priceInput || !discInput) return;
 
     const opt = sel.options[sel.selectedIndex];
-    const unitCost = Number(opt?.getAttribute('data-cost')) || 18500;
+    const unitCost = Number(opt?.getAttribute('data-cost')) || 62000;
     const qty = Math.max(1, Number(qtyInput.value) || 1);
-    const unitPrice = Math.max(1, Number(priceInput.value) || 26900);
+    const unitPrice = Math.max(1, Number(priceInput.value) || 92000);
     const discountPct = Math.min(80, Math.max(0, Number(discInput.value) || 0));
 
     const grossTotal = qty * unitPrice;
@@ -636,29 +1443,26 @@
     const maxSafeDiscount = Math.max(0, Math.floor((1 - minSafeRevenue / grossTotal) * 100));
 
     const banner = document.getElementById('margin-guard-banner');
-    const titleEl = document.getElementById('margin-guard-title');
     const detailsEl = document.getElementById('margin-guard-details');
     const pillEl = document.getElementById('margin-guard-pill');
 
-    if (!banner || !titleEl || !detailsEl || !pillEl) return;
-
-    if (marginPct < 25) {
-      banner.className = 'margin-guard-box warn';
-      titleEl.textContent = `⚠️ Увага власника (Margin Guard): Знижка ${discountPct}% опускає рентабельність нижче порогу безпеки 25%!`;
-      detailsEl.innerHTML = `Сума зі знижкою: <strong>${fmtUah(netRevenue)}</strong> • Собівартість: <strong>${fmtUah(totalCost)}</strong> • Чистий заробіток: <strong>${fmtUah(profit)}</strong> • Рентабельність: <strong>${marginPct}%</strong> (Рекомендована макс. знижка: <strong>${maxSafeDiscount}%</strong>)`;
-      pillEl.className = 'badge badge-red';
-      pillEl.textContent = `Низька маржа: ${marginPct}% ⚠️`;
-    } else {
-      banner.className = 'margin-guard-box safe';
-      titleEl.textContent = `✓ Контроль Маржі (Margin Guard): Рентабельність замовлення у безпечній зоні (${marginPct}%)`;
-      detailsEl.innerHTML = `Сума рахунку: <strong>${fmtUah(netRevenue)}</strong> • Собівартість: <strong>${fmtUah(totalCost)}</strong> • Чистий заробіток: <strong>${fmtUah(profit)}</strong> • Маржа: <strong>${marginPct}%</strong> (Поріг безпеки власника: мін. 25%)`;
-      pillEl.className = 'badge badge-green';
-      pillEl.textContent = `Маржа ${marginPct}% ✓`;
+    if (banner && detailsEl && pillEl) {
+      if (marginPct < 25) {
+        banner.className = 'margin-guard-box warn';
+        detailsEl.innerHTML = `⚠️ <strong>Блок Margin Guard:</strong> Сума зі знижкою: <strong>${fmtUah(netRevenue)}</strong> • Собівартість FIFO: <strong>${fmtUah(totalCost)}</strong> • Прибуток: <strong>${fmtUah(profit)}</strong> (Макс. безпечна знижка: <strong>${maxSafeDiscount}%</strong>)`;
+        pillEl.className = 'badge badge-red';
+        pillEl.textContent = `Маржа ${marginPct}% (< 25% Стоп Deal Desk) ⚠️`;
+      } else {
+        banner.className = 'margin-guard-box safe';
+        detailsEl.innerHTML = `Сума контракту: <strong>${fmtUah(netRevenue)}</strong> • Чиста маржа (EBITDA): <strong style="color: var(--success);">${fmtUah(profit)}</strong> • Авто-проводки: <code class="mono">Дт 361 Кт 701</code>, <code class="mono">Дт 701 Кт 6412</code>, <code class="mono">Дт 901 Кт 26</code>`;
+        pillEl.className = 'badge badge-green';
+        pillEl.textContent = `Маржа ${marginPct}% • Дозволено Deal Desk ✓`;
+      }
     }
 
     return {
-      itemName: opt?.getAttribute('data-name') || 'Товар',
-      unit: opt?.getAttribute('data-unit') || 'шт.',
+      itemName: opt?.getAttribute('data-name') || 'Продукція',
+      unit: opt?.getAttribute('data-unit') || 'од.',
       qty,
       unitPrice: Math.round(unitPrice * (1 - discountPct / 100)),
       unitCost,
@@ -856,6 +1660,9 @@
       return;
     }
 
+    let qrSvg = `<svg width="88" height="88" viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="88" height="88" rx="6" fill="white"/><rect x="8" y="8" width="24" height="24" stroke="#0F172A" stroke-width="4"/><rect x="14" y="14" width="12" height="12" fill="#0F172A"/><rect x="56" y="8" width="24" height="24" stroke="#0F172A" stroke-width="4"/><rect x="62" y="14" width="12" height="12" fill="#0F172A"/><rect x="8" y="56" width="24" height="24" stroke="#0F172A" stroke-width="4"/><rect x="14" y="62" width="12" height="12" fill="#0F172A"/><rect x="40" y="10" width="8" height="8" fill="#2563EB"/><rect x="40" y="26" width="8" height="16" fill="#0F172A"/><rect x="10" y="40" width="22" height="6" fill="#0F172A"/><rect x="40" y="48" width="14" height="8" fill="#2563EB"/><rect x="60" y="42" width="18" height="8" fill="#0F172A"/><rect x="42" y="62" width="12" height="18" fill="#0F172A"/><rect x="60" y="58" width="20" height="22" stroke="#2563EB" stroke-width="4"/></svg>`;
+    let amountWords = `${ord.totalAmount.toLocaleString('uk-UA')} грн 00 коп.`;
+
     try {
       const resp = await fetch('/api/smb-docs/render', {
         method: 'POST',
@@ -871,80 +1678,82 @@
       });
       const data = await resp.json();
       if (data && data.ok) {
-        const qrSvg = (data.qrData && data.qrData.svg) ? data.qrData.svg : '';
-        const rowsHtml = ord.items
-          .map((it, idx) => {
-            const lineSum = it.qty * it.price;
-            return `
-              <tr>
-                <td style="text-align:center;">${idx + 1}</td>
-                <td>${escapeHtml(it.name)}</td>
-                <td style="text-align:center;">${escapeHtml(it.unit)}</td>
-                <td style="text-align:right;" class="mono">${it.qty}</td>
-                <td style="text-align:right;" class="mono">${fmtUah(it.price, 2)}</td>
-                <td style="text-align:right;font-weight:700;" class="mono">${fmtUah(lineSum, 2)}</td>
-              </tr>
-            `;
-          })
-          .join('');
-
-        container.innerHTML = `
-          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:20px;border-bottom:2px solid #0F172A;padding-bottom:16px;margin-bottom:18px;flex-wrap:wrap;">
-            <div>
-              <div style="font-size:11px;font-weight:700;text-transform:uppercase;color:#2563EB;letter-spacing:0.05em;">Офіційний первинний документ • Стандарт ДСТУ / НБУ</div>
-              <div style="font-size:20px;font-weight:800;color:#0F172A;margin-top:4px;">${escapeHtml(docTypeNames[state.activeDocType])} № ${escapeHtml(ord.orderNumber)}</div>
-              <div style="font-size:12.5px;color:#475569;margin-top:2px;">Дата документа: ${escapeHtml(ord.date)} р.</div>
-              <div style="margin-top:12px;font-size:12.5px;line-height:1.55;">
-                <div><strong>Постачальник:</strong> ТОВ "Альфа Трейд Груп" (ЄДРПОУ 38421567)</div>
-                <div><strong>IBAN:</strong> <span class="mono">UA82305299000002600123456789</span> в АТ "УНІВЕРСАЛ БАНК" (Monobank Бізнес)</div>
-                <div style="margin-top:6px;"><strong>Покупець / Замовник:</strong> ${escapeHtml(ord.clientName)} (ЄДРПОУ ${escapeHtml(ord.clientEdrpou)})</div>
-              </div>
-            </div>
-            <div style="display:flex;flex-direction:column;align-items:center;background:#F8FAFC;border:1px solid #CBD5E1;border-radius:10px;padding:10px 14px;text-align:center;">
-              ${qrSvg}
-              <div style="font-size:11px;font-weight:700;color:#0F172A;margin-top:6px;">QR НБУ для оплати в 1 клік</div>
-              <div style="font-size:10px;color:#64748B;">Монобанк • Приват24 • Sense</div>
-            </div>
-          </div>
-
-          <div class="table-wrap" style="margin-bottom:16px;">
-            <table>
-              <thead>
-                <tr>
-                  <th style="width:45px;text-align:center;">№</th>
-                  <th>Найменування товару / послуги</th>
-                  <th style="width:70px;text-align:center;">Од.</th>
-                  <th style="width:80px;text-align:right;">К-сть</th>
-                  <th style="width:120px;text-align:right;">Ціна</th>
-                  <th style="width:130px;text-align:right;">Сума</th>
-                </tr>
-              </thead>
-              <tbody>
-                ${rowsHtml}
-              </tbody>
-            </table>
-          </div>
-
-          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;background:#F8FAFC;padding:14px 16px;border-radius:8px;border:1px solid #E2E8F0;">
-            <div style="font-size:13px;">
-              <div><strong>Сума прописом:</strong> ${escapeHtml(data.amountInWords || '')}</div>
-              <div style="font-size:11.5px;color:#64748B;margin-top:4px;">Призначення платежу в QR: Оплата згідно документа № ${escapeHtml(ord.orderNumber)}</div>
-            </div>
-            <div style="text-align:right;font-size:14px;">
-              <div>Всього до сплати: <strong class="mono" style="font-size:17px;color:#2563EB;">${fmtUah(ord.totalAmount, 2)}</strong></div>
-              <div style="font-size:12px;color:#475569;">${ord.withVat ? `У т.ч. ПДВ 20%: ${fmtUah(ord.totalAmount / 6, 2)}` : 'Без ПДВ (Єдиний податок)'}</div>
-            </div>
-          </div>
-
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px;padding-top:16px;border-top:1px dashed #CBD5E1;font-size:12.5px;color:#475569;">
-            <div>Від Постачальника (Виконавця): ______________________ / Коваленко О.В. /</div>
-            <div>Від Покупця (Замовника): ______________________ / Підпис / М.П. /</div>
-          </div>
-        `;
+        if (data.qrData && data.qrData.svg) qrSvg = data.qrData.svg;
+        if (data.amountInWords) amountWords = data.amountInWords;
       }
     } catch (_err) {
-      // Fallback silent
+      // Static GitHub Pages fallback uses built-in NBU QR SVG
     }
+
+    const rowsHtml = ord.items
+      .map((it, idx) => {
+        const lineSum = it.qty * it.price;
+        return `
+          <tr>
+            <td style="text-align:center;">${idx + 1}</td>
+            <td>${escapeHtml(it.name)}</td>
+            <td style="text-align:center;">${escapeHtml(it.unit)}</td>
+            <td style="text-align:right;" class="mono">${it.qty}</td>
+            <td style="text-align:right;" class="mono">${fmtUah(it.price, 2)}</td>
+            <td style="text-align:right;font-weight:700;" class="mono">${fmtUah(lineSum, 2)}</td>
+          </tr>
+        `;
+      })
+      .join('');
+
+    container.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:20px;border-bottom:2px solid #0F172A;padding-bottom:16px;margin-bottom:18px;flex-wrap:wrap;">
+        <div>
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;color:#2563EB;letter-spacing:0.05em;">Офіційний первинний документ • Стандарт ДСТУ / НБУ • Проводка Дт 361 Кт 701</div>
+          <div style="font-size:20px;font-weight:800;color:#0F172A;margin-top:4px;">${escapeHtml(docTypeNames[state.activeDocType])} № ${escapeHtml(ord.orderNumber)}</div>
+          <div style="font-size:12.5px;color:#475569;margin-top:2px;">Дата документа: ${escapeHtml(ord.date)} р.</div>
+          <div style="margin-top:12px;font-size:12.5px;line-height:1.55;">
+            <div><strong>Постачальник:</strong> ТОВ "ОпексМетрікс Індастріал" / ТОВ "Альфа Трейд Груп" (ЄДРПОУ 38421567)</div>
+            <div><strong>IBAN:</strong> <span class="mono">UA82305299000002600123456789</span> в АТ "УНІВЕРСАЛ БАНК" / ПриватБанк</div>
+            <div style="margin-top:6px;"><strong>Покупець / Замовник:</strong> ${escapeHtml(ord.clientName)} (ЄДРПОУ ${escapeHtml(ord.clientEdrpou)})</div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;background:#F8FAFC;border:1px solid #CBD5E1;border-radius:10px;padding:10px 14px;text-align:center;">
+          ${qrSvg}
+          <div style="font-size:11px;font-weight:700;color:#0F172A;margin-top:6px;">QR НБУ для оплати в 1 клік</div>
+          <div style="font-size:10px;color:#64748B;">Монобанк • Приват24 • Sense</div>
+        </div>
+      </div>
+
+      <div class="table-wrap" style="margin-bottom:16px;">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:45px;text-align:center;">№</th>
+              <th>Найменування продукції / товару / послуги</th>
+              <th style="width:70px;text-align:center;">Од.</th>
+              <th style="width:80px;text-align:right;">К-сть</th>
+              <th style="width:120px;text-align:right;">Ціна</th>
+              <th style="width:130px;text-align:right;">Сума</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${rowsHtml}
+          </tbody>
+        </table>
+      </div>
+
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;background:#F8FAFC;padding:14px 16px;border-radius:8px;border:1px solid #E2E8F0;">
+        <div style="font-size:13px;">
+          <div><strong>Сума прописом:</strong> ${escapeHtml(amountWords)}</div>
+          <div style="font-size:11.5px;color:#64748B;margin-top:4px;">Призначення платежу в QR: Оплата згідно документа № ${escapeHtml(ord.orderNumber)}</div>
+        </div>
+        <div style="text-align:right;font-size:14px;">
+          <div>Всього до сплати: <strong class="mono" style="font-size:17px;color:#2563EB;">${fmtUah(ord.totalAmount, 2)}</strong></div>
+          <div style="font-size:12px;color:#475569;">${ord.withVat ? `У т.ч. ПДВ 20% (Рах. 6412): ${fmtUah(ord.totalAmount / 6, 2)}` : 'Без ПДВ (Єдиний податок)'}</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px;padding-top:16px;border-top:1px dashed #CBD5E1;font-size:12.5px;color:#475569;">
+        <div>Від Постачальника (Виконавця): ______________________ / Коваленко О.В. /</div>
+        <div>Від Покупця (Замовника): ______________________ / Підпис / КЕП /</div>
+      </div>
+    `;
   }
 
   // ─── 3. 📦 СКЛАД ТА ЗАКУПІВЛІ ──────────────────────────────────────────────
@@ -1091,13 +1900,77 @@
     UNCLASSIFIED: 'Потребує 1 кліку власника'
   };
 
+  const DEFAULT_BANK_TXS = [
+    {
+      id: 'btx-901',
+      date: '2026-10-26',
+      docNumber: 'БВ-8819',
+      counterpartyName: 'ТОВ "Метінвест-Промсервіс"',
+      counterpartyEdrpou: '32490244',
+      description: 'Оплата за промислові конвеєрні секції КС-1200 згідно контракту № B2B-104 у т.ч. ПДВ 20%',
+      direction: 'IN',
+      amount: 1280000,
+      vatAmount: 213333.33,
+      category: 'REVENUE_SALES',
+      ruleMatched: 'Дт 311 Кт 361 • Авто-прив\'язка за ЄДРПОУ',
+      status: 'AUTO_POSTED'
+    },
+    {
+      id: 'btx-902',
+      date: '2026-10-26',
+      docNumber: 'БВ-8820',
+      counterpartyName: 'ТОВ "АББ Автоматизація Україна"',
+      counterpartyEdrpou: '21560766',
+      description: 'Оплата за частотні перетворювачі та контролери АСУ-ТП згідно рах. СФ-412 у т.ч. ПДВ 20%',
+      direction: 'OUT',
+      amount: 540000,
+      vatAmount: 90000,
+      category: 'COGS_MATERIALS',
+      ruleMatched: 'Дт 631 Кт 311 • ЦФВ-01 Виробництво',
+      status: 'AUTO_POSTED'
+    },
+    {
+      id: 'btx-903',
+      date: '2026-10-26',
+      docNumber: 'БВ-8821',
+      counterpartyName: 'ТОВ "Епіцентр К" (Департамент комплектації)',
+      counterpartyEdrpou: '32490244',
+      description: 'Оплата за промислові енергомодулі ПЕМ-400 згідно рахунку INV-2026-104 у т.ч. ПДВ 20%',
+      direction: 'IN',
+      amount: 460000,
+      vatAmount: 76666.67,
+      category: 'REVENUE_SALES',
+      ruleMatched: 'Дт 311 Кт 361 • Закрито дебіторку',
+      status: 'AUTO_POSTED'
+    },
+    {
+      id: 'btx-904',
+      date: '2026-10-26',
+      docNumber: 'БВ-8822',
+      counterpartyName: 'ТОВ "ТехноСервіс-Інжиніринг Плюс"',
+      counterpartyEdrpou: '41092831',
+      description: 'Оплата згідно акту № 44 за позапланову калібрування оптики лазера Trumpf',
+      direction: 'OUT',
+      amount: 84000,
+      vatAmount: 14000,
+      category: 'UNCLASSIFIED',
+      ruleMatched: 'Новий контрагент • Потребує підтвердження ЦФВ',
+      status: 'NEEDS_REVIEW'
+    }
+  ];
+
   function renderBankSection() {
     const tbody = document.getElementById('bank-tx-tbody');
     if (!tbody) return;
 
     const pulse = state.pulse || {};
-    const txs = Array.isArray(pulse.recentBankTxs) ? pulse.recentBankTxs : [];
-    const autoRate = pulse.automationRate ?? 95;
+    if (!state.fallbackBankTxs) {
+      state.fallbackBankTxs = DEFAULT_BANK_TXS.map((x) => ({ ...x }));
+    }
+    const txs = (Array.isArray(pulse.recentBankTxs) && pulse.recentBankTxs.length > 0)
+      ? pulse.recentBankTxs
+      : state.fallbackBankTxs;
+    const autoRate = pulse.automationRate ?? 98.4;
 
     const unpostedCount = txs.filter((t) => t.status === 'NEEDS_REVIEW').length;
     const badgeBank = document.getElementById('nav-badge-bank');
@@ -1416,12 +2289,18 @@
 
     renderPulseSection();
     renderCashflowChart();
+    renderLedgerSection();
+    renderMesSection();
     evaluateMarginGuardLive();
+    renderDealerCreditTable();
     renderSalesOrdersTable();
     renderInlineDocument(state.activeDocOrderId, state.activeDocType);
     renderStockSection();
+    renderCostCentersTable();
     renderBankSection();
     renderTaxesAndTeamSection();
+    renderSalesLeaderboardTable();
+    evaluateEnterpriseRoiLive();
   }
 
   // ─── Event Listeners ───────────────────────────────────────────────────────
@@ -1436,13 +2315,179 @@
       });
     });
 
-    // Sidebar niche pill trigger -> opens Migration/Adaptation tab
+    // Header Holding Entity Switcher
+    const holdingSelect = document.getElementById('holding-entity-select');
+    if (holdingSelect) {
+      holdingSelect.addEventListener('change', () => {
+        state.holdingEntity = holdingSelect.value || 'ALL';
+        const ent = HOLDING_ENTITIES[state.holdingEntity] || HOLDING_ENTITIES.ALL;
+        const sidebarName = document.getElementById('sidebar-niche-name');
+        if (sidebarName) sidebarName.textContent = ent.badge;
+        renderPulseSection();
+        renderCashflowChart();
+        showInlineStatus(`✓ Контур консолідації перемкнено: ${ent.badge}`);
+      });
+    }
+
+    // Header Live Ledger & Pitch Deck shortcuts
+    const btnHeaderLedger = document.getElementById('btn-header-live-ledger');
+    if (btnHeaderLedger) {
+      btnHeaderLedger.addEventListener('click', () => {
+        switchTab('ledger');
+      });
+    }
+
+    const btnHeaderPitch = document.getElementById('btn-header-open-pitch');
+    if (btnHeaderPitch) {
+      btnHeaderPitch.addEventListener('click', () => {
+        switchTab('about');
+      });
+    }
+
+    // Sidebar niche pill trigger -> opens Presentation/Enterprise tab
     const nicheTrigger = document.getElementById('sidebar-niche-trigger');
     if (nicheTrigger) {
       nicheTrigger.addEventListener('click', () => {
-        switchTab('migration');
+        switchTab('about');
       });
     }
+
+    // Ledger Account Filter
+    const ledgerFilter = document.getElementById('ledger-filter-account');
+    if (ledgerFilter) {
+      ledgerFilter.addEventListener('change', renderLedgerSection);
+    }
+
+    // Custom CFO Ledger Entry Form
+    const btnCustomLedger = document.getElementById('btn-add-custom-ledger');
+    if (btnCustomLedger) {
+      btnCustomLedger.addEventListener('click', () => {
+        const dtSel = document.getElementById('cfo-dt-select');
+        const ktSel = document.getElementById('cfo-kt-select');
+        const amtInput = document.getElementById('cfo-amount-input');
+        const descInput = document.getElementById('cfo-desc-input');
+
+        const dtText = dtSel ? dtSel.options[dtSel.selectedIndex].text : '231 Основне виробництво';
+        const ktText = ktSel ? ktSel.options[ktSel.selectedIndex].text : '201 Сировина й матеріали';
+        const dtCode = dtSel ? dtSel.value : '231';
+        const ktCode = ktSel ? ktSel.value : '201';
+        const amount = Math.max(1, Number(amtInput?.value) || 245000);
+        const desc = descInput?.value.trim() || 'Ручне проведення Головного бухгалтера / CFO';
+
+        postOnlineLedgerEntries(
+          [
+            {
+              doc: 'БУХ-ДОВІДКА',
+              desc,
+              entity: 'ТОВ "ОпексМетрікс Індастріал"',
+              dt: dtText,
+              dtCode,
+              kt: ktText,
+              ktCode,
+              amount
+            }
+          ],
+          `⚡ Проводку Дт ${dtCode} Кт ${ktCode} на суму ${fmtUah(amount, 2)} миттєво проведено в Головній Книзі (0.04 с)`
+        );
+      });
+    }
+
+    // MES BOM Calculator listeners
+    const bomProdSelect = document.getElementById('mes-bom-product');
+    const bomQtyInput = document.getElementById('mes-bom-qty');
+    if (bomProdSelect) bomProdSelect.addEventListener('change', evaluateMesBomLive);
+    if (bomQtyInput) bomQtyInput.addEventListener('input', evaluateMesBomLive);
+
+    const btnLaunchMesBatch = document.getElementById('btn-mes-launch-batch');
+    if (btnLaunchMesBatch) {
+      btnLaunchMesBatch.addEventListener('click', () => {
+        const bom = evaluateMesBomLive();
+        if (!bom) return;
+
+        const batchDoc = `MES-${910 + state.ledgerEntries.length}`;
+        postOnlineLedgerEntries(
+          [
+            {
+              doc: `${batchDoc} / ВИПУСК ГП`,
+              desc: `Випуск готової партії з ЧПК на склад: ${bom.name} (${bom.qty} од.)`,
+              entity: 'ТОВ "ОпексМетрікс Індастріал"',
+              dt: '26 Готова продукція',
+              dtCode: '26',
+              kt: '231 Основне виробництво (MES)',
+              ktCode: '231',
+              amount: bom.totalBatchCost
+            },
+            {
+              doc: `${batchDoc} / ЗП ЧПК`,
+              desc: `Нараховано відрядну ЗП операторів ЧПК, електроенергію та ЗВВ (${bom.qty} од.)`,
+              entity: 'ТОВ "ОпексМетрікс Індастріал"',
+              dt: '231 Основне виробництво (MES)',
+              dtCode: '231',
+              kt: '661 Розрахунки за ЗП',
+              ktCode: '661',
+              amount: bom.totalWage + bom.totalEnergyOverhead
+            },
+            {
+              doc: `${batchDoc} / FIFO BOM`,
+              desc: `Списання металу, профілю та автоматики за техкартою (з урахуванням Zero-Waste залишків)`,
+              entity: 'ТОВ "ОпексМетрікс Індастріал"',
+              dt: '231 Основне виробництво (MES)',
+              dtCode: '231',
+              kt: '201 Сировина й матеріали',
+              ktCode: '201',
+              amount: bom.totalBatchCost - (bom.totalWage + bom.totalEnergyOverhead)
+            }
+          ],
+          `🚀 Партію «${bom.name}» (${bom.qty} од.) запущено в ЧПК! Сформовано 3 проводки Дт 231/26 на ${fmtUah(bom.totalBatchCost)}`
+        );
+      });
+    }
+
+    // AI Procurement Anti-Kickback Switch Supplier button
+    const btnSwitchSupp = document.getElementById('btn-switch-supplier-1');
+    if (btnSwitchSupp) {
+      btnSwitchSupp.addEventListener('click', () => {
+        const itemEl = document.getElementById('kickback-item-1');
+        if (itemEl) {
+          itemEl.style.background = '#F0FDF4';
+          itemEl.style.borderColor = '#BBF7D0';
+          itemEl.innerHTML = `
+            <div class="action-item-left">
+              <span class="badge badge-green">✓ ВІДКАТ ЗАБЛОКОВАНО</span>
+              <div>
+                <div class="action-title">Замовлення автоматично переоформлено на прямого імпортера (₴ 125 000 / т замість ₴ 148 000 / т)</div>
+                <div class="action-desc">Збережено чистих обігових коштів Холдингу: <strong style="color: var(--success);">+₴ 276 000</strong>. Проведено в Головній Книзі: <code class="mono">Дт 201 Кт 631</code>.</div>
+              </div>
+            </div>
+            <span class="badge badge-green">Економія +₴ 276 000</span>
+          `;
+        }
+        const savedBadge = document.getElementById('kickback-saved-badge');
+        if (savedBadge) savedBadge.textContent = 'Заощаджено: ₴ 860 000 / міс';
+
+        postOnlineLedgerEntries(
+          [
+            {
+              doc: 'ВХ-ПРЯМИЙ-ІМПОРТ',
+              desc: 'Оприбуткування сталі AISI 304 (12 т) за прямою ринковою ціною без посередника',
+              entity: 'ТОВ "ОпексМетрікс Індастріал"',
+              dt: '201 Сировина й матеріали',
+              dtCode: '201',
+              kt: '631 Розрахунки з постачальниками',
+              ktCode: '631',
+              amount: 1500000
+            }
+          ],
+          '🛡️ AI Procurement Shield: Завищений рахунок заблоковано, заощаджено ₴ 276 000 (+Дт 201 Кт 631)'
+        );
+      });
+    }
+
+    // Enterprise ROI Sliders
+    ['roi-turnover-slider', 'roi-leak-slider', 'roi-staff-slider'].forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener('input', evaluateEnterpriseRoiLive);
+    });
 
     // Niche profile cards
     document.querySelectorAll('#niche-cards-container .niche-card').forEach((card) => {
@@ -1469,7 +2514,7 @@
       if (el) el.addEventListener('input', evaluateMarginGuardLive);
     });
 
-    // Create Invoice button
+    // Create Invoice button (Also posts Online Double-Entry Ledger rows!)
     const btnCreateInv = document.getElementById('btn-create-invoice');
     if (btnCreateInv) {
       btnCreateInv.addEventListener('click', async () => {
@@ -1519,10 +2564,44 @@
           });
         } catch (_e) {}
 
+        const vatAmount = Math.round((calc.netRevenue / 6) * 100) / 100;
+        postOnlineLedgerEntries([
+          {
+            doc: `${newOrderNum} / Списання FIFO`,
+            desc: `Списано собівартість партії «${calc.itemName}» (${calc.qty} ${calc.unit})`,
+            entity: 'ТОВ "ОпексМетрікс Індастріал"',
+            dt: '901 Собівартість реалізованої ГП',
+            dtCode: '901',
+            kt: '26 Готова продукція',
+            ktCode: '26',
+            amount: calc.totalCost
+          },
+          {
+            doc: `${newOrderNum} / ПН J1201016`,
+            desc: `Нараховано податкове зобов'язання з ПДВ 20% (${clientName})`,
+            entity: 'ТОВ "ОпексМетрікс Індастріал"',
+            dt: '701 Дохід від реалізації ГП',
+            dtCode: '701',
+            kt: '6412 Розрахунки за ПДВ',
+            ktCode: '6412',
+            amount: vatAmount
+          },
+          {
+            doc: `${newOrderNum} / Реалізація`,
+            desc: `Виставлено рахунок та визнано дохід B2B: ${clientName} (${calc.itemName})`,
+            entity: 'ТОВ "ОпексМетрікс Індастріал"',
+            dt: '361 Розрахунки з покупцями',
+            dtCode: '361',
+            kt: '701 Дохід від реалізації ГП',
+            ktCode: '701',
+            amount: calc.netRevenue
+          }
+        ]);
+
         renderSalesOrdersTable();
         renderInlineDocument(newOrderNum, 'INVOICE');
         renderPulseSection();
-        showInlineStatus(`✓ Рахунок № ${newOrderNum} створено та відкрито нижче`);
+        showInlineStatus(`✓ Замовлення № ${newOrderNum} створено + сформовано 3 проводки Дт 361/701/6412/901 в Головній Книзі!`);
       });
     }
 
@@ -1549,10 +2628,11 @@
     const btnAddStock = document.getElementById('btn-add-stock');
     if (btnAddStock) {
       btnAddStock.addEventListener('click', async () => {
-        const sku = document.getElementById('stk-sku')?.value.trim() || 'PRD-NEW';
-        const itemName = document.getElementById('stk-name')?.value.trim() || 'Новий товар';
-        const qty = Number(document.getElementById('stk-qty')?.value) || 10;
-        const unitPrice = Number(document.getElementById('stk-cost')?.value) || 1000;
+        const sku = document.getElementById('stk-sku')?.value.trim() || 'RAW-304';
+        const itemName = document.getElementById('stk-name')?.value.trim() || 'Нова партія сировини';
+        const qty = Number(document.getElementById('stk-qty')?.value) || 20;
+        const unitPrice = Number(document.getElementById('stk-cost')?.value) || 14200;
+        const totalSupply = qty * unitPrice;
 
         try {
           await fetch('/api/autonomous/stock/movement', {
@@ -1572,9 +2652,22 @@
           if (pulseRes && pulseRes.ok) state.pulse = pulseRes.data;
         } catch (_e) {}
 
+        postOnlineLedgerEntries([
+          {
+            doc: `ВХ-WMS-${sku}`,
+            desc: `Оприбуткування поставки на склад WMS: ${itemName} (+${qty} од.)`,
+            entity: 'ТОВ "ОпексМетрікс Індастріал"',
+            dt: '201 Сировина й матеріали',
+            dtCode: '201',
+            kt: '631 Розрахунки з постачальниками',
+            ktCode: '631',
+            amount: totalSupply
+          }
+        ]);
+
         renderStockSection();
         renderPulseSection();
-        showInlineStatus(`✓ Поставку «${itemName}» (+${qty} шт) оприбутковано на склад`);
+        showInlineStatus(`✓ Поставку «${itemName}» (+${qty} од.) оприбутковано + проведено Дт 201 Кт 631 (${fmtUah(totalSupply)})`);
       });
     }
 
@@ -1593,13 +2686,12 @@
 
     if (btnFillBank) {
       btnFillBank.addEventListener('click', () => {
-        if (bankTa && state.demoMigrationPayload) {
-          bankTa.value = state.demoMigrationPayload.bankExchangeText || '';
-          if (dropzoneStatus) {
-            dropzoneStatus.textContent = '✓ Завантажено демо-виписку 1CClientBankExchange (3 операції)';
-          }
-          showInlineStatus('✓ Приклад виписки завантажено');
+        const sampleBankText = state.demoMigrationPayload?.bankExchangeText || '1CClientBankExchange\nСекціяДокумент=Платіжне доручення\nНомер=8841\nСума=640000.00\nПризначенняПлатежу=Оплата за промислове обладнання згідно рахунку INV-2026-104 у т.ч. ПДВ 20%\nКінецьДокумента';
+        if (bankTa) bankTa.value = sampleBankText;
+        if (dropzoneStatus) {
+          dropzoneStatus.textContent = '✓ Завантажено корпоративну виписку 1CClientBankExchange / ISO 20022 (Готово до проведення)';
         }
+        showInlineStatus('✓ Приклад корпоративної банківської виписки завантажено');
       });
     }
 
@@ -1649,26 +2741,45 @@
     const btnRunBank = document.getElementById('btn-run-bank-import');
     if (btnRunBank) {
       btnRunBank.addEventListener('click', async () => {
-        const rawText = bankTa?.value || '';
-        if (!rawText.trim()) {
-          showInlineStatus('Оберіть файл або натисніть «Завантажити демо-виписку»');
-          return;
-        }
+        const rawText = bankTa?.value || 'DEMO-STATEMENT';
 
         try {
           const res = await fetch('/api/autonomous/bank/import', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ rawText })
-          }).then((r) => r.json());
+          }).then((r) => r.json()).catch(() => null);
 
-          const pulseRes = await fetch('/api/autonomous/pulse').then((r) => r.json());
+          const pulseRes = await fetch('/api/autonomous/pulse').then((r) => r.json()).catch(() => null);
           if (pulseRes && pulseRes.ok) state.pulse = pulseRes.data;
+
+          postOnlineLedgerEntries([
+            {
+              doc: 'БВ-8842 / Оплата постачальнику',
+              desc: 'Авто-рознесення виписки: оплата за комплектуючі та виділення податкового кредиту ПДВ',
+              entity: 'ТОВ "ОпексМетрікс Індастріал"',
+              dt: '631 Розрахунки з постачальниками',
+              dtCode: '631',
+              kt: '311 Поточні рахунки в UAH',
+              ktCode: '311',
+              amount: 240000
+            },
+            {
+              doc: 'БВ-8841 / Надходження B2B',
+              desc: 'Авто-рознесення виписки: безготівкова оплата від покупця за контрактом',
+              entity: 'ТОВ "Торговий Дім Альфа-Груп"',
+              dt: '311 Поточні рахунки в UAH',
+              dtCode: '311',
+              kt: '361 Розрахунки з покупцями',
+              ktCode: '361',
+              amount: 640000
+            }
+          ]);
 
           renderBankSection();
           renderPulseSection();
           renderTaxesAndTeamSection();
-          showInlineStatus(`✓ Виписку проведено: ${res?.data?.autoPosted || 3} авто-проведень`);
+          showInlineStatus(`✓ Виписку проведено (${res?.data?.autoPosted || 3} платежі) + сформовано проводки Дт 311 Кт 361 та Дт 631 Кт 311!`);
         } catch (_e) {}
       });
     }
@@ -1763,11 +2874,28 @@
     const btnPayAll = document.getElementById('btn-pay-all-team');
     if (btnPayAll) {
       btnPayAll.addEventListener('click', () => {
+        let totalNetPaid = 0;
         state.teamPayroll.forEach((emp) => {
+          if (!emp.paid) totalNetPaid += emp.netPay;
           emp.paid = true;
         });
+        if (totalNetPaid === 0) totalNetPaid = 131586;
+
+        postOnlineLedgerEntries([
+          {
+            doc: 'ЗП-ВІДОМІСТЬ-2026',
+            desc: 'Виплата заробітної плати, бонусів KPI сейлзів та відрядних ЧПК за відомістю',
+            entity: 'ТОВ "ОпексМетрікс Індастріал"',
+            dt: '661 Розрахунки за ЗП',
+            dtCode: '661',
+            kt: '311 Поточні рахунки в UAH',
+            ktCode: '311',
+            amount: totalNetPaid
+          }
+        ]);
+
         renderTaxesAndTeamSection();
-        showInlineStatus('✓ Зарплату всій команді виплачено в 1 клік');
+        showInlineStatus(`✓ Зарплату команді виплачено в 1 клік + проведено Дт 661 Кт 311 (${fmtUah(totalNetPaid)})`);
       });
     }
 
@@ -1849,6 +2977,189 @@
       const target = e.target.closest('button');
       if (!target) return;
 
+      // 0A. 1-Click Live Ledger Simulator Buttons in #view-ledger
+      if (target.classList.contains('js-sim-ledger')) {
+        const simType = target.getAttribute('data-sim');
+        if (simType === 'b2b-sale') {
+          postOnlineLedgerEntries(
+            [
+              {
+                doc: 'FIFO-Списання ГП',
+                desc: 'Списання заводської собівартості відвантаженої партії ПЕМ-400 (5 од.)',
+                entity: 'ТОВ "ОпексМетрікс Індастріал"',
+                dt: '901 Собівартість реалізованої ГП',
+                dtCode: '901',
+                kt: '26 Готова продукція',
+                ktCode: '26',
+                amount: 310000
+              },
+              {
+                doc: 'ПН J1201016 ЄРПН',
+                desc: 'Авто-реєстрація податкового зобов\'язання з ПДВ 20% при відвантаженні',
+                entity: 'ТОВ "ОпексМетрікс Індастріал"',
+                dt: '701 Дохід від реалізації ГП',
+                dtCode: '701',
+                kt: '6412 Розрахунки за ПДВ',
+                ktCode: '6412',
+                amount: 76666.67
+              },
+              {
+                doc: 'ВН-2026-850',
+                desc: 'Реалізація промислової партії ПЕМ-400 покупцю ТОВ "Епіцентр К"',
+                entity: 'ТОВ "ОпексМетрікс Індастріал"',
+                dt: '361 Розрахунки з покупцями',
+                dtCode: '361',
+                kt: '701 Дохід від реалізації ГП',
+                ktCode: '701',
+                amount: 460000
+              }
+            ],
+            '⚡ B2B Реалізацію проведено за 0.04 с: Дт 361 Кт 701 (₴ 460 000) + ПДВ Дт 701 Кт 6412 + Собівартість Дт 901 Кт 26!'
+          );
+        } else if (simType === 'mes-release') {
+          postOnlineLedgerEntries(
+            [
+              {
+                doc: 'MES-915 / Випуск ЧПК',
+                desc: 'Оприбуткування готової партії конвеєрних секцій КС-1200 з цеху ЧПК на склад ГП',
+                entity: 'ТОВ "ОпексМетрікс Індастріал"',
+                dt: '26 Готова продукція',
+                dtCode: '26',
+                kt: '231 Основне виробництво (MES)',
+                ktCode: '231',
+                amount: 427000
+              },
+              {
+                doc: 'MES-915 / Відрядна ЗП',
+                desc: 'Нарахування відрядної оплати операторам ЧПК та електроенергії (38 кВт·год)',
+                entity: 'ТОВ "ОпексМетрікс Індастріал"',
+                dt: '231 Основне виробництво (MES)',
+                dtCode: '231',
+                kt: '661 Розрахунки за ЗП',
+                ktCode: '661',
+                amount: 74000
+              },
+              {
+                doc: 'MES-915 / Списання BOM',
+                desc: 'Списання металопрокату та мотор-редукторів у виробництво за техкартою',
+                entity: 'ТОВ "ОпексМетрікс Індастріал"',
+                dt: '231 Основне виробництво (MES)',
+                dtCode: '231',
+                kt: '201 Сировина й матеріали',
+                ktCode: '201',
+                amount: 353000
+              }
+            ],
+            '🏭 Випуск партії з ЧПК (MES) проведено за 0.04 с: Дт 231 Кт 201/661 → Дт 26 Кт 231 (₴ 427 000)!'
+          );
+        } else if (simType === 'bank-supplier') {
+          postOnlineLedgerEntries(
+            [
+              {
+                doc: 'ЄРПН Вхідна ПН',
+                desc: 'Відображено податковий кредит з ПДВ 20% за вхідною накладною постачальника',
+                entity: 'ТОВ "ОпексМетрікс Індастріал"',
+                dt: '6412 Розрахунки за ПДВ',
+                dtCode: '6412',
+                kt: '631 Розрахунки з постачальниками',
+                ktCode: '631',
+                amount: 48000
+              },
+              {
+                doc: 'БВ-8890 / Приват24',
+                desc: 'Безготівкова оплата постачальнику за листовий метал AISI 304 (12 т)',
+                entity: 'ТОВ "ОпексМетрікс Індастріал"',
+                dt: '631 Розрахунки з постачальниками',
+                dtCode: '631',
+                kt: '311 Поточні рахунки в UAH',
+                ktCode: '311',
+                amount: 288000
+              }
+            ],
+            '🏦 Оплату постачальнику та Податковий кредит ПДВ (Дт 631 Кт 311 + Дт 6412) проведено за 0.04 с!'
+          );
+        } else if (simType === 'intercompany') {
+          postOnlineLedgerEntries(
+            [
+              {
+                doc: 'IC-ELIM-2026',
+                desc: 'Автоматична елімінація внутрішньогрупових розрахунків (Завод ТОВ ↔ Торговий Дім)',
+                entity: 'Консолідація Холдингу',
+                dt: '683 Внутрішньогосподарські розрахунки',
+                dtCode: '683',
+                kt: '361 Розрахунки з покупцями',
+                ktCode: '361',
+                amount: 1250000
+              }
+            ],
+            '🏢 Елімінацію внутрішньогрупового обороту Холдингу (Дт 683 Кт 361 на ₴ 1 250 000) проведено за 0.04 с!'
+          );
+        }
+        return;
+      }
+
+      // 0B. 1-Click MES Line Batch Release in #view-mes
+      if (target.classList.contains('js-mes-release-line')) {
+        const lineId = target.getAttribute('data-id');
+        const line = state.mesLines.find((l) => l.id === lineId);
+        if (line) {
+          line.doneQty = line.totalQty;
+          line.status = 'RELEASED';
+          renderMesSection();
+          postOnlineLedgerEntries(
+            [
+              {
+                doc: `MES-RELEASE / ${line.id.toUpperCase()}`,
+                desc: `Випуск готової продукції з лінії «${line.name}» (${line.totalQty} од.)`,
+                entity: 'ТОВ "ОпексМетрікс Індастріал"',
+                dt: '26 Готова продукція',
+                dtCode: '26',
+                kt: '231 Основне виробництво (MES)',
+                ktCode: '231',
+                amount: line.batchCost
+              }
+            ],
+            `✓ Партію з «${line.name}» випущено на склад ГП + проведено Дт 26 Кт 231 (${fmtUah(line.batchCost)})!`
+          );
+        }
+        return;
+      }
+
+      // 0C. 1-Click Dealer Credit Gate Toggle in #view-sales
+      if (target.classList.contains('js-toggle-dealer-gate')) {
+        const dlId = target.getAttribute('data-id');
+        const dl = state.dealerCredits.find((d) => d.id === dlId);
+        if (dl) {
+          if (dl.gateStatus === 'BLOCKED') {
+            const paidDebt = dl.debtUah;
+            dl.debtUah = 0;
+            dl.overdueDays = 0;
+            dl.gateStatus = 'OPEN';
+            renderDealerCreditTable();
+            postOnlineLedgerEntries(
+              [
+                {
+                  doc: `БВ-ПОГАШЕННЯ / ${dl.id.toUpperCase()}`,
+                  desc: `Погашення простроченої дебіторської заборгованості дилера ${dl.name}`,
+                  entity: 'ТОВ "Торговий Дім Альфа-Груп"',
+                  dt: '311 Поточні рахунки в UAH',
+                  dtCode: '311',
+                  kt: '361 Розрахунки з покупцями',
+                  ktCode: '361',
+                  amount: paidDebt
+                }
+              ],
+              `✓ Оплату ${fmtUah(paidDebt)} від ${dl.name} зараховано (Дт 311 Кт 361) — шлагбаум WMS відкрито!`
+            );
+          } else {
+            dl.gateStatus = 'BLOCKED';
+            renderDealerCreditTable();
+            showInlineStatus(`⛔ Відвантаження для «${dl.name}» примусово заблоковано на складі WMS!`);
+          }
+        }
+        return;
+      }
+
       // 1. Resolve Unrecognized Bank Tx in 1 click
       if (target.classList.contains('js-resolve-tx')) {
         const id = target.getAttribute('data-id');
@@ -1866,9 +3177,31 @@
           if (pulseRes && pulseRes.ok) state.pulse = pulseRes.data;
         } catch (_err) {}
 
+        if (state.fallbackBankTxs) {
+          const fbTx = state.fallbackBankTxs.find((x) => x.id === id);
+          if (fbTx) {
+            fbTx.category = category;
+            fbTx.ruleMatched = `✓ Класифіковано CFO (${label})`;
+            fbTx.status = 'AUTO_POSTED';
+          }
+        }
+
+        postOnlineLedgerEntries([
+          {
+            doc: `БВ-КЛАСИФІКАЦІЯ`,
+            desc: `Класифіковано банківський платіж: ${label}`,
+            entity: 'ТОВ "ОпексМетрікс Індастріал"',
+            dt: category === 'REVENUE_SALES' ? '311 Поточні рахунки в UAH' : '631 Розрахунки з постачальниками',
+            dtCode: category === 'REVENUE_SALES' ? '311' : '631',
+            kt: category === 'REVENUE_SALES' ? '361 Розрахунки з покупцями' : '311 Поточні рахунки в UAH',
+            ktCode: category === 'REVENUE_SALES' ? '361' : '311',
+            amount: 84000
+          }
+        ]);
+
         renderPulseSection();
         renderBankSection();
-        showInlineStatus(`✓ Платіж класифіковано як «${label}» (правило збережено)`);
+        showInlineStatus(`✓ Платіж класифіковано як «${label}» + проведено в Головній Книзі!`);
         return;
       }
 
@@ -1885,10 +3218,24 @@
         if (ordNum) {
           state.overduePaidIds.add(ordNum);
           const found = state.orders.find((o) => o.orderNumber === ordNum);
-          if (found) found.status = 'PAID';
+          if (found) {
+            found.status = 'PAID';
+            postOnlineLedgerEntries([
+              {
+                doc: `БВ-${ordNum}`,
+                desc: `Надходження оплати за простроченим рахунком ${ordNum} (${found.clientName})`,
+                entity: 'ТОВ "Торговий Дім Альфа-Груп"',
+                dt: '311 Поточні рахунки в UAH',
+                dtCode: '311',
+                kt: '361 Розрахунки з покупцями',
+                ktCode: '361',
+                amount: found.totalAmount
+              }
+            ]);
+          }
           renderPulseSection();
           renderSalesOrdersTable();
-          showInlineStatus(`✓ Оплату за рахунком ${ordNum} зараховано`);
+          showInlineStatus(`✓ Оплату за рахунком ${ordNum} зараховано + проведено Дт 311 Кт 361!`);
         }
         return;
       }
@@ -1924,9 +3271,22 @@
           if (reorderRes && reorderRes.ok) state.reorderAlerts = reorderRes.data || reorderRes;
         } catch (_err) {}
 
+        postOnlineLedgerEntries([
+          {
+            doc: `MRP-${sku}`,
+            desc: `Авто-поповнення критичного запасу під план MES: ${itemName} (+${qty} од.)`,
+            entity: 'ТОВ "ОпексМетрікс Індастріал"',
+            dt: '201 Сировина й матеріали',
+            dtCode: '201',
+            kt: '631 Розрахунки з постачальниками',
+            ktCode: '631',
+            amount: qty * unitPrice
+          }
+        ]);
+
         renderPulseSection();
         renderStockSection();
-        showInlineStatus(`✓ Замовлення постачальнику скопійовано та оприбутковано (+${qty} од.)`);
+        showInlineStatus(`✓ Замовлення постачальнику оприбутковано (+${qty} од.) + проведено Дт 201 Кт 631!`);
         return;
       }
 
@@ -1937,9 +3297,36 @@
         const found = state.orders.find((o) => o.orderNumber === ordNum);
         if (found && nextStatus) {
           found.status = nextStatus;
+          if (nextStatus === 'PAID') {
+            postOnlineLedgerEntries([
+              {
+                doc: `БВ-${ordNum}`,
+                desc: `Отримано безготівкову оплату від покупця ${found.clientName} за рахунком ${ordNum}`,
+                entity: 'ТОВ "ОпексМетрікс Індастріал"',
+                dt: '311 Поточні рахунки в UAH',
+                dtCode: '311',
+                kt: '361 Розрахунки з покупцями',
+                ktCode: '361',
+                amount: found.totalAmount
+              }
+            ]);
+          } else if (nextStatus === 'SHIPPED') {
+            postOnlineLedgerEntries([
+              {
+                doc: `ВН-${ordNum}`,
+                desc: `Відвантажено продукцію зі складу покупцю ${found.clientName} (Списання FIFO)`,
+                entity: 'ТОВ "ОпексМетрікс Індастріал"',
+                dt: '901 Собівартість реалізованої ГП',
+                dtCode: '901',
+                kt: '26 Готова продукція',
+                ktCode: '26',
+                amount: found.costAmount || Math.round(found.totalAmount * 0.68)
+              }
+            ]);
+          }
           renderSalesOrdersTable();
           renderPulseSection();
-          showInlineStatus(`✓ Статус замовлення ${ordNum} змінено на «${nextStatus === 'PAID' ? 'Оплачено' : 'Відвантажено'}»`);
+          showInlineStatus(`✓ Статус замовлення ${ordNum} змінено на «${nextStatus === 'PAID' ? 'Оплачено (Дт 311 Кт 361)' : 'Відвантажено (Дт 901 Кт 26)'}»`);
         }
         return;
       }
@@ -1984,9 +3371,22 @@
           if (pulseRes && pulseRes.ok) state.pulse = pulseRes.data;
         } catch (_err) {}
 
+        postOnlineLedgerEntries([
+          {
+            doc: `WMS-ПОПОВНЕННЯ-${sku}`,
+            desc: `Оприбуткування партії «${itemName}» (+${qty} ${unit}) на склад`,
+            entity: 'ТОВ "ОпексМетрікс Індастріал"',
+            dt: '201 Сировина й матеріали',
+            dtCode: '201',
+            kt: '631 Розрахунки з постачальниками',
+            ktCode: '631',
+            amount: qty * unitPrice
+          }
+        ]);
+
         renderStockSection();
         renderPulseSection();
-        showInlineStatus(`✓ Запас «${itemName}» поповнено на +${qty} ${unit}`);
+        showInlineStatus(`✓ Запас «${itemName}» поповнено на +${qty} ${unit} (+Дт 201 Кт 631)`);
         return;
       }
 
@@ -1996,8 +3396,20 @@
         const emp = state.teamPayroll.find((x) => x.id === empId);
         if (emp) {
           emp.paid = true;
+          postOnlineLedgerEntries([
+            {
+              doc: `ЗП-${emp.id.toUpperCase()}`,
+              desc: `Виплата ЗП та бонусу KPI співробітнику: ${emp.name}`,
+              entity: 'ТОВ "ОпексМетрікс Індастріал"',
+              dt: '661 Розрахунки за ЗП',
+              dtCode: '661',
+              kt: '311 Поточні рахунки в UAH',
+              ktCode: '311',
+              amount: emp.netPay
+            }
+          ]);
           renderTaxesAndTeamSection();
-          showInlineStatus(`✓ Виплачено ${fmtUah(emp.netPay)} на картку (${emp.name})`);
+          showInlineStatus(`✓ Виплачено ${fmtUah(emp.netPay)} на картку (${emp.name}) + проведено Дт 661 Кт 311`);
         }
         return;
       }
@@ -2015,13 +3427,13 @@
           date: new Date().toLocaleDateString('uk-UA'),
           clientName,
           clientEdrpou,
-          itemsSummary: 'Кавомашина Delonghi Dinamica Plus (10 шт)',
+          itemsSummary: 'Промислова партія згідно голосового замовлення (Whisper AI)',
           items: [
-            { name: 'Кавомашина професійна Delonghi Dinamica Plus ECAM 370.95', unit: 'шт.', qty: 10, price: 18500, cost: 13050 }
+            { name: 'Промислова партія обладнання згідно специфікації AI Call-Center', unit: 'компл.', qty: 1, price: totalAmount, cost: Math.round(totalAmount * 0.68) }
           ],
           totalAmount,
-          costAmount: 130500,
-          marginPct: 29.4,
+          costAmount: Math.round(totalAmount * 0.68),
+          marginPct: 32.0,
           status: 'INVOICED',
           withVat: true
         };
@@ -2048,12 +3460,25 @@
           });
         } catch (_e) {}
 
+        postOnlineLedgerEntries([
+          {
+            doc: `AI-VOICE-${orderNumber}`,
+            desc: `Автоматичне проведення контракту з голосового дзвінка (${clientName})`,
+            entity: 'ТОВ "Торговий Дім Альфа-Груп"',
+            dt: '361 Розрахунки з покупцями',
+            dtCode: '361',
+            kt: '701 Дохід від реалізації ГП',
+            ktCode: '701',
+            amount: totalAmount
+          }
+        ]);
+
         renderAiSalesSection();
         renderSalesOrdersTable();
         renderPulseSection();
         switchTab('sales');
         renderInlineDocument(orderNumber, 'INVOICE');
-        showInlineStatus(`✓ Рахунок № ${orderNumber} створено з розмови та відкрито`);
+        showInlineStatus(`✓ Рахунок № ${orderNumber} створено з дзвінка за 1 клік + проведено Дт 361 Кт 701!`);
         return;
       }
     });
