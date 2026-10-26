@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OpexMetrix Enterprise &amp; MES — Презентація для Великого Бізнесу, Заводів та Холдингів</title>
+  <title>OpexMetrix — Презентація та Комерційна Пропозиція (МСБ + Великий Бізнес: Цех, Склад, Погодження та Облік)</title>
   <link rel="icon" type="image/png" href="./opex-logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -24,7 +24,7 @@
       --danger-soft: #FEF2F2;
       --text-main: #0F172A;
       --text-secondary: #475569;
-      --text-muted: #64748B;
+      --text-muted: #64758B;
       --border: #E2E8F0;
       --border-strong: #CBD5E1;
       --radius: 10px;
@@ -65,7 +65,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: var(--bg-card);
+      background: #FFFFFF;
       border: 1px solid var(--border);
       padding: 14px 24px;
       border-radius: var(--radius);
@@ -86,7 +86,7 @@
       text-decoration: none;
       cursor: pointer;
       border: 1px solid var(--border-strong);
-      background: var(--bg-card);
+      background: #FFFFFF;
       color: var(--text-main);
       transition: all 0.15s ease;
     }
@@ -105,12 +105,6 @@
       background: #1D4ED8;
     }
 
-    .btn-dark {
-      background: var(--primary);
-      color: #FFFFFF;
-      border-color: var(--primary);
-    }
-
     .badge {
       display: inline-flex;
       align-items: center;
@@ -127,68 +121,62 @@
     .badge-red { background: var(--danger-soft); color: var(--danger); border: 1px solid #FECACA; }
     .badge-slate { background: var(--bg-subtle); color: var(--text-secondary); border: 1px solid var(--border); }
 
+    /* Clean White Hero Card (No black background!) */
     .hero {
-      background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
-      color: #FFFFFF;
+      background: #FFFFFF;
+      color: var(--text-main);
+      border: 1px solid var(--border);
+      border-left: 5px solid var(--accent-blue);
       border-radius: var(--radius);
-      padding: 36px 40px;
+      padding: 32px 36px;
       display: grid;
-      grid-template-columns: 104px 1fr;
-      gap: 28px;
+      grid-template-columns: 96px 1fr;
+      gap: 26px;
       align-items: center;
-      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.12);
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
     }
 
     .hero-logo {
-      width: 104px;
-      height: 104px;
+      width: 96px;
+      height: 96px;
       object-fit: cover;
       border-radius: 12px;
-      border: 2px solid #38BDF8;
+      border: 1px solid var(--border-strong);
     }
 
     .eyebrow {
-      color: #38BDF8;
+      color: var(--accent-blue);
       text-transform: uppercase;
-      letter-spacing: 0.09em;
+      letter-spacing: 0.08em;
       font-size: 11.5px;
       font-weight: 700;
       margin-bottom: 8px;
     }
 
     .hero h1 {
-      font-size: 30px;
-      line-height: 1.22;
+      font-size: 27px;
+      line-height: 1.25;
       margin-bottom: 12px;
       font-weight: 800;
+      color: var(--text-main);
       letter-spacing: -0.02em;
     }
 
     .hero p {
-      font-size: 15px;
-      color: #CBD5E1;
-      max-width: 900px;
-      margin-bottom: 18px;
+      font-size: 14.5px;
+      color: var(--text-secondary);
+      max-width: 920px;
+      margin-bottom: 16px;
     }
 
     .hero-pills {
       display: flex;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
     }
 
-    .hero-pill {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 6px 13px;
-      border-radius: 999px;
-      font-size: 12.5px;
-      color: #F8FAFC;
-      font-weight: 500;
-    }
-
     .section-card {
-      background: var(--bg-card);
+      background: #FFFFFF;
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 28px 32px;
@@ -205,7 +193,7 @@
     }
 
     .section-title {
-      font-size: 21px;
+      font-size: 20px;
       color: var(--text-main);
       margin-bottom: 4px;
       font-weight: 700;
@@ -213,7 +201,7 @@
     }
 
     .section-sub {
-      font-size: 14px;
+      font-size: 13.5px;
       color: var(--text-secondary);
     }
 
@@ -233,7 +221,7 @@
       border: 1px solid var(--border);
       border-radius: var(--radius-sm);
       padding: 20px;
-      background: var(--bg-card);
+      background: #FFFFFF;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -244,7 +232,7 @@
       border: 1px solid var(--border);
       border-radius: var(--radius-sm);
       padding: 24px;
-      background: var(--bg-card);
+      background: #FFFFFF;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -254,12 +242,12 @@
     .tier-box.featured {
       border: 2px solid var(--accent-blue);
       background: #F8FAFF;
-      box-shadow: 0 8px 24px rgba(37, 99, 235, 0.08);
+      box-shadow: 0 8px 24px rgba(37, 99, 235, 0.06);
     }
 
     .price-big {
       font-family: var(--font-mono);
-      font-size: 26px;
+      font-size: 25px;
       font-weight: 800;
       color: var(--text-main);
     }
@@ -332,84 +320,130 @@
   <div class="container">
     <!-- Top Bar -->
     <div class="top-bar no-print">
-      <div style="display: flex; align-items: center; gap: 12px;">
-        <span class="badge badge-blue">ENTERPRISE &amp; MES EDITION 2026</span>
-        <strong style="font-size: 15px; color: var(--text-main);">OpexMetrix — Презентація та Фінансова Модель для Великого Бізнесу і Холдингів</strong>
+      <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+        <span class="badge badge-blue">OPEXMETRIX ECOSYSTEM 2026</span>
+        <strong style="font-size: 15px; color: var(--text-main);">Комерційна Пропозиція та Презентація: Малий/Середній Бізнес (МСБ) + Великий Бізнес (Цех ↔ Склад ↔ Облік)</strong>
       </div>
       <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-        <a href="./index.html" class="btn btn-primary">⚡ Відкрити Живу ERP &amp; MES Систему (Проводки Онлайн)</a>
-        <button type="button" class="btn" onclick="window.print()">🖨️ Зберегти презентацію в PDF</button>
+        <a href="./index.html" class="btn btn-primary">⚡ Відкрити Живу Систему (Цех + Склад + Погодження документів)</a>
+        <button type="button" class="btn" onclick="window.print()">🖨️ Зберегти КП в PDF</button>
       </div>
     </div>
 
-    <!-- Hero -->
+    <!-- Clean White Hero -->
     <header class="hero">
       <img src="./opex-logo.png" alt="OpexMetrix Logo" class="hero-logo" />
       <div>
-        <div class="eyebrow">ENTERPRISE ERP • INDUSTRIAL MES • REAL-TIME GENERAL LEDGER • B2B SALES DEAL DESK</div>
-        <h1>OpexMetrix Enterprise &amp; MES: Автономна Операційна Система для Великого Бізнесу, Заводів та Дистриб'юторських Холдингів</h1>
+        <div class="eyebrow">ЄДИНА ЕКОСИСТЕМА БІЗНЕСУ • ЦЕХ (MES) + СКЛАД (WMS) + AI-РОЗПІЗНАВАННЯ ТА ПОГОДЖЕННЯ + БУХОБЛІК</div>
+        <h1>OpexMetrix: Ми підключаємося до вашого Цеху, поєднаного зі Складом, Продажами та Бухгалтерією — весь бізнес живе в одній системі</h1>
         <p>
-          Все, чого немає в системах для малого бізнесу і чим не здатна керувати застаріла 1С:УВП / BAS ERP:
-          <strong>100% бухгалтерських проводок в онлайні (Дт/Кт за 0.04 с)</strong>, <strong>вбивча MES-система керування виробництвом і ЧПК</strong> з розкроєм ділових залишків (Zero-Waste),
-          <strong>потужний B2B Sales Deal Desk</strong> зі стоп-краном відвантажень боржникам та <strong>AI-захист від «відкатів» у закупівлях сировини</strong>.
+          Універсальна операційна система для <strong>Малого та Середнього Бізнесу (МСБ)</strong> і <strong>Великих Виробничих Підприємств</strong>.
+          Завантажуйте накладні та договори з комп'ютера або <strong>просто сфотографуйте документ із телефону на складі чи в цеху</strong> — система автоматично розпізнає позиції (AI OCR), передає документ на погодження керівнику, оприбутковує сировину на склад, списує її за техкартою в цех і миттєво формує всі бухгалтерські проводки <strong>Дт/Кт</strong>.
         </p>
         <div class="hero-pills">
-          <span class="hero-pill">⚡ Проводки Дт/Кт та ОСВ в онлайні (0.04 с)</span>
-          <span class="hero-pill">🏭 Вбивча MES: ЧПК OEE 89.4%, Техкарти BOM та Банк Обрізків</span>
-          <span class="hero-pill">💼 B2B Deal Desk, Стоп-Відвантаження WMS та Whisper AI Call-Center</span>
-          <span class="hero-pill">🛡️ AI Анти-Відкат у закупівлях + Консолідація Холдингу (НП(С)БО + МСФЗ)</span>
+          <span class="badge badge-blue">🏭 Цех (MES) напряму поєднаний зі Складом (WMS)</span>
+          <span class="badge badge-green">📱 Патч з телефону: фото накладної → одразу в системі</span>
+          <span class="badge badge-amber">✅ Погодження договорів і накладних прямо в системі</span>
+          <span class="badge badge-slate">🏪 Презентація для МСБ + 🏢 Презентація для Великого Бізнесу</span>
         </div>
       </div>
     </header>
 
-    <!-- Section 1: Interactive Enterprise ROI Calculator -->
+    <!-- Section 1: Dual Presentation Overview (SMB vs Enterprise Ecosystem) -->
     <section class="section-card">
       <div class="section-header">
         <div>
-          <div class="section-title">1. Інтерактивний Калькулятор Економічного Ефекту для Акціонерів, CEO та CFO</div>
-          <div class="section-sub">Пересуньте повзунки під масштаб вашого заводу, торгової мережі або холдингу:</div>
+          <div class="section-title">1. Дві Готові Конфігурації: Для Малого/Середнього Бізнесу (МСБ) та Для Великого Виробництва</div>
+          <div class="section-sub">Оберіть масштаб вашої компанії — ядро OpexMetrix адаптується під ваші процеси без програмістів 1С</div>
         </div>
-        <span class="badge badge-green" id="pitch-payback-badge">Повна окупність впровадження: 9 днів</span>
+      </div>
+
+      <div class="grid-2">
+        <!-- SMB Presentation Box -->
+        <div style="border: 1px solid #BBF7D0; background: #F0FDF4; border-radius: var(--radius-sm); padding: 22px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+            <span class="badge badge-green">🏪 КОНТУР 1: ПРЕЗЕНТАЦІЯ ДЛЯ МСБ (МАЛИЙ ТА СЕРЕДНІЙ БІЗНЕС)</span>
+            <span class="mono" style="font-size: 12px; font-weight: 700; color: #166534;">Оборот: ₴ 500 тис. – ₴ 5 млн / міс</span>
+          </div>
+          <h3 style="font-size: 18px; font-weight: 700; color: var(--text-main); margin-bottom: 8px;">
+            Повна заміна 1С та штату бухгалтерів для Торгівлі, Послуг, E-Commerce та Невеликого Цеху
+          </h3>
+          <ul style="font-size: 13.5px; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; color: var(--text-main);">
+            <li><strong>Пульс власника за 3 секунди:</strong> скільки грошей на рахунках (Моно/Приват) і скільки безпечно забрати на дивіденди сьогодні.</li>
+            <li><strong>Первинні документи в 1 клік:</strong> Рахунки з QR-оплатою НБУ, Видаткові накладні, Акти та Гарантійні талони.</li>
+            <li><strong>AI-Розпізнавання з комп'ютера та телефону:</strong> сфотографували накладну постачальника — товар уже на складі.</li>
+            <li><strong>Захист маржі (Margin Guard):</strong> менеджер не проведе продаж зі збитковою знижкою.</li>
+            <li><strong>Податки ДПС без бухгалтера:</strong> готові XML-звіти для ФОП 3 гр. та ТОВ з ПДВ (<code class="mono">cabinet.tax.gov.ua</code>).</li>
+          </ul>
+        </div>
+
+        <!-- Enterprise & Shopfloor Ecosystem Presentation Box -->
+        <div style="border: 1px solid #BFDBFE; background: #EFF6FF; border-radius: var(--radius-sm); padding: 22px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+            <span class="badge badge-blue">🏭 КОНТУР 2: ПРЕЗЕНТАЦІЯ ДЛЯ ВЕЛИКОГО БІЗНЕСУ ТА ЗАВОДІВ</span>
+            <span class="mono" style="font-size: 12px; font-weight: 700; color: #1E40AF;">Оборот: ₴ 5 млн – ₴ 50+ млн / міс</span>
+          </div>
+          <h3 style="font-size: 18px; font-weight: 700; color: var(--text-main); margin-bottom: 8px;">
+            Єдина Екосистема: Виробничий Цех (MES), поєднаний зі Складом (WMS), Погодженням та Проводками
+          </h3>
+          <ul style="font-size: 13.5px; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; color: var(--text-main);">
+            <li><strong>Пряма зв'язка Цех ↔ Склад:</strong> замовлення клієнта резервує сировину на складі (Рах. 201), передає в цех ЧПК (Рах. 231) і повертає готову продукцію на склад (Рах. 26).</li>
+            <li><strong>Погодження документів у системі:</strong> накладні, договори та специфікації проходять маршрут погодження (Склад → Цех → Бухгалтерія → CEO) в 1 клік.</li>
+            <li><strong>Відділ продажів (B2B Deal Desk):</strong> кредитні ліміти дилерів, авто-стоп відвантажень боржникам на складі та AI-аудит дзвінків.</li>
+            <li><strong>Живі проводки Дт/Кт та Анти-Відкат:</strong> миттєвий баланс ОСВ та блокування завищених цін у закупівлях сировини.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Interactive ROI Calculator (Realistic Turnover Scale: Default 4.5M UAH/month) -->
+    <section class="section-card">
+      <div class="section-header">
+        <div>
+          <div class="section-title">2. Інтерактивний Калькулятор Окупності (Налаштований на реальний оборот українського бізнесу)</div>
+          <div class="section-sub">Пересуньте повзунки під ваш щомісячний оборот (від ₴ 500 тис. для МСБ до ₴ 50 млн для великого виробництва):</div>
+        </div>
+        <span class="badge badge-green" id="pitch-payback-badge">Повна окупність: 14 днів</span>
       </div>
 
       <div class="grid-2" style="align-items: stretch;">
         <div style="background: var(--bg-app); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 22px;">
           <div class="slider-group">
             <label>
-              <span>1. Щомісячний оборот підприємства / групи компаній:</span>
-              <span class="mono" id="lbl-rev" style="color: var(--accent-blue); font-weight: 700;">₴ 45 000 000 / міс</span>
+              <span>1. Щомісячний оборот вашого бізнесу / підприємства:</span>
+              <span class="mono" id="lbl-rev" style="color: var(--accent-blue); font-weight: 700;">₴ 4 500 000 / міс</span>
             </label>
-            <input type="range" id="rng-rev" min="5000000" max="300000000" step="5000000" value="45000000" oninput="recalcEnterprisePitchRoi()" />
+            <input type="range" id="rng-rev" min="500000" max="50000000" step="500000" value="4500000" oninput="recalcEnterprisePitchRoi()" />
             <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); margin-top: 4px;">
-              <span>₴ 5 млн/міс</span>
-              <span>₴ 100 млн/міс</span>
-              <span>₴ 300 млн/міс</span>
+              <span>₴ 500 тис./міс (МСБ)</span>
+              <span>₴ 4.5 млн/міс (Середній бізнес / Цех)</span>
+              <span>₴ 50 млн/міс (Великий бізнес)</span>
             </div>
           </div>
 
           <div class="slider-group">
             <label>
-              <span>2. Втрати на знижках сейлзів, «відкатах» у закупівлях та обрізках цеху:</span>
-              <span class="mono" id="lbl-leak" style="color: var(--warning); font-weight: 700;">3.8% від обороту</span>
+              <span>2. Втрати на знижках сейлзів, переплатах у закупівлях та обрізках цеху/складу:</span>
+              <span class="mono" id="lbl-leak" style="color: var(--warning); font-weight: 700;">3.5% від обороту</span>
             </label>
-            <input type="range" id="rng-leak" min="1.5" max="7.0" step="0.1" value="3.8" oninput="recalcEnterprisePitchRoi()" />
+            <input type="range" id="rng-leak" min="1.5" max="7.0" step="0.1" value="3.5" oninput="recalcEnterprisePitchRoi()" />
             <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); margin-top: 4px;">
               <span>1.5% (мінімальні)</span>
-              <span>3.8% (середній завод)</span>
+              <span>3.5% (середні втрати)</span>
               <span>7.0% (без контролю)</span>
             </div>
           </div>
 
           <div class="slider-group" style="margin-bottom: 0;">
             <label>
-              <span>3. Поточні витрати на штат бухгалтерії, фінансистів Excel та програмістів 1С/BAS:</span>
-              <span class="mono" id="lbl-acc-cost" style="color: var(--primary); font-weight: 700;">₴ 380 000 / міс</span>
+              <span>3. Витрати на бухгалтерію, ручне введення накладних та програмістів 1С:</span>
+              <span class="mono" id="lbl-acc-cost" style="color: var(--primary); font-weight: 700;">₴ 65 000 / міс</span>
             </label>
-            <input type="range" id="rng-acc-cost" min="60000" max="1200000" step="20000" value="380000" oninput="recalcEnterprisePitchRoi()" />
+            <input type="range" id="rng-acc-cost" min="20000" max="350000" step="5000" value="65000" oninput="recalcEnterprisePitchRoi()" />
             <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); margin-top: 4px;">
-              <span>₴ 60 тис./міс</span>
-              <span>₴ 500 тис./міс</span>
-              <span>₴ 1.2 млн/міс</span>
+              <span>₴ 20 тис./міс</span>
+              <span>₴ 65 тис./міс</span>
+              <span>₴ 350 тис./міс</span>
             </div>
           </div>
         </div>
@@ -417,250 +451,103 @@
         <div style="background: var(--success-soft); border: 1px solid #BBF7D0; border-radius: var(--radius-sm); padding: 24px; display: flex; flex-direction: column; justify-content: space-between;">
           <div>
             <div style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #166534; margin-bottom: 6px;">
-              Чистий фінансовий ефект для Акціонерів (Додаткова EBITDA)
+              Чистий фінансовий ефект для Власника (Додатковий прибуток)
             </div>
-            <div class="mono" style="font-size: 32px; font-weight: 800; color: #14532D; letter-spacing: -0.02em;" id="out-yearly-save">
-              +₴ 24 408 000 / рік
+            <div class="mono" style="font-size: 30px; font-weight: 800; color: #14532D; letter-spacing: -0.02em;" id="out-yearly-save">
+              +₴ 2 553 000 / рік
             </div>
             <div style="font-size: 14px; color: #166534; margin-top: 4px; margin-bottom: 16px;" id="out-monthly-save">
-              або <strong>+₴ 2 034 000 щомісяця</strong> додаткового чистого грошового потоку
+              або <strong>+₴ 212 750 щомісяця</strong> збереженого грошового потоку
             </div>
 
             <div style="border-top: 1px solid #BBF7D0; padding-top: 12px; display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; color: #14532D;">
               <div style="display: flex; justify-content: space-between;">
-                <span>🛡️ Захист маржі B2B + Блок «відкатів» у закупівлях:</span>
-                <strong class="mono" id="out-break-margin">+₴ 1 111 500 / міс</strong>
+                <span>🛡️ Захист маржі у продажах + Контроль цін у накладних:</span>
+                <strong class="mono" id="out-break-margin">+₴ 102 375 / міс</strong>
               </div>
               <div style="display: flex; justify-content: space-between;">
-                <span>🏭 MES Zero-Waste розкрій + ліквідація простоїв ЧПК:</span>
-                <strong class="mono" id="out-break-mes">+₴ 598 500 / міс</strong>
+                <span>🏭 Зв'язка Цех ↔ Склад (ліквідація втрат сировини та залишків):</span>
+                <strong class="mono" id="out-break-mes">+₴ 55 125 / міс</strong>
               </div>
               <div style="display: flex; justify-content: space-between;">
-                <span>⚡ Автоматизація проводок Дт/Кт та відмова від 1С:</span>
-                <strong class="mono" id="out-break-staff">+₴ 324 000 / міс</strong>
+                <span>📄 AI-Розпізнавання накладних з телефону/ПК та авто-облік:</span>
+                <strong class="mono" id="out-break-staff">+₴ 55 250 / міс</strong>
               </div>
             </div>
           </div>
 
           <div style="margin-top: 16px; padding-top: 12px; border-top: 1px solid #BBF7D0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-            <span style="font-size: 12.5px; font-weight: 600; color: #166534;">Перевірте живі проводки Дт/Кт та MES прямо в браузері:</span>
+            <span style="font-size: 12.5px; font-weight: 600; color: #166534;">Перевірте розпізнавання документів, цех і склад наживо:</span>
             <a href="./index.html" class="btn btn-primary" style="padding: 7px 14px; font-size: 12.5px;">Відкрити Інтерактивне Демо →</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Section 2: 6 Killer Enterprise Capabilities -->
+    <!-- Section 3: How the Unified Ecosystem Works (Shopfloor + Warehouse + Document Approval + Phone Patch) -->
     <section class="section-card">
       <div class="section-header">
         <div>
-          <div class="section-title">2. Все, чого немає в малому бізнесі: 6 Промислових Контурів OpexMetrix Enterprise &amp; MES</div>
-          <div class="section-sub">Кожен модуль працює в єдиному ядрі та миттєво відображається в Головній Книзі Холдингу</div>
+          <div class="section-title">3. Як Працює Єдина Екосистема: Цех + Склад + Погодження Документів (ПК і Телефон)</div>
+          <div class="section-sub">Жодного ручного перенесення папірців між складом, цехом та бухгалтерією</div>
         </div>
-        <span class="badge badge-blue">НП(С)БО + МСФЗ (IFRS)</span>
       </div>
 
       <div class="grid-3">
         <div class="module-card">
           <div>
             <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-              <span class="badge badge-blue">1. Проводки Онлайн (0.04 с)</span>
-              <span class="mono" style="font-size: 11.5px; color: var(--text-muted);">Дт === Кт 24/7</span>
+              <span class="badge badge-blue">1. Завантаження з ПК + Патч з Телефону</span>
+              <span class="mono" style="font-size: 11.5px; color: var(--text-muted);">AI OCR 99.4%</span>
             </div>
-            <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 6px;">Жива Головна Книга та Оборотно-Сальдова Відомість (ОСВ)</h3>
+            <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 6px;">Фотографуйте Накладну або Завантажуйте Договір з Комп'ютера</h3>
             <p style="font-size: 13px; color: var(--text-secondary);">
-              У великому бізнесі на 1С власник чекає 20-го числа наступного місяця, поки штат із 10 бухгалтерів зведе баланс. В OpexMetrix кожне відвантаження, випуск деталі з ЧПК чи банківський платіж за <strong>0.04 секунди</strong> генерує проводки (<code class="mono">Дт 361 Кт 701</code>, <code class="mono">Дт 231 Кт 201</code>, <code class="mono">Дт 26 Кт 231</code>) і оновлює ОСВ до копійки.
+              Приїхала машина з сировиною на склад? Комірник просто фотографує накладну на телефон (або менеджер завантажує PDF/DOCX договір із комп'ютера). Система за 1.2 секунди розпізнає контрагента, ЄДРПОУ, кожну позицію товару, суму ПДВ та умови оплати.
             </p>
           </div>
-          <div style="font-size: 12px; font-weight: 600; color: var(--accent-blue);">✓ Нуль ручних проводок • Подвійний запис НП(С)БО та МСФЗ</div>
+          <div style="font-size: 12px; font-weight: 600; color: var(--accent-blue);">✓ Розпізнавання накладних, договорів, рахунків та актів</div>
         </div>
 
         <div class="module-card">
           <div>
             <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-              <span class="badge badge-green">2. Вбивча MES та ЧПК</span>
-              <span class="mono" style="font-size: 11.5px; color: var(--text-muted);">OEE 89.4%</span>
+              <span class="badge badge-amber">2. Погодження прямо в системі</span>
+              <span class="mono" style="font-size: 11.5px; color: var(--text-muted);">1-Клік Акцепт</span>
             </div>
-            <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 6px;">Цифровий Двійник Цеху, Техкарти (BOM) та Zero-Waste Розкрій</h3>
+            <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 6px;">Маршрут Погодження Документів без Чатового Хаосу</h3>
             <p style="font-size: 13px; color: var(--text-secondary);">
-              Повний контроль завантаження ліній ЧПК (Trumpf, DMG MORI, KUKA), калькуляція собівартості партії до запуску в цех (сировина + комплектуючі + кВт·год + відрядна ЗП) та <strong>QR-Банк ділових обрізків</strong>, який знижує відходи металу/профілю з 11.5% до <strong>1.7%</strong> (+₴ 642 тис./міс економії).
+              Розпізнаний договір або прибуткова накладна одразу стає на погодження в системі: <strong>Склад → Начальник цеху → Бухгалтерія → Директор</strong>. Керівник бачить AI-перевірку цін і ризиків та натискає «Погодити» в 1 клік.
             </p>
           </div>
-          <div style="font-size: 12px; font-weight: 600; color: var(--success);">✓ Авто-списання FIFO за техкартою • Computer Vision ВТК</div>
+          <div style="font-size: 12px; font-weight: 600; color: var(--warning);">✓ Миттєве проведення після погодження керівником</div>
         </div>
 
         <div class="module-card">
           <div>
             <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-              <span class="badge badge-amber">3. Enterprise Sales Deal Desk</span>
-              <span class="mono" style="font-size: 11.5px; color: var(--text-muted);">20+ Сейлзів</span>
+              <span class="badge badge-green">3. Цех, Поєднаний зі Складом</span>
+              <span class="mono" style="font-size: 11.5px; color: var(--text-muted);">WMS ↔ MES ↔ Дт/Кт</span>
             </div>
-            <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 6px;">Потужний Відділ Продажів, Тендери та Стоп-Кран Боржникам</h3>
+            <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 6px;">Наскрізний Ланцюжок від Сировини до Готового Виробу</h3>
             <p style="font-size: 13px; color: var(--text-secondary);">
-              Управління 3 дивізіонами (Key Accounts, B2B Дилери, Тендери Prozorro). Рейтинг менеджерів будується за <strong>Чистою Маржею EBITDA</strong>, а не валовим оборотом. При простроченні дебіторки (Рах. 361) система автоматично блокує шлагбаум відвантаження на складі WMS.
+              Після погодження накладної сировина автоматично сідає на Склад (Рах. 201), списується за техкартою у Виробничий Цех (Рах. 231), враховує ділові обрізки та відрядну ЗП, випускається як Готова Продукція (Рах. 26) і формує всі проводки Дт/Кт.
             </p>
           </div>
-          <div style="font-size: 12px; font-weight: 600; color: var(--warning);">✓ Whisper AI Call-Center QC • Захист маржі на дзвінку</div>
-        </div>
-
-        <div class="module-card">
-          <div>
-            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-              <span class="badge badge-red">4. AI Procurement Shield</span>
-              <span class="mono" style="font-size: 11.5px; color: var(--text-muted);">Анти-Відкат</span>
-            </div>
-            <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 6px;">Блокування Завищених Закупівельних Цін та «Відкатів»</h3>
-            <p style="font-size: 13px; color: var(--text-secondary);">
-              Найбільша прихована втрата заводів та дистриб'юторів — закупівля сировини за завищеними цінами через змову постачальників із постачанням. AI-агент звіряє кожен вхідний рахунок (<code class="mono">Дт 201 Кт 631</code>) з медіаною ринку і блокує оплату при перевищенні.
-            </p>
-          </div>
-          <div style="font-size: 12px; font-weight: 600; color: var(--danger);">✓ Авто-тендер серед прямих імпортерів та виробників</div>
-        </div>
-
-        <div class="module-card">
-          <div>
-            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-              <span class="badge badge-slate">5. Мульти-Холдинг &amp; ЦФВ</span>
-              <span class="mono" style="font-size: 11.5px; color: var(--text-muted);">Казначейство</span>
-            </div>
-            <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 6px;">Консолідація Групи Компаній та Бюджетний Контроль ЦФВ</h3>
-            <p style="font-size: 13px; color: var(--text-secondary);">
-              Миттєва консолідація Заводу ТОВ, Торгового Дому, Логістичної компанії та пулу ФОПів. Автоматична елімінація внутрішньогрупових оборотів (Рах. 683) та жорсткий контроль лімітів витрат по кожному Центру Фінансової Відповідальності (ЦФВ-01..05).
-            </p>
-          </div>
-          <div style="font-size: 12px; font-weight: 600; color: var(--text-main);">✓ Казначейський платіжний календар на 30 днів</div>
-        </div>
-
-        <div class="module-card">
-          <div>
-            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-              <span class="badge badge-green">6. Податковий Автопілот ДПС</span>
-              <span class="mono" style="font-size: 11.5px; color: var(--text-muted);">cabinet.tax.gov.ua</span>
-            </div>
-            <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 6px;">ПДВ, ЄРПН, Захист від Блокування СМКОР та Зарплата</h3>
-            <p style="font-size: 13px; color: var(--text-secondary);">
-              Пряма генерація офіційних XML-пакетів ДПС України (<code class="mono">J0200126</code>, <code class="mono">J1201016</code>, <code class="mono">J1201216</code>, <code class="mono">J0500110</code>, <code class="mono">J1312006</code>), моніторинг реєстраційного ліміту СЕА ПДВ (Рах. 6412) та розрахунок відрядної ЗП цеху в 1 клік.
-            </p>
-          </div>
-          <div style="font-size: 12px; font-weight: 600; color: var(--success);">✓ 100% сумісність зі схемами XSD Електронного кабінету ДПС</div>
+          <div style="font-size: 12px; font-weight: 600; color: var(--success);">✓ Повна прозорість собівартості та залишків 24/7</div>
         </div>
       </div>
-    </section>
-
-    <!-- Section 3: Comparison Table -->
-    <section class="section-card">
-      <div class="section-header">
-        <div>
-          <div class="section-title">3. Порівняння Рішень для Великого Бізнесу: 1С:УВП / BAS ERP vs SAP / Odoo vs OpexMetrix</div>
-          <div class="section-sub">Чому промислові підприємства та дистриб'ютори обирають автономне ядро OpexMetrix</div>
-        </div>
-      </div>
-
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 23%;">Критерій для Акціонера / CEO / CFO</th>
-            <th style="width: 25%; color: var(--danger); background: var(--danger-soft);">1С:УВП / BAS ERP + Штат 10–15 бухгалтерів</th>
-            <th style="width: 25%; color: var(--warning); background: var(--warning-soft);">SAP Business One / Odoo Enterprise</th>
-            <th style="width: 27%; color: var(--success); background: var(--success-soft);">OpexMetrix Enterprise &amp; MES</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Швидкість проводок (Дт/Кт) та P&amp;L</strong></td>
-            <td>Із запізненням на 15–20 днів після закриття місяця</td>
-            <td>Пакетні регламентні завдання, складні коригування</td>
-            <td><strong>0.04 секунди в онлайні</strong> при кожній операції (Дт === Кт 24/7)</td>
-          </tr>
-          <tr>
-            <td><strong>Керування виробництвом (MES) та розкрій залишків</strong></td>
-            <td>«Котловий» метод списання наприкінці місяця, до 12% металу йде в брухт</td>
-            <td>Потребує окремих дорогих інтеграцій SCADA/MES за $100,000+</td>
-            <td><strong>Вбудована вбивча MES:</strong> OEE верстатів ЧПК, BOM-калькуляція та QR-Банк ділових обрізків (втрати &lt; 1.7%)</td>
-          </tr>
-          <tr>
-            <td><strong>Контроль відділу продажів та дебіторки</strong></td>
-            <td>Сейлзи дають знижки «на око», відвантажують товар боржникам</td>
-            <td>CRM відірвана від реальної собівартості партії у цеху</td>
-            <td><strong>B2B Deal Desk + Stop-Shipment Gate + Whisper AI:</strong> авто-блок боржників на складі та захист маржі</td>
-          </tr>
-          <tr>
-            <td><strong>Захист від «відкатів» у закупівлях сировини</strong></td>
-            <td>Повністю відсутній (проводиться будь-який рахунок від «свого» постачальника)</td>
-            <td>Лише ручне погодження в довгих ланцюжках</td>
-            <td><strong>AI Procurement Shield:</strong> миттєве блокування рахунків із ціною вище ринкової медіани</td>
-          </tr>
-          <tr>
-            <td><strong>Термін та бюджет впровадження</strong></td>
-            <td>9–18 місяців, вічна залежність від програмістів 1С, російське ядро</td>
-            <td>12–24 місяці, бюджет впровадження $80,000 – $350,000+</td>
-            <td><strong>14 днів у режимі Shadow Mode</strong> без зупинки заводу та відвантажень. Окупність &lt; 1 місяця</td>
-          </tr>
-        </tbody>
-      </table>
     </section>
 
     <!-- Section 4: Pricing & Deployment Packages -->
     <section class="section-card">
       <div class="section-header">
         <div>
-          <div class="section-title">4. Пакети Впровадження (Від Малого Бізнесу до Промислових Корпорацій та Холдингів)</div>
-          <div class="section-sub">Безшовний перехід із 1С/BAS під захистом 5-річного договору Mutual NDA</div>
+          <div class="section-title">4. Тарифи та Пакети Впровадження (Для МСБ та Великого Виробництва)</div>
+          <div class="section-sub">Швидкий переїзд із 1С/BAS або Excel без зупинки роботи складу, цеху та продажів</div>
         </div>
       </div>
 
       <div class="grid-3">
-        <!-- Enterprise Flagship -->
-        <div class="tier-box featured">
-          <div>
-            <span class="badge badge-blue">★ ФЛАГМАН ДЛЯ ЗАВОДІВ, ХОЛДИНГІВ ТА ВЕЛИКОГО БІЗНЕСУ</span>
-            <h3 style="font-size: 20px; margin: 10px 0 4px;">ENTERPRISE &amp; MES AXIOM CORE</h3>
-            <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 14px;">
-              Повний промисловий та фінансовий контур для виробничих підприємств, дистриб'юторів і груп компаній (60–500+ співробітників).
-            </p>
-            <div class="price-big">$17,000 – $32,000 <span style="font-size: 13px; font-weight: 500; color: var(--text-muted);">під ключ (Shadow Mode 14 днів)</span></div>
-            <div style="font-size: 14.5px; font-weight: 700; color: var(--accent-blue); margin-top: 4px;">
-              + $1,500 / міс (Dedicated Server / On-Premise + SLA 24/7)
-            </div>
-            <hr style="border: none; border-top: 1px solid var(--border); margin: 14px 0;" />
-            <ul style="font-size: 13.5px; padding-left: 18px; display: flex; flex-direction: column; gap: 7px; color: var(--text-main);">
-              <li><strong>Живі проводки Дт/Кт в онлайні (0.04 с) та консолідована ОСВ Холдингу</strong></li>
-              <li><strong>Вбивча MES:</strong> Цифровий двійник ліній ЧПК, техкарти BOM, OEE та Zero-Waste Банк обрізків</li>
-              <li><strong>B2B Deal Desk:</strong> Кредитні ліміти дилерів, авто-стоп відвантажень WMS та Whisper AI Call-Center (20+ ліній)</li>
-              <li><strong>AI Procurement Shield:</strong> Автоматичне блокування «відкатів» та завищених цін постачальників</li>
-              <li>Казначейство, бюджетний контроль по ЦФВ та повний пакет XML ДПС України (<code class="mono">cabinet.tax.gov.ua</code>)</li>
-            </ul>
-          </div>
-          <div style="padding-top: 10px; font-size: 13px; color: var(--success); font-weight: 700;">
-            ✓ Окупність інвестиції за 9–22 дні за рахунок ліквідації втрат маржі та сировини
-          </div>
-        </div>
-
-        <!-- Mid-Market -->
-        <div class="tier-box">
-          <div>
-            <span class="badge badge-slate">СЕРЕДНІЙ БІЗНЕС (15–60 ОСІБ)</span>
-            <h3 style="font-size: 20px; margin: 10px 0 4px;">BUSINESS CORE (Дистрибуція &amp; Цех)</h3>
-            <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 14px;">
-              Для оптових компаній, регіональних дистриб'юторів, e-commerce мереж та середнього виробництва.
-            </p>
-            <div class="price-big">$3,500 <span style="font-size: 13px; font-weight: 500; color: var(--text-muted);">впровадження за 5–10 днів</span></div>
-            <div style="font-size: 14.5px; font-weight: 700; color: var(--text-main); margin-top: 4px;">
-              + $450 / міс (Хмарний кластер + SLA)
-            </div>
-            <hr style="border: none; border-top: 1px solid var(--border); margin: 14px 0;" />
-            <ul style="font-size: 13.5px; padding-left: 18px; display: flex; flex-direction: column; gap: 7px;">
-              <li>Мульти-компанії (група ФОПів + ТОВ з ПДВ 20%)</li>
-              <li>Контроль дебіторки дилерів та стоп-відвантаження боржникам</li>
-              <li>Цеховий QR-трекінг замовлень, техкарти списання та відрядна ЗП</li>
-              <li>Інтеграція з банками, ПРРО Checkbox, Новою Поштою та IP-телефонією</li>
-            </ul>
-          </div>
-          <div style="padding-top: 10px; font-size: 13px; color: var(--text-secondary); font-weight: 600;">
-            ✓ Повна заміна 1С/BAS без зупинки операцій
-          </div>
-        </div>
-
         <!-- SMB -->
         <div class="tier-box">
           <div>
@@ -677,7 +564,7 @@
             <ul style="font-size: 13.5px; padding-left: 18px; display: flex; flex-direction: column; gap: 7px;">
               <li>Авто-очистка та перенесення бази з 1С/Excel за 48 годин</li>
               <li>Пульс грошей, безпечні дивіденди, рахунки та накладні з QR НБУ</li>
-              <li>Margin Guard (захист рентабельності від знижок)</li>
+              <li>AI-Розпізнавання накладних з комп'ютера та телефону</li>
               <li>Банк-автопілот (Моно / Приват24) та звіти ДПС у 1 клік</li>
             </ul>
           </div>
@@ -685,19 +572,70 @@
             ✓ У 6 разів вигідніше за утримання штатного бухгалтера
           </div>
         </div>
+
+        <!-- Mid-Market / Production Ecosystem (Featured) -->
+        <div class="tier-box featured">
+          <div>
+            <span class="badge badge-blue">★ ХІТ: СЕРЕДНІЙ БІЗНЕС, ЦЕХ + СКЛАД (15–80 ОСІБ)</span>
+            <h3 style="font-size: 20px; margin: 10px 0 4px;">BUSINESS ECOSYSTEM (Цех + Склад + Облік)</h3>
+            <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 14px;">
+              Повна операційна екосистема для виробничих компаній, дистриб'юторів та оптових мереж.
+            </p>
+            <div class="price-big">$3,500 <span style="font-size: 13px; font-weight: 500; color: var(--text-muted);">впровадження за 5–10 днів</span></div>
+            <div style="font-size: 14.5px; font-weight: 700; color: var(--accent-blue); margin-top: 4px;">
+              + $450 / міс (Хмарний кластер + Мобільний патч)
+            </div>
+            <hr style="border: none; border-top: 1px solid var(--border); margin: 14px 0;" />
+            <ul style="font-size: 13.5px; padding-left: 18px; display: flex; flex-direction: column; gap: 7px;">
+              <li><strong>Єдина зв'язка Виробничий Цех (MES) ↔ Склад (WMS)</strong></li>
+              <li><strong>AI-Розпізнавання накладних і договорів (ПК + Фото з телефону)</strong></li>
+              <li><strong>Внутрішнє погодження документів у системі в 1 клік</strong></li>
+              <li>Контроль дебіторки дилерів, техкарти BOM та авто-проводки Дт/Кт</li>
+              <li>Мульти-компанії (ФОПи + ТОВ з ПДВ 20%) та звіти ДПС</li>
+            </ul>
+          </div>
+          <div style="padding-top: 10px; font-size: 13px; color: var(--accent-blue); font-weight: 700;">
+            ✓ Окупність за 14–20 днів за рахунок контролю складу, цеху та маржі
+          </div>
+        </div>
+
+        <!-- Enterprise Flagship -->
+        <div class="tier-box">
+          <div>
+            <span class="badge badge-slate">ВЕЛИКИЙ БІЗНЕС ТА ХОЛДИНГИ (80–500+ ОСІБ)</span>
+            <h3 style="font-size: 20px; margin: 10px 0 4px;">ENTERPRISE &amp; MES AXIOM CORE</h3>
+            <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 14px;">
+              Промисловий та фінансовий контур для заводів із парком ЧПК, великих дистриб'юторів і груп компаній.
+            </p>
+            <div class="price-big">$12,000 – $25,000 <span style="font-size: 13px; font-weight: 500; color: var(--text-muted);">під ключ (Shadow Mode 14 днів)</span></div>
+            <div style="font-size: 14.5px; font-weight: 700; color: var(--text-main); margin-top: 4px;">
+              + $1,200 / міс (Dedicated Server / On-Premise + SLA 24/7)
+            </div>
+            <hr style="border: none; border-top: 1px solid var(--border); margin: 14px 0;" />
+            <ul style="font-size: 13.5px; padding-left: 18px; display: flex; flex-direction: column; gap: 7px; color: var(--text-main);">
+              <li>Консолідований баланс Холдингу (Дт/Кт) та бюджети по ЦФВ</li>
+              <li>Цифровий двійник ліній ЧПК, OEE та Zero-Waste Банк обрізків</li>
+              <li>B2B Deal Desk та Whisper AI Call-Center (20+ сейлзів)</li>
+              <li>AI Procurement Shield (блокування «відкатів» у закупівлях)</li>
+            </ul>
+          </div>
+          <div style="padding-top: 10px; font-size: 13px; color: var(--success); font-weight: 700;">
+            ✓ Виділений сервер під захистом 5-річного NDA
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="section-card" style="background: var(--primary); color: #FFFFFF; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+    <!-- Clean White Footer (Replaced black footer per user request!) -->
+    <footer class="section-card" style="background: #FFFFFF; color: var(--text-main); border: 1px solid var(--border); border-left: 5px solid var(--success); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
       <div>
-        <div class="eyebrow">БЕЗКОШТОВНИЙ ФОРЕНЗІК-АУДИТ ВАШОЇ БАЗИ 1С / ЗАВОДУ ЗА 24 ГОДИНИ ПІД NDA</div>
-        <div style="font-size: 19px; font-weight: 700;">Надайте тестовий витяг із 1С/BAS або техкарту виробу — ми розгорнемо ваш завод і проводки Дт/Кт на живому стенді</div>
-        <div style="font-size: 13.5px; color: #94A3B8; margin-top: 4px;">
-          Михайло Кузьміч • CEO OpexMetrix / Axiom Core • <em>Enterprise ERP, Industrial MES &amp; Autonomous Accounting</em>
+        <div class="eyebrow" style="color: var(--success);">БЕЗКОШТОВНИЙ ТЕСТОВИЙ ЗАПУСК НА ВАШИХ НАКЛАДНИХ ТА ТЕХКАРТАХ ЦЕХУ ЗА 24 ГОДИНИ</div>
+        <div style="font-size: 18px; font-weight: 700; color: var(--text-main);">Надішліть фото накладної, договір або витяг із 1С — ми покажемо ваш склад, цех і проводки в живій системі</div>
+        <div style="font-size: 13.5px; color: var(--text-secondary); margin-top: 4px;">
+          Михайло Кузьміч • CEO OpexMetrix / Axiom Core • <em>Єдина Екосистема Бізнесу: Цех, Склад, Документообіг та Автономна Бухгалтерія</em>
         </div>
       </div>
-      <div style="text-align: right; font-size: 14.5px;" class="mono">
+      <div style="text-align: right; font-size: 14.5px; color: var(--text-main);" class="mono">
         <div>📱 <strong>+380 66 117 67 45</strong></div>
         <div>📧 <strong>rockwellcapital1@gmail.com</strong></div>
       </div>
@@ -706,13 +644,13 @@
 
   <script>
     function fmtUahPitch(n) {
-      return '₴\u00A0' + Math.round(Number(n) || 0).toLocaleString('uk-UA');
+      return '₴ ' + Math.round(Number(n) || 0).toLocaleString('uk-UA');
     }
 
     function recalcEnterprisePitchRoi() {
-      const rev = Number(document.getElementById('rng-rev').value || 45000000);
-      const leakPct = Number(document.getElementById('rng-leak').value || 3.8);
-      const staffCost = Number(document.getElementById('rng-acc-cost').value || 380000);
+      const rev = Number(document.getElementById('rng-rev').value || 4500000);
+      const leakPct = Number(document.getElementById('rng-leak').value || 3.5);
+      const staffCost = Number(document.getElementById('rng-acc-cost').value || 65000);
 
       document.getElementById('lbl-rev').textContent = fmtUahPitch(rev) + ' / міс';
       document.getElementById('lbl-leak').textContent = leakPct.toFixed(1) + '% від обороту';
@@ -725,14 +663,14 @@
 
       const monthlyTotal = marginAndProc + mesSaved + staffSaved;
       const annualTotal = monthlyTotal * 12;
-      const paybackDays = Math.max(4, Math.min(25, Math.round((450000 / monthlyTotal) * 30)));
+      const paybackDays = Math.max(5, Math.min(28, Math.round((95000 / Math.max(1, monthlyTotal)) * 30)));
 
       document.getElementById('out-yearly-save').textContent = '+' + fmtUahPitch(annualTotal) + ' / рік';
-      document.getElementById('out-monthly-save').innerHTML = 'або <strong>+' + fmtUahPitch(monthlyTotal) + ' щомісяця</strong> додаткового чистого грошового потоку';
+      document.getElementById('out-monthly-save').innerHTML = 'або <strong>+' + fmtUahPitch(monthlyTotal) + ' щомісяця</strong> збереженого грошового потоку';
       document.getElementById('out-break-margin').textContent = '+' + fmtUahPitch(marginAndProc) + ' / міс';
       document.getElementById('out-break-mes').textContent = '+' + fmtUahPitch(mesSaved) + ' / міс';
       document.getElementById('out-break-staff').textContent = '+' + fmtUahPitch(staffSaved) + ' / міс';
-      document.getElementById('pitch-payback-badge').textContent = 'Повна окупність впровадження: ' + paybackDays + ' днів';
+      document.getElementById('pitch-payback-badge').textContent = 'Повна окупність: ' + paybackDays + ' днів';
     }
   </script>
 </body>

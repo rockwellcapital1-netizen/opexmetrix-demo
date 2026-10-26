@@ -509,42 +509,207 @@
     ]
   };
 
+  // ─── Document OCR & In-System Approval Ecosystem State ─────────────────────
+  const OCR_PRESETS = {
+    WAYBILL_PHONE: {
+      id: 'DOC-4418',
+      docType: 'WAYBILL',
+      typeBadge: 'Прибуткова накладна (Склад ↔ Цех)',
+      source: '📱 Фото з камери телефону (Патч Комірника)',
+      docNumber: 'ВН-4418 від 26.10.2026',
+      counterparty: 'ТОВ "Метал-Холдинг Україна"',
+      edrpou: '38192044',
+      amount: 480000,
+      vatAmount: 80000,
+      itemsSummary: 'Лист нержавіючий AISI 304 (4.0 т × ₴ 95 000) + Профіль силовий 80×40 (100 м.п. × ₴ 1 000)',
+      ecosystemLink: 'Склад сировини (Рах. 201) → Авто-резерв під зміну Цеху ЧПК #MES-904 (Рах. 231)',
+      aiRiskCheck: '✓ Ціна металу відповідає ринковій медіані (завищень не виявлено). Номенклатуру зіставлено з техкартою BOM.',
+      approvalRoute: 'Комірник (Телефон) ✓ → Нач. Цеху ✓ → Директор / Бухгалтерія',
+      ledgerDt: '201 Сировина й матеріали (Склад)',
+      ledgerDtCode: '201',
+      ledgerKt: '631 Розрахунки з постачальниками',
+      ledgerKtCode: '631'
+    },
+    CONTRACT_PC: {
+      id: 'DOC-2026-114',
+      docType: 'CONTRACT',
+      typeBadge: 'Договір поставки B2B + Специфікація',
+      source: '💻 Завантажено з комп\'ютера (PDF, 4 стор.)',
+      docNumber: 'ДП-2026/114 від 26.10.2026',
+      counterparty: 'ТОВ "Епіцентр К"',
+      edrpou: '32490244',
+      amount: 920000,
+      vatAmount: 153333.33,
+      itemsSummary: 'Поставка партії промислових енергомодулів ПЕМ-400 (10 од. з цеху ГП) • Відстрочка оплати 14 календарних днів',
+      ecosystemLink: 'Відділ продажів → План виробництва Цеху (MES) → Резерв готової продукції на Складі (Рах. 26)',
+      aiRiskCheck: '✓ Юридичний AI-аудит договору: прихованих штрафів чи пені не виявлено. Кредитний ліміт контрагента в нормі.',
+      approvalRoute: 'Менеджер B2B ✓ → Юридичний відділ ✓ → Директор (На підпис)',
+      ledgerDt: '361 Розрахунки з покупцями',
+      ledgerDtCode: '361',
+      ledgerKt: '701 Дохід від реалізації ГП',
+      ledgerKtCode: '701'
+    },
+    INVOICE_SHOPFLOOR: {
+      id: 'DOC-902',
+      docType: 'INVOICE',
+      typeBadge: 'Рахунок-фактура на комплектуючі цеху',
+      source: '📱 Скан із телефону начальника цеху',
+      docNumber: 'СФ-902 від 26.10.2026',
+      counterparty: 'ТОВ "ЕлектроПривод Україна"',
+      edrpou: '40118290',
+      amount: 168000,
+      vatAmount: 28000,
+      itemsSummary: 'Мотор-редуктори промислові NMRV-090 (12 шт.) та оптичні датчики ЧПК для Дільниці №6',
+      ecosystemLink: 'Оплата в банку (Рах. 311) → Склад комплектуючих (Рах. 202) → Передача в Цех збірки АСУ-ТП (Рах. 231)',
+      aiRiskCheck: '✓ Реквізити IBAN та код ЄДРПОУ перевірено в реєстрі ДПС. Ціна на 4.2% нижча за минулу закупівлю.',
+      approvalRoute: 'Начальник цеху ✓ → Відділ постачання ✓ → Фіндиректор / CEO',
+      ledgerDt: '202 Купівельні комплектуючі (Цех)',
+      ledgerDtCode: '202',
+      ledgerKt: '631 Розрахунки з постачальниками',
+      ledgerKtCode: '631'
+    }
+  };
+
+  state.activeOcrDoc = Object.assign({}, OCR_PRESETS.WAYBILL_PHONE);
+  state.approvalDocs = [
+    {
+      id: 'DOC-4418',
+      docNumber: 'ВН-4418 від 26.10.2026',
+      source: '📱 Фото з телефону (Склад)',
+      typeBadge: 'Прибуткова накладна',
+      counterparty: 'ТОВ "Метал-Холдинг Україна"',
+      edrpou: '38192044',
+      ecosystemLink: 'Лист AISI 304 (4 т) → Оприбуткування на Склад (Рах. 201) та передача в Цех ЧПК #MES-904',
+      amount: 480000,
+      approvalRoute: 'Комірник ✓ → Нач. Цеху ✓ → CEO ⏳',
+      status: 'PENDING',
+      ledgerDt: '201 Сировина й матеріали',
+      ledgerDtCode: '201',
+      ledgerKt: '631 Розрахунки з постачальниками',
+      ledgerKtCode: '631'
+    },
+    {
+      id: 'DOC-2026-114',
+      docNumber: 'ДП-2026/114 від 26.10.2026',
+      source: '💻 Файл з комп\'ютера (PDF)',
+      typeBadge: 'Договір поставки B2B',
+      counterparty: 'ТОВ "Епіцентр К"',
+      edrpou: '32490244',
+      ecosystemLink: 'Партія ПЕМ-400 (10 од.) • План Цеху MES ↔ Резерв Складу ГП (Рах. 26) • AI-перевірка умов: ОК',
+      amount: 920000,
+      approvalRoute: 'Продажі ✓ → Юрист ✓ → CEO ⏳',
+      status: 'PENDING',
+      ledgerDt: '361 Розрахунки з покупцями',
+      ledgerDtCode: '361',
+      ledgerKt: '701 Дохід від реалізації ГП',
+      ledgerKtCode: '701'
+    },
+    {
+      id: 'DOC-902',
+      docNumber: 'СФ-902 від 26.10.2026',
+      source: '📱 Фото з телефону (Цех)',
+      typeBadge: 'Рахунок на комплектуючі',
+      counterparty: 'ТОВ "ЕлектроПривод Україна"',
+      edrpou: '40118290',
+      ecosystemLink: 'Мотор-редуктори NMRV (12 шт.) → Склад комплектуючих (Рах. 202) для Цеху Дільниця №6',
+      amount: 168000,
+      approvalRoute: 'Нач. Цеху ✓ → Закупівлі ✓ → CEO ⏳',
+      status: 'PENDING',
+      ledgerDt: '202 Комплектуючі для цеху',
+      ledgerDtCode: '202',
+      ledgerKt: '631 Розрахунки з постачальниками',
+      ledgerKtCode: '631'
+    },
+    {
+      id: 'DOC-889',
+      docNumber: 'АКТ-889 від 25.10.2026',
+      source: '💻 Файл з комп\'ютера (DOCX)',
+      typeBadge: 'Акт виконаних робіт',
+      counterparty: 'ТОВ "Сервіс-ЧПК Інжиніринг"',
+      edrpou: '39041122',
+      ecosystemLink: 'Технічне обслуговування лазерного комплексу Trumpf у Цеху №1 (Списано на Рах. 231)',
+      amount: 42000,
+      approvalRoute: 'Гол. Інженер ✓ → Бухгалтерія ✓ → CEO ✓',
+      status: 'APPROVED',
+      ledgerDt: '231 Основне виробництво (Цех)',
+      ledgerDtCode: '231',
+      ledgerKt: '631 Розрахунки з постачальниками',
+      ledgerKtCode: '631'
+    }
+  ];
+
   const HOLDING_ENTITIES = {
     ALL: {
-      badge: '🏢 Консолідований Холдинг (4 Юрособи)',
-      cashBalance: 48650000,
-      revenue: 42800000,
-      cogs: 24800000,
-      opex: 4180000,
-      taxes: 2400000,
-      receivables: 6840000
+      badge: '🏢 Група Компаній (Цех + Склад + Торговий Дім)',
+      cashBalance: 4850000,
+      revenue: 5500000,
+      cogs: 3180000,
+      opex: 610000,
+      taxes: 290000,
+      receivables: 980000
+    },
+    HOLDING_ALL: {
+      badge: '🏢 Група Компаній (Цех + Склад + Торговий Дім)',
+      cashBalance: 4850000,
+      revenue: 5500000,
+      cogs: 3180000,
+      opex: 610000,
+      taxes: 290000,
+      receivables: 980000
     },
     PLANT: {
-      badge: '🏭 ТОВ "ОпексМетрікс Індастріал" (Завод MES)',
-      cashBalance: 22400000,
-      revenue: 24500000,
-      cogs: 14200000,
-      opex: 2110000,
-      taxes: 1300000,
-      receivables: 3420000
+      badge: '🏭 ТОВ "ПромТех Виробництво" (Цех MES + Склад)',
+      cashBalance: 2450000,
+      revenue: 3200000,
+      cogs: 1850000,
+      opex: 340000,
+      taxes: 180000,
+      receivables: 540000
+    },
+    PLANT_LLC: {
+      badge: '🏭 ТОВ "ПромТех Виробництво" (Цех MES + Склад)',
+      cashBalance: 2450000,
+      revenue: 3200000,
+      cogs: 1850000,
+      opex: 340000,
+      taxes: 180000,
+      receivables: 540000
     },
     TRADE: {
-      badge: '💼 ТОВ "Торговий Дім Альфа-Груп" (B2B)',
-      cashBalance: 19800000,
-      revenue: 15200000,
-      cogs: 9100000,
-      opex: 1560000,
-      taxes: 900000,
-      receivables: 2980000
+      badge: '💼 ТОВ "Альфа Трейд Дистрибуція" (Склад & B2B)',
+      cashBalance: 1680000,
+      revenue: 1650000,
+      cogs: 980000,
+      opex: 190000,
+      taxes: 85000,
+      receivables: 320000
+    },
+    TRADE_LLC: {
+      badge: '💼 ТОВ "Альфа Трейд Дистрибуція" (Склад & B2B)',
+      cashBalance: 1680000,
+      revenue: 1650000,
+      cogs: 980000,
+      opex: 190000,
+      taxes: 85000,
+      receivables: 320000
     },
     SMB: {
-      badge: '👤 Пул ФОП Дистрибуції / Режим МСБ (ЄП 5%)',
-      cashBalance: 6450000,
-      revenue: 3100000,
-      cogs: 1500000,
-      opex: 510000,
-      taxes: 200000,
-      receivables: 440000
+      badge: '🏪 Малий та Середній Бізнес (ФОП + ТОВ)',
+      cashBalance: 1344300,
+      revenue: 840200,
+      cogs: 320000,
+      opex: 157000,
+      taxes: 50412,
+      receivables: 179100
+    },
+    SMB_MODE: {
+      badge: '🏪 Малий та Середній Бізнес (ФОП + ТОВ)',
+      cashBalance: 1344300,
+      revenue: 840200,
+      cogs: 320000,
+      opex: 157000,
+      taxes: 50412,
+      receivables: 179100
     }
   };
 
@@ -626,15 +791,16 @@
 
   // ─── Navigation (All 9 Enterprise & MES Sections) ──────────────────────────
   const TAB_TITLES = {
-    pulse: 'Пульс Холдингу (Консолідований P&L, Кешьфлоу та Дивіденди)',
-    ledger: 'Проводки Онлайн та Головна Книга (Подвійний запис Дт/Кт за 0.04 с)',
-    mes: 'Вбивча MES: Цифровий Двійник Цеху ЧПК, Техкарти (BOM) та Zero-Waste',
-    sales: 'Sales & B2B Deal Desk (Контракти, Кредитний Стоп-Контроль та Маржа)',
-    'ai-sales': 'AI Call-Center та Департамент Продажів (24 Сейлзи • Whisper QC)',
-    stock: 'Склад WMS та AI Procurement Shield (Анти-Відкат у Закупівлях)',
-    bank: 'Корпоративне Казначейство, Банк-Автопілот та Бюджети ЦФВ',
-    taxes: 'Податковий Автопілот ДПС (ПДВ, ЄРПН, СМКОР) та Зарплата Команди',
-    about: 'Презентація для Великого Бізнесу та Холдингів (Enterprise ROI)'
+    pulse: 'Єдина Екосистема Бізнесу (Цех ↔ Склад ↔ Документи ↔ Облік)',
+    docs: 'Документообіг, AI-Розпізнавання (Накладні / Договори) та Погодження (ПК + Телефон)',
+    ledger: 'Проводки та Головна Книга (Подвійний запис Дт/Кт)',
+    mes: 'Виробничий Цех MES (Поєднаний зі Складом WMS, ЧПК та Техкарти BOM)',
+    sales: 'Продажі & B2B Deal Desk (Контракти, Кредитний Контроль та Маржа)',
+    'ai-sales': 'Відділ Продажів та AI Call-Center (Контроль дзвінків та Маржі)',
+    stock: 'Склад WMS (Зв\'язаний з Цехом MES) та Захист Закупівель',
+    bank: 'Банк, Казначейство та Контроль Бюджетів ЦФВ',
+    taxes: 'Податки ДПС (cabinet.tax.gov.ua) та Зарплата Команди',
+    about: 'Презентація: Малий/Середній Бізнес (МСБ) та Великий Бізнес (Цех + Склад)'
   };
 
   function switchTab(tabId) {
@@ -654,6 +820,8 @@
 
     if (tabId === 'ledger') {
       renderLedgerSection();
+    } else if (tabId === 'docs') {
+      renderDocsSection();
     } else if (tabId === 'mes') {
       renderMesSection();
     } else if (tabId === 'ai-sales') {
@@ -1170,15 +1338,190 @@
       .join('');
   }
 
+  // ─── 1B. 📄 ДОКУМЕНТИ, AI-РОЗПІЗНАВАННЯ (OCR) ТА ПОГОДЖЕННЯ (ПК + ТЕЛЕФОН) ──
+  function renderDocsSection() {
+    const ocrCard = document.getElementById('ocr-live-result-card');
+    const tbody = document.getElementById('docs-approval-tbody');
+    const pendingCount = state.approvalDocs.filter((d) => d.status === 'PENDING').length;
+
+    const navBadge = document.getElementById('nav-badge-docs');
+    if (navBadge) {
+      navBadge.textContent = pendingCount > 0 ? `${pendingCount} на підпис` : '✓ Погоджено';
+      navBadge.style.background = pendingCount > 0 ? 'var(--warning-soft)' : 'var(--success-soft)';
+      navBadge.style.color = pendingCount > 0 ? 'var(--warning)' : 'var(--success)';
+    }
+
+    const kpiPending = document.getElementById('docs-kpi-pending');
+    if (kpiPending) kpiPending.textContent = `${pendingCount} док.`;
+
+    const pendingBadge = document.getElementById('docs-pending-badge');
+    if (pendingBadge) {
+      pendingBadge.className = pendingCount > 0 ? 'badge badge-amber' : 'badge badge-green';
+      pendingBadge.textContent = pendingCount > 0 ? `На погодженні: ${pendingCount} документи` : '✓ Усі документи погоджено та проведено';
+    }
+
+    if (ocrCard && state.activeOcrDoc) {
+      const doc = state.activeOcrDoc;
+      ocrCard.innerHTML = `
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; flex-wrap: wrap; margin-bottom: 12px;">
+            <div>
+              <span class="badge badge-green">✓ AI OCR РОЗПІЗНАНО ЗА 1.2 СЕК</span>
+              <span class="badge badge-blue" style="margin-left: 6px;">${escapeHtml(doc.source)}</span>
+            </div>
+            <span class="mono" style="font-size: 12px; color: var(--text-muted);">ID: ${escapeHtml(doc.id)}</span>
+          </div>
+
+          <div style="font-size: 16px; font-weight: 700; color: var(--text-main); margin-bottom: 4px;">
+            ${escapeHtml(doc.typeBadge)}: № ${escapeHtml(doc.docNumber)}
+          </div>
+          <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 14px;">
+            Контрагент: <strong>${escapeHtml(doc.counterparty)}</strong> (Код ЄДРПОУ: <code class="mono">${escapeHtml(doc.edrpou)}</code>)
+          </div>
+
+          <div style="background: var(--bg-app); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px; font-size: 13px; display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px;">
+            <div style="display: flex; justify-content: space-between; gap: 8px;">
+              <span style="color: var(--text-secondary);">Розпізнані позиції / умови:</span>
+              <strong style="text-align: right; color: var(--text-main);">${escapeHtml(doc.itemsSummary)}</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; gap: 8px; border-top: 1px solid var(--border); padding-top: 8px;">
+              <span style="color: var(--text-secondary);">Сума документа (з ПДВ 20%):</span>
+              <strong class="mono" style="font-size: 15px; color: var(--accent-blue);">${fmtUah(doc.amount)} (ПДВ: ${fmtUah(doc.vatAmount)})</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; gap: 8px; border-top: 1px solid var(--border); padding-top: 8px;">
+              <span style="color: var(--text-secondary);">Маршрут в Екосистемі (Цех ↔ Склад):</span>
+              <strong style="text-align: right; color: var(--success);">${escapeHtml(doc.ecosystemLink)}</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; gap: 8px; border-top: 1px solid var(--border); padding-top: 8px;">
+              <span style="color: var(--text-secondary);">Бухгалтерська проводка:</span>
+              <span class="mono" style="font-weight: 700; color: var(--primary);">Дт ${escapeHtml(doc.ledgerDtCode)} ↔ Кт ${escapeHtml(doc.ledgerKtCode)}</span>
+            </div>
+          </div>
+
+          <div style="background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: var(--radius-sm); padding: 10px 12px; font-size: 12.5px; color: #166534; margin-bottom: 14px;">
+            <strong>AI-Перевірка документа:</strong> ${escapeHtml(doc.aiRiskCheck)}
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; padding-top: 12px; border-top: 1px solid var(--border);">
+          <button type="button" class="btn btn-sm btn-subtle" id="btn-ocr-send-to-approval">
+            📤 Відправити на погодження керівнику
+          </button>
+          <button type="button" class="btn btn-sm btn-action-primary" id="btn-ocr-approve-now">
+            ✓ Погодити одразу та провести в Склад / Цех / Облік
+          </button>
+        </div>
+      `;
+    }
+
+    if (tbody) {
+      tbody.innerHTML = state.approvalDocs
+        .map((d) => {
+          const isApproved = d.status === 'APPROVED';
+          const isRejected = d.status === 'REJECTED';
+
+          let statusBadge = '';
+          let actionBtns = '';
+          if (isApproved) {
+            statusBadge = `<span class="badge badge-green">✓ Погоджено та проведено</span>`;
+            actionBtns = `
+              <div style="display:flex;gap:6px;justify-content:flex-end;">
+                <button type="button" class="btn btn-sm btn-subtle js-doc-preview-ocr" data-id="${escapeHtml(d.id)}">👁️ Скан OCR</button>
+                <span class="mono" style="font-size:11.5px;color:var(--success);align-self:center;">Дт ${escapeHtml(d.ledgerDtCode)} Кт ${escapeHtml(d.ledgerKtCode)}</span>
+              </div>
+            `;
+          } else if (isRejected) {
+            statusBadge = `<span class="badge badge-red">✕ На доопрацюванні</span>`;
+            actionBtns = `
+              <div style="display:flex;gap:6px;justify-content:flex-end;">
+                <button type="button" class="btn btn-sm btn-subtle js-doc-Approve" data-id="${escapeHtml(d.id)}">Погодити</button>
+              </div>
+            `;
+          } else {
+            statusBadge = `<span class="badge badge-amber">⏳ Очікує погодження</span>`;
+            actionBtns = `
+              <div style="display:flex;gap:6px;justify-content:flex-end;flex-wrap:wrap;">
+                <button type="button" class="btn btn-sm btn-action-primary js-doc-approve" data-id="${escapeHtml(d.id)}">✓ Погодити + в Склад/Облік</button>
+                <button type="button" class="btn btn-sm btn-subtle js-doc-preview-ocr" data-id="${escapeHtml(d.id)}">👁️ OCR</button>
+                <button type="button" class="btn btn-sm btn-subtle js-doc-reject" data-id="${escapeHtml(d.id)}">✕</button>
+              </div>
+            `;
+          }
+
+          return `
+            <tr style="${isApproved ? 'background: #F8FAFC;' : ''}">
+              <td>
+                <div style="font-weight: 700; color: var(--text-main);">${escapeHtml(d.docNumber)}</div>
+                <div style="font-size: 11.5px; color: var(--accent-blue); font-weight: 600;">${escapeHtml(d.source)}</div>
+              </td>
+              <td>
+                <span class="badge badge-slate" style="margin-bottom: 3px;">${escapeHtml(d.typeBadge)}</span>
+                <div style="font-weight: 600; font-size: 13px;">${escapeHtml(d.counterparty)}</div>
+                <div class="mono" style="font-size: 11px; color: var(--text-muted);">ЄДРПОУ: ${escapeHtml(d.edrpou)}</div>
+              </td>
+              <td style="font-size: 12.5px; color: var(--text-secondary); max-width: 310px;">
+                ${escapeHtml(d.ecosystemLink)}
+              </td>
+              <td class="text-right mono" style="font-weight: 700; font-size: 13.5px;">
+                ${fmtUah(d.amount)}
+              </td>
+              <td style="font-size: 12px; font-weight: 500; color: var(--text-secondary);">
+                ${escapeHtml(d.approvalRoute)}
+              </td>
+              <td>${statusBadge}</td>
+              <td class="text-right">${actionBtns}</td>
+            </tr>
+          `;
+        })
+        .join('');
+    }
+  }
+
+  function handleUploadedOcrFile(file, sourceLabel) {
+    if (!file) return;
+    const isContract = /догов|contract|spec|угода/i.test(file.name);
+    const isInvoice = /рах|inv|bill|сф/i.test(file.name);
+    const docId = `DOC-${Math.floor(1000 + Math.random() * 8999)}`;
+    const amount = isContract ? 640000 : isInvoice ? 195000 : 324000;
+
+    state.activeOcrDoc = {
+      id: docId,
+      docType: isContract ? 'CONTRACT' : isInvoice ? 'INVOICE' : 'WAYBILL',
+      typeBadge: isContract ? 'Договір поставки (Розпізнано AI)' : isInvoice ? 'Рахунок-фактура на оплату' : 'Прибуткова накладна (Склад ↔ Цех)',
+      source: `${sourceLabel}: ${file.name}`,
+      docNumber: `${docId} від ${new Date().toLocaleDateString('uk-UA')}`,
+      counterparty: isContract ? 'ТОВ "ТехноПром Комплект"' : 'ТОВ "УкрМетал Постач"',
+      edrpou: isContract ? '39481023' : '37291045',
+      amount,
+      vatAmount: Math.round((amount / 6) * 100) / 100,
+      itemsSummary: `Автоматично розпізнано з файлу «${file.name}» (${Math.max(1, Math.round(file.size / 1024))} КБ): сировина та комплектуючі для цеху і складу`,
+      ecosystemLink: 'Склад WMS (Рах. 201) ↔ Виробничий Цех MES (Рах. 231) ↔ Бухгалтерія (Дт/Кт)',
+      aiRiskCheck: '✓ Документ успішно оцифровано AI OCR. Ціни, код ЄДРПОУ та номенклатуру перевірено.',
+      approvalRoute: 'Ініціатор ✓ → Нач. Цеху / Склад ✓ → Директор (На погодженні)',
+      ledgerDt: isContract ? '361 Розрахунки з покупцями' : '201 Сировина й матеріали (Склад)',
+      ledgerDtCode: isContract ? '361' : '201',
+      ledgerKt: isContract ? '701 Дохід від реалізації' : '631 Розрахунки з постачальниками',
+      ledgerKtCode: isContract ? '701' : '631'
+    };
+
+    const dzTitle = document.getElementById('ocr-dropzone-title');
+    if (dzTitle) {
+      dzTitle.textContent = `✓ Розпізнано файл: ${file.name} (${sourceLabel})`;
+    }
+
+    renderDocsSection();
+    showInlineStatus(`✓ Документ «${file.name}» розпізнано AI OCR та підготовлено до погодження!`);
+  }
+
   function evaluateEnterpriseRoiLive() {
     const turnSlider = document.getElementById('roi-turnover-slider');
     const leakSlider = document.getElementById('roi-leak-slider');
     const staffSlider = document.getElementById('roi-staff-slider');
     if (!turnSlider || !leakSlider || !staffSlider) return;
 
-    const turnover = Number(turnSlider.value) || 45000000;
-    const leakPct = Number(leakSlider.value) || 3.8;
-    const staffCost = Number(staffSlider.value) || 380000;
+    const turnover = Number(turnSlider.value) || 4500000;
+    const leakPct = Number(leakSlider.value) || 3.5;
+    const staffCost = Number(staffSlider.value) || 65000;
 
     const elTurnVal = document.getElementById('roi-turnover-val');
     if (elTurnVal) elTurnVal.textContent = `${fmtUah(turnover)} / міс`;
@@ -1207,9 +1550,9 @@
     const elBrkStaff = document.getElementById('roi-break-staff');
     if (elBrkStaff) elBrkStaff.textContent = `+${fmtUah(staffSaved)} / міс`;
 
-    const paybackDays = Math.max(4, Math.min(25, Math.round((450000 / monthlyTotal) * 30)));
+    const paybackDays = Math.max(5, Math.min(28, Math.round((95000 / Math.max(1, monthlyTotal)) * 30)));
     const elPayback = document.getElementById('roi-payback-badge');
-    if (elPayback) elPayback.textContent = `Окупність впровадження: ${paybackDays} днів`;
+    if (elPayback) elPayback.textContent = `Окупність системи: ${paybackDays} днів`;
   }
 
   function renderOwnerTodayStream() {
@@ -1224,6 +1567,28 @@
 
     const itemsHtml = [];
     let actionCount = 0;
+
+    // 0. Pending Document Approvals (Waybills from Phone / Contracts from PC)
+    const pendingDocs = (state.approvalDocs || []).filter((d) => d.status === 'PENDING');
+    if (pendingDocs.length > 0) {
+      const topDoc = pendingDocs[0];
+      actionCount++;
+      itemsHtml.push(`
+        <div class="action-item" style="border-left: 3px solid var(--accent-blue);">
+          <div class="action-item-left">
+            <span class="action-tag-quiet" style="background: var(--accent-blue-soft); color: var(--accent-blue); border-color: var(--accent-blue-border);">Погодження OCR</span>
+            <div>
+              <div class="action-title">${escapeHtml(topDoc.typeBadge)}: № ${escapeHtml(topDoc.docNumber)} (${escapeHtml(topDoc.counterparty)}) — <span class="action-amount">${fmtUah(topDoc.amount)}</span></div>
+              <div class="action-desc">${escapeHtml(topDoc.source)} • ${escapeHtml(topDoc.ecosystemLink)}. На погодженні (${pendingDocs.length} док.).</div>
+            </div>
+          </div>
+          <div class="action-buttons">
+            <button type="button" class="btn btn-sm btn-subtle" onclick="window.opexSwitchTab('docs')">Відкрити AI-Сканер (${pendingDocs.length})</button>
+            <button type="button" class="btn btn-sm btn-action-primary js-doc-approve" data-id="${escapeHtml(topDoc.id)}">✓ Погодити + в Склад/Облік</button>
+          </div>
+        </div>
+      `);
+    }
 
     // 1. Unrecognized bank transactions
     if (needsReviewTxs.length > 0) {
@@ -2300,6 +2665,7 @@
     renderBankSection();
     renderTaxesAndTeamSection();
     renderSalesLeaderboardTable();
+    renderDocsSection();
     evaluateEnterpriseRoiLive();
   }
 
@@ -2344,11 +2710,115 @@
       });
     }
 
-    // Sidebar niche pill trigger -> opens Presentation/Enterprise tab
+    // Sidebar niche pill trigger -> opens Presentation (SMB + Enterprise) tab
     const nicheTrigger = document.getElementById('sidebar-niche-trigger');
-    if (nicheTrigger) {
-      nicheTrigger.addEventListener('click', () => {
-        switchTab('about');
+    const scaleCard = document.getElementById('sidebar-scale-card');
+    [nicheTrigger, scaleCard].forEach((el) => {
+      if (el) {
+        el.addEventListener('click', () => {
+          switchTab('about');
+        });
+      }
+    });
+
+    // Presentation Mode Switcher (BOTH / SMB / ENTERPRISE) in #view-about
+    document.querySelectorAll('.js-pres-mode-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const mode = btn.getAttribute('data-mode') || 'BOTH';
+        document.querySelectorAll('.js-pres-mode-btn').forEach((b) => {
+          const isCurrent = b === btn;
+          b.className = isCurrent ? 'btn btn-sm btn-action-primary js-pres-mode-btn' : 'btn btn-sm btn-subtle js-pres-mode-btn';
+        });
+        const smbBlock = document.getElementById('pres-block-smb');
+        const entBlock = document.getElementById('pres-block-enterprise');
+        const turnSlider = document.getElementById('roi-turnover-slider');
+        const staffSlider = document.getElementById('roi-staff-slider');
+        if (mode === 'SMB') {
+          if (smbBlock) smbBlock.style.display = 'block';
+          if (entBlock) entBlock.style.display = 'none';
+          if (turnSlider) turnSlider.value = '1800000';
+          if (staffSlider) staffSlider.value = '35000';
+          evaluateEnterpriseRoiLive();
+          showInlineStatus('✓ Відкрито презентацію для Малого та Середнього Бізнесу (МСБ)');
+        } else if (mode === 'ENTERPRISE') {
+          if (smbBlock) smbBlock.style.display = 'none';
+          if (entBlock) entBlock.style.display = 'block';
+          if (turnSlider) turnSlider.value = '12000000';
+          if (staffSlider) staffSlider.value = '140000';
+          evaluateEnterpriseRoiLive();
+          showInlineStatus('✓ Відкрито презентацію для Великого Бізнесу та Виробництва (Цех + Склад)');
+        } else {
+          if (smbBlock) smbBlock.style.display = 'block';
+          if (entBlock) entBlock.style.display = 'block';
+          if (turnSlider) turnSlider.value = '4500000';
+          if (staffSlider) staffSlider.value = '65000';
+          evaluateEnterpriseRoiLive();
+          showInlineStatus('✓ Показано обидві презентації: МСБ + Великий Бізнес');
+        }
+      });
+    });
+
+    // OCR File Input (PC) & Phone Camera Patch Input
+    const ocrPcInput = document.getElementById('ocr-pc-file-input');
+    if (ocrPcInput) {
+      ocrPcInput.addEventListener('change', (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (file) handleUploadedOcrFile(file, '💻 Завантажено з комп\'ютера');
+      });
+    }
+
+    const ocrPhoneInput = document.getElementById('ocr-phone-camera-input');
+    if (ocrPhoneInput) {
+      ocrPhoneInput.addEventListener('change', (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (file) handleUploadedOcrFile(file, '📱 Сфотографовано з телефону');
+      });
+    }
+
+    const ocrDropzone = document.getElementById('ocr-upload-dropzone');
+    if (ocrDropzone) {
+      ocrDropzone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        ocrDropzone.style.borderColor = 'var(--primary)';
+      });
+      ocrDropzone.addEventListener('dragleave', () => {
+        ocrDropzone.style.borderColor = 'var(--accent-blue)';
+      });
+      ocrDropzone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        ocrDropzone.style.borderColor = 'var(--accent-blue)';
+        const file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+        if (file) handleUploadedOcrFile(file, '💻 Перетягнуто з комп\'ютера');
+      });
+    }
+
+    const btnApproveAllDocs = document.getElementById('btn-approve-all-docs');
+    if (btnApproveAllDocs) {
+      btnApproveAllDocs.addEventListener('click', () => {
+        let count = 0;
+        const entries = [];
+        state.approvalDocs.forEach((d) => {
+          if (d.status !== 'APPROVED') {
+            d.status = 'APPROVED';
+            count++;
+            entries.push({
+              doc: d.docNumber,
+              desc: `Погоджено документ (${d.typeBadge}): ${d.ecosystemLink}`,
+              entity: d.counterparty,
+              dt: d.ledgerDt,
+              dtCode: d.ledgerDtCode,
+              kt: d.ledgerKt,
+              ktCode: d.ledgerKtCode,
+              amount: d.amount
+            });
+          }
+        });
+        if (entries.length > 0) {
+          postOnlineLedgerEntries(entries);
+        }
+        renderDocsSection();
+        renderPulseSection();
+        showInlineStatus(`✓ Погоджено всі документи (${count || state.approvalDocs.length} шт.) + автоматично проведено в Склад, Цех та Облік Дт/Кт!`);
       });
     }
 
@@ -2976,6 +3446,169 @@
     document.body.addEventListener('click', async (e) => {
       const target = e.target.closest('button');
       if (!target) return;
+
+      // 0. Document OCR Presets & In-System Document Approval Workflow
+      if (target.classList.contains('js-ocr-sim-preset')) {
+        const presetKey = target.getAttribute('data-preset');
+        const preset = OCR_PRESETS[presetKey];
+        if (preset) {
+          state.activeOcrDoc = Object.assign({}, preset);
+          const recEl = document.getElementById('docs-kpi-recognized');
+          if (recEl) {
+            const curNum = parseInt(recEl.textContent, 10) || 342;
+            recEl.textContent = `${curNum + 1} док.`;
+          }
+          renderDocsSection();
+          showInlineStatus(`✓ AI OCR розпізнав документ: ${preset.typeBadge} № ${preset.docNumber} (${preset.source})`);
+        }
+        return;
+      }
+
+      if (target.id === 'btn-ocr-send-to-approval') {
+        const doc = state.activeOcrDoc;
+        if (doc) {
+          const exists = state.approvalDocs.find((d) => d.id === doc.id);
+          if (!exists) {
+            state.approvalDocs.unshift({
+              id: doc.id,
+              docNumber: doc.docNumber,
+              source: doc.source,
+              typeBadge: doc.typeBadge,
+              counterparty: doc.counterparty,
+              edrpou: doc.edrpou,
+              ecosystemLink: doc.ecosystemLink,
+              amount: doc.amount,
+              approvalRoute: doc.approvalRoute,
+              status: 'PENDING',
+              ledgerDt: doc.ledgerDt,
+              ledgerDtCode: doc.ledgerDtCode,
+              ledgerKt: doc.ledgerKt,
+              ledgerKtCode: doc.ledgerKtCode
+            });
+          } else {
+            exists.status = 'PENDING';
+          }
+          renderDocsSection();
+          renderPulseSection();
+          showInlineStatus(`📤 Документ № ${doc.docNumber} передано на погодження керівнику!`);
+        }
+        return;
+      }
+
+      if (target.id === 'btn-ocr-approve-now') {
+        const doc = state.activeOcrDoc;
+        if (doc) {
+          let existing = state.approvalDocs.find((d) => d.id === doc.id);
+          if (!existing) {
+            existing = {
+              id: doc.id,
+              docNumber: doc.docNumber,
+              source: doc.source,
+              typeBadge: doc.typeBadge,
+              counterparty: doc.counterparty,
+              edrpou: doc.edrpou,
+              ecosystemLink: doc.ecosystemLink,
+              amount: doc.amount,
+              approvalRoute: doc.approvalRoute.replace('⏳', '✓'),
+              status: 'APPROVED',
+              ledgerDt: doc.ledgerDt,
+              ledgerDtCode: doc.ledgerDtCode,
+              ledgerKt: doc.ledgerKt,
+              ledgerKtCode: doc.ledgerKtCode
+            };
+            state.approvalDocs.unshift(existing);
+          } else {
+            existing.status = 'APPROVED';
+            existing.approvalRoute = existing.approvalRoute.replace('⏳', '✓');
+          }
+          postOnlineLedgerEntries(
+            [
+              {
+                doc: doc.docNumber,
+                desc: `Погоджено та проведено (${doc.source}): ${doc.itemsSummary}`,
+                entity: doc.counterparty,
+                dt: doc.ledgerDt,
+                dtCode: doc.ledgerDtCode,
+                kt: doc.ledgerKt,
+                ktCode: doc.ledgerKtCode,
+                amount: doc.amount
+              }
+            ],
+            `✓ Документ № ${doc.docNumber} погоджено та проведено в Склад/Цех і Головну Книгу (Дт ${doc.ledgerDtCode} Кт ${doc.ledgerKtCode} на ${fmtUah(doc.amount)})!`
+          );
+          renderDocsSection();
+          renderPulseSection();
+        }
+        return;
+      }
+
+      if (target.classList.contains('js-doc-approve')) {
+        const docId = target.getAttribute('data-id');
+        const doc = state.approvalDocs.find((d) => d.id === docId);
+        if (doc) {
+          doc.status = 'APPROVED';
+          doc.approvalRoute = doc.approvalRoute.replace('⏳', '✓');
+          postOnlineLedgerEntries(
+            [
+              {
+                doc: doc.docNumber,
+                desc: `Погоджено в системі (${doc.typeBadge}): ${doc.ecosystemLink}`,
+                entity: doc.counterparty,
+                dt: doc.ledgerDt,
+                dtCode: doc.ledgerDtCode,
+                kt: doc.ledgerKt,
+                ktCode: doc.ledgerKtCode,
+                amount: doc.amount
+              }
+            ],
+            `✓ Документ № ${doc.docNumber} погоджено! Сировину/умови проведено в Склад ↔ Цех + Дт ${doc.ledgerDtCode} Кт ${doc.ledgerKtCode} (${fmtUah(doc.amount)})`
+          );
+          renderDocsSection();
+          renderPulseSection();
+        }
+        return;
+      }
+
+      if (target.classList.contains('js-doc-reject')) {
+        const docId = target.getAttribute('data-id');
+        const doc = state.approvalDocs.find((d) => d.id === docId);
+        if (doc) {
+          doc.status = 'REJECTED';
+          renderDocsSection();
+          renderPulseSection();
+          showInlineStatus(`✕ Документ № ${doc.docNumber} повернуто на доопрацювання`);
+        }
+        return;
+      }
+
+      if (target.classList.contains('js-doc-preview-ocr')) {
+        const docId = target.getAttribute('data-id');
+        const doc = state.approvalDocs.find((d) => d.id === docId);
+        if (doc) {
+          state.activeOcrDoc = {
+            id: doc.id,
+            docType: 'WAYBILL',
+            typeBadge: doc.typeBadge,
+            source: doc.source,
+            docNumber: doc.docNumber,
+            counterparty: doc.counterparty,
+            edrpou: doc.edrpou,
+            amount: doc.amount,
+            vatAmount: Math.round((doc.amount / 6) * 100) / 100,
+            itemsSummary: doc.ecosystemLink,
+            ecosystemLink: doc.ecosystemLink,
+            aiRiskCheck: '✓ Усі реквізити, номенклатуру складу/цеху та суму ПДВ звірено автоматично.',
+            approvalRoute: doc.approvalRoute,
+            ledgerDt: doc.ledgerDt,
+            ledgerDtCode: doc.ledgerDtCode,
+            ledgerKt: doc.ledgerKt,
+            ledgerKtCode: doc.ledgerKtCode
+          };
+          renderDocsSection();
+          showInlineStatus(`👁️ Відкрито AI OCR скан документа № ${doc.docNumber}`);
+        }
+        return;
+      }
 
       // 0A. 1-Click Live Ledger Simulator Buttons in #view-ledger
       if (target.classList.contains('js-sim-ledger')) {
