@@ -296,12 +296,28 @@
     }
 
     @media (max-width: 768px) {
+      body {
+        padding: 16px 10px 40px;
+      }
+      .top-bar {
+        padding: 14px 16px;
+      }
       .hero {
         grid-template-columns: 1fr;
-        padding: 24px;
+        padding: 20px 18px;
       }
-      .grid-2 {
+      .hero h1 {
+        font-size: 22px;
+      }
+      .section-card {
+        padding: 18px 16px;
+        overflow-x: auto;
+      }
+      .grid-2, .grid-3, .grid-4 {
         grid-template-columns: 1fr;
+      }
+      table {
+        min-width: 560px;
       }
     }
 
@@ -342,7 +358,7 @@
         </p>
         <div class="hero-pills">
           <span class="badge badge-blue">🏭 Цех (MES) напряму поєднаний зі Складом (WMS)</span>
-          <span class="badge badge-green">📱 Патч з телефону: фото накладної → одразу в системі</span>
+          <span class="badge badge-green">📱 Мобільна версія 1:1 синхронна з Десктопом (Фото накладної + Погодження)</span>
           <span class="badge badge-amber">✅ Погодження договорів і накладних прямо в системі</span>
           <span class="badge badge-slate">🏪 Презентація для МСБ + 🏢 Презентація для Великого Бізнесу</span>
         </div>

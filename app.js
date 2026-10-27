@@ -811,6 +811,13 @@
       btn.classList.toggle('active', btn.getAttribute('data-tab') === tabId);
     });
 
+    document.querySelectorAll('#mobile-bottom-nav .mobile-bottom-btn').forEach((btn) => {
+      btn.classList.toggle('active', btn.getAttribute('data-mob-tab') === tabId);
+    });
+
+    const sidebarEl = document.querySelector('.sidebar');
+    if (sidebarEl) sidebarEl.classList.remove('mobile-open');
+
     document.querySelectorAll('.view-section').forEach((sec) => {
       sec.classList.toggle('active', sec.id === `view-${tabId}`);
     });
@@ -918,6 +925,7 @@
     if (elRecTotal) elRecTotal.textContent = fmtUah(recTotal);
 
     renderOwnerTodayStream();
+    if (typeof renderMobileCompanion === "function") renderMobileCompanion();
   }
 
   // ─── 2. ⚡ ПРОВОДКИ ОНЛАЙН (Дт/Кт) ТА ГОЛОВНА КНИГА (GENERAL LEDGER) ───────
@@ -985,6 +993,7 @@
     }
 
     renderLedgerSection();
+    if (typeof broadcastDesktopMobileSync === "function") broadcastDesktopMobileSync(toastMsg);
     if (toastMsg) {
       showInlineStatus(toastMsg);
     }
@@ -1339,6 +1348,212 @@
   }
 
   // ─── 1B. 📄 ДОКУМЕНТИ, AI-РОЗПІЗНАВАННЯ (OCR) ТА ПОГОДЖЕННЯ (ПК + ТЕЛЕФОН) ──
+
+  // ─── Mobile <-> Desktop Live Synchronization Engine ────────────────────────
+  state.phoneActiveTab = 'DOCS';
+  let liveSyncChannel = null;
+  try {
+    if (typeof BroadcastChannel !== 'undefined') {
+      liveSyncChannel = new BroadcastChannel('opexmetrix_ecosystem_sync');
+      liveSyncChannel.onmessage = (ev) => {
+        if (ev && ev.data && ev.data.type === 'STATE_SYNC') {
+          if (ev.data.holdingEntity) {
+            state.holdingEntity = ev.data.holdingEntity;
+            const sel = document.getElementById('holding-entity-select');
+            if (sel) sel.value = state.holdingEntity;
+          }
+          if (Array.isArray(ev.data.approvalDocs)) state.approvalDocs = ev.data.approvalDocs;
+          if (Array.isArray(ev.data.mesLines)) state.mesLines = ev.data.mesLines;
+          if (Array.isArray(ev.data.ledgerEntries)) state.ledgerEntries = ev.data.ledgerEntries;
+          renderPulseSection();
+          renderDocsSection();
+          renderMesSection();
+          renderLedgerSection();
+          renderMobileCompanion();
+          showInlineStatus(ev.data.toast || '📱 Синхронізовано з мобільною версією в реальному часі!');
+        }
+      };
+    }
+  } catch (_e) {}
+
+  function broadcastDesktopMobileSync(toastMsg) {
+    renderMobileCompanion();
+    try {
+      if (liveSyncChannel) {
+        liveSyncChannel.postMessage({
+          type: 'STATE_SYNC',
+          holdingEntity: state.holdingEntity,
+          approvalDocs: state.approvalDocs,
+          mesLines: state.mesLines,
+          ledgerEntries: state.ledgerEntries,
+          toast: toastMsg
+        });
+      }
+    } catch (_e) {}
+  }
+
+  function renderMobileCompanion() {
+    const bodyEl = document.getElementById('phone-app-body');
+    const entLabel = document.getElementById('phone-active-entity-label');
+    const ent = HOLDING_ENTITIES[state.holdingEntity] || HOLDING_ENTITIES.ALL;
+    if (entLabel) entLabel.textContent = ent.badge;
+    if (!bodyEl) return;
+
+    const pendingDocs = (state.approvalDocs || []).filter((d) => d.status === 'PENDING');
+    const netProfit = ent.revenue - ent.cogs - ent.opex - ent.taxes;
+    const safeDividend = Math.round(ent.cashBalance * 0.315);
+
+    if (state.phoneActiveTab === 'DOCS') {
+      const docsListHtml = (state.approvalDocs || [])
+        .map((d) => {
+          const isPending = d.status === 'PENDING';
+          return `
+            <div class="phone-card" style="border-left: 3px solid ${isPending ? 'var(--warning)' : 'var(--success)'};">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:6px;margin-bottom:4px;">
+                <span class="badge ${isPending ? 'badge-amber' : 'badge-green'}" style="font-size:10px;">
+                  ${isPending ? '⏳ На погодженні' : '✓ Погоджено (Склад + Облік)'}
+                </span>
+                <strong class="mono" style="font-size:12.5px;color:var(--text-main);">${fmtUah(d.amount)}</strong>
+              </div>
+              <div style="font-weight:700;font-size:13px;color:var(--text-main);">${escapeHtml(d.typeBadge)}: ${escapeHtml(d.docNumber)}</div>
+              <div style="font-size:11.5px;color:var(--text-secondary);margin-top:2px;">${escapeHtml(d.counterparty)} (ЄДРПОУ ${escapeHtml(d.edrpou)})</div>
+              <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">${escapeHtml(d.ecosystemLink)}</div>
+              <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap;">
+                ${
+                  isPending
+                    ? `<button type="button" class="btn btn-sm btn-action-primary js-doc-approve" data-id="${escapeHtml(d.id)}" style="width:100%;font-size:11.5px;">✓ Погодити з телефону + провести в ПК</button>`
+                    : `<span class="mono" style="font-size:10.5px;color:var(--success);font-weight:600;">✓ Синхронізовано з ПК (Дт ${escapeHtml(d.ledgerDtCode)} Кт ${escapeHtml(d.ledgerKtCode)})</span>`
+                }
+              </div>
+            </div>
+          `;
+        })
+        .join('');
+
+      bodyEl.innerHTML = `
+        <div class="phone-card" style="background: var(--accent-blue-soft); border-color: var(--accent-blue-border);">
+          <div style="font-weight: 700; font-size: 13px; color: var(--accent-blue); margin-bottom: 4px;">
+            📱 Мобільний Сканер Накладних та Договорів
+          </div>
+          <div style="font-size: 11.5px; color: var(--text-secondary); margin-bottom: 10px;">
+            Сфотографуйте документ з телефону — він за 1 секунду з'явиться на комп'ютері в таблиці погодження та на складі:
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <button type="button" class="btn btn-sm btn-action-primary" id="btn-phone-sim-waybill" style="width: 100%; justify-content: center;">
+              📸 Сфотографувати накладну в цех/склад (+На ПК)
+            </button>
+            <button type="button" class="btn btn-sm btn-subtle" id="btn-phone-sim-contract" style="width: 100%; justify-content: center; background: #FFFFFF;">
+              📑 Відправити договір на погодження з телефону
+            </button>
+          </div>
+        </div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:0 2px;">
+          <span style="font-size:11.5px;font-weight:700;color:var(--text-secondary);text-transform:uppercase;">Документи на погодженні (${pendingDocs.length})</span>
+          <span class="badge badge-green" style="font-size:10px;">1:1 з Десктопом</span>
+        </div>
+
+        ${docsListHtml}
+      `;
+    } else if (state.phoneActiveTab === 'OWNER') {
+      bodyEl.innerHTML = `
+        <div class="phone-kpi-grid">
+          <div class="phone-kpi-box">
+            <div style="font-size:11px;color:var(--text-muted);">Гроші на рахунках</div>
+            <div class="mono" style="font-size:16px;font-weight:800;color:var(--text-main);margin-top:2px;">${fmtUah(ent.cashBalance)}</div>
+            <div style="font-size:10.5px;color:var(--success);font-weight:600;margin-top:2px;">Дивіденди: ${fmtUah(safeDividend)}</div>
+          </div>
+          <div class="phone-kpi-box">
+            <div style="font-size:11px;color:var(--text-muted);">Чистий прибуток</div>
+            <div class="mono" style="font-size:16px;font-weight:800;color:var(--success);margin-top:2px;">+${fmtUah(netProfit)}</div>
+            <div style="font-size:10.5px;color:var(--text-secondary);margin-top:2px;">Оборот: ${fmtUah(ent.revenue)}</div>
+          </div>
+        </div>
+
+        <div class="phone-card">
+          <div style="font-size:12px;font-weight:700;color:var(--text-main);margin-bottom:6px;">Перемкнути контур бізнесу з телефону (оновлює ПК):</div>
+          <select id="phone-entity-select" class="select" style="font-size:12px;height:34px;">
+            <option value="HOLDING_ALL" ${state.holdingEntity === 'HOLDING_ALL' || state.holdingEntity === 'ALL' ? 'selected' : ''}>🏢 Група Компаній (Цех + Склад)</option>
+            <option value="PLANT_LLC" ${state.holdingEntity === 'PLANT_LLC' || state.holdingEntity === 'PLANT' ? 'selected' : ''}>🏭 ТОВ "ПромТех Виробництво"</option>
+            <option value="TRADE_LLC" ${state.holdingEntity === 'TRADE_LLC' || state.holdingEntity === 'TRADE' ? 'selected' : ''}>💼 ТОВ "Альфа Трейд Дистрибуція"</option>
+            <option value="SMB_MODE" ${state.holdingEntity === 'SMB_MODE' || state.holdingEntity === 'SMB' ? 'selected' : ''}>🏪 Режим МСБ (ФОП + ТОВ)</option>
+          </select>
+        </div>
+
+        <div class="phone-card">
+          <div style="font-size:12px;font-weight:700;color:var(--text-main);margin-bottom:6px;">Останні проводки Дт/Кт (Синхронно з ПК):</div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            ${(state.ledgerEntries || []).slice(0, 4).map((e) => `
+              <div style="padding:6px 8px;background:var(--bg-app);border:1px solid var(--border);border-radius:6px;font-size:11px;">
+                <div style="display:flex;justify-content:space-between;font-weight:700;">
+                  <span class="mono" style="color:var(--accent-blue);">Дт ${escapeHtml(e.dtCode)} Кт ${escapeHtml(e.ktCode)}</span>
+                  <span class="mono">${fmtUah(e.amount)}</span>
+                </div>
+                <div style="color:var(--text-secondary);margin-top:2px;">${escapeHtml(e.desc)}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    } else if (state.phoneActiveTab === 'SHOPFLOOR') {
+      bodyEl.innerHTML = `
+        <div class="phone-card" style="background:#F0FDF4;border-color:#BBF7D0;">
+          <div style="font-weight:700;font-size:13px;color:#166534;">🏭 QR-Термінал Цеху (MES) та Складу (WMS)</div>
+          <div style="font-size:11.5px;color:#14532D;margin-top:2px;">
+            Майстер у цеху натискає «Випустити партію» на телефоні — готові вироби миттєво стають на Склад ГП (Рах. 26) на комп'ютері:
+          </div>
+        </div>
+        ${(state.mesLines || []).slice(0, 4).map((line) => {
+          const isReleased = line.status === 'RELEASED';
+          return `
+            <div class="phone-card">
+              <div style="font-weight:700;font-size:12.5px;color:var(--text-main);">${escapeHtml(line.name)}</div>
+              <div style="font-size:11.5px;color:var(--text-secondary);margin-top:2px;">${escapeHtml(line.orderTitle)}</div>
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;">
+                <span class="badge ${isReleased ? 'badge-green' : 'badge-blue'}" style="font-size:10.5px;">
+                  ${isReleased ? '✓ На складі ГП (Рах. 26)' : `В роботі: ${line.doneQty}/${line.totalQty} од.`}
+                </span>
+                ${
+                  isReleased
+                    ? '<span class="mono" style="font-size:11px;color:var(--success);">Дт 26 Кт 231</span>'
+                    : `<button type="button" class="btn btn-sm btn-action-primary js-mes-release-line" data-id="${escapeHtml(line.id)}" style="font-size:11px;">✓ Випустити з телефону</button>`
+                }
+              </div>
+            </div>
+          `;
+        }).join('')}
+      `;
+    } else if (state.phoneActiveTab === 'SALES') {
+      bodyEl.innerHTML = `
+        <div class="phone-card">
+          <div style="font-weight:700;font-size:13px;color:var(--text-main);margin-bottom:4px;">💼 Експрес-Рахунок з Телефону Сейлза (QR НБУ)</div>
+          <div style="font-size:11.5px;color:var(--text-secondary);margin-bottom:10px;">
+            Виставте рахунок із поля або зустрічі — замовлення миттєво з'явиться на Десктопі у вкладці «Продажі» та зарезервує склад:
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <input type="text" id="phone-inv-client" class="input" value='ТОВ "Нова Пошта Логістик"' style="font-size:12.5px;" />
+            <input type="number" id="phone-inv-amount" class="input mono" value="184000" style="font-size:12.5px;" />
+            <button type="button" class="btn btn-sm btn-action-primary" id="btn-phone-create-order" style="width:100%;justify-content:center;padding:9px;">
+              + Виставити рахунок з телефону (Синхронно з ПК)
+            </button>
+          </div>
+        </div>
+        <div class="phone-card">
+          <div style="font-weight:700;font-size:12px;color:var(--text-main);margin-bottom:6px;">Активні замовлення (Синхронно з Десктопом):</div>
+          ${(state.orders || []).slice(0, 3).map((o) => `
+            <div style="padding:7px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:11.5px;">
+              <div>
+                <div style="font-weight:700;">${escapeHtml(o.orderNumber)} • ${escapeHtml(o.clientName)}</div>
+                <div style="color:var(--text-muted);font-size:10.5px;">${escapeHtml(o.itemsSummary)}</div>
+              </div>
+              <strong class="mono">${fmtUah(o.totalAmount)}</strong>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+  }
+
   function renderDocsSection() {
     const ocrCard = document.getElementById('ocr-live-result-card');
     const tbody = document.getElementById('docs-approval-tbody');
@@ -2673,6 +2888,85 @@
   function bindEvents() {
     window.opexSwitchTab = switchTab;
 
+    // Mobile Sidebar Hamburger Toggle
+    const btnMobMenu = document.getElementById('btn-mobile-sidebar-toggle');
+    if (btnMobMenu) {
+      btnMobMenu.addEventListener('click', () => {
+        const sb = document.querySelector('.sidebar');
+        if (sb) sb.classList.toggle('mobile-open');
+      });
+    }
+
+    // Mobile Bottom Navigation Bar
+    document.querySelectorAll('#mobile-bottom-nav .mobile-bottom-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const t = btn.getAttribute('data-mob-tab');
+        if (t) switchTab(t);
+      });
+    });
+
+    // Open / Close Live Mobile Companion (Телефон <-> ПК)
+    const btnOpenPhone = document.getElementById('btn-open-mobile-companion');
+    const btnClosePhone = document.getElementById('btn-close-mobile-companion');
+    const phoneBackdrop = document.getElementById('mobile-companion-backdrop');
+    if (btnOpenPhone && phoneBackdrop) {
+      btnOpenPhone.addEventListener('click', () => {
+        renderMobileCompanion();
+        phoneBackdrop.classList.add('open');
+        showInlineStatus('📱 Мобільну версію відкрито: всі дії синхронізуються з Десктопом 1:1');
+      });
+    }
+    if (btnClosePhone && phoneBackdrop) {
+      btnClosePhone.addEventListener('click', () => {
+        phoneBackdrop.classList.remove('open');
+      });
+    }
+    if (phoneBackdrop) {
+      phoneBackdrop.addEventListener('click', (e) => {
+        if (e.target === phoneBackdrop) phoneBackdrop.classList.remove('open');
+      });
+    }
+
+    // Phone Role Tabs inside Companion
+    document.querySelectorAll('#phone-role-tabs .phone-role-tab').forEach((tabBtn) => {
+      tabBtn.addEventListener('click', () => {
+        const pt = tabBtn.getAttribute('data-phone-tab') || 'DOCS';
+        state.phoneActiveTab = pt;
+        document.querySelectorAll('#phone-role-tabs .phone-role-tab').forEach((b) => {
+          b.classList.toggle('active', b === tabBtn);
+        });
+        renderMobileCompanion();
+      });
+    });
+
+    // Phone Companion Camera Input
+    const phoneCamInput = document.getElementById('phone-companion-camera-input');
+    if (phoneCamInput) {
+      phoneCamInput.addEventListener('change', (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (file) {
+          handleUploadedOcrFile(file, '📱 Камера Мобільного Додатка');
+          state.approvalDocs.unshift(Object.assign({ status: 'PENDING' }, state.activeOcrDoc));
+          renderDocsSection();
+          renderPulseSection();
+          broadcastDesktopMobileSync(`📱 Фото «${file.name}» з телефону миттєво передано на ПК!`);
+        }
+      });
+    }
+
+    // Delegated clicks inside Phone Companion
+    document.body.addEventListener('change', (e) => {
+      if (e.target && e.target.id === 'phone-entity-select') {
+        state.holdingEntity = e.target.value;
+        const desktopSel = document.getElementById('holding-entity-select');
+        if (desktopSel) desktopSel.value = state.holdingEntity;
+        renderPulseSection();
+        renderCashflowChart();
+        broadcastDesktopMobileSync('📱 Контур підприємства перемкнено з телефону!');
+      }
+    });
+
+
     // Sidebar nav clicks
     document.querySelectorAll('#main-nav .nav-btn').forEach((btn) => {
       btn.addEventListener('click', () => {
@@ -3446,6 +3740,99 @@
     document.body.addEventListener('click', async (e) => {
       const target = e.target.closest('button');
       if (!target) return;
+
+
+      if (target.id === 'btn-phone-sim-waybill') {
+        const newId = `ВН-${Math.floor(4500 + Math.random() * 900)}`;
+        const newDoc = {
+          id: newId,
+          docNumber: `${newId} від ${new Date().toLocaleDateString('uk-UA')}`,
+          source: '📱 Сфотографовано з телефону (Склад)',
+          typeBadge: 'Прибуткова накладна (Склад ↔ Цех)',
+          counterparty: 'ТОВ "СтальПром Постач"',
+          edrpou: '39114088',
+          ecosystemLink: 'Лист сталевий 3 мм (2.5 т) → Склад сировини (Рах. 201) під зміну Цеху ЧПК',
+          amount: 245000,
+          approvalRoute: 'Комірник (Телефон) ✓ → Нач. Цеху ✓ → CEO ⏳',
+          status: 'PENDING',
+          ledgerDt: '201 Сировина й матеріали',
+          ledgerDtCode: '201',
+          ledgerKt: '631 Розрахунки з постачальниками',
+          ledgerKtCode: '631'
+        };
+        state.approvalDocs.unshift(newDoc);
+        state.activeOcrDoc = Object.assign({ vatAmount: 40833.33, itemsSummary: newDoc.ecosystemLink, aiRiskCheck: '✓ Розпізнано з камери смартфона за 1.1 с. Ціни в межах норми.' }, newDoc);
+        renderDocsSection();
+        renderPulseSection();
+        broadcastDesktopMobileSync(`📱 Накладну № ${newId} сфотографовано з телефону — вона вже на екрані ПК!`);
+        showInlineStatus(`📱 Накладну № ${newId} сфотографовано з телефону — синхронізовано з ПК!`);
+        return;
+      }
+
+      if (target.id === 'btn-phone-sim-contract') {
+        const newId = `ДП-2026/${Math.floor(120 + Math.random() * 80)}`;
+        const newDoc = {
+          id: newId,
+          docNumber: `${newId} від ${new Date().toLocaleDateString('uk-UA')}`,
+          source: '📱 Відправлено з телефону менеджера',
+          typeBadge: 'Договір поставки + Специфікація',
+          counterparty: 'ТОВ "АгроТех Комплект"',
+          edrpou: '41092831',
+          ecosystemLink: 'Поставка конвеєрних секцій КС-1200 (4 од.) з Цеху MES • AI-перевірка договору: ОК',
+          amount: 512000,
+          approvalRoute: 'Сейлз (Телефон) ✓ → Юрист ✓ → CEO ⏳',
+          status: 'PENDING',
+          ledgerDt: '361 Розрахунки з покупцями',
+          ledgerDtCode: '361',
+          ledgerKt: '701 Дохід від реалізації ГП',
+          ledgerKtCode: '701'
+        };
+        state.approvalDocs.unshift(newDoc);
+        renderDocsSection();
+        renderPulseSection();
+        broadcastDesktopMobileSync(`📱 Договір № ${newId} передано на погодження з телефону!`);
+        showInlineStatus(`📱 Договір № ${newId} передано на погодження з телефону на ПК!`);
+        return;
+      }
+
+      if (target.id === 'btn-phone-create-order') {
+        const clientName = document.getElementById('phone-inv-client')?.value.trim() || 'ТОВ "Нова Пошта Логістик"';
+        const totalAmount = Number(document.getElementById('phone-inv-amount')?.value) || 184000;
+        const newOrderNum = `INV-MOB-${110 + state.orders.length}`;
+        state.orders.unshift({
+          id: `ord-${Date.now()}`,
+          orderNumber: newOrderNum,
+          date: new Date().toLocaleDateString('uk-UA'),
+          clientName,
+          clientEdrpou: '31316718',
+          itemsSummary: 'Партія продукції (Виставлено з мобільного додатка)',
+          items: [{ name: 'Промислова партія згідно замовлення з телефону', unit: 'компл.', qty: 1, price: totalAmount, cost: Math.round(totalAmount * 0.68) }],
+          totalAmount,
+          costAmount: Math.round(totalAmount * 0.68),
+          marginPct: 32.0,
+          status: 'INVOICED',
+          withVat: true
+        });
+        postOnlineLedgerEntries(
+          [
+            {
+              doc: newOrderNum,
+              desc: `Виставлено рахунок з мобільного додатка (${clientName})`,
+              entity: 'ТОВ "Альфа Трейд Дистрибуція"',
+              dt: '361 Розрахунки з покупцями',
+              dtCode: '361',
+              kt: '701 Дохід від реалізації',
+              ktCode: '701',
+              amount: totalAmount
+            }
+          ],
+          `📱 Рахунок № ${newOrderNum} створено з телефону — синхронізовано з Десктопом (Дт 361 Кт 701)!`
+        );
+        renderSalesOrdersTable();
+        renderPulseSection();
+        renderMobileCompanion();
+        return;
+      }
 
       // 0. Document OCR Presets & In-System Document Approval Workflow
       if (target.classList.contains('js-ocr-sim-preset')) {

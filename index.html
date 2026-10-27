@@ -1344,6 +1344,314 @@
       border: 1px solid var(--border);
     }
 
+
+    /* ==========================================================================
+       MOBILE VERSION & DESKTOP-MOBILE SYNC COMPANION (100% Matched UI/UX)
+       ========================================================================== */
+    .mobile-bottom-nav {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: #FFFFFF;
+      border-top: 1px solid var(--border);
+      box-shadow: 0 -4px 16px rgba(15, 23, 42, 0.06);
+      z-index: 90;
+      justify-content: space-around;
+      align-items: center;
+      padding: 0 6px;
+    }
+
+    .mobile-bottom-btn {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      height: 54px;
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      font-family: var(--font-sans);
+      font-size: 10.5px;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.15s ease;
+      position: relative;
+    }
+
+    .mobile-bottom-btn.active {
+      color: var(--accent-blue);
+      background: var(--accent-blue-soft);
+    }
+
+    .mobile-bottom-btn .mob-icon {
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    .mobile-menu-toggle-btn {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 7px 11px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: #FFFFFF;
+      color: var(--text-main);
+      font-weight: 600;
+      font-size: 12.5px;
+      cursor: pointer;
+    }
+
+    /* Live Interactive Smartphone Companion Drawer (Desktop <-> Mobile Sync) */
+    .mobile-companion-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.25);
+      backdrop-filter: blur(2px);
+      z-index: 110;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 20px 28px;
+    }
+
+    .mobile-companion-backdrop.open {
+      display: flex;
+    }
+
+    .phone-simulator-shell {
+      width: 392px;
+      max-width: 100%;
+      height: 820px;
+      max-height: 92vh;
+      background: #FFFFFF;
+      border: 8px solid #CBD5E1;
+      border-radius: 36px;
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.22);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .phone-status-bar {
+      background: #FFFFFF;
+      border-bottom: 1px solid var(--border);
+      padding: 10px 16px 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .phone-notch-pill {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      padding: 2px 10px;
+      border-radius: 999px;
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--success);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .phone-app-header {
+      background: #FFFFFF;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .phone-role-tabs {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+      padding: 8px 12px;
+      background: var(--bg-subtle);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .phone-role-tab {
+      padding: 6px 4px;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--text-secondary);
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.15s ease;
+    }
+
+    .phone-role-tab.active {
+      background: #FFFFFF;
+      color: var(--accent-blue);
+      border-color: var(--border);
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+    }
+
+    .phone-app-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 14px;
+      background: var(--bg-app);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .phone-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 13px 14px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .phone-kpi-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .phone-kpi-box {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+    }
+
+    .phone-app-footer {
+      background: #FFFFFF;
+      border-top: 1px solid var(--border);
+      padding: 10px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11.5px;
+      color: var(--text-secondary);
+    }
+
+    /* Responsive Media Queries (Placed at the end so they always win!) */
+    @media (max-width: 1180px) {
+      .kpi-grid-4,
+      .niche-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      }
+      .grid-2,
+      .grid-3 {
+        grid-template-columns: 1fr !important;
+      }
+      .content-container {
+        padding: 20px 18px 80px 18px !important;
+      }
+      .top-header {
+        padding: 12px 18px !important;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .app-shell {
+        grid-template-columns: 1fr !important;
+      }
+      .mobile-menu-toggle-btn {
+        display: inline-flex !important;
+      }
+      .sidebar {
+        display: none;
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 64px;
+        height: auto !important;
+        z-index: 100;
+        box-shadow: 0 12px 32px rgba(15, 23, 42, 0.18);
+      }
+      .sidebar.mobile-open {
+        display: flex !important;
+      }
+      .mobile-bottom-nav {
+        display: flex !important;
+      }
+      .content-container {
+        padding: 16px 12px 88px 12px !important;
+      }
+      .top-header {
+        padding: 10px 12px !important;
+        gap: 10px !important;
+      }
+      .page-title {
+        font-size: 16px !important;
+      }
+      #holding-entity-select {
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      .kpi-grid-4 {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 10px !important;
+      }
+      .kpi-card {
+        padding: 13px 14px !important;
+        min-height: auto !important;
+      }
+      .kpi-value {
+        font-size: 21px !important;
+      }
+      .niche-grid,
+      .steps-bar,
+      .form-grid {
+        grid-template-columns: 1fr !important;
+      }
+      .field-group[style*="span 2"] {
+        grid-column: span 1 !important;
+      }
+      .action-item {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 10px !important;
+      }
+      .action-buttons {
+        width: 100% !important;
+        justify-content: flex-start !important;
+      }
+      .doc-paper {
+        padding: 16px 14px !important;
+      }
+      .mobile-companion-backdrop {
+        padding: 0 !important;
+      }
+      .phone-simulator-shell {
+        width: 100% !important;
+        height: 100vh !important;
+        max-height: 100vh !important;
+        border: none !important;
+        border-radius: 0 !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .kpi-grid-4 {
+        grid-template-columns: 1fr !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1476,6 +1784,9 @@
       <!-- Clean Top Header (Removed "Онлайн" pill per user request) -->
       <header class="top-header">
         <div class="header-left">
+          <button type="button" class="mobile-menu-toggle-btn" id="btn-mobile-sidebar-toggle" title="Відкрити меню навігації">
+            <span>☰ Меню</span>
+          </button>
           <h1 class="page-title" id="header-page-title">Єдина Екосистема Бізнесу (Цех ↔ Склад ↔ Облік)</h1>
           <select id="holding-entity-select" class="select" style="height: 32px; font-size: 12.5px; font-weight: 600; padding: 0 28px 0 10px; background: var(--bg-subtle); border-color: var(--border);">
             <option value="HOLDING_ALL">🏢 Група Компаній (Виробничий Цех + Склад WMS + Торговий Дім)</option>
@@ -1486,8 +1797,11 @@
           <span id="header-niche-badge" style="display: none;"></span>
         </div>
         <div class="header-right">
+          <button type="button" id="btn-open-mobile-companion" class="btn btn-sm btn-subtle" style="font-size:12.5px; font-weight:600; color:var(--success-hover); border-color:var(--success-border); background:var(--success-soft);">
+            <span>📱 Мобільна версія (Синхронно з ПК)</span>
+          </button>
           <button type="button" class="btn btn-sm btn-subtle" onclick="window.opexSwitchTab && window.opexSwitchTab('docs')" style="font-size:12.5px; font-weight:600; color:var(--text-main); border-color:var(--border); background:#FFFFFF;">
-            <span>📄 Скан / Погодження документів</span>
+            <span>📄 Скан / Погодження</span>
           </button>
           <button type="button" id="btn-header-open-pitch" class="btn btn-sm btn-subtle" style="font-size:12.5px; font-weight:600; color:var(--accent-blue); border-color:var(--accent-blue-border); background:var(--accent-blue-soft);">
             <span>📊 Презентація: МСБ + Великий Бізнес</span>
@@ -3299,6 +3613,85 @@
           </div>
         </section>
       </main>
+    </div>
+  </div>
+
+
+  <!-- Sticky Mobile Bottom Navigation Bar (For Smartphones & Mobile Viewport) -->
+  <nav class="mobile-bottom-nav no-print" id="mobile-bottom-nav">
+    <button type="button" class="mobile-bottom-btn active" data-mob-tab="pulse">
+      <span class="mob-icon">🏠</span>
+      <span>Пульс</span>
+    </button>
+    <button type="button" class="mobile-bottom-btn" data-mob-tab="docs">
+      <span class="mob-icon">📄</span>
+      <span>Скан/Підпис</span>
+    </button>
+    <button type="button" class="mobile-bottom-btn" data-mob-tab="mes">
+      <span class="mob-icon">🏭</span>
+      <span>Цех MES</span>
+    </button>
+    <button type="button" class="mobile-bottom-btn" data-mob-tab="stock">
+      <span class="mob-icon">📦</span>
+      <span>Склад</span>
+    </button>
+    <button type="button" class="mobile-bottom-btn" data-mob-tab="sales">
+      <span class="mob-icon">💼</span>
+      <span>Продажі</span>
+    </button>
+    <button type="button" class="mobile-bottom-btn" data-mob-tab="about">
+      <span class="mob-icon">📊</span>
+      <span>Презентація</span>
+    </button>
+  </nav>
+
+  <!-- Live Synchronized Mobile App Companion (Телефон ↔ Десктоп у реальному часі) -->
+  <div class="mobile-companion-backdrop no-print" id="mobile-companion-backdrop">
+    <div class="phone-simulator-shell">
+      <!-- Phone Top Status Bar -->
+      <div class="phone-status-bar">
+        <span class="mono">10:15 • 5G</span>
+        <span class="phone-notch-pill">● Синхронно з Десктопом</span>
+        <button type="button" id="btn-close-mobile-companion" style="border: 1px solid var(--border); background: var(--bg-subtle); color: var(--text-main); border-radius: 6px; padding: 2px 8px; font-size: 11px; font-weight: 700; cursor: pointer;">
+          ✕ Закрити
+        </button>
+      </div>
+
+      <!-- Phone App Brand Header -->
+      <div class="phone-app-header">
+        <div>
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <strong style="font-size: 15px; color: var(--text-main); letter-spacing: -0.02em;">OpexMetrix Mobile</strong>
+            <span class="badge badge-blue" style="font-size: 10px; padding: 1px 6px;">iOS / Android</span>
+          </div>
+          <div style="font-size: 11px; color: var(--text-secondary);" id="phone-active-entity-label">
+            Єдина база: Телефон ↔ Комп'ютер
+          </div>
+        </div>
+        <label class="btn btn-sm btn-action-primary" style="cursor: pointer; margin: 0; padding: 5px 10px; font-size: 11.5px;">
+          📸 Камера OCR
+          <input type="file" id="phone-companion-camera-input" accept="image/*,.pdf" capture="environment" style="display: none;" />
+        </label>
+      </div>
+
+      <!-- 4 Role/Screen Switcher Tabs inside Mobile App (Matches Desktop 1:1) -->
+      <div class="phone-role-tabs" id="phone-role-tabs">
+        <button type="button" class="phone-role-tab active" data-phone-tab="DOCS">📄 Скан &amp; Підпис</button>
+        <button type="button" class="phone-role-tab" data-phone-tab="OWNER">📊 Пульс CEO</button>
+        <button type="button" class="phone-role-tab" data-phone-tab="SHOPFLOOR">🏭 Цех &amp; Склад</button>
+        <button type="button" class="phone-role-tab" data-phone-tab="SALES">💼 Рахунок QR</button>
+      </div>
+
+      <!-- Dynamic Phone Screen Content (Populated & Synced by app.js) -->
+      <div class="phone-app-body" id="phone-app-body">
+        <!-- Rendered dynamically by renderMobileCompanion() in app.js -->
+      </div>
+
+      <!-- Phone App Footer -->
+      <div class="phone-app-footer">
+        <span>⚡ Будь-яка дія на телефоні миттєво оновлює ПК</span>
+        <span class="mono" style="color: var(--success); font-weight: 700;">LIVE SYNC</span>
+      </div>
     </div>
   </div>
 
