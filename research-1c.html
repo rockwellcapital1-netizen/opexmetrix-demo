@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Аналітичний звіт OpexMetrix: Чому бізнес та бухгалтери бояться переходити з 1С/BAS (Опитування 286 респондентів у Threads)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-page: #F8FAFC;
+      --bg-card: #FFFFFF;
+      --bg-subtle: #F1F5F9;
+      --text-main: #0F172A;
+      --text-secondary: #334155;
+      --text-muted: #64748B;
+      --accent-blue: #2563EB;
+      --accent-green: #059669;
+      --accent-amber: #D97706;
+      --accent-red: #DC2626;
+      --border: #E2E8F0;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 28px 18px 60px;
+    }
+    .container {
+      max-width: 1020px;
+      margin: 0 auto;
+    }
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 20px;
+      margin-bottom: 24px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: #FFFFFF;
+      color: var(--text-main);
+    }
+    .btn-primary {
+      background: var(--accent-blue);
+      color: #FFFFFF;
+      border-color: var(--accent-blue);
+    }
+    .card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.03);
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 700;
+      background: #EFF6FF;
+      color: #1D4ED8;
+      border: 1px solid #BFDBFE;
+      margin-bottom: 10px;
+    }
+    h1 {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      color: var(--text-main);
+    }
+    h2 {
+      font-size: 19px;
+      font-weight: 800;
+      margin-bottom: 14px;
+      color: var(--text-main);
+    }
+    p {
+      color: var(--text-secondary);
+      font-size: 14.5px;
+      margin-bottom: 12px;
+    }
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+    .kpi-box {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+    }
+    .kpi-val {
+      font-family: var(--font-mono);
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+    .kpi-lbl {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-top: 4px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+    }
+    th {
+      background: var(--bg-subtle);
+      text-align: left;
+      padding: 11px 14px;
+      font-size: 12px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      border-bottom: 1px solid var(--border);
+    }
+    td {
+      padding: 13px 14px;
+      border-bottom: 1px solid var(--border);
+      font-size: 13.5px;
+      vertical-align: top;
+    }
+    .quote-box {
+      background: #F8FAFC;
+      border-left: 4px solid var(--accent-blue);
+      padding: 12px 16px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 12px;
+      font-size: 13.5px;
+      color: var(--text-secondary);
+    }
+    .quote-meta {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .bar-wrap {
+      background: #E2E8F0;
+      height: 8px;
+      border-radius: 99px;
+      overflow: hidden;
+      margin-top: 6px;
+    }
+    .bar-fill {
+      height: 100%;
+      background: var(--accent-blue);
+      border-radius: 99px;
+    }
+    @media (max-width: 768px) {
+      .kpi-grid { grid-template-columns: 1fr 1fr; }
+      .card { padding: 18px; overflow-x: auto; }
+    }
+    @media print {
+      .no-print { display: none !important; }
+      body { padding: 0; background: #FFFFFF; }
+      .card { box-shadow: none; break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="top-bar no-print">
+      <div>
+        <strong style="font-size: 14px;">📊 OPEXMETRIX RESEARCH • ПОЛЬОВЕ ДОСЛІДЖЕННЯ УКРАЇНСЬКОГО РИНКУ ERP (2026)</strong>
+      </div>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <a href="./index.html" class="btn">⚡ Відкрити Демо OpexMetrix</a>
+        <button class="btn btn-primary" onclick="window.print()">🖨️ Зберегти Дослідження в PDF</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="badge">ПОЛЬОВЕ ДОСЛІДЖЕННЯ В THREADS • ЖОВТЕНЬ–ЛИСТОПАД 2026</span>
+      <h1>Чому український бізнес та бухгалтери тримаються за 1С / BAS: аналіз 300+ живих відповідей підприємців і фінансистів</h1>
+      <p>
+        <strong>Автор дослідження:</strong> Михайло Кузьміч (CEO OpexMetrix &amp; MindEnergyInd).<br>
+        <strong>Першоджерело даних:</strong> Відкрите опитування бухгалтерів, власників ТОВ/ФОП та ІТ-директорів у мережі Threads (<a href="https://www.threads.com/@om.ceo/post/DehFJUiiHlL" target="_blank">гілка №1 — 286 коментарів</a> та <a href="https://www.threads.com/@om.ceo/post/De_vcmuiPGR" target="_blank">гілка №2 — 12 коментарів</a>).
+      </p>
+      <div class="kpi-grid">
+        <div class="kpi-box">
+          <div class="kpi-val">298</div>
+          <div class="kpi-lbl">Живих коментарів та дискусій у гілках</div>
+        </div>
+        <div class="kpi-box">
+          <div class="kpi-val">38%</div>
+          <div class="kpi-lbl">Головний бар'єр: «Роками дописували 1С під себе»</div>
+        </div>
+        <div class="kpi-box">
+          <div class="kpi-val">27%</div>
+          <div class="kpi-lbl">Саботаж та страх бухгалтерів перед новим інтерфейсом</div>
+        </div>
+        <div class="kpi-box">
+          <div class="kpi-val">19%</div>
+          <div class="kpi-lbl">Страх «бути піддослідним кроликом» на сирому ПЗ</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>1. Структура опору ринку: 6 реальних причин, чому компанії не злазять з 1С / BAS</h2>
+      <p>Ми проаналізували та класифікували всі аргументи бухгалтерів, власників бізнесу та ІТ-фахівців за частотою згадувань та рівнем підтримки (лайками під коментарями):</p>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 26%;">Бар'єр / Страх</th>
+            <th style="width: 14%;">Частка згадок</th>
+            <th style="width: 32%;">Суть заперечення (як мислить клієнт)</th>
+            <th style="width: 28%;">Як ми в OpexMetrix (та укр. ERP) маємо це закривати</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1. Синдром «Утоплених витрат» та кастомних доробок</strong></td>
+            <td>
+              <strong style="font-family: var(--font-mono);">38%</strong>
+              <div class="bar-wrap"><div class="bar-fill" style="width: 38%;"></div></div>
+            </td>
+            <td>«За 10–15 років ми вклали десятки тисяч доларів у дописані звіти й обробки під нашу специфіку. Переходити нікуди».</td>
+            <td>Стандартизовані галузеві модулі з коробки (Цех MES, розкрій, обрізки, дилерська сітка) + швидке перенесення довідників і сальдо за 48 годин.</td>
+          </tr>
+          <tr>
+            <td><strong>2. Бухгалтерський консерватизм («Перехід з 7 на 8 був травмою життя»)</strong></td>
+            <td>
+              <strong style="font-family: var(--font-mono);">27%</strong>
+              <div class="bar-wrap"><div class="bar-fill" style="width: 27%;"></div></div>
+            </td>
+            <td>Власник готовий змінити систему, але головбух шантажує звільненням, бо знає тільки кнопки 1С.</td>
+            <td>Максимальне прибирання ручної праці: фото накладної з телефона комірником (AI OCR) → авто-проводки Дт/Кт за П(С)БО + готові XML для ДПС.</td>
+          </tr>
+          <tr>
+            <td><strong>3. Страх стати «піддослідним кроликом»</strong></td>
+            <td>
+              <strong style="font-family: var(--font-mono);">19%</strong>
+              <div class="bar-wrap"><div class="bar-fill" style="width: 19%;"></div></div>
+            </td>
+            <td>Українські продукти часто сприймають як сирі стартапи без глибокого виробничого обліку, зарплати, ОЗ та ПДВ.</td>
+            <td>Показувати не «презентації», а живу промислову базу з реальними проводками Дт/Кт, калькуляцією собівартості та податковими формами J/F.</td>
+          </tr>
+          <tr>
+            <td><strong>4. Подвійний облік = подвійний штат операторів</strong></td>
+            <td>
+              <strong style="font-family: var(--font-mono);">8%</strong>
+              <div class="bar-wrap"><div class="bar-fill" style="width: 8%;"></div></div>
+            </td>
+            <td>Компанії пробували ставити окремо CRM/управлінку, але тримали 1С для бухобліку. У результаті наймали операторів для дублювання накладних.</td>
+            <td>Єдине ядро (Single Source of Truth): дія на складі чи в цеху миттєво відображається і в управлінському P&amp;L директора, і в бухгалтерському балансі.</td>
+          </tr>
+          <tr>
+            <td><strong>5. Складні облікові колізії (розрив дат поставки та накладних)</strong></td>
+            <td>
+              <strong style="font-family: var(--font-mono);">5%</strong>
+              <div class="bar-wrap"><div class="bar-fill" style="width: 5%;"></div></div>
+            </td>
+            <td>«Як система порахує прибуток, якщо товар продали 01.10, доставили 15.10, а прибуткова накладна від постачальника прийшла 20.10?»</td>
+            <td>Підтримка невідфактурованих поставок та автоматичне коригування собівартості партії при закритті первинних документів.</td>
+          </tr>
+          <tr>
+            <td><strong>6. Вимога On-Premise (локального сервера) та доступу до коду</strong></td>
+            <td>
+              <strong style="font-family: var(--font-mono);">3%</strong>
+              <div class="bar-wrap"><div class="bar-fill" style="width: 3%;"></div></div>
+            </td>
+            <td>Страх зберігати фінансову базу в чужій хмарі або залишитися без підтримки вендора через 2–3 роки.</td>
+            <td>Ізольований Docker-контейнер на власному сервері клієнта (On-Premise) + відкрита архітектура на міжнародному стеку (TypeScript / PostgreSQL).</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>2. Прямі цитати з поля бою (як відповідають реальні бухгалтери та підприємці)</h2>
+
+      <div class="quote-box">
+        «Достойних аналогів не існує і не скоро з'являться. За роки роботи ж купа дописаних під специфіку діяльності звітів тощо, вкладено уйма коштів. Переходити нема куда.»
+        <div class="quote-meta">— Коментар @inchik99 (зібрав 56 лайків підтримки від інших бухгалтерів у гілці)</div>
+      </div>
+
+      <div class="quote-box">
+        «А бухгалтера ви теж переносите? :) Того, який в своєму житті бачив тільки 1С і то, перехід з 7 на 8 був для нього справою всього життя, революцією, анархією, катастрофою — все разом.»
+        <div class="quote-meta">— Коментар @morewind26 (зібрав 22 лайки від власників бізнесу)</div>
+      </div>
+
+      <div class="quote-box">
+        «Ну, я не хочу бути піддослідним кроликом. Я хочу користуватися тим, що працює. Коли Ваше ПЗ масштабується, будуть відеоуроки по обліку виробництва, нарахування зарплати, обліку ОЗ, ПДВ тощо — я подивлюся і можливо зроблю вибір в Вашу сторону.»
+        <div class="quote-meta">— Коментар @nata._.li (позиція обережного головного бухгалтера)</div>
+      </div>
+
+      <div class="quote-box">
+        «Все це класно, але вже колись пробували управлінський та бухгалтерський облік вести в різних системах. Порахуйте ЗП оператора який повинен дублювати документи. А якщо він не один? Така цифровізація — це як антиавтоматизація.»
+        <div class="quote-meta">— Коментар Ростислава Олійника (@rostyslav_oliinyk_nhealth), власника бізнесу</div>
+      </div>
+
+      <div class="quote-box">
+        «Вау! Дуже цікаво. Бо зараз бачимо, що іноді питання не в ціні, а в страху, що це буде через пару років та сама проблема як з 1С.»
+        <div class="quote-meta">— Коментар Катерини Кулакевич (@kateryna_kulakevych)</div>
+      </div>
+
+      <div class="quote-box">
+        «Якщо ваша програма не хмарна і з відкритим кодом — цікаво.»
+        <div class="quote-meta">— Коментар @alxazrael (типовий запит ІТ-директорів та служби безпеки підприємств)</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>3. Головний висновок для українських розробників ERP (OpexMetrix, K2 та ринку)</h2>
+      <p>
+        <strong>1. Патріотичні гасла самі по собі не продають перехід з 1С/BAS.</strong> Власник заводу чи головбух боїться зупинки відвантажень, втрати дописаної логіки та кадрового саботажу бухгалтерії.
+      </p>
+      <p>
+        <strong>2. Перемагає не «копія 1С», а радикальне скорочення операційних витрат (OPEX).</strong> Коли українська система показує власнику, що комірник просто фотографує накладну з телефона на рампі (AI OCR), директор тисне «Погодити» у смартфоні, а система сама ставить сировину на склад, списує її по QR у цеху і формує проводки Дт/Кт без штату операторів 1С — економічна вигода перемагає страх переходу.
+      </p>
+      <p style="margin-bottom: 0;">
+        <strong>Контакти для обміну досвідом та партнерства:</strong><br>
+        Михайло Кузьміч — CEO OpexMetrix | <a href="https://rockwellcapital1-netizen.github.io/opexmetrix-demo/" target="_blank">Живе Демо Системи (ПК + Мобільна версія)</a> | <a href="https://rockwellcapital1-netizen.github.io/opexmetrix-demo/pitch.html" target="_blank">Презентація МСБ та Enterprise</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>
