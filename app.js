@@ -515,7 +515,7 @@
     stockItems: [
       { sku: 'RAW-MDF-16', itemName: 'Плита МДФ шліфована 16 мм (2800x2070)', category: 'Товари та сировина', unit: 'лист', qty: 145, unitPrice: 1240, sellPrice: 1680, minThreshold: 60 },
       { sku: 'RAW-PINE-BRUS', itemName: 'Брус клеєний сосновий 40x50 (зрощений)', category: 'Товари та сировина', unit: 'мп', qty: 1850, unitPrice: 118, sellPrice: 165, minThreshold: 800 },
-      { sku: 'FIN-PINELKA', itemName: 'Полотно філенчасте «Пінєлька Класік» (800 мм, ПВХ)', category: 'Обладнання та техніка', unit: 'шт', qty: 42, unitPrice: 2890, sellPrice: 4450, minThreshold: 25 },
+      { sku: 'FIN-DOOR-MDF', itemName: 'Полотно дверне серійне МДФ (800 мм, ПВХ)', category: 'Обладнання та техніка', unit: 'шт', qty: 42, unitPrice: 2890, sellPrice: 4450, minThreshold: 25 },
       { sku: 'FIN-POGONAZH', itemName: 'Коробка + лиштва телескоп (Погонаж комплект, МДФ)', category: 'Обладнання та техніка', unit: 'к-т', qty: 68, unitPrice: 740, sellPrice: 1280, minThreshold: 40 },
       { sku: 'CMP-AGB-MAG', itemName: 'Фурнітура прихована AGB Eclipse + замок магнітний', category: 'POS та комплектуючі', unit: 'к-т', qty: 54, unitPrice: 960, sellPrice: 1490, minThreshold: 50 },
       { sku: 'PKG-CARDBOARD', itemName: 'Захисний гофрокороб + стретч-плівка дверна', category: 'Пакування та витратні', unit: 'шт', qty: 320, unitPrice: 44, sellPrice: 68, minThreshold: 400 }
@@ -527,7 +527,7 @@
         edrpou: '39148205',
         contact: 'Мельник О.В.',
         phone: '+380 67 312-44-10',
-        subject: 'Полотна Пінєлька Класік (48 шт) + Погонаж телескоп',
+        subject: 'Полотна дверні МДФ Класік (48 шт) + Погонаж телескоп',
         amount: 264000,
         stage: 'PROPOSAL',
         note: 'Очікується передоплата 50% після звірки комплектації'
@@ -549,7 +549,7 @@
         edrpou: '35882104',
         contact: 'Ткачук Д.Р.',
         phone: '+380 97 801-15-09',
-        subject: 'Дилерська партія Пінєлька + Погонаж (65 к-тів)',
+        subject: 'Дилерська партія полотен МДФ + Погонаж (65 к-тів)',
         amount: 342500,
         stage: 'WON',
         note: 'Оформлено специфікацію на відвантаження'
@@ -846,7 +846,7 @@
       salesHint: 'Шаблон: Видаткова накладна + Специфікація партії BOM',
       defaultDocType: 'WAYBILL',
       summary:
-        'Адаптовано під профіль «Виробництво та Заводи MES»: списання сировини (Рах. 231 -> 26), облік Пінєлька / Погонаж та відрядна ЗП.'
+        'Адаптовано під профіль «Виробництво та Заводи MES»: списання сировини (Рах. 231 -> 26), P&L за категоріями продукції та відрядна ЗП.'
     },
     CONSTRUCTION: {
       badge: 'Будівництво, Девелопмент та Генпідряд',
@@ -1138,7 +1138,7 @@
     const baseTax = Math.round(ent.taxes * mult);
 
     const baseRows = [
-      { id: 'rev_pinelka', group: 'REVENUE', name: 'Виручка: Полотна фільончасті «Пінєлька»', account: '7011 / Авто + CRM', autoFact: Math.round(baseRev * 0.46), autoPlan: Math.round(baseRev * 0.48) },
+      { id: 'rev_series', group: 'REVENUE', name: 'Виручка: Серійні полотна (МДФ / ПВХ)', account: '7011 / Авто + CRM', autoFact: Math.round(baseRev * 0.46), autoPlan: Math.round(baseRev * 0.48) },
       { id: 'rev_pogonazh', group: 'REVENUE', name: 'Виручка: Погонаж (коробка, лиштва, добір)', account: '7012 / Авто + CRM', autoFact: Math.round(baseRev * 0.26), autoPlan: Math.round(baseRev * 0.25) },
       { id: 'rev_custom', group: 'REVENUE', name: 'Виручка: Нестандартні розміри та ЧПК-фрезерування', account: '7013 / Цех MES', autoFact: Math.round(baseRev * 0.18), autoPlan: Math.round(baseRev * 0.17) },
       { id: 'rev_service', group: 'REVENUE', name: 'Виручка: Фурнітура, пакування та доставка', account: '7020 / Склад', autoFact: Math.round(baseRev * 0.10), autoPlan: Math.round(baseRev * 0.10) },
@@ -1288,16 +1288,16 @@
       subtotalRow('ЧИСТИЙ ПРИБУТОК (NET PROFIT)', m.netProfit, m.netProfitPlan, 'pnl-final-row')
     ].join('');
 
-    // Render Category Profitability Analytics (Pinelka / Pogonazh / Custom / Hardware)
+    // Render Category Profitability Analytics (Serial / Pogonazh / Custom / Hardware)
     const anTbody = document.getElementById('pnl-analytics-tbody');
     if (anTbody) {
       const catNames = {
-        rev_pinelka: { label: 'Пінєлька (полотна фільончасті)', cogsRatio: 0.56 },
+        rev_series: { label: 'Серійні полотна (МДФ / ПВХ)', cogsRatio: 0.56 },
         rev_pogonazh: { label: 'Погонаж (коробка, лиштва, добір)', cogsRatio: 0.49 },
         rev_custom: { label: 'Нестандарт (індивідуальне ЧПК)', cogsRatio: 0.52 },
         rev_service: { label: 'Фурнітура, сервіс та доставка', cogsRatio: 0.64 }
       };
-      anTbody.innerHTML = ['rev_pinelka', 'rev_pogonazh', 'rev_custom', 'rev_service']
+      anTbody.innerHTML = ['rev_series', 'rev_pogonazh', 'rev_custom', 'rev_service']
         .map((id) => {
           const row = m.rows.find((r) => r.id === id);
           const rev = row ? row.factTotal : 0;
@@ -4762,7 +4762,7 @@
           'Дата=10.11.2026',
           'Сума=312000.00',
           'Платник=ТОВ "БудМаркет Поділля"',
-          'ПризначенняПлатежу=Оплата за дверні полотна Пінєлька згідно рах. ВН-881',
+          'ПризначенняПлатежу=Оплата за дверні полотна МДФ згідно рах. ВН-881',
           'КінецьДокумента'
         ].join('\n');
 

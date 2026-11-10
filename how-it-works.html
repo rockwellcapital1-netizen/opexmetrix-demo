@@ -634,8 +634,8 @@ tbody tr.selected { background: var(--blue-soft); }
           <span class="nav-count" id="cnt-remnants">4</span>
         </button>
         <button type="button" class="nav-btn" data-view="analytics">
-          <span>Пінєлька / Не пінєлька</span>
-          <span class="nav-count">%</span>
+          <span>P&amp;L виробництва</span>
+          <span class="nav-count">P&amp;L</span>
         </button>
         <button type="button" class="nav-btn" data-view="accounting">
           <span>Проводки та експорт 1С</span>
@@ -686,7 +686,7 @@ tbody tr.selected { background: var(--blue-soft); }
 
     <div class="content">
       <div class="role-banner" id="role-banner">
-        <span id="role-banner-text"><strong>Вид Власника:</strong> повний доступ до всіх модулів — реальне завантаження верстатів, втрати на брак, маржа по пінєльці та нестандарту, проводки.</span>
+        <span id="role-banner-text"><strong>Вид Власника:</strong> повний доступ — завантаження верстатів, втрати на брак, P&amp;L цеху, собівартість за замовленнями та проводки.</span>
         <span class="mono" style="font-size:11.5px; color:#1D4ED8;" id="live-clock-bar">Зміна 1 / 08:00 - 17:00</span>
       </div>
 
@@ -840,7 +840,7 @@ tbody tr.selected { background: var(--blue-soft); }
         <div class="view-head">
           <div>
             <h1>Виробничі замовлення, техкарти (BOM) та імпорт розкрою</h1>
-            <p>Кожне замовлення класифікується на «Пінєльку» (серійне полотно), «Погонаж» або «Нестандарт» для точного розрахунку маржі.</p>
+            <p>Замовлення діляться за типами (Серійні полотна МДФ, Погонаж, Нестандарт / Емаль) для точного обліку витрат у P&amp;L.</p>
           </div>
           <div style="display:flex; gap:8px; flex-wrap:wrap;">
             <button type="button" class="btn" id="btn-import-giblab">Імпортувати карту розкрою (GibLab / Bazis CSV)</button>
@@ -945,14 +945,36 @@ tbody tr.selected { background: var(--blue-soft); }
         </div>
       </section>
 
-      <!-- VIEW 5: PINELKA / NON-PINELKA ANALYTICS -->
+      <!-- VIEW 5: PRODUCTION P&L & UNIT ECONOMICS -->
       <section class="view" id="view-analytics">
         <div class="view-head">
           <div>
-            <h1>Аналітика прибутковості: «Пінєлька» проти «Не пінєльки»</h1>
-            <p>Головний інструмент власника: розкладає виробництво на серійні полотна (пінєльку), погонаж і складний нестандарт — показує, де заробляються гроші, а де переналагодження й брак з'їдають маржу.</p>
+            <h1>Звіт P&amp;L виробництва (Прибутки та збитки цеху)</h1>
+            <p>Автоматичний розрахунок за фактом випуску, списання матеріалів та браку. Ручне коригування цехових OPEX доступне Власнику.</p>
           </div>
-          <span class="badge ok">Оновлюється в реальному часі від дій у цеху</span>
+          <span class="badge ok">P&amp;L у реальному часі</span>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <div class="card-title">Зведений звіт P&amp;L по цеху (Виручка, Собівартість, Брак, OPEX, Чистий прибуток)</div>
+              <div class="card-sub">Оновлюється автоматично з операцій терміналу верстатів; постійні витрати цеху (OPEX) регулюються вручну Власником</div>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Стаття P&amp;L цеху</th>
+                  <th>Джерело / Рахунок</th>
+                  <th style="text-align:right;">Сума (₴)</th>
+                  <th style="text-align:right;">Частка від виручки</th>
+                </tr>
+              </thead>
+              <tbody id="mes-pnl-tbody"></tbody>
+            </table>
+          </div>
         </div>
 
         <div class="grid-3" id="an-cards"></div>
@@ -960,8 +982,8 @@ tbody tr.selected { background: var(--blue-soft); }
         <div class="card">
           <div class="card-head">
             <div>
-              <div class="card-title">Порівняльний зріз по групах продукції (План по техкарті vs Факт з цеху і датчиків)</div>
-              <div class="card-sub">Зверніть увагу на частку часу переналагодження і перефарбувань у непінєльці (нестандарт/фільонка)</div>
+              <div class="card-title">Маржинальність по групах виробів (План техкарти vs Факт з цеху)</div>
+              <div class="card-sub">Розбивка P&amp;L між серійними полотнами, погонажем та нестандартними замовленнями</div>
             </div>
           </div>
           <div class="table-wrap">
@@ -986,8 +1008,8 @@ tbody tr.selected { background: var(--blue-soft); }
         <div class="card">
           <div class="card-head">
             <div>
-              <div class="card-title">Юніт-економіка по кожному замовленню (Детальний розбір План / Факт)</div>
-              <div class="card-sub">Якщо на терміналі оператора з'явився брак або простій — перевитрата одразу падає в конкретне замовлення</div>
+              <div class="card-title">Юніт-економіка P&amp;L по кожному замовленню</div>
+              <div class="card-sub">Кожен зафіксований брак або простій одразу зменшує фактичний прибуток відповідного замовлення</div>
             </div>
           </div>
           <div class="table-wrap">
@@ -1122,7 +1144,7 @@ tbody tr.selected { background: var(--blue-soft); }
                 <tr>
                   <td class="k">Крок 3. База і пілот</td>
                   <td>Скидаєте вивантаження номенклатури з 1С або Excel (плити, фурнітура, емаль, моделі дверей).</td>
-                  <td>Завантажуємо довідники, розмежовуємо аналітику Пінєлька / Погонаж / Нестандарт і ведемо перші 2 тижні.</td>
+                  <td>Завантажуємо довідники, налаштовуємо P&amp;L за групами (Серійні полотна / Погонаж / Нестандарт) і запускаємо пілот.</td>
                   <td class="mono">10 днів</td>
                 </tr>
               </tbody>
@@ -1143,11 +1165,11 @@ tbody tr.selected { background: var(--blue-soft); }
       <button type="button" class="btn" id="btn-close-modal">Закрити</button>
     </div>
     <div class="form-row">
-      <label>Категорія виробу (для аналітики Пінєлька / Не пінєлька)</label>
+      <label>Група виробу (для P&amp;L та техкарти BOM)</label>
       <select id="new-ord-cat">
-        <option value="pinelka">Пінєлька (Серійне щитове полотно МДФ, шт/м²)</option>
-        <option value="pogonazh">Не пінєлька: Погонаж (Коробка + лиштва + добір, пог.м)</option>
-        <option value="nonstd">Не пінєлька: Нестандарт / Фільонка / Емаль RAL (нормо-години)</option>
+        <option value="serial">Серійне щитове полотно МДФ (шт / м²)</option>
+        <option value="pogonazh">Погонаж (Коробка + лиштва + добір, пог.м)</option>
+        <option value="nonstd">Нестандарт / Фільонка / Емаль RAL (нормо-години)</option>
       </select>
     </div>
     <div class="form-row">
@@ -1178,7 +1200,7 @@ tbody tr.selected { background: var(--blue-soft); }
   var ROLES_INFO = {
     owner: {
       label: 'Роль у системі: Власник / Директор',
-      banner: '<strong>Вид Власника:</strong> повний доступ до всіх модулів — завантаження верстатів, маржа «Пінєлька / Не пінєлька», втрати на брак і проводки.',
+      banner: '<strong>Вид Власника:</strong> повний доступ — завантаження верстатів, P&amp;L виробництва (ручне коригування OPEX), втрати на брак і проводки.',
       defaultView: 'analytics'
     },
     master: {
@@ -1236,14 +1258,14 @@ tbody tr.selected { background: var(--blue-soft); }
         note: 'Фіксує фактичну погонну швидкість подачі та нагрів клеєвої ванни без втручання в контролер Homag.'
       },
       {
-        id: 'press', name: 'Прес вакуумний ПВП-2500', year: '2013 р.', area: 'ПВХ-пресування (пінєлька)',
+        id: 'press', name: 'Прес вакуумний ПВП-2500', year: '2013 р.', area: 'ПВХ-пресування (серійна лінія)',
         connShort: 'Кліщі + термопара (Рівень 2)', connFull: 'Шлюз у шафі преса (насос + ТЕН)',
         kw: 14.2, status: 'run', order: 'ZM-1042', plan: 40, done: 34, unit: 'шт',
         runH: 7.1, idleH: 0.3, bars: [95,94,96,92,95,90,93,95,94,91,96,95],
-        note: 'Рахує кількість циклів вакуумного обтиску і температуру столу — ідеально для серійної пінєльки.'
+        note: 'Рахує кількість циклів вакуумного обтиску і температуру столу — дані йдуть у пряму собівартість P&L.'
       },
       {
-        id: 'paint', name: 'Фарбувальна камера №1', year: '2017 р.', area: 'Малярка / Сушка (не пінєлька)',
+        id: 'paint', name: 'Фарбувальна камера №1', year: '2017 р.', area: 'Малярка / Сушка (Емаль RAL)',
         connShort: 'Сканер + QR-картки (Рівень 1)', connFull: 'Ручний USB-сканер + 4 ламіновані QR-картки',
         kw: 0.0, status: 'stop', order: 'ZM-1044', plan: 18, done: 7, unit: 'шт',
         runH: 3.4, idleH: 1.9, bars: [60,65,58,62,0,0,0,55,60,0,0,0],
@@ -1254,12 +1276,12 @@ tbody tr.selected { background: var(--blue-soft); }
         connShort: 'Кліщі + лічильник (Рівень 2)', connFull: 'Трансформатор струму + енкодер метражу',
         kw: 4.1, status: 'run', order: 'ZM-1043', plan: 260, done: 185, unit: 'пог.м',
         runH: 6.4, idleH: 0.6, bars: [55,58,60,57,62,59,61,15,58,60,62,59],
-        note: 'Рахує погонні метри коробки й лиштви окремо від полотен (окрема аналітика «Погонаж»).'
+        note: 'Рахує погонні метри коробки й лиштви окремо від полотен (окрема група в P&L).'
       }
     ],
     orders: [
       {
-        id: 'ZM-1042', title: 'Полотно щитове МДФ + ПВХ Софія 800 мм', cat: 'pinelka', catLabel: 'Пінєлька (серійне полотно)',
+        id: 'ZM-1042', title: 'Полотно щитове МДФ + ПВХ Софія 800 мм', cat: 'serial', catLabel: 'Серійні полотна (МДФ / ПВХ)',
         unit: 'шт', plan: 40, done: 18, scrap: 0, rev: 184000, planCost: 106800,
         unitMatCost: 1450, unitScrapPenalty: 1650, extraMat: 0, scrapLoss: 0, idleLoss: 0,
         setupMins: 10, matId: 'mdf16', matPerUnit: 0.74, status: 'В роботі (ЧПУ + Прес)',
@@ -1272,7 +1294,7 @@ tbody tr.selected { background: var(--blue-soft); }
         note: 'Випуск іде в серійній закладці. При розкрої 6 листів МДФ 3 смуги по 2800x620 мм повернено на стелаж обрізків під замовлення ЗМ-1043.'
       },
       {
-        id: 'ZM-1043', title: 'Комплект погонажу: коробка телескоп + лиштва + добір', cat: 'pogonazh', catLabel: 'Не пінєлька: Погонаж',
+        id: 'ZM-1043', title: 'Комплект погонажу: коробка телескоп + лиштва + добір', cat: 'pogonazh', catLabel: 'Погонаж (коробка, лиштва, добір)',
         unit: 'пог.м', plan: 260, done: 185, scrap: 2, rev: 124800, planCost: 81900,
         unitMatCost: 195, unitScrapPenalty: 240, extraMat: 390, scrapLoss: 480, idleLoss: 0,
         setupMins: 28, matId: 'mdf10', matPerUnit: 0.22, status: 'Укутування ПВХ',
@@ -1284,7 +1306,7 @@ tbody tr.selected { background: var(--blue-soft); }
         note: '65% заготовок на добір та лиштву взято не з нових цілих плит, а з Банку ділового обрізка (економія +14 200 ₴).'
       },
       {
-        id: 'ZM-1044', title: 'Нестандарт: Полотно з глибокою фільонкою 2350 мм (Емаль RAL 9003)', cat: 'nonstd', catLabel: 'Не пінєлька: Нестандарт / Фарба',
+        id: 'ZM-1044', title: 'Нестандарт: Полотно з глибокою фільонкою 2350 мм (Емаль RAL 9003)', cat: 'nonstd', catLabel: 'Нестандарт / Фільонка / Фарба',
         unit: 'шт', plan: 18, done: 7, scrap: 2, rev: 198000, planCost: 134000,
         unitMatCost: 3100, unitScrapPenalty: 4900, extraMat: 6200, scrapLoss: 9800, idleLoss: 6400,
         setupMins: 145, matId: 'ral9003', matPerUnit: 0.85, status: 'Простій у малярці (перевитрата)',
@@ -1296,7 +1318,7 @@ tbody tr.selected { background: var(--blue-soft); }
         note: 'КРИТИЧНО ДЛЯ ВЛАСНИКА: через 2 переналагодження фрез (145 хв) та 2 перефарбування фактична маржа впала з 32.3% до 11.9%.'
       },
       {
-        id: 'ZM-1045', title: 'Дверне полотно гладке під прихований короб 800х2000', cat: 'pinelka', catLabel: 'Пінєлька (серійне полотно)',
+        id: 'ZM-1045', title: 'Дверне полотно гладке під прихований короб 800х2000', cat: 'serial', catLabel: 'Серійні полотна (МДФ / ПВХ)',
         unit: 'шт', plan: 30, done: 30, scrap: 0, rev: 165000, planCost: 94500,
         unitMatCost: 1620, unitScrapPenalty: 1850, extraMat: 0, scrapLoss: 0, idleLoss: 0,
         setupMins: 6, matId: 'mdf16', matPerUnit: 0.78, status: 'На складі ГП',
@@ -1321,13 +1343,14 @@ tbody tr.selected { background: var(--blue-soft); }
       { code: 'REM-0825', mat: 'Брус сосновий зрощений', size: '1150 x 42 x 32', qty: 18, src: 'ЗМ-1042', target: 'Внутрішні закладні під замок' }
     ],
     ledger: [
-      { t: '08:15', src: 'Розкрій Altendorf (ЗМ-1042)', dt: '231', kt: '201', sum: 28400, note: 'Списання 29.6 м² МДФ 16 мм на партію пінєльки' },
+      { t: '08:15', src: 'Розкрій Altendorf (ЗМ-1042)', dt: '231', kt: '201', sum: 28400, note: 'Списання 29.6 м² МДФ 16 мм на серійну партію полотен' },
       { t: '08:22', src: 'Повернення обрізка на стелаж', dt: '2019', kt: '231', sum: 2180, note: 'Оприбутковано 3 смуги REM-0814 (2800x620) в Банк залишку' },
       { t: '09:40', src: 'Укутування погонажу (ЗМ-1043)', dt: '231', kt: '2019', sum: 8900, note: 'Видано діловий залишок зі стелажу на добір/лиштву' },
       { t: '10:05', src: 'Списання браку в малярці (ЗМ-1044)', dt: '947', kt: '231', sum: 9800, note: '2 полотна RAL 9003 пішли на перефарбування (Скол торця)' },
       { t: '10:30', src: 'Випуск ГП (ЗМ-1045)', dt: '26', kt: '231', sum: 94500, note: 'Оприбутковано 30 полотен під прихований короб на склад ГП' },
       { t: '10:32', src: 'Нарахування відрядної оплати цеху', dt: '231', kt: '661', sum: 14200, note: 'Розрахунок бригади за закриту партію ЗМ-1045' }
-    ]
+    ],
+    shopOpex: 48500
   };
 
   function getOrderById(id) {
@@ -1492,7 +1515,7 @@ tbody tr.selected { background: var(--blue-soft); }
   function renderOrders() {
     $('orders-tbody').innerHTML = state.orders.map(function (o) {
       var sel = o.id === state.selectedOrderId ? ' selected' : '';
-      var catBadge = o.cat === 'pinelka' ? 'ok' : (o.cat === 'pogonazh' ? 'blue' : 'warn');
+      var catBadge = o.cat === 'serial' ? 'ok' : (o.cat === 'pogonazh' ? 'blue' : 'warn');
       return '<tr class="clickable' + sel + '" data-ord="' + o.id + '">' +
         '<td class="mono"><strong>' + o.id + '</strong></td>' +
         '<td>' + o.title + '</td>' +
@@ -1537,10 +1560,42 @@ tbody tr.selected { background: var(--blue-soft); }
   }
 
   function renderAnalytics() {
+    var totRev = 0, totBom = 0, totLosses = 0;
+    state.orders.forEach(function (o) {
+      totRev += o.rev;
+      totBom += o.planCost;
+      totLosses += o.extraMat + o.scrapLoss + o.idleLoss;
+    });
+    var grossProfit = totRev - totBom - totLosses;
+    var opex = Number(state.shopOpex) || 0;
+    var netPnl = grossProfit - opex;
+    var pct = function (v) { return totRev > 0 ? ((v / totRev) * 100).toFixed(1) + '%' : '0.0%'; };
+    var disOpex = state.persona === 'owner' ? '' : 'disabled';
+
+    var pnlTbody = $('mes-pnl-tbody');
+    if (pnlTbody) {
+      pnlTbody.innerHTML =
+        '<tr><td><strong>1. Виручка цеху за активними замовленнями</strong></td><td class="mono">Рах. 701 / 703</td><td class="mono" style="text-align:right; font-weight:700;">' + fmtUah(totRev) + '</td><td class="mono" style="text-align:right;">100.0%</td></tr>' +
+        '<tr><td>2. Пряма виробнича собівартість (BOM + відрядна ЗП)</td><td class="mono">Рах. 231 <- 201 / 661</td><td class="mono" style="text-align:right;">-' + fmtUah(totBom) + '</td><td class="mono" style="text-align:right;">' + pct(totBom) + '</td></tr>' +
+        '<tr><td>3. Втрати на брак, перефарбування, простої та перевитрату</td><td class="mono">Рах. 947 / Цех</td><td class="mono" style="text-align:right; color:var(--bad);">-' + fmtUah(totLosses) + '</td><td class="mono" style="text-align:right;">' + pct(totLosses) + '</td></tr>' +
+        '<tr style="background:#F8FAFC;"><td><strong>4. Валовий прибуток виробництва (Gross Profit)</strong></td><td class="mono">Авто-розрахунок</td><td class="mono" style="text-align:right; font-weight:800;">' + fmtUah(grossProfit) + '</td><td class="mono" style="text-align:right; font-weight:700;">' + pct(grossProfit) + '</td></tr>' +
+        '<tr><td>5. Накладні витрати цеху (Е/е, інструмент, оренда — правка Власника)</td><td class="mono">Рах. 91 / OPEX</td><td class="mono" style="text-align:right;"><input type="number" id="mes-opex-input" value="' + opex + '" min="0" step="1000" style="width:110px; text-align:right; padding:4px 8px; border:1px solid var(--border); border-radius:4px; font-family:var(--mono);" ' + disOpex + ' /></td><td class="mono" style="text-align:right;">' + pct(opex) + '</td></tr>' +
+        '<tr style="background:#F0FDF4; border-top:2px solid #16A34A;"><td><strong>6. Чистий прибуток P&amp;L цеху (EBITDA)</strong></td><td class="mono">Рах. 791 (P&amp;L)</td><td class="mono" style="text-align:right; font-weight:800; color:#15803D;">' + fmtUah(netPnl) + '</td><td class="mono" style="text-align:right; font-weight:800; color:#15803D;">' + pct(netPnl) + '</td></tr>';
+
+      var opexInp = $('mes-opex-input');
+      if (opexInp) {
+        opexInp.onchange = function () {
+          if (state.persona !== 'owner') return;
+          state.shopOpex = Math.max(0, Number(opexInp.value) || 0);
+          renderAnalytics();
+        };
+      }
+    }
+
     var groups = [
-      { key: 'pinelka', title: 'Пінєлька (Щитові серійні полотна)', unit: 'шт / м²' },
-      { key: 'pogonazh', title: 'Не пінєлька: Погонаж (коробка, лиштва, добір)', unit: 'пог.м' },
-      { key: 'nonstd', title: 'Не пінєлька: Нестандарт / Фільонка / Емаль', unit: 'шт / нормо-год' }
+      { key: 'serial', title: 'Серійні полотна (Щитові МДФ / ПВХ)', unit: 'шт / м²' },
+      { key: 'pogonazh', title: 'Погонаж (коробка, лиштва, добір)', unit: 'пог.м' },
+      { key: 'nonstd', title: 'Нестандарт / Фільонка / Емаль', unit: 'шт / нормо-год' }
     ];
 
     var summaryRows = groups.map(function (g) {
@@ -1657,6 +1712,7 @@ tbody tr.selected { background: var(--blue-soft); }
     Array.prototype.forEach.call($('role-switch').querySelectorAll('button'), function (b) {
       b.classList.toggle('active', b.getAttribute('data-persona') === persona);
     });
+    renderAnalytics();
     switchView(info.defaultView);
   }
 
@@ -1784,7 +1840,7 @@ tbody tr.selected { background: var(--blue-soft); }
       var mat = state.warehouse.find(function (w) { return w.id === o.matId; }) || state.warehouse[0];
       mat.stock = Math.max(0, mat.stock - o.matPerUnit);
       addLedgerRow('Списання браку ' + o.id, '947', '231', o.unitScrapPenalty + o.unitMatCost, 'Причина: ' + reason);
-      addOpLog('БРАК (' + reason + ') по замовленню ' + o.id + '. На собівартість списано +' + fmtUah(o.unitScrapPenalty + o.unitMatCost) + ' (оновилось в аналітиці Пінєлька / Не пінєлька).');
+      addOpLog('БРАК (' + reason + ') по замовленню ' + o.id + '. На собівартість списано +' + fmtUah(o.unitScrapPenalty + o.unitMatCost) + ' (оновилось у звіті P&L цеху).');
     }
     renderAll();
   };
@@ -1812,7 +1868,7 @@ tbody tr.selected { background: var(--blue-soft); }
     var rev = Math.max(10000, parseInt($('new-ord-rev').value || '180000', 10));
     var num = 1046 + state.orders.length - 4;
     var id = 'ZM-' + num;
-    var catLabel = cat === 'pinelka' ? 'Пінєлька (серійне полотно)' : (cat === 'pogonazh' ? 'Не пінєлька: Погонаж' : 'Не пінєлька: Нестандарт / Фарба');
+    var catLabel = cat === 'serial' ? 'Серійні полотна (МДФ / ПВХ)' : (cat === 'pogonazh' ? 'Погонаж (коробка, лиштва, добір)' : 'Нестандарт / Фільонка / Фарба');
     var unit = cat === 'pogonazh' ? 'пог.м' : 'шт';
     var planCost = Math.round(rev * (cat === 'nonstd' ? 0.69 : 0.59));
     var matId = cat === 'pogonazh' ? 'mdf10' : (cat === 'nonstd' ? 'ral9003' : 'mdf16');
@@ -1847,7 +1903,7 @@ tbody tr.selected { background: var(--blue-soft); }
     }
     state.orders.unshift({
       id: 'ZM-1049', title: 'Імпорт GibLab CSV: Щитові двері Loft 700/800/900 (22 шт)',
-      cat: 'pinelka', catLabel: 'Пінєлька (серійне полотно)', unit: 'шт', plan: 22, done: 0, scrap: 0,
+      cat: 'serial', catLabel: 'Серійні полотна (МДФ / ПВХ)', unit: 'шт', plan: 22, done: 0, scrap: 0,
       rev: 105600, planCost: 61200, unitMatCost: 1380, unitScrapPenalty: 1600, extraMat: 0, scrapLoss: 0, idleLoss: 0,
       setupMins: 9, matId: 'mdf16', matPerUnit: 0.72, status: 'Імпортовано з GibLab',
       bom: [
@@ -1877,6 +1933,10 @@ tbody tr.selected { background: var(--blue-soft); }
   };
 
   renderAll();
+  try {
+    var qView = new URLSearchParams(window.location.search).get('view');
+    if (qView && $('view-' + qView)) switchView(qView);
+  } catch (_e) {}
 })();
 </script>
 </body>
