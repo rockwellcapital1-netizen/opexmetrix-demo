@@ -617,10 +617,6 @@ tbody tr.selected { background: var(--blue-soft); }
           <span>Пульт цеху і верстати</span>
           <span class="nav-count" id="cnt-machines">6</span>
         </button>
-        <button type="button" class="nav-btn" data-view="terminal">
-          <span>Термінал оператора</span>
-          <span class="nav-count">ЧПУ</span>
-        </button>
         <button type="button" class="nav-btn" data-view="orders">
           <span>Замовлення та розкрій</span>
           <span class="nav-count" id="cnt-orders">4</span>
@@ -638,7 +634,7 @@ tbody tr.selected { background: var(--blue-soft); }
           <span class="nav-count">P&amp;L</span>
         </button>
         <button type="button" class="nav-btn" data-view="accounting">
-          <span>Проводки та експорт 1С</span>
+          <span>Проводки та Облік Дт/Кт</span>
           <span class="nav-count" id="cnt-ledger">6</span>
         </button>
       </div>
@@ -678,7 +674,6 @@ tbody tr.selected { background: var(--blue-soft); }
           <button type="button" class="active" data-persona="owner">Власник</button>
           <button type="button" data-persona="master">Майстер цеху</button>
           <button type="button" data-persona="tech">Технолог</button>
-          <button type="button" data-persona="operator">Верстатник</button>
         </div>
         <button type="button" class="btn primary" id="btn-open-new-order">+ Нове замовлення в цех</button>
       </div>
@@ -697,12 +692,12 @@ tbody tr.selected { background: var(--blue-soft); }
             <h1>Пульт цеху та моніторинг верстатів у реальному часі</h1>
             <p>Живі показники обладнання (2013-2021 рр.): навантаження по струму з електрошаф, мотогодини, простої та випуск.</p>
           </div>
-          <button type="button" class="btn" id="btn-go-terminal">Відкрити термінал оператора (Biesse Rover B)</button>
+          <button type="button" class="btn" id="btn-go-analytics">Відкрити P&amp;L виробництва</button>
         </div>
 
         <div class="kpis">
           <div class="kpi"><small>Верстатів у роботі зараз</small><b id="kpi-mach-run">5 / 6</b><span class="sub ok">Шлюз WireGuard синхронізовано</span></div>
-          <div class="kpi"><small>Випуск за зміну (Двері / Погонаж)</small><b id="kpi-shift-out">148 шт / 185 м</b><span class="sub">Синхронізовано з терміналів</span></div>
+          <div class="kpi"><small>Випуск за зміну (Двері / Погонаж)</small><b id="kpi-shift-out">148 шт / 185 м</b><span class="sub">Синхронізовано з датчиків та шлюзів цеху</span></div>
           <div class="kpi"><small>Простої за зміну</small><b id="kpi-mach-idle">47 хв</b><span class="sub warn" id="kpi-idle-reason">1 ділянка чекає емаль RAL 9003</span></div>
           <div class="kpi"><small>Сумарна потужність ліній</small><b id="kpi-kw-total">34.5 кВт</b><span class="sub">Читання по трансформаторах струму</span></div>
         </div>
@@ -749,87 +744,7 @@ tbody tr.selected { background: var(--blue-soft); }
             </div>
 
             <div class="note-box" style="margin-top:12px;" id="md-note">
-              Навіть якщо оператор не натиснув кнопку на планшеті, система бачить по падінню струму нижче 0.5 кВт, коли шпиндель реально зупинився.
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- VIEW 2: OPERATOR TERMINAL -->
-      <section class="view" id="view-terminal">
-        <div class="view-head">
-          <div>
-            <h1>Робоче місце оператора біля верстата</h1>
-            <p>Те, що бачить верстатник на планшеті. Натисніть кнопки нижче — дані підуть у пульт цеху, на склад, в аналітику та проводки.</p>
-          </div>
-          <span class="badge blue" id="op-mode-badge">Зв'язано з Biesse Rover B (2015 р.)</span>
-        </div>
-
-        <div class="op-grid">
-          <div class="terminal-frame">
-            <div class="terminal-screen">
-              <div class="term-top">
-                <span>Верстат: Biesse Rover B (ЧПУ)</span>
-                <span class="mono" id="op-clock">08:00</span>
-              </div>
-
-              <div>
-                <label style="font-size:11px; font-weight:600; color:var(--muted); display:block; margin-bottom:4px;">Активне замовлення (маршрутний лист):</label>
-                <select class="term-select" id="op-order-select"></select>
-              </div>
-
-              <div class="term-sensor">
-                <span style="display:flex; align-items:center; gap:6px;">
-                  <span class="dot muted" id="op-sensor-dot"></span>
-                  <span>Сигнал з електрошафи (кліщі 3Ф)</span>
-                </span>
-                <span class="mono" id="op-sensor-kw">0.2 кВт / Стоїть</span>
-              </div>
-
-              <div class="term-meta">
-                <div>План партії<b class="mono" id="op-plan">40 шт</b></div>
-                <div>Виконано факт<b class="mono" id="op-done">0 шт</b></div>
-                <div>Час циклу<b class="mono" id="op-elapsed">00:00</b></div>
-                <div>Резерв сировини<b class="mono" id="op-mat-left">84.0 м²</b></div>
-              </div>
-
-              <div class="term-state" id="op-state">Очікує сканування маршрутного листа</div>
-
-              <div class="reason-drawer" id="op-reason-drawer">
-                <small id="op-reason-title">Оберіть причину:</small>
-                <div class="reason-grid" id="op-reason-grid"></div>
-              </div>
-
-              <div class="term-actions">
-                <button type="button" class="btn primary" id="bStart">Початок</button>
-                <button type="button" class="btn" id="bPiece" disabled>+1 Готова од.</button>
-                <button type="button" class="btn" id="bStop" disabled>Простій</button>
-                <button type="button" class="btn" id="bScrap" disabled>Зафіксувати брак</button>
-                <button type="button" class="btn primary" id="bEnd" style="grid-column:1/3" disabled>Завершити зміну / партію</button>
-              </div>
-            </div>
-          </div>
-
-          <div style="display:flex; flex-direction:column; gap:14px;">
-            <div class="card">
-              <div class="card-head">
-                <div class="card-title">Живий журнал подій цеху (онлайн для майстра і бухгалтера)</div>
-                <span class="card-sub">Оновлюється в момент натискання</span>
-              </div>
-              <div id="op-logbox"><div style="color:var(--muted); padding:6px 0;">Поки що операцій не зафіксовано. Натисніть «Початок» на терміналі ліворуч.</div></div>
-            </div>
-
-            <div class="card">
-              <div class="card-head">
-                <div class="card-title">Альтернатива для малярки й розкрою: керування сканером (без дотику до екрана)</div>
-              </div>
-              <p style="font-size:12.5px; color:var(--ink2);">Де тирса, клей або аерозольна фарба і люди в рукавицях — біля сканера висять 4 заламіновані картки зі штрихкодом. Натисніть будь-яку картку нижче, щоб зімітувати «пік» сканером:</p>
-              <div class="qr-deck">
-                <button type="button" class="qr-action-btn" data-qr="start"><span>[ |||| ||| ]</span>ПОЧАТОК</button>
-                <button type="button" class="qr-action-btn" data-qr="piece" disabled><span>[ || |||| ]</span>+1 ДЕТАЛЬ</button>
-                <button type="button" class="qr-action-btn" data-qr="idle" disabled><span>[ ||| ||| ]</span>ПРОСТІЙ</button>
-                <button type="button" class="qr-action-btn" data-qr="end" disabled><span>[ |||| || ]</span>ЗАВЕРШИТИ</button>
-              </div>
+              Система автоматично бачить за падінням струму нижче 0.5 кВт, коли шпиндель реально зупинився, та фіксує простій без ручного втручання.
             </div>
           </div>
         </div>
@@ -896,14 +811,14 @@ tbody tr.selected { background: var(--blue-soft); }
         <div class="view-head">
           <div>
             <h1>Склад матеріалів та Банк ділового залишку (обрізки)</h1>
-            <p>Списання відбувається автоматично по факту випуску деталей на терміналах. Кожен великий обрізок повертається на стелаж із точними розмірами.</p>
+            <p>Списання відбувається автоматично по факту випуску деталей за QR-скануванням та техкартою (BOM). Кожен великий обрізок повертається на стелаж із точними розмірами.</p>
           </div>
         </div>
 
         <div class="card">
           <div class="card-head">
             <div class="card-title">Основна сировина та фурнітура (Рахунок 201)</div>
-            <span class="card-sub">Залишки зменшуються при роботі оператора у вкладці «Термінал оператора»</span>
+            <span class="card-sub">Залишки зменшуються автоматично при скануванні QR/штрихкодів та закритті нарядів цеху</span>
           </div>
           <div class="table-wrap">
             <table>
@@ -959,7 +874,7 @@ tbody tr.selected { background: var(--blue-soft); }
           <div class="card-head">
             <div>
               <div class="card-title">Зведений звіт P&amp;L по цеху (Виручка, Собівартість, Брак, OPEX, Чистий прибуток)</div>
-              <div class="card-sub">Оновлюється автоматично з операцій терміналу верстатів; постійні витрати цеху (OPEX) регулюються вручну Власником</div>
+              <div class="card-sub">Оновлюється автоматично з датчиків верстатів, шлюзів цеху та QR-складу; постійні витрати цеху (OPEX) регулюються вручну Власником</div>
             </div>
           </div>
           <div class="table-wrap">
@@ -1031,14 +946,14 @@ tbody tr.selected { background: var(--blue-soft); }
         </div>
       </section>
 
-      <!-- VIEW 6: ACCOUNTING & 1C EXPORT -->
+      <!-- VIEW 6: ACCOUNTING & DOUBLE ENTRY LEDGER -->
       <section class="view" id="view-accounting">
         <div class="view-head">
           <div>
-            <h1>Автоматичні проводки (Дт/Кт) та вивантаження в 1С / BAS / ДПС</h1>
-            <p>Бухгалтер не перебиває цехові наряди вручну. Всі списання та випуски з терміналів формують подвійний запис.</p>
+            <h1>Автоматичні проводки (Дт/Кт) та Дзеркальний реєстр Excel / ДПС</h1>
+            <p>Бухгалтер не перебиває цехові наряди вручну. Всі списання та випуски автоматично формують подвійний запис.</p>
           </div>
-          <button type="button" class="btn primary" id="btn-gen-xml">Сформувати XML-пакет обміну для 1С / BAS</button>
+          <button type="button" class="btn primary" id="btn-gen-xml">Сформувати XML-пакет обліку (ДПС / Excel)</button>
         </div>
 
         <div class="table-wrap">
@@ -1059,8 +974,8 @@ tbody tr.selected { background: var(--blue-soft); }
 
         <div class="card" id="xml-preview-card" style="display:none;">
           <div class="card-head">
-            <div class="card-title">Сформований пакет XML (Стандарт обміну BAS / 1С:Підприємство)</div>
-            <span class="badge ok">Готово до імпорту без програміста</span>
+            <div class="card-title">Сформований пакет XML (Стандартизований реєстр проводок Дт/Кт)</div>
+            <span class="badge ok">Готово для Главбуха</span>
           </div>
           <div class="xml-box" id="xml-box"></div>
         </div>
@@ -1093,7 +1008,7 @@ tbody tr.selected { background: var(--blue-soft); }
           <div class="card">
             <span class="badge blue">ЧПУ з ПК (Biesse, Homag, Syntec)</span>
             <h3 style="font-size:15px; margin:8px 0 6px;">2. Підключення через AnyDesk / VPN за 20 хвилин</h3>
-            <p style="font-size:13px; color:var(--ink2);">Якщо біля ЧПУ вже стоїть стійка чи комп'ютер оператора на Windows (навіть Windows XP / 7):</p>
+            <p style="font-size:13px; color:var(--ink2);">Якщо біля ЧПУ вже стоїть стійка чи комп'ютер керування на Windows (навіть Windows XP / 7):</p>
             <ul style="margin:8px 0 0 18px; font-size:12.5px; color:var(--ink2); display:flex; flex-direction:column; gap:5px;">
               <li>Ваш адміністратор або майстер запускає AnyDesk / RustDesk на 15 хвилин.</li>
               <li>Наш інженер підключає в режимі «тільки читання» папку виконаних програм (G-code / CIX / BPP) або статистику циклів.</li>
@@ -1103,11 +1018,11 @@ tbody tr.selected { background: var(--blue-soft); }
 
           <div class="card">
             <span class="badge ok">Ручні ділянки та запуск за 1 день</span>
-            <h3 style="font-size:15px; margin:8px 0 6px;">3. Термінали та QR-картки у браузері</h3>
+            <h3 style="font-size:15px; margin:8px 0 6px;">3. QR-сканери та штрихкоди на ділянках</h3>
             <p style="font-size:13px; color:var(--ink2);">Для малярки, шліфування, збірки та складу виїзд інженера взагалі не потрібен:</p>
             <ul style="margin:8px 0 0 18px; font-size:12.5px; color:var(--ink2); display:flex; flex-direction:column; gap:5px;">
-              <li>На будь-якому планшеті або старому ноутбуці відкривається робочий екран (як у вкладці «Термінал оператора»).</li>
-              <li>Підключається USB-сканер за 1 500 грн, друкуються на вашому принтері заламіновані QR-картки операцій.</li>
+              <li>Підключається USB-сканер за 1 500 грн, друкуються на вашому принтері етикетки та заламіновані QR-картки замовлень.</li>
+              <li>Комірник та майстер сканують штрихкод — списання сировини й випуск готової продукції автоматично падають у склад та облік.</li>
               <li>Запускається за один робочий день дистанційно з Києва.</li>
             </ul>
           </div>
@@ -1143,7 +1058,7 @@ tbody tr.selected { background: var(--blue-soft); }
                 </tr>
                 <tr>
                   <td class="k">Крок 3. База і пілот</td>
-                  <td>Скидаєте вивантаження номенклатури з 1С або Excel (плити, фурнітура, емаль, моделі дверей).</td>
+                  <td>Передаєте таблиці Excel з номенклатурою та техкартами (плити, фурнітура, емаль, моделі дверей).</td>
                   <td>Завантажуємо довідники, налаштовуємо P&amp;L за групами (Серійні полотна / Погонаж / Нестандарт) і запускаємо пілот.</td>
                   <td class="mono">10 днів</td>
                 </tr>
@@ -1212,11 +1127,6 @@ tbody tr.selected { background: var(--blue-soft); }
       label: 'Роль у системі: Технолог / Конструктор',
       banner: '<strong>Вид Технолога:</strong> завантаження карт розкрою з GibLab/Bazis, контроль списань за техкартою та видача ділових обрізків зі стелажу.',
       defaultView: 'orders'
-    },
-    operator: {
-      label: 'Роль у системі: Оператор верстата ЧПУ',
-      banner: '<strong>Вид Верстатника:</strong> бачить тільки один простий екран із активним нарядом. Інших розділів (фінанси, бухгалтерія, зарплати колег) йому не показує.',
-      defaultView: 'terminal'
     }
   };
 
@@ -1225,14 +1135,6 @@ tbody tr.selected { background: var(--blue-soft); }
     persona: 'owner',
     selectedMachineId: 'biesse',
     selectedOrderId: 'ZM-1042',
-    opOrderId: 'ZM-1042',
-    opRunning: false,
-    opPaused: false,
-    opIdleReason: '',
-    opSec: 0,
-    opIdleSec: 0,
-    opTimer: null,
-    opLogs: [],
     xmlShown: false,
     machines: [
       {
@@ -1245,10 +1147,9 @@ tbody tr.selected { background: var(--blue-soft); }
       {
         id: 'biesse', name: 'Biesse Rover B 4.40', year: '2015 р.', area: 'Фрезерування ЧПУ',
         connShort: 'Агент ПК + Кліщі струму', connFull: 'Папка G-code (AnyDesk/VPN) + Кліщі',
-        kw: 0.2, status: 'wait', order: 'ZM-1042', plan: 40, done: 18, unit: 'шт',
-        runH: 5.1, idleH: 1.2, bars: [70,82,80,78,20,76,84,81,15,68,12,8],
-        note: 'Зв\'язано безпосередньо з вкладкою «Термінал оператора». Натисніть там «Початок», і статус тут зміниться онлайн.',
-        isTerminalLinked: true
+        kw: 5.4, status: 'run', order: 'ZM-1042', plan: 40, done: 18, unit: 'шт',
+        runH: 5.1, idleH: 1.2, bars: [70,82,80,78,20,76,84,81,15,68,80,82],
+        note: 'Дані зчитуються автоматично зі стійки ЧПУ (папка G-code по VPN) та контролюються за струмом шпинделя без ручного вводу.'
       },
       {
         id: 'homag', name: 'Homag Brandt Ambition', year: '2016 р.', area: 'Кромкооблицювання',
@@ -1361,22 +1262,6 @@ tbody tr.selected { background: var(--blue-soft); }
     state.ledger.unshift({ t: nowStr(), src: src, dt: dt, kt: kt, sum: Math.round(sum), note: note });
   }
 
-  function addOpLog(msg) {
-    state.opLogs.unshift({ t: nowStr(), m: msg });
-    renderOpLogs();
-  }
-
-  function renderOpLogs() {
-    var box = $('op-logbox');
-    if (!state.opLogs.length) {
-      box.innerHTML = '<div style="color:var(--muted); padding:6px 0;">Поки що операцій не зафіксовано. Натисніть «Початок» на терміналі ліворуч.</div>';
-      return;
-    }
-    box.innerHTML = state.opLogs.slice(0, 9).map(function (l) {
-      return '<div class="feed-row"><span class="mono" style="color:var(--muted);">' + l.t + '</span><span>' + l.m + '</span></div>';
-    }).join('');
-  }
-
   function renderSidebarCounts() {
     $('cnt-machines').textContent = state.machines.length;
     $('cnt-orders').textContent = state.orders.length;
@@ -1399,26 +1284,12 @@ tbody tr.selected { background: var(--blue-soft); }
       var curPlan = m.plan;
       var curUnit = m.unit;
 
-      if (m.isTerminalLinked) {
-        ord = getOrderById(state.opOrderId);
-        curDone = ord.done;
-        curPlan = ord.plan;
-        curUnit = ord.unit;
-        if (state.opRunning && !state.opPaused) {
-          m.status = 'run'; curKw = 5.4; stLabel = 'В роботі / 5.4 кВт'; stCls = 'ok';
-        } else if (state.opRunning && state.opPaused) {
-          m.status = 'stop'; curKw = 0.2; stLabel = 'Простій / 0.2 кВт'; stCls = 'warn';
-        } else {
-          m.status = 'wait'; curKw = 0.2; stLabel = ord.done > 0 ? 'Пауза / Очікує' : 'Зупинено / 0.0 кВт'; stCls = '';
-        }
-      } else {
-        if (m.status === 'run') { stLabel = 'В роботі / ' + m.kw.toFixed(1) + ' кВт'; stCls = 'ok'; }
-        else if (m.status === 'stop') { stLabel = 'Простій / 0.0 кВт'; stCls = 'warn'; }
-      }
+      if (m.status === 'run') { stLabel = 'В роботі / ' + m.kw.toFixed(1) + ' кВт'; stCls = 'ok'; }
+      else if (m.status === 'stop') { stLabel = 'Простій / 0.0 кВт'; stCls = 'warn'; }
 
       if (m.status === 'run') runningCount++;
       totalKw += curKw;
-      totalIdleMins += Math.round(m.idleH * 60 + (m.isTerminalLinked ? state.opIdleSec / 60 : 0));
+      totalIdleMins += Math.round(m.idleH * 60);
 
       var sel = state.selectedMachineId === m.id ? ' selected' : '';
       return '<tr class="clickable' + sel + '" data-mach="' + m.id + '">' +
@@ -1457,59 +1328,6 @@ tbody tr.selected { background: var(--blue-soft); }
       var h = Math.max(4, Math.round(v * 0.68));
       return '<div class="pulse-col"><div class="pulse-bar ' + cls + '" style="height:' + h + 'px"></div></div>';
     }).join('');
-  }
-
-  function renderTerminal() {
-    var sel = $('op-order-select');
-    sel.innerHTML = state.orders.map(function (o) {
-      return '<option value="' + o.id + '"' + (o.id === state.opOrderId ? ' selected' : '') + '>' + o.id + ' — ' + o.title + ' (' + o.done + '/' + o.plan + ' ' + o.unit + ')</option>';
-    }).join('');
-
-    var o = getOrderById(state.opOrderId);
-    var mat = state.warehouse.find(function (w) { return w.id === o.matId; }) || state.warehouse[0];
-
-    $('op-clock').textContent = nowStr();
-    $('op-plan').textContent = o.plan + ' ' + o.unit;
-    $('op-done').textContent = o.done + ' ' + o.unit;
-    $('op-elapsed').textContent = pad(Math.floor(state.opSec / 60)) + ':' + pad(state.opSec % 60);
-    $('op-mat-left').textContent = mat.stock.toFixed(1) + ' ' + mat.unit;
-
-    var sDot = $('op-sensor-dot');
-    var sKw = $('op-sensor-kw');
-    var st = $('op-state');
-
-    if (state.opRunning && !state.opPaused) {
-      sDot.className = 'dot';
-      sKw.textContent = '5.4 кВт / Шпиндель ріже';
-      st.className = 'term-state run';
-      st.textContent = 'В роботі • Партія ' + o.id + ' (Брак: ' + o.scrap + ' ' + o.unit + ')';
-    } else if (state.opRunning && state.opPaused) {
-      sDot.className = 'dot warn';
-      sKw.textContent = '0.2 кВт / Холостий хід';
-      st.className = 'term-state stop';
-      st.textContent = 'Простій: ' + (state.opIdleReason || 'Очікування');
-    } else {
-      sDot.className = 'dot muted';
-      sKw.textContent = '0.0 кВт / Верстат стоїть';
-      st.className = 'term-state';
-      st.textContent = o.done > 0 ? 'Наряд відкрито (' + o.done + '/' + o.plan + ' ' + o.unit + ')' : 'Очікує початку операції';
-    }
-
-    $('bStart').disabled = state.opRunning;
-    $('bPiece').disabled = !state.opRunning || state.opPaused;
-    $('bScrap').disabled = !state.opRunning || state.opPaused;
-    $('bEnd').disabled = !state.opRunning;
-    $('bStop').disabled = !state.opRunning;
-    $('bStop').textContent = state.opPaused ? 'Продовжити роботу' : 'Простій';
-
-    var qrStart = document.querySelector('.qr-action-btn[data-qr="start"]');
-    var qrPiece = document.querySelector('.qr-action-btn[data-qr="piece"]');
-    var qrIdle = document.querySelector('.qr-action-btn[data-qr="idle"]');
-    var qrEnd = document.querySelector('.qr-action-btn[data-qr="end"]');
-    if (qrStart) qrStart.disabled = state.opRunning;
-    if (qrPiece) qrPiece.disabled = !state.opRunning || state.opPaused;
-    if (qrIdle) qrIdle.disabled = !state.opRunning;
-    if (qrEnd) qrEnd.disabled = !state.opRunning;
   }
 
   function renderOrders() {
@@ -1687,7 +1505,6 @@ tbody tr.selected { background: var(--blue-soft); }
   function renderAll() {
     renderSidebarCounts();
     renderMachines();
-    renderTerminal();
     renderOrders();
     renderWarehouse();
     renderAnalytics();
@@ -1707,6 +1524,7 @@ tbody tr.selected { background: var(--blue-soft); }
   function switchPersona(persona) {
     state.persona = persona;
     var info = ROLES_INFO[persona];
+    if (!info) return;
     $('active-role-label').textContent = info.label;
     $('role-banner-text').innerHTML = info.banner;
     Array.prototype.forEach.call($('role-switch').querySelectorAll('button'), function (b) {
@@ -1714,63 +1532,6 @@ tbody tr.selected { background: var(--blue-soft); }
     });
     renderAnalytics();
     switchView(info.defaultView);
-  }
-
-  function startOp() {
-    var o = getOrderById(state.opOrderId);
-    state.opRunning = true;
-    state.opPaused = false;
-    state.opIdleReason = '';
-    $('op-reason-drawer').classList.remove('open');
-    clearInterval(state.opTimer);
-    state.opTimer = setInterval(function () {
-      if (!state.opRunning) return;
-      if (state.opPaused) {
-        state.opIdleSec++;
-        o.idleLoss += 25;
-      } else {
-        state.opSec++;
-      }
-      $('op-elapsed').textContent = pad(Math.floor(state.opSec / 60)) + ':' + pad(state.opSec % 60);
-      if (state.opPaused) { renderMachines(); renderAnalytics(); }
-    }, 1000);
-    addOpLog('Старт роботи по замовленню ' + o.id + ' (' + o.catLabel + '). Датчик струму у шафі підтвердив 5.4 кВт.');
-    renderAll();
-  }
-
-  function logPiece() {
-    var o = getOrderById(state.opOrderId);
-    if (!state.opRunning || state.opPaused) return;
-    o.done++;
-    var mat = state.warehouse.find(function (w) { return w.id === o.matId; }) || state.warehouse[0];
-    mat.stock = Math.max(0, mat.stock - o.matPerUnit);
-    mat.reserved = Math.max(0, mat.reserved - o.matPerUnit);
-    var costWriteOff = o.matPerUnit * mat.price;
-    addLedgerRow('Випуск ' + o.id + ' (+1 ' + o.unit + ')', '231', '201', costWriteOff, 'Автоматичне списання сировини по техкарті (' + mat.name + ')');
-    addOpLog('Випуск ' + o.done + '/' + o.plan + ' ' + o.unit + ' (' + o.id + '). Списано ' + o.matPerUnit + ' ' + mat.unit + ' -> Дт 231 / Кт 201.');
-    renderAll();
-  }
-
-  function finishOp() {
-    var o = getOrderById(state.opOrderId);
-    state.opRunning = false;
-    state.opPaused = false;
-    clearInterval(state.opTimer);
-    $('op-reason-drawer').classList.remove('open');
-    addLedgerRow('Закриття операції ' + o.id, '26', '231', o.done * o.unitMatCost, 'Оприбуткування обсягу зміни (' + o.done + ' ' + o.unit + ') на склад ГП');
-    addOpLog('Операцію завершено: ' + o.done + ' ' + o.unit + ', брак ' + o.scrap + ' ' + o.unit + '. Дані передано на склад ГП та бухгалтеру.');
-    renderAll();
-  }
-
-  function openReasonDrawer(mode) {
-    var reasons = mode === 'idle'
-      ? ['Немає заготовки зі складу', 'Заміна фрези / налагодження', 'Черга перед маляркою', 'Очікування сервісу / світло']
-      : ['Скол плівки / кромки МДФ', 'Помилка програми розкрою', 'Прихований дефект плити', 'Потьок фарби / перефарбування'];
-    $('op-reason-title').textContent = mode === 'idle' ? 'Вкажіть причину простою:' : 'Вкажіть причину браку (віднесеться на собівартість замовлення):';
-    $('op-reason-grid').innerHTML = reasons.map(function (r) {
-      return '<button type="button" class="reason-opt" data-mode="' + mode + '" data-reason="' + r + '">' + r + '</button>';
-    }).join('');
-    $('op-reason-drawer').classList.add('open');
   }
 
   Array.prototype.forEach.call(document.querySelectorAll('.nav-btn[data-view]'), function (btn) {
@@ -1782,7 +1543,9 @@ tbody tr.selected { background: var(--blue-soft); }
     if (btn) switchPersona(btn.getAttribute('data-persona'));
   };
 
-  $('btn-go-terminal').onclick = function () { switchView('terminal'); };
+  if ($('btn-go-analytics')) {
+    $('btn-go-analytics').onclick = function () { switchView('analytics'); };
+  }
 
   $('machines-tbody').onclick = function (e) {
     var tr = e.target.closest('tr[data-mach]');
@@ -1797,63 +1560,6 @@ tbody tr.selected { background: var(--blue-soft); }
     state.selectedOrderId = tr.getAttribute('data-ord');
     renderOrders();
   };
-
-  $('op-order-select').onchange = function (e) {
-    state.opOrderId = e.target.value;
-    state.opRunning = false;
-    state.opPaused = false;
-    clearInterval(state.opTimer);
-    $('op-reason-drawer').classList.remove('open');
-    renderAll();
-  };
-
-  $('bStart').onclick = startOp;
-  $('bPiece').onclick = logPiece;
-  $('bEnd').onclick = finishOp;
-  $('bScrap').onclick = function () { openReasonDrawer('scrap'); };
-  $('bStop').onclick = function () {
-    if (!state.opPaused) openReasonDrawer('idle');
-    else {
-      state.opPaused = false;
-      state.opIdleReason = '';
-      $('op-reason-drawer').classList.remove('open');
-      addOpLog('Простій завершено, верстат повернуто в роботу.');
-      renderAll();
-    }
-  };
-
-  $('op-reason-grid').onclick = function (e) {
-    var btn = e.target.closest('.reason-opt');
-    if (!btn) return;
-    var mode = btn.getAttribute('data-mode');
-    var reason = btn.getAttribute('data-reason');
-    var o = getOrderById(state.opOrderId);
-    $('op-reason-drawer').classList.remove('open');
-    if (mode === 'idle') {
-      state.opPaused = true;
-      state.opIdleReason = reason;
-      addOpLog('Зафіксовано простій (' + reason + '). Майстер бачить сповіщення на пульті цеху.');
-    } else {
-      o.scrap++;
-      o.scrapLoss += o.unitScrapPenalty;
-      o.extraMat += o.unitMatCost;
-      var mat = state.warehouse.find(function (w) { return w.id === o.matId; }) || state.warehouse[0];
-      mat.stock = Math.max(0, mat.stock - o.matPerUnit);
-      addLedgerRow('Списання браку ' + o.id, '947', '231', o.unitScrapPenalty + o.unitMatCost, 'Причина: ' + reason);
-      addOpLog('БРАК (' + reason + ') по замовленню ' + o.id + '. На собівартість списано +' + fmtUah(o.unitScrapPenalty + o.unitMatCost) + ' (оновилось у звіті P&L цеху).');
-    }
-    renderAll();
-  };
-
-  Array.prototype.forEach.call(document.querySelectorAll('.qr-action-btn[data-qr]'), function (btn) {
-    btn.onclick = function () {
-      var act = btn.getAttribute('data-qr');
-      if (act === 'start') startOp();
-      else if (act === 'piece') logPiece();
-      else if (act === 'idle') $('bStop').click();
-      else if (act === 'end') finishOp();
-    };
-  });
 
   function openModal() { $('modal-new-order').classList.add('open'); }
   function closeModal() { $('modal-new-order').classList.remove('open'); }
@@ -1881,14 +1587,13 @@ tbody tr.selected { background: var(--blue-soft); }
         ['Основна плита / сировина (під замовлення ' + id + ')', '0.75', (qty * 0.75).toFixed(1), fmtUah(planCost * 0.55)],
         ['Покриття (ПВХ / Емаль) та фурнітура', '1 компл.', qty + ' компл.', fmtUah(planCost * 0.45)]
       ],
-      note: 'Замовлення створено вручну. Сировина автоматично поставлена в резерв складу, маршрутний лист доступний на Терміналі оператора.'
+      note: 'Замовлення створено вручну. Сировина автоматично поставлена в резерв складу, маршрутний лист передано у цех по QR.'
     });
 
     var whItem = state.warehouse.find(function (w) { return w.id === matId; });
     if (whItem) whItem.reserved += qty * 0.75;
 
     state.selectedOrderId = id;
-    state.opOrderId = id;
     closeModal();
     renderAll();
     switchView('orders');
