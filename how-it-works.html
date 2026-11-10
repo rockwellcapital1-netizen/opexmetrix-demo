@@ -292,7 +292,7 @@ body {
 /* Cards & Grids */
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-.grid-split { display: grid; grid-template-columns: 1.45fr 1fr; gap: 16px; align-items: start; }
+.grid-split { display: grid; grid-template-columns: minmax(0, 1.9fr) minmax(320px, 1fr); gap: 16px; align-items: start; }
 
 .card {
   background: var(--surface);
@@ -318,10 +318,10 @@ body {
   border-radius: 8px;
   overflow-x: auto;
 }
-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
 th, td {
   text-align: left;
-  padding: 10px 12px;
+  padding: 9px 10px;
   border-bottom: 1px solid var(--line);
   vertical-align: middle;
 }
@@ -1410,7 +1410,7 @@ tbody tr.selected { background: var(--blue-soft); }
 
     $('kpi-mach-run').textContent = runningCount + ' / ' + state.machines.length;
     $('kpi-kw-total').textContent = totalKw.toFixed(1) + ' кВт';
-    $('kpi-mach-idle').textContent = totalIdleMins + ' хв';
+    $('kpi-mach-idle').textContent = (totalIdleMins / 60).toFixed(1) + ' год (' + totalIdleMins + ' хв)';
 
     var doorsDone = state.orders.filter(function (o) { return o.unit === 'шт'; }).reduce(function (s, o) { return s + o.done; }, 0);
     var pogDone = state.orders.filter(function (o) { return o.unit === 'пог.м'; }).reduce(function (s, o) { return s + o.done; }, 0);
