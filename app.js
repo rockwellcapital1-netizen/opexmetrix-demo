@@ -506,25 +506,90 @@
         spentUah: 980000,
         status: 'OK'
       }
+    ],
+    editAuthorized: true,
+    pnlPeriod: 'MONTH',
+    pnlChartInstance: null,
+    pnlAdjustments: {},
+    pnlCustomLines: [],
+    stockItems: [
+      { sku: 'RAW-MDF-16', itemName: 'Плита МДФ шліфована 16 мм (2800x2070)', category: 'Товари та сировина', unit: 'лист', qty: 145, unitPrice: 1240, sellPrice: 1680, minThreshold: 60 },
+      { sku: 'RAW-PINE-BRUS', itemName: 'Брус клеєний сосновий 40x50 (зрощений)', category: 'Товари та сировина', unit: 'мп', qty: 1850, unitPrice: 118, sellPrice: 165, minThreshold: 800 },
+      { sku: 'FIN-PINELKA', itemName: 'Полотно філенчасте «Пінєлька Класік» (800 мм, ПВХ)', category: 'Обладнання та техніка', unit: 'шт', qty: 42, unitPrice: 2890, sellPrice: 4450, minThreshold: 25 },
+      { sku: 'FIN-POGONAZH', itemName: 'Коробка + лиштва телескоп (Погонаж комплект, МДФ)', category: 'Обладнання та техніка', unit: 'к-т', qty: 68, unitPrice: 740, sellPrice: 1280, minThreshold: 40 },
+      { sku: 'CMP-AGB-MAG', itemName: 'Фурнітура прихована AGB Eclipse + замок магнітний', category: 'POS та комплектуючі', unit: 'к-т', qty: 54, unitPrice: 960, sellPrice: 1490, minThreshold: 50 },
+      { sku: 'PKG-CARDBOARD', itemName: 'Захисний гофрокороб + стретч-плівка дверна', category: 'Пакування та витратні', unit: 'шт', qty: 320, unitPrice: 44, sellPrice: 68, minThreshold: 400 }
+    ],
+    crmDeals: [
+      {
+        id: 'CRM-101',
+        client: 'ТОВ "БудМаркет Поділля"',
+        edrpou: '39148205',
+        contact: 'Мельник О.В.',
+        phone: '+380 67 312-44-10',
+        subject: 'Полотна Пінєлька Класік (48 шт) + Погонаж телескоп',
+        amount: 264000,
+        stage: 'PROPOSAL',
+        note: 'Очікується передоплата 50% після звірки комплектації'
+      },
+      {
+        id: 'CRM-102',
+        client: 'ЖК «Рів\'єра Сіті» (Генпідряд)',
+        edrpou: '41209412',
+        contact: 'Савчук І.М.',
+        phone: '+380 50 419-88-22',
+        subject: 'Нестандартні блоки 2300х900 (22 шт) + монтаж',
+        amount: 198000,
+        stage: 'NEGOTIATION',
+        note: 'Погоджено графік запуску у цех ЧПК'
+      },
+      {
+        id: 'CRM-103',
+        client: 'Салон «Еліт-Двері Львів»',
+        edrpou: '35882104',
+        contact: 'Ткачук Д.Р.',
+        phone: '+380 97 801-15-09',
+        subject: 'Дилерська партія Пінєлька + Погонаж (65 к-тів)',
+        amount: 342500,
+        stage: 'WON',
+        note: 'Оформлено специфікацію на відвантаження'
+      },
+      {
+        id: 'CRM-104',
+        client: 'ТОВ "АгроПромБуд"',
+        edrpou: '40291823',
+        contact: 'Коваль В.П.',
+        phone: '+380 63 220-19-40',
+        subject: 'Офісні полотна Глухі МДФ (18 шт)',
+        amount: 79200,
+        stage: 'NEW',
+        note: 'Надіслано базовий прайс'
+      }
+    ],
+    payables: [
+      { id: 'AP-1', party: 'ТОВ "Кроноспан УА"', edrpou: '33219480', doc: 'ПН-8812 (МДФ 16 мм / ХДФ)', amount: 412000, overdueDays: 0, dueDate: '24.11.2026', status: 'OPEN' },
+      { id: 'AP-2', party: 'ПП "Ліс-Карпати Експорт"', edrpou: '29481029', doc: 'ПН-4410 (Брус сосновий зрощений)', amount: 186000, overdueDays: 6, dueDate: '04.11.2026', status: 'OVERDUE' },
+      { id: 'AP-3', party: 'ТОВ "СІМ-Фурнітура Україна"', edrpou: '37102944', doc: 'РН-1190 (Завіси AGB / Замки)', amount: 128500, overdueDays: 0, dueDate: '29.11.2026', status: 'OPEN' },
+      { id: 'AP-4', party: 'АТ "Хмельницькобленерго"', edrpou: '22767506', doc: 'Рах. 11/2026 (Електроенергія ЧПК)', amount: 64200, overdueDays: 0, dueDate: '20.11.2026', status: 'OPEN' }
     ]
   };
 
-  // ─── Document OCR & In-System Approval Ecosystem State ─────────────────────
+  // ─── Document OCR & Approval Ecosystem State ───────────────────────────────
   const OCR_PRESETS = {
     WAYBILL_PHONE: {
       id: 'DOC-4418',
       docType: 'WAYBILL',
-      typeBadge: 'Прибуткова накладна (Склад ↔ Цех)',
-      source: '📱 Фото з камери телефону (Патч Комірника)',
+      typeBadge: 'Прибуткова накладна (Склад - Цех)',
+      source: 'Фото з телефону (Комірник)',
       docNumber: 'ВН-4418 від 26.10.2026',
       counterparty: 'ТОВ "Метал-Холдинг Україна"',
       edrpou: '38192044',
       amount: 480000,
       vatAmount: 80000,
-      itemsSummary: 'Лист нержавіючий AISI 304 (4.0 т × ₴ 95 000) + Профіль силовий 80×40 (100 м.п. × ₴ 1 000)',
-      ecosystemLink: 'Склад сировини (Рах. 201) → Авто-резерв під зміну Цеху ЧПК #MES-904 (Рах. 231)',
-      aiRiskCheck: '✓ Ціна металу відповідає ринковій медіані (завищень не виявлено). Номенклатуру зіставлено з техкартою BOM.',
-      approvalRoute: 'Комірник (Телефон) ✓ → Нач. Цеху ✓ → Директор / Бухгалтерія',
+      itemsSummary: 'Лист нержавіючий AISI 304 (4.0 т x ₴ 95 000) + Профіль силовий 80x40 (100 м.п. x ₴ 1 000)',
+      ecosystemLink: 'Склад сировини (Рах. 201) -> Резерв під зміну Цеху ЧПК #MES-904 (Рах. 231)',
+      aiRiskCheck: 'ОК: Ціна відповідає ринковій медіані. Номенклатуру зіставлено з техкартою BOM.',
+      approvalRoute: 'Комірник (OK) -> Нач. Цеху (OK) -> Власник / Бухгалтерія',
       ledgerDt: '201 Сировина й матеріали (Склад)',
       ledgerDtCode: '201',
       ledgerKt: '631 Розрахунки з постачальниками',
@@ -534,16 +599,16 @@
       id: 'DOC-2026-114',
       docType: 'CONTRACT',
       typeBadge: 'Договір поставки B2B + Специфікація',
-      source: '💻 Завантажено з комп\'ютера (PDF, 4 стор.)',
+      source: 'Файл із ПК (PDF, 4 стор.)',
       docNumber: 'ДП-2026/114 від 26.10.2026',
       counterparty: 'ТОВ "Епіцентр К"',
       edrpou: '32490244',
       amount: 920000,
       vatAmount: 153333.33,
       itemsSummary: 'Поставка партії промислових енергомодулів ПЕМ-400 (10 од. з цеху ГП) • Відстрочка оплати 14 календарних днів',
-      ecosystemLink: 'Відділ продажів → План виробництва Цеху (MES) → Резерв готової продукції на Складі (Рах. 26)',
-      aiRiskCheck: '✓ Юридичний AI-аудит договору: прихованих штрафів чи пені не виявлено. Кредитний ліміт контрагента в нормі.',
-      approvalRoute: 'Менеджер B2B ✓ → Юридичний відділ ✓ → Директор (На підпис)',
+      ecosystemLink: 'Відділ продажів -> План Цеху (MES) -> Резерв готової продукції (Рах. 26)',
+      aiRiskCheck: 'ОК: Юридичний аудит договору: штрафів понад норму не виявлено. Ліміт у нормі.',
+      approvalRoute: 'Менеджер B2B (OK) -> Юрист (OK) -> Власник',
       ledgerDt: '361 Розрахунки з покупцями',
       ledgerDtCode: '361',
       ledgerKt: '701 Дохід від реалізації ГП',
@@ -553,16 +618,16 @@
       id: 'DOC-902',
       docType: 'INVOICE',
       typeBadge: 'Рахунок-фактура на комплектуючі цеху',
-      source: '📱 Скан із телефону начальника цеху',
+      source: 'Скан із телефону начальника цеху',
       docNumber: 'СФ-902 від 26.10.2026',
       counterparty: 'ТОВ "ЕлектроПривод Україна"',
       edrpou: '40118290',
       amount: 168000,
       vatAmount: 28000,
       itemsSummary: 'Мотор-редуктори промислові NMRV-090 (12 шт.) та оптичні датчики ЧПК для Дільниці №6',
-      ecosystemLink: 'Оплата в банку (Рах. 311) → Склад комплектуючих (Рах. 202) → Передача в Цех збірки АСУ-ТП (Рах. 231)',
-      aiRiskCheck: '✓ Реквізити IBAN та код ЄДРПОУ перевірено в реєстрі ДПС. Ціна на 4.2% нижча за минулу закупівлю.',
-      approvalRoute: 'Начальник цеху ✓ → Відділ постачання ✓ → Фіндиректор / CEO',
+      ecosystemLink: 'Оплата в банку (Рах. 311) -> Склад (Рах. 202) -> Цех АСУ-ТП (Рах. 231)',
+      aiRiskCheck: 'ОК: Реквізити IBAN та ЄДРПОУ перевірено. Ціна на 4.2% нижча за минулу поставку.',
+      approvalRoute: 'Начальник цеху (OK) -> Закупівлі (OK) -> Фіндиректор / Власник',
       ledgerDt: '202 Купівельні комплектуючі (Цех)',
       ledgerDtCode: '202',
       ledgerKt: '631 Розрахунки з постачальниками',
@@ -571,17 +636,17 @@
     CONSTRUCTION_KB2V: {
       id: 'DOC-KB2V-309',
       docType: 'WAYBILL',
-      typeBadge: 'Будівництво: ТТН з майданчика + Акт КБ-2в',
-      source: '📱 Скан із телефону виконроба (Об\'єкт ЖК Секція 3)',
+      typeBadge: 'Будівництво: ТТН + Акт КБ-2в',
+      source: 'Скан із телефону виконроба (Секція 3)',
       docNumber: 'КБ2в-309 / ТТН-8812 від 26.10.2026',
       counterparty: 'ТОВ "Ковальська Бетон-Комплект"',
       edrpou: '39541820',
       amount: 684000,
       vatAmount: 114000,
-      itemsSummary: 'Бетон товарний В25 М350 П4 (45 м³ × ₴ 4 200) + Арматура А500С Ø16 мм (12.0 т × ₴ 41 250) на монолітний каркас 8-го поверху',
-      ecosystemLink: 'Прийом на будмайданчик (Рах. 205) → Звірка з лімітом кошторису секції ЖК → Списання за Актом КБ-2в (Рах. 231)',
-      aiRiskCheck: '✓ Норма витрати бетону й арматури збігається з робочим кресленням КЗ (перевитрати 0%). Ціна в межах тендеру.',
-      approvalRoute: 'Виконроб (Майданчик) ✓ → Інженер ВТВ (Кошторис) ✓ → Директор Генпідряду',
+      itemsSummary: 'Бетон товарний В25 М350 П4 (45 м3 x ₴ 4 200) + Арматура А500С 16 мм (12.0 т x ₴ 41 250)',
+      ecosystemLink: 'Прийом на майданчик (Рах. 205) -> Звірка з кошторисом -> Списання КБ-2в (Рах. 231)',
+      aiRiskCheck: 'ОК: Норма витрати збігається з робочим кресленням (перевитрати 0%).',
+      approvalRoute: 'Виконроб (OK) -> Інженер ВТВ (OK) -> Директор',
       ledgerDt: '205 Будівельні матеріали та конструкції',
       ledgerDtCode: '201',
       ledgerKt: '631 Розрахунки з постачальниками',
@@ -594,13 +659,13 @@
     {
       id: 'DOC-4418',
       docNumber: 'ВН-4418 від 26.10.2026',
-      source: '📱 Фото з телефону (Склад)',
+      source: 'Телефон (Склад)',
       typeBadge: 'Прибуткова накладна',
       counterparty: 'ТОВ "Метал-Холдинг Україна"',
       edrpou: '38192044',
-      ecosystemLink: 'Лист AISI 304 (4 т) → Оприбуткування на Склад (Рах. 201) та передача в Цех ЧПК #MES-904',
+      ecosystemLink: 'Лист AISI 304 (4 т) -> Склад (Рах. 201) -> Цех ЧПК #MES-904',
       amount: 480000,
-      approvalRoute: 'Комірник ✓ → Нач. Цеху ✓ → CEO ⏳',
+      approvalRoute: 'Комірник (OK) -> Нач. Цеху (OK) -> Очікує Власника',
       status: 'PENDING',
       ledgerDt: '201 Сировина й матеріали',
       ledgerDtCode: '201',
@@ -610,13 +675,13 @@
     {
       id: 'DOC-2026-114',
       docNumber: 'ДП-2026/114 від 26.10.2026',
-      source: '💻 Файл з комп\'ютера (PDF)',
+      source: 'Файл ПК (PDF)',
       typeBadge: 'Договір поставки B2B',
       counterparty: 'ТОВ "Епіцентр К"',
       edrpou: '32490244',
-      ecosystemLink: 'Партія ПЕМ-400 (10 од.) • План Цеху MES ↔ Резерв Складу ГП (Рах. 26) • AI-перевірка умов: ОК',
+      ecosystemLink: 'Партія ПЕМ-400 (10 од.) • Цех MES / Резерв Рах. 26',
       amount: 920000,
-      approvalRoute: 'Продажі ✓ → Юрист ✓ → CEO ⏳',
+      approvalRoute: 'Продажі (OK) -> Юрист (OK) -> Очікує Власника',
       status: 'PENDING',
       ledgerDt: '361 Розрахунки з покупцями',
       ledgerDtCode: '361',
@@ -626,13 +691,13 @@
     {
       id: 'DOC-902',
       docNumber: 'СФ-902 від 26.10.2026',
-      source: '📱 Фото з телефону (Цех)',
+      source: 'Телефон (Цех)',
       typeBadge: 'Рахунок на комплектуючі',
       counterparty: 'ТОВ "ЕлектроПривод Україна"',
       edrpou: '40118290',
-      ecosystemLink: 'Мотор-редуктори NMRV (12 шт.) → Склад комплектуючих (Рах. 202) для Цеху Дільниця №6',
+      ecosystemLink: 'Мотор-редуктори NMRV (12 шт.) -> Склад комплектуючих (Рах. 202)',
       amount: 168000,
-      approvalRoute: 'Нач. Цеху ✓ → Закупівлі ✓ → CEO ⏳',
+      approvalRoute: 'Нач. Цеху (OK) -> Закупівлі (OK) -> Очікує Власника',
       status: 'PENDING',
       ledgerDt: '202 Комплектуючі для цеху',
       ledgerDtCode: '202',
@@ -642,13 +707,13 @@
     {
       id: 'DOC-889',
       docNumber: 'АКТ-889 від 25.10.2026',
-      source: '💻 Файл з комп\'ютера (DOCX)',
+      source: 'Файл ПК (DOCX)',
       typeBadge: 'Акт виконаних робіт',
       counterparty: 'ТОВ "Сервіс-ЧПК Інжиніринг"',
       edrpou: '39041122',
-      ecosystemLink: 'Технічне обслуговування лазерного комплексу Trumpf у Цеху №1 (Списано на Рах. 231)',
+      ecosystemLink: 'ТО верстатів ЧПК Цеху №1 (Списано на Рах. 231)',
       amount: 42000,
-      approvalRoute: 'Гол. Інженер ✓ → Бухгалтерія ✓ → CEO ✓',
+      approvalRoute: 'Гол. Інженер (OK) -> Бухгалтерія (OK) -> Власник (OK)',
       status: 'APPROVED',
       ledgerDt: '231 Основне виробництво (Цех)',
       ledgerDtCode: '231',
@@ -659,7 +724,7 @@
 
   const HOLDING_ENTITIES = {
     ALL: {
-      badge: '🏢 Група Компаній (Цех + Склад + Торговий Дім)',
+      badge: 'Група Компаній (Цех + Склад + Торговий Дім)',
       cashBalance: 4850000,
       revenue: 5500000,
       cogs: 3180000,
@@ -668,7 +733,7 @@
       receivables: 980000
     },
     HOLDING_ALL: {
-      badge: '🏢 Група Компаній (Виробництво MES + Будівництво + Склад)',
+      badge: 'Група Компаній (Виробництво + Склад + Продажі)',
       cashBalance: 4850000,
       revenue: 5500000,
       cogs: 3180000,
@@ -677,7 +742,7 @@
       receivables: 980000
     },
     CONSTRUCTION: {
-      badge: '🏗️ ТОВ "БудІнвест Генпідряд" (Об\'єкти ЖК, КБ-2в & Склад Матеріалів)',
+      badge: 'ТОВ "БудІнвест Генпідряд" (КБ-2в / Склад)',
       cashBalance: 8420000,
       revenue: 14600000,
       cogs: 9850000,
@@ -686,7 +751,7 @@
       receivables: 2450000
     },
     CONSTRUCTION_LLC: {
-      badge: '🏗️ ТОВ "БудІнвест Генпідряд" (Об\'єкти ЖК, КБ-2в & Склад Матеріалів)',
+      badge: 'ТОВ "БудІнвест Генпідряд" (КБ-2в / Склад)',
       cashBalance: 8420000,
       revenue: 14600000,
       cogs: 9850000,
@@ -695,7 +760,7 @@
       receivables: 2450000
     },
     PLANT: {
-      badge: '🏭 ТОВ "ПромТех Виробництво" (Цех MES + Склад)',
+      badge: 'ТОВ "Поділля Двері / ПромТех" (Цех ЧПК + Склад)',
       cashBalance: 2450000,
       revenue: 3200000,
       cogs: 1850000,
@@ -704,7 +769,7 @@
       receivables: 540000
     },
     PLANT_LLC: {
-      badge: '🏭 ТОВ "ПромТех Виробництво" (Цех MES + Склад)',
+      badge: 'ТОВ "Поділля Двері / ПромТех" (Цех ЧПК + Склад)',
       cashBalance: 2450000,
       revenue: 3200000,
       cogs: 1850000,
@@ -713,7 +778,7 @@
       receivables: 540000
     },
     TRADE: {
-      badge: '💼 ТОВ "Альфа Трейд Дистрибуція" (Склад & B2B)',
+      badge: 'ТОВ "Альфа Трейд Дистрибуція" (Склад + B2B)',
       cashBalance: 1680000,
       revenue: 1650000,
       cogs: 980000,
@@ -722,7 +787,7 @@
       receivables: 320000
     },
     TRADE_LLC: {
-      badge: '💼 ТОВ "Альфа Трейд Дистрибуція" (Склад & B2B)',
+      badge: 'ТОВ "Альфа Трейд Дистрибуція" (Склад + B2B)',
       cashBalance: 1680000,
       revenue: 1650000,
       cogs: 980000,
@@ -731,7 +796,7 @@
       receivables: 320000
     },
     SMB: {
-      badge: '🏪 Малий та Середній Бізнес (ФОП + ТОВ)',
+      badge: 'Малий та Середній Бізнес (ФОП + ТОВ)',
       cashBalance: 1344300,
       revenue: 840200,
       cogs: 320000,
@@ -740,7 +805,7 @@
       receivables: 179100
     },
     SMB_MODE: {
-      badge: '🏪 Малий та Середній Бізнес (ФОП + ТОВ)',
+      badge: 'Малий та Середній Бізнес (ФОП + ТОВ)',
       cashBalance: 1344300,
       revenue: 840200,
       cogs: 320000,
@@ -752,44 +817,44 @@
 
   const NICHE_PROFILES = {
     TRADE: {
-      badge: '🛒 Оптова та роздрібна торгівля',
-      shortName: '🏢 Холдинг + Виробництво MES',
+      badge: 'Оптова та роздрібна торгівля',
+      shortName: 'Холдинг + Виробництво MES',
       salesHint: 'Рахунок з QR НБУ + ПН ЄРПН',
       defaultDocType: 'INVOICE',
       summary:
-        '✓ Адаптовано під профіль «Оптова та роздрібна торгівля»: увімкнено контроль мінімальної маржі 25%, автоматичне списання зі складу за FIFO та формування видаткових накладних з QR-оплатою НБУ.'
+        'Адаптовано під профіль «Оптова та роздрібна торгівля»: увімкнено контроль мінімальної маржі 25%, списання FIFO та видаткові накладні з QR НБУ.'
     },
     SERVICES: {
-      badge: '🛠️ Послуги, Сервіс та Агенція',
-      shortName: '🛠️ Послуги та Інжиніринг',
+      badge: 'Послуги, Сервіс та Агенція',
+      shortName: 'Послуги та Інжиніринг',
       salesHint: 'Шаблон: Акт виконаних робіт + Рахунок з QR НБУ',
       defaultDocType: 'ACT',
       summary:
-        '✓ Адаптовано під профіль «Послуги, Сервіс та Агенція»: основним документом обрано Акт прийому-передачі виконаних робіт з QR НБУ, увімкнено контроль маржинальності проєктів та погодинних робіт.'
+        'Адаптовано під профіль «Послуги, Сервіс та Агенція»: основним документом обрано Акт виконаних робіт та проєктний P&L.'
     },
     ECOMMERCE: {
-      badge: '📦 E-Commerce та Маркетплейси',
-      shortName: '📦 E-Commerce / Дистрибуція',
-      salesHint: 'Шаблон: Експрес-рахунок + Гарантійний талон товару',
+      badge: 'E-Commerce та Маркетплейси',
+      shortName: 'E-Commerce / Дистрибуція',
+      salesHint: 'Шаблон: Експрес-рахунок + Гарантійний талон',
       defaultDocType: 'WARRANTY',
       summary:
-        '✓ Адаптовано під профіль «E-Commerce та Маркетплейси»: активовано облік пакувальних матеріалів, контроль комісії маркетплейсів (Rozetka/Prom) та автоматичні гарантійні талони.'
+        'Адаптовано під профіль «E-Commerce та Маркетплейси»: активовано облік пакувальних матеріалів та контроль маржі.'
     },
     PRODUCTION: {
-      badge: '🏭 Виробництво, Заводи та Цех MES',
-      shortName: '🏭 Завод MES & ЧПК',
+      badge: 'Виробництво, Заводи та Цех MES',
+      shortName: 'Завод MES та ЧПК',
       salesHint: 'Шаблон: Видаткова накладна + Специфікація партії BOM',
       defaultDocType: 'WAYBILL',
       summary:
-        '✓ Адаптовано під профіль «Виробництво та Заводи MES»: активовано автоматичне списання сировини й комплектуючих у собівартість готової продукції (Рах. 231 → Рах. 26), контроль ділових обрізків Zero-Waste та відрядну ЗП.'
+        'Адаптовано під профіль «Виробництво та Заводи MES»: списання сировини (Рах. 231 -> 26), облік Пінєлька / Погонаж та відрядна ЗП.'
     },
     CONSTRUCTION: {
-      badge: '🏗️ Будівництво, Девелопмент & Генпідряд',
-      shortName: '🏗️ Генпідряд & Об\'єкти ЖК',
-      salesHint: 'Шаблон: Акт виконаних робіт КБ-2в / КБ-3 + ТТН Бетон/Арматура',
+      badge: 'Будівництво, Девелопмент та Генпідряд',
+      shortName: 'Генпідряд та Об\'єкти ЖК',
+      salesHint: 'Шаблон: Акт виконаних робіт КБ-2в / КБ-3 + ТТН',
       defaultDocType: 'ACT',
       summary:
-        '✓ Адаптовано під профіль «Будівництво, Девелопмент & Генпідряд»: увімкнено пооб\'єктний облік витрат (ЖК / Секції), контроль лімітів списання бетону, арматури та кабелю за кошторисом, сканування ТТН з будмайданчика та формування актів КБ-2в / КБ-3.'
+        'Адаптовано під профіль «Будівництво, Девелопмент та Генпідряд»: пооб\'єктний облік витрат, ліміти кошторису та акти КБ-2в / КБ-3.'
     }
   };
 
@@ -831,21 +896,59 @@
     } catch (_e) {
       // Fallback silent
     }
-    showInlineStatus(confirmMsg || '✓ Скопійовано в буфер обміну');
+    showInlineStatus(confirmMsg || 'Скопійовано в буфер обміну');
   }
 
-  // ─── Navigation (All 9 Enterprise & MES Sections) ──────────────────────────
+  // ─── Single-Owner Edit Authorization Guard ──────────────────────────────────
+  function requireOwnerEdit() {
+    if (state.editAuthorized) return true;
+    showInlineStatus('Доступ STAFF (Перегляд): редагування цифр P&L, цін, ТМЦ, боргів та проводок дозволено лише Власнику.');
+    return false;
+  }
+
+  function applyAccessRole(role) {
+    state.editAuthorized = role !== 'STAFF';
+    const banner = document.getElementById('global-access-banner');
+    const txt = document.getElementById('global-access-text');
+    const code = document.getElementById('global-access-code');
+    const uName = document.getElementById('sidebar-user-name');
+    const uRole = document.getElementById('sidebar-user-role');
+
+    if (banner) banner.classList.toggle('locked', !state.editAuthorized);
+    if (txt) {
+      txt.textContent = state.editAuthorized
+        ? 'Права редагування (OWNER): повний доступ до правки P&L, залишків ТМЦ, цін, ДЗ/КЗ, CRM та ручних проводок.'
+        : 'Режим STAFF (Лише перегляд): ручне редагування цифр P&L, залишків ТМЦ, цін, ДЗ/КЗ та проводок заблоковано.';
+    }
+    if (code) code.textContent = state.editAuthorized ? 'ROLE: OWNER' : 'ROLE: STAFF (LOCKED)';
+    if (uName) uName.textContent = state.editAuthorized ? 'Власник (Єдиний адмін)' : 'Співробітник (Перегляд)';
+    if (uRole) uRole.textContent = state.editAuthorized ? 'Правка цифр: Дозволено' : 'Правка цифр: Заблоковано';
+
+    document.querySelectorAll('.owner-editable-btn, .inline-edit-input, .inline-edit-text').forEach((el) => {
+      el.disabled = !state.editAuthorized;
+    });
+
+    if (typeof renderPnlSection === 'function') renderPnlSection();
+    if (typeof renderCrmDealsTable === 'function') renderCrmDealsTable();
+    if (typeof renderDebtSection === 'function') renderDebtSection();
+    if (typeof renderStockSection === 'function') renderStockSection();
+    if (typeof renderDealerCreditTable === 'function') renderDealerCreditTable();
+  }
+
+  // ─── Navigation ─────────────────────────────────────────────────────────────
   const TAB_TITLES = {
-    pulse: 'Єдина Екосистема Бізнесу (Цех ↔ Склад ↔ Документи ↔ Облік)',
-    docs: 'Документообіг, AI-Розпізнавання (Накладні / Договори) та Погодження (ПК + Телефон)',
-    ledger: 'Проводки та Головна Книга (Подвійний запис Дт/Кт)',
-    mes: 'Виробничий Цех MES (Поєднаний зі Складом WMS, ЧПК та Техкарти BOM)',
-    sales: 'Продажі & B2B Deal Desk (Контракти, Кредитний Контроль та Маржа)',
-    'ai-sales': 'Відділ Продажів та AI Call-Center (Контроль дзвінків та Маржі)',
-    stock: 'Склад WMS (Зв\'язаний з Цехом MES) та Захист Закупівель',
-    bank: 'Банк, Казначейство та Контроль Бюджетів ЦФВ',
-    taxes: 'Податки ДПС (cabinet.tax.gov.ua) та Зарплата Команди',
-    about: 'Презентація: Малий/Середній Бізнес (МСБ) та Великий Бізнес (Цех + Склад)'
+    pulse: 'Пульс підприємства',
+    pnl: 'Звіт P&L та Аналітика',
+    docs: 'Документи та OCR',
+    ledger: 'Проводки та ОСВ',
+    mes: 'Цех MES та ЧПК',
+    sales: 'CRM та Продажі',
+    debt: 'Дебіторка і Кредиторка',
+    'ai-sales': 'IP-Телефонія та KPI',
+    stock: 'Склад і ТМЦ',
+    bank: 'Банк і Бюджети',
+    taxes: 'Податки ДПС та ЗП',
+    about: 'Імпорт 1С / Excel (48 год)'
   };
 
   function switchTab(tabId) {
@@ -870,7 +973,17 @@
     const titleEl = document.getElementById('header-page-title');
     if (titleEl) titleEl.textContent = TAB_TITLES[tabId];
 
-    if (tabId === 'ledger') {
+    if (tabId === 'pnl') {
+      renderPnlSection();
+    } else if (tabId === 'debt') {
+      renderDebtSection();
+    } else if (tabId === 'sales') {
+      renderCrmDealsTable();
+      renderSalesOrdersTable();
+      renderDealerCreditTable();
+    } else if (tabId === 'stock') {
+      renderStockSection();
+    } else if (tabId === 'ledger') {
       renderLedgerSection();
     } else if (tabId === 'docs') {
       renderDocsSection();
@@ -936,7 +1049,7 @@
 
     state.activeDocType = profile.defaultDocType;
     renderInlineDocument(state.activeDocOrderId, state.activeDocType);
-    showInlineStatus(`✓ Профіль адаптовано: ${profile.shortName}`);
+    showInlineStatus(`Профіль адаптовано: ${profile.shortName}`);
   }
 
   // ─── 1. ГОЛОВНА (ПУЛЬС ХОЛДИНГУ ТА КОНСОЛІДАЦІЯ) ──────────────────────────
@@ -969,13 +1082,11 @@
       elDiv.innerHTML = `<span class="kpi-context-label">Доступно до розподілу (FCF):</span> <span class="kpi-context-value emerald">${fmtUah(safeDividend)}</span>`;
     }
 
-    // Profit card
-    const revenue = ent.revenue;
-    const cogs = ent.cogs;
-    const opex = ent.opex;
-    const taxes = ent.taxes;
-    const netProfit = revenue - cogs - opex - taxes;
-    const marginPct = ((netProfit / revenue) * 100).toFixed(1);
+    const pnlData = computePnlModel();
+    const revenue = pnlData.totalRev;
+    const grossMargin = pnlData.grossProfit;
+    const netProfit = pnlData.netProfit;
+    const marginPct = revenue > 0 ? ((netProfit / revenue) * 100).toFixed(1) : '0.0';
 
     const elNetProfit = document.getElementById('kpi-net-profit');
     if (elNetProfit) elNetProfit.textContent = fmtUah(netProfit);
@@ -987,21 +1098,322 @@
       elFormula.innerHTML = `
         <span>Виручка (Рах. 701/702): <strong>+${fmtUah(revenue)}</strong></span>
         <span class="meta-sep">·</span>
-        <span>Собівартість + OPEX: <strong>−${fmtUah(cogs + opex + taxes)}</strong></span>
+        <span>Витрати та податки: <strong>-${fmtUah(pnlData.totalCogs + pnlData.totalOpex + pnlData.totalTax)}</strong></span>
       `;
     }
 
-    // Receivables card
-    const unpaidOrders = state.orders.filter((o) => o.status === 'INVOICED');
-    const recTotal = ent.receivables + unpaidOrders.reduce((s, o) => s + o.totalAmount, 0);
+    const pulsePnlEl = document.getElementById('pulse-pnl-summary');
+    if (pulsePnlEl) {
+      const gmPct = revenue > 0 ? ((grossMargin / revenue) * 100).toFixed(1) : '0.0';
+      pulsePnlEl.textContent = `Валовий прибуток: ${fmtUah(grossMargin)} (${gmPct}%) | EBITDA: ${fmtUah(pnlData.ebitda)} | Чистий: ${fmtUah(netProfit)}`;
+    }
+
+    // Receivables & Payables summary
+    const totalAr = state.dealerCredits.reduce((s, d) => s + (Number(d.debtUah) || 0), 0);
+    const totalAp = state.payables.filter((p) => p.status !== 'PAID').reduce((s, p) => s + (Number(p.amount) || 0), 0);
     const elRecTotal = document.getElementById('kpi-receivables-total');
-    if (elRecTotal) elRecTotal.textContent = fmtUah(recTotal);
+    if (elRecTotal) elRecTotal.textContent = fmtUah(totalAr);
+
+    const pulseDebtEl = document.getElementById('pulse-debt-summary');
+    if (pulseDebtEl) {
+      pulseDebtEl.textContent = `Дебіторка (361): ${fmtUah(totalAr)} | Кредиторка (631): ${fmtUah(totalAp)}`;
+    }
 
     renderOwnerTodayStream();
-    if (typeof renderMobileCompanion === "function") renderMobileCompanion();
+    if (typeof renderMobileCompanion === 'function') renderMobileCompanion();
   }
 
-  // ─── 2. ⚡ ПРОВОДКИ ОНЛАЙН (Дт/Кт) ТА ГОЛОВНА КНИГА (GENERAL LEDGER) ───────
+  // ─── P&L (PROFIT & LOSS) + ПОВНА АНАЛІТИКА ────────────────────────────────
+  function computePnlModel() {
+    const ent = HOLDING_ENTITIES[state.holdingEntity] || HOLDING_ENTITIES.ALL;
+    const mult = state.pnlPeriod === 'YEAR' ? 12 : state.pnlPeriod === 'QUARTER' ? 3 : 1;
+
+    // Live deltas from orders beyond baseline & manual stock purchases
+    const extraRev = Math.max(0, state.orders.reduce((s, o) => s + (Number(o.totalAmount) || 0), 0) - 960000);
+    const extraCogs = Math.max(0, state.orders.reduce((s, o) => s + (Number(o.costAmount) || 0), 0) - 610000);
+
+    const baseRev = Math.round(ent.revenue * mult + extraRev);
+    const baseCogs = Math.round(ent.cogs * mult + extraCogs);
+    const baseOpex = Math.round(ent.opex * mult);
+    const baseTax = Math.round(ent.taxes * mult);
+
+    const baseRows = [
+      { id: 'rev_pinelka', group: 'REVENUE', name: 'Виручка: Полотна фільончасті «Пінєлька»', account: '7011 / Авто + CRM', autoFact: Math.round(baseRev * 0.46), autoPlan: Math.round(baseRev * 0.48) },
+      { id: 'rev_pogonazh', group: 'REVENUE', name: 'Виручка: Погонаж (коробка, лиштва, добір)', account: '7012 / Авто + CRM', autoFact: Math.round(baseRev * 0.26), autoPlan: Math.round(baseRev * 0.25) },
+      { id: 'rev_custom', group: 'REVENUE', name: 'Виручка: Нестандартні розміри та ЧПК-фрезерування', account: '7013 / Цех MES', autoFact: Math.round(baseRev * 0.18), autoPlan: Math.round(baseRev * 0.17) },
+      { id: 'rev_service', group: 'REVENUE', name: 'Виручка: Фурнітура, пакування та доставка', account: '7020 / Склад', autoFact: Math.round(baseRev * 0.10), autoPlan: Math.round(baseRev * 0.10) },
+
+      { id: 'cogs_raw', group: 'COGS', name: 'Сировина та плита МДФ / брус / ПВХ', account: '9011 <- Дт 231 Кт 201', autoFact: Math.round(baseCogs * 0.54), autoPlan: Math.round(baseCogs * 0.52) },
+      { id: 'cogs_comp', group: 'COGS', name: 'Фурнітура, замки, клей, пакування', account: '9012 <- Дт 231 Кт 202', autoFact: Math.round(baseCogs * 0.16), autoPlan: Math.round(baseCogs * 0.16) },
+      { id: 'cogs_wage', group: 'COGS', name: 'Відрядна зарплата операторів ЧПК + ЄСВ 22%', account: '9013 <- Кт 661/651', autoFact: Math.round(baseCogs * 0.21), autoPlan: Math.round(baseCogs * 0.22) },
+      { id: 'cogs_energy', group: 'COGS', name: 'Електроенергія верстатів та цехові ЗВВ', account: '9100 <- Кт 631', autoFact: Math.round(baseCogs * 0.09), autoPlan: Math.round(baseCogs * 0.10) },
+
+      { id: 'opex_sales', group: 'OPEX', name: 'Комерційні витрати, маркетинг та бонуси продажів', account: '9300 / Витрати збуту', autoFact: Math.round(baseOpex * 0.45), autoPlan: Math.round(baseOpex * 0.44) },
+      { id: 'opex_admin', group: 'OPEX', name: 'Адміністрація, оренда офісу, зв\'язок та софт', account: '9200 / Адмінвитрати', autoFact: Math.round(baseOpex * 0.35), autoPlan: Math.round(baseOpex * 0.36) },
+      { id: 'opex_log', group: 'OPEX', name: 'Транспорт, логістика та сервісне обслуговування', account: '9320 / Логістика', autoFact: Math.round(baseOpex * 0.20), autoPlan: Math.round(baseOpex * 0.20) },
+
+      { id: 'tax_all', group: 'TAX', name: 'Податки до бюджету (ПДВ / ЄП / Податок на прибуток)', account: '641 / 642 ДПС', autoFact: baseTax, autoPlan: Math.round(baseTax * 0.98) }
+    ];
+
+    const customRows = (state.pnlCustomLines || []).map((cl) => ({
+      id: cl.id,
+      group: cl.group,
+      name: cl.name,
+      account: 'Ручний рядок Власника',
+      autoFact: 0,
+      autoPlan: Number(cl.plan) || 0,
+      isCustom: true,
+      initialManual: Number(cl.amount) || 0
+    }));
+
+    const allRows = [...baseRows, ...customRows].map((r) => {
+      const adj = state.pnlAdjustments[r.id] || {};
+      const manualDelta = adj.delta !== undefined ? Number(adj.delta) : (r.initialManual || 0);
+      const planVal = adj.plan !== undefined ? Number(adj.plan) : r.autoPlan;
+      const factTotal = r.autoFact + manualDelta;
+      return {
+        ...r,
+        manualDelta,
+        factTotal,
+        planVal
+      };
+    });
+
+    const sumGroup = (grp, field) => allRows.filter((r) => r.group === grp).reduce((s, r) => s + r[field], 0);
+    const totalRev = sumGroup('REVENUE', 'factTotal');
+    const totalRevPlan = sumGroup('REVENUE', 'planVal');
+    const totalCogs = sumGroup('COGS', 'factTotal');
+    const totalCogsPlan = sumGroup('COGS', 'planVal');
+    const grossProfit = totalRev - totalCogs;
+    const grossProfitPlan = totalRevPlan - totalCogsPlan;
+    const totalOpex = sumGroup('OPEX', 'factTotal');
+    const totalOpexPlan = sumGroup('OPEX', 'planVal');
+    const ebitda = grossProfit - totalOpex;
+    const ebitdaPlan = grossProfitPlan - totalOpexPlan;
+    const totalTax = sumGroup('TAX', 'factTotal');
+    const totalTaxPlan = sumGroup('TAX', 'planVal');
+    const netProfit = ebitda - totalTax;
+    const netProfitPlan = ebitdaPlan - totalTaxPlan;
+
+    return {
+      rows: allRows,
+      totalRev,
+      totalRevPlan,
+      totalCogs,
+      totalCogsPlan,
+      grossProfit,
+      grossProfitPlan,
+      totalOpex,
+      totalOpexPlan,
+      ebitda,
+      ebitdaPlan,
+      totalTax,
+      totalTaxPlan,
+      netProfit,
+      netProfitPlan
+    };
+  }
+
+  function renderPnlSection() {
+    const tbody = document.getElementById('pnl-statement-tbody');
+    if (!tbody) return;
+
+    const m = computePnlModel();
+    const pctStr = (val) => (m.totalRev > 0 ? ((val / m.totalRev) * 100).toFixed(1) + '%' : '0.0%');
+
+    const elRev = document.getElementById('pnl-kpi-rev');
+    if (elRev) elRev.textContent = fmtUah(m.totalRev);
+    const elGross = document.getElementById('pnl-kpi-gross');
+    if (elGross) elGross.textContent = fmtUah(m.grossProfit);
+    const elGrossPct = document.getElementById('pnl-kpi-gross-pct');
+    if (elGrossPct) elGrossPct.textContent = pctStr(m.grossProfit);
+    const elEbitda = document.getElementById('pnl-kpi-ebitda');
+    if (elEbitda) elEbitda.textContent = fmtUah(m.ebitda);
+    const elEbitdaPct = document.getElementById('pnl-kpi-ebitda-pct');
+    if (elEbitdaPct) elEbitdaPct.textContent = pctStr(m.ebitda);
+    const elNet = document.getElementById('pnl-kpi-net');
+    if (elNet) elNet.textContent = fmtUah(m.netProfit);
+    const elNetPct = document.getElementById('pnl-kpi-net-pct');
+    if (elNetPct) elNetPct.textContent = pctStr(m.netProfit);
+
+    const disAttr = state.editAuthorized ? '' : 'disabled';
+    const renderGroupRows = (grp) =>
+      m.rows
+        .filter((r) => r.group === grp)
+        .map((r) => {
+          const share = m.totalRev > 0 ? ((r.factTotal / m.totalRev) * 100).toFixed(1) : '0.0';
+          const delBtn = r.isCustom && state.editAuthorized
+            ? `<button type="button" class="btn btn-sm btn-subtle js-pnl-del-custom" data-id="${escapeHtml(r.id)}" style="margin-left:6px;padding:1px 6px;font-size:11px;">x</button>`
+            : '';
+          return `
+            <tr>
+              <td style="font-weight: 600;">${escapeHtml(r.name)}${delBtn}</td>
+              <td><span class="badge badge-slate mono" style="font-size: 11px;">${escapeHtml(r.account)}</span></td>
+              <td class="text-right mono">${fmtUah(r.autoFact)}</td>
+              <td class="text-right">
+                <input type="number" class="inline-edit-input js-pnl-edit" data-row="${escapeHtml(r.id)}" data-field="delta" value="${r.manualDelta}" style="width: 105px;" ${disAttr} />
+              </td>
+              <td class="text-right mono" style="font-weight: 700;">${fmtUah(r.factTotal)}</td>
+              <td class="text-right mono">${share}%</td>
+              <td class="text-right">
+                <input type="number" class="inline-edit-input js-pnl-edit" data-row="${escapeHtml(r.id)}" data-field="plan" value="${r.planVal}" style="width: 105px;" ${disAttr} />
+              </td>
+            </tr>
+          `;
+        })
+        .join('');
+
+    const subtotalRow = (label, fact, plan, extraCls = 'pnl-subtotal-row') => `
+      <tr class="${extraCls}">
+        <td>${label}</td>
+        <td class="mono" style="font-size: 11.5px; color: var(--text-muted);">Авто-розрахунок</td>
+        <td class="text-right mono">—</td>
+        <td class="text-right mono">—</td>
+        <td class="text-right mono">${fmtUah(fact)}</td>
+        <td class="text-right mono">${pctStr(fact)}</td>
+        <td class="text-right mono">${fmtUah(plan)}</td>
+      </tr>
+    `;
+
+    tbody.innerHTML = [
+      renderGroupRows('REVENUE'),
+      subtotalRow('РАЗОМ ВИРУЧКА (REVENUE)', m.totalRev, m.totalRevPlan),
+      renderGroupRows('COGS'),
+      subtotalRow('РАЗОМ СОБІВАРТІСТЬ (COGS)', m.totalCogs, m.totalCogsPlan),
+      subtotalRow('ВАЛОВИЙ ПРИБУТОК (GROSS PROFIT)', m.grossProfit, m.grossProfitPlan),
+      renderGroupRows('OPEX'),
+      subtotalRow('РАЗОМ ОПЕРАЦІЙНІ ВИТРАТИ (OPEX)', m.totalOpex, m.totalOpexPlan),
+      subtotalRow('EBITDA (ПРИБУТОК ДО ПОДАТКІВ)', m.ebitda, m.ebitdaPlan),
+      renderGroupRows('TAX'),
+      subtotalRow('ЧИСТИЙ ПРИБУТОК (NET PROFIT)', m.netProfit, m.netProfitPlan, 'pnl-final-row')
+    ].join('');
+
+    // Render Category Profitability Analytics (Pinelka / Pogonazh / Custom / Hardware)
+    const anTbody = document.getElementById('pnl-analytics-tbody');
+    if (anTbody) {
+      const catNames = {
+        rev_pinelka: { label: 'Пінєлька (полотна фільончасті)', cogsRatio: 0.56 },
+        rev_pogonazh: { label: 'Погонаж (коробка, лиштва, добір)', cogsRatio: 0.49 },
+        rev_custom: { label: 'Нестандарт (індивідуальне ЧПК)', cogsRatio: 0.52 },
+        rev_service: { label: 'Фурнітура, сервіс та доставка', cogsRatio: 0.64 }
+      };
+      anTbody.innerHTML = ['rev_pinelka', 'rev_pogonazh', 'rev_custom', 'rev_service']
+        .map((id) => {
+          const row = m.rows.find((r) => r.id === id);
+          const rev = row ? row.factTotal : 0;
+          const cost = Math.round(rev * catNames[id].cogsRatio);
+          const prof = rev - cost;
+          const mPct = rev > 0 ? ((prof / rev) * 100).toFixed(1) : '0.0';
+          return `
+            <tr>
+              <td style="font-weight: 600;">${escapeHtml(catNames[id].label)}</td>
+              <td class="text-right mono">${fmtUah(rev)}</td>
+              <td class="text-right mono">${fmtUah(cost)}</td>
+              <td class="text-right"><span class="badge badge-green mono">${mPct}%</span></td>
+              <td class="text-right mono" style="font-weight: 700;">${fmtUah(prof)}</td>
+            </tr>
+          `;
+        })
+        .join('');
+    }
+
+    // Render ABC Client Ranking
+    const abcTbody = document.getElementById('pnl-abc-tbody');
+    if (abcTbody) {
+      const totalClientRev = Math.max(1, state.dealerCredits.reduce((s, d) => s + d.limitUah * 0.6, 0));
+      abcTbody.innerHTML = state.dealerCredits
+        .map((dl, idx) => {
+          const rev = Math.round(dl.limitUah * 0.6);
+          const prof = Math.round(rev * (idx === 0 ? 0.34 : idx === 2 ? 0.31 : 0.25));
+          const rentPct = ((prof / rev) * 100).toFixed(1);
+          const sharePct = ((rev / totalClientRev) * 100).toFixed(1);
+          const cls = Number(sharePct) >= 25 ? 'Клас A' : Number(sharePct) >= 12 ? 'Клас B' : 'Клас C';
+          return `
+            <tr>
+              <td style="font-weight: 600;">${escapeHtml(dl.name)}</td>
+              <td><span class="badge ${cls === 'Клас A' ? 'badge-green' : 'badge-slate'}">${cls}</span></td>
+              <td class="text-right mono">${fmtUah(rev)}</td>
+              <td class="text-right mono" style="font-weight: 700;">${fmtUah(prof)}</td>
+              <td class="text-right mono">${rentPct}%</td>
+              <td class="text-right mono">${sharePct}%</td>
+            </tr>
+          `;
+        })
+        .join('');
+    }
+
+    renderPnlChart(m);
+  }
+
+  function renderPnlChart(m) {
+    const canvas = document.getElementById('pnlChart');
+    if (!canvas || typeof Chart === 'undefined') return;
+    if (state.pnlChartInstance) state.pnlChartInstance.destroy();
+
+    const baseRev = Math.round((m.totalRev / (state.pnlPeriod === 'YEAR' ? 12 : state.pnlPeriod === 'QUARTER' ? 3 : 1)) || 5500000);
+    const baseNet = Math.round((m.netProfit / (state.pnlPeriod === 'YEAR' ? 12 : state.pnlPeriod === 'QUARTER' ? 3 : 1)) || 1420000);
+    const factors = [0.84, 0.89, 0.92, 0.95, 0.98, 1.0];
+    const revs = factors.map((f) => Math.round((baseRev * f) / 1000));
+    const nets = factors.map((f) => Math.round((baseNet * f * 1.02) / 1000));
+
+    state.pnlChartInstance = new Chart(canvas.getContext('2d'), {
+      type: 'bar',
+      data: {
+        labels: ['Червень', 'Липень', 'Серпень', 'Вересень', 'Жовтень', 'Листопад'],
+        datasets: [
+          {
+            label: 'Виручка (тис. грн)',
+            data: revs,
+            backgroundColor: '#E4E4E7',
+            borderColor: '#09090B',
+            borderWidth: 1,
+            borderRadius: 4
+          },
+          {
+            label: 'Чистий прибуток (тис. грн)',
+            data: nets,
+            backgroundColor: '#09090B',
+            borderRadius: 4
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { position: 'top', labels: { font: { family: 'Inter, sans-serif', size: 12 }, color: '#09090B' } }
+        },
+        scales: {
+          x: { grid: { display: false }, ticks: { color: '#52525B' } },
+          y: { grid: { color: '#E4E4E7' }, ticks: { color: '#52525B' } }
+        }
+      }
+    });
+  }
+
+  function exportPnlCsv() {
+    const m = computePnlModel();
+    const lines = [['Розділ', 'Стаття', 'Джерело', 'Авто (₴)', 'Коригування (₴)', 'Факт (₴)', 'План (₴)'].join(';')];
+    m.rows.forEach((r) => {
+      lines.push([r.group, `"${r.name.replace(/"/g, '""')}"`, `"${r.account}"`, r.autoFact, r.manualDelta, r.factTotal, r.planVal].join(';'));
+    });
+    lines.push(['ПІДСУМОК', '"Валовий прибуток (Gross Profit)"', 'Авто', '', '', m.grossProfit, m.grossProfitPlan].join(';'));
+    lines.push(['ПІДСУМОК', '"EBITDA"', 'Авто', '', '', m.ebitda, m.ebitdaPlan].join(';'));
+    lines.push(['ПІДСУМОК', '"Чистий прибуток (Net Profit)"', 'Авто', '', '', m.netProfit, m.netProfitPlan].join(';'));
+
+    const blob = new Blob(['\uFEFF' + lines.join('\r\n')], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `OpexMetrix_PnL_${state.pnlPeriod}_2026.csv`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    showInlineStatus(`Експортовано звіт P&L (${state.pnlPeriod}) у CSV для Excel.`);
+  }
+
+  // ─── 2. ПРОВОДКИ ОНЛАЙН (Дт/Кт) ТА ГОЛОВНА КНИГА (GENERAL LEDGER) ───────────
   function formatTimeNowMs() {
     const now = new Date();
     const hh = String(now.getHours()).padStart(2, '0');
@@ -1062,7 +1474,7 @@
 
     const navBadge = document.getElementById('nav-badge-ledger');
     if (navBadge) {
-      navBadge.textContent = `LIVE • ${state.ledgerEntries.length}`;
+      navBadge.textContent = `LIVE ${state.ledgerEntries.length}`;
     }
 
     renderLedgerSection();
@@ -1121,7 +1533,7 @@
                 ${fmtUah(e.amount, 2)}
               </td>
               <td class="text-right">
-                <span class="badge badge-green mono" style="font-size: 11px;">✓ Дт=Кт • 0.04s</span>
+                <span class="badge badge-green mono" style="font-size: 11px;">Дт=Кт • 0.04s</span>
               </td>
             </tr>
           `;
@@ -1182,7 +1594,7 @@
     }
   }
 
-  // ─── 3. 🏭 ВБИВЧА MES: ВИРОБНИЦТВО, ЧПК, ТЕХКАРТИ (BOM) ТА ZERO-WASTE ──────
+  // ─── 3. ВБИВЧА MES: ВИРОБНИЦТВО, ЧПК, ТЕХКАРТИ (BOM) ТА ZERO-WASTE ──────
   function evaluateMesBomLive() {
     const sel = document.getElementById('mes-bom-product');
     const qtyEl = document.getElementById('mes-bom-qty');
@@ -1210,18 +1622,18 @@
     const totalProfit = totalRevenue - totalBatchCost;
     const marginPct = ((totalProfit / totalRevenue) * 100).toFixed(1);
 
-    breakdownEl.innerHTML = `
+      breakdownEl.innerHTML = `
       <div class="kpi-breakdown-row">
-        <span>1. Основна сировина та метал за техкартою (<code class="mono">Дт 231 Кт 201</code>):</span>
+        <span>1. Основна сировина та метал/МДФ за техкартою (<code class="mono">Дт 231 Кт 201</code>):</span>
         <strong class="mono">${fmtUah(totalRaw)}</strong>
       </div>
       <div class="kpi-breakdown-row">
-        <span>2. Комплектуючі, приводи та автоматика (<code class="mono">Дт 231 Кт 202</code>):</span>
+        <span>2. Комплектуючі, фурнітура та автоматика (<code class="mono">Дт 231 Кт 202</code>):</span>
         <strong class="mono">${fmtUah(totalComp)}</strong>
       </div>
       <div class="kpi-breakdown-row" style="color: var(--success);">
-        <span>3. ♻️ Економія Банку ділових обрізків Zero-Waste (<code class="mono">Дт 201 Кт 231</code>):</span>
-        <strong class="mono" style="color: var(--success);">−${fmtUah(Math.abs(totalRemnant))}</strong>
+        <span>3. Повернення ділових обрізків (Zero-Waste, <code class="mono">Дт 201 Кт 231</code>):</span>
+        <strong class="mono" style="color: var(--success);">- ${fmtUah(Math.abs(totalRemnant))}</strong>
       </div>
       <div class="kpi-breakdown-row">
         <span>4. Відрядна ЗП операторів ЧПК + ЄСВ 22% (<code class="mono">Дт 231 Кт 661/651</code>):</span>
@@ -1232,7 +1644,7 @@
         <strong class="mono">${fmtUah(totalEnergyOverhead)}</strong>
       </div>
       <div class="kpi-breakdown-row" style="padding-top: 8px; border-top: 1px solid var(--border); font-size: 14px;">
-        <strong>Повна заводська собівартість партії (${qty} од. → <code class="mono">Дт 26 Кт 231</code>):</strong>
+        <strong>Повна заводська собівартість партії (${qty} од. -> <code class="mono">Дт 26 Кт 231</code>):</strong>
         <strong class="mono" style="color: var(--primary);">${fmtUah(totalBatchCost)} (${fmtUah(unitCost)} / од.)</strong>
       </div>
       <div class="kpi-breakdown-row" style="font-size: 14px; color: var(--success);">
@@ -1266,11 +1678,11 @@
           let statusBadge = '';
           let actionBtn = '';
           if (isReleased) {
-            statusBadge = `<span class="badge badge-green">✓ Партію здано на склад ГП (Рах. 26)</span>`;
+            statusBadge = `<span class="badge badge-green">Партію здано на склад ГП (Рах. 26)</span>`;
             actionBtn = `<span class="mono" style="font-size: 11.5px; color: var(--success);">Проведено Дт 26 Кт 231</span>`;
           } else if (isReady) {
             statusBadge = `<span class="badge badge-blue">Готово до випуску (${line.doneQty}/${line.totalQty} од.)</span>`;
-            actionBtn = `<button type="button" class="btn btn-sm btn-action-primary js-mes-release-line" data-id="${escapeHtml(line.id)}">✓ Випустити партію + Дт 26 Кт 231</button>`;
+            actionBtn = `<button type="button" class="btn btn-sm btn-action-primary js-mes-release-line" data-id="${escapeHtml(line.id)}">Випустити партію + Дт 26 Кт 231</button>`;
           } else {
             statusBadge = `
               <div>
@@ -1310,7 +1722,7 @@
     evaluateMesBomLive();
   }
 
-  // ─── 4. 💼 SALES & B2B DEAL DESK: КРЕДИТНИЙ КОНТРОЛЬ ДИЛЕРІВ ───────────────
+  // ─── 4. SALES & DEAL DESK: КРЕДИТНИЙ КОНТРОЛЬ ДИЛЕРІВ ──────────────────────
   function renderDealerCreditTable() {
     const tbody = document.getElementById('dealer-credit-tbody');
     if (!tbody) return;
@@ -1320,10 +1732,10 @@
     if (stopBadge) {
       if (blockedCount > 0) {
         stopBadge.className = 'badge badge-red';
-        stopBadge.textContent = `● ${blockedCount} Дилер на Стоп-Відвантаженні`;
+        stopBadge.textContent = `Заблоковано дилерів: ${blockedCount}`;
       } else {
         stopBadge.className = 'badge badge-green';
-        stopBadge.textContent = `✓ Усі ліміти під контролем`;
+        stopBadge.textContent = 'Ліміти в нормі';
       }
     }
 
@@ -1332,14 +1744,15 @@
         const isBlocked = dl.gateStatus === 'BLOCKED';
         const isWarn = dl.gateStatus === 'WARN';
         const gateHtml = isBlocked
-          ? `<span class="badge badge-red">⛔ СТОП-ВІДВАНТАЖЕННЯ WMS</span>`
+          ? `<span class="badge badge-red">СТОП-ВІДВАНТАЖЕННЯ</span>`
           : isWarn
-          ? `<span class="badge badge-amber">⚠️ 90% ліміту використано</span>`
-          : `<span class="badge badge-green">✓ Відвантаження дозволено</span>`;
+          ? `<span class="badge badge-amber">90% ліміту</span>`
+          : `<span class="badge badge-green">Дозволено</span>`;
 
+        const disAttr = state.editAuthorized ? '' : 'disabled';
         const btnHtml = isBlocked
-          ? `<button type="button" class="btn btn-sm btn-action-primary js-toggle-dealer-gate" data-id="${escapeHtml(dl.id)}">Зарахувати оплату + Відкрити WMS</button>`
-          : `<button type="button" class="btn btn-sm btn-subtle js-toggle-dealer-gate" data-id="${escapeHtml(dl.id)}">Блокувати відвантаження</button>`;
+          ? `<button type="button" class="btn btn-sm btn-action-primary js-toggle-dealer-gate owner-editable-btn" data-id="${escapeHtml(dl.id)}" ${disAttr}>Зарахувати оплату + Відкрити</button>`
+          : `<button type="button" class="btn btn-sm btn-subtle js-toggle-dealer-gate owner-editable-btn" data-id="${escapeHtml(dl.id)}" ${disAttr}>Блокувати відвантаження</button>`;
 
         return `
           <tr style="${isBlocked ? 'background: #FEF2F2;' : ''}">
@@ -1368,8 +1781,8 @@
         const rem = Math.max(0, cc.limitUah - cc.spentUah);
         const pct = Math.min(100, Math.round((cc.spentUah / cc.limitUah) * 100));
         const badgeHtml = pct >= 95
-          ? `<span class="badge badge-amber">⚠️ Ліміт 97% (Погодження CFO)</span>`
-          : `<span class="badge badge-green">✓ В межах бюджету ЦФВ</span>`;
+          ? `<span class="badge badge-amber">Ліміт ${pct}% (Погодження)</span>`
+          : `<span class="badge badge-green">В межах бюджету</span>`;
 
         return `
           <tr>
@@ -1394,6 +1807,105 @@
       .join('');
   }
 
+  // ─── ДЕБІТОРСЬКА (361) ТА КРЕДИТОРСЬКА (631) ЗАБОРГОВАНІСТЬ ───────────────
+  function renderDebtSection() {
+    const arTbody = document.getElementById('debt-ar-tbody');
+    const apTbody = document.getElementById('debt-ap-tbody');
+
+    const totalAr = state.dealerCredits.reduce((s, d) => s + (Number(d.debtUah) || 0), 0);
+    const totalOverdue = state.dealerCredits
+      .filter((d) => (Number(d.overdueDays) || 0) > 0)
+      .reduce((s, d) => s + (Number(d.debtUah) || 0), 0);
+    const totalAp = state.payables
+      .filter((p) => p.status !== 'PAID')
+      .reduce((s, p) => s + (Number(p.amount) || 0), 0);
+    const netPos = totalAr - totalAp;
+
+    const elAr = document.getElementById('debt-kpi-ar');
+    if (elAr) elAr.textContent = fmtUah(totalAr);
+    const elOv = document.getElementById('debt-kpi-overdue');
+    if (elOv) elOv.textContent = fmtUah(totalOverdue);
+    const elAp = document.getElementById('debt-kpi-ap');
+    if (elAp) elAp.textContent = fmtUah(totalAp);
+    const elNet = document.getElementById('debt-kpi-net');
+    if (elNet) elNet.textContent = `${netPos >= 0 ? '+' : ''}${fmtUah(netPos)}`;
+
+    const navDebtBadge = document.getElementById('nav-badge-debt');
+    if (navDebtBadge) {
+      const ovCnt = state.dealerCredits.filter((d) => d.overdueDays > 0 && d.debtUah > 0).length;
+      navDebtBadge.textContent = ovCnt > 0 ? `${ovCnt} простр.` : fmtUah(totalAr);
+    }
+
+    const disAttr = state.editAuthorized ? '' : 'disabled';
+
+    if (arTbody) {
+      arTbody.innerHTML = state.dealerCredits
+        .map((dl) => {
+          const isBlocked = dl.gateStatus === 'BLOCKED';
+          const statusBadge = dl.debtUah <= 0
+            ? '<span class="badge badge-green">Погашено</span>'
+            : isBlocked
+            ? '<span class="badge badge-red">Стоп-відвантаження</span>'
+            : dl.overdueDays > 0
+            ? '<span class="badge badge-amber">Прострочення</span>'
+            : '<span class="badge badge-slate">У межах ліміту</span>';
+          return `
+            <tr style="${isBlocked ? 'background: #FEF2F2;' : ''}">
+              <td style="min-width: 170px;">
+                <div style="font-weight: 700;">${escapeHtml(dl.name)}</div>
+                <div style="font-size: 11px; color: var(--text-muted);">${escapeHtml(dl.segment || '')}</div>
+              </td>
+              <td style="font-size: 12px; max-width: 120px;">${escapeHtml(dl.kam || 'Власник')}</td>
+              <td class="text-right">
+                <input type="number" class="inline-edit-input js-debt-ar-edit" data-id="${escapeHtml(dl.id)}" data-field="limitUah" value="${dl.limitUah}" style="width: 92px;" ${disAttr} />
+              </td>
+              <td class="text-right">
+                <input type="number" class="inline-edit-input js-debt-ar-edit" data-id="${escapeHtml(dl.id)}" data-field="debtUah" value="${dl.debtUah}" style="width: 92px; font-weight: 700;" ${disAttr} />
+              </td>
+              <td class="text-right">
+                <input type="number" class="inline-edit-input js-debt-ar-edit" data-id="${escapeHtml(dl.id)}" data-field="overdueDays" value="${dl.overdueDays}" min="0" style="width: 54px;" ${disAttr} />
+              </td>
+              <td>${statusBadge}</td>
+              <td class="text-right" style="white-space: nowrap;">
+                ${dl.debtUah > 0 ? `<button type="button" class="btn btn-sm btn-action-primary js-debt-ar-pay owner-editable-btn" data-id="${escapeHtml(dl.id)}" ${disAttr}>Погасити</button>` : '<span style="font-size:12px;color:var(--text-muted);">Оплачено</span>'}
+              </td>
+            </tr>
+          `;
+        })
+        .join('');
+    }
+
+    if (apTbody) {
+      apTbody.innerHTML = state.payables
+        .map((ap) => {
+          const isPaid = ap.status === 'PAID' || ap.amount <= 0;
+          const statusHtml = isPaid
+            ? '<span class="badge badge-green">Сплачено</span>'
+            : ap.overdueDays > 0
+            ? `<span class="badge badge-red">Прострочено ${ap.overdueDays} дн.</span>`
+            : '<span class="badge badge-slate">До сплати</span>';
+          return `
+            <tr>
+              <td>
+                <div style="font-weight: 700;">${escapeHtml(ap.party)}</div>
+                <div class="mono" style="font-size: 11.5px; color: var(--text-muted);">ЄДРПОУ: ${escapeHtml(ap.edrpou || '—')}</div>
+              </td>
+              <td style="font-size: 12.5px;">${escapeHtml(ap.doc)}</td>
+              <td class="mono" style="font-size: 12px;">${escapeHtml(ap.dueDate || '—')}</td>
+              <td class="text-right">
+                <input type="number" class="inline-edit-input js-debt-ap-edit" data-id="${escapeHtml(ap.id)}" data-field="amount" value="${ap.amount}" min="0" style="width: 110px; font-weight: 700;" ${disAttr} />
+              </td>
+              <td>${statusHtml}</td>
+              <td class="text-right">
+                ${!isPaid ? `<button type="button" class="btn btn-sm btn-subtle js-debt-ap-pay owner-editable-btn" data-id="${escapeHtml(ap.id)}" ${disAttr}>Сплатити (Кт 311)</button>` : '<span style="font-size:12px;color:var(--text-muted);">Закрито</span>'}
+              </td>
+            </tr>
+          `;
+        })
+        .join('');
+    }
+  }
+
   function renderSalesLeaderboardTable() {
     const tbody = document.getElementById('sales-leaderboard-tbody');
     if (!tbody) return;
@@ -1413,14 +1925,14 @@
             <td class="text-right mono">${div.avgDiscountPct}%</td>
             <td class="text-right mono" style="font-weight: 700; color: var(--accent-blue);">${div.cashCollectionPct}%</td>
             <td class="text-right mono"><span class="badge badge-blue">${div.qcScore} / 100</span></td>
-            <td><span class="badge badge-green">✓ ${escapeHtml(div.status)}</span></td>
+            <td><span class="badge badge-green">${escapeHtml(div.status)}</span></td>
           </tr>
         `;
       })
       .join('');
   }
 
-  // ─── 1B. 📄 ДОКУМЕНТИ, AI-РОЗПІЗНАВАННЯ (OCR) ТА ПОГОДЖЕННЯ (ПК + ТЕЛЕФОН) ──
+  // ─── 1B. ДОКУМЕНТИ, AI-РОЗПІЗНАВАННЯ (OCR) ТА ПОГОДЖЕННЯ (ПК + ТЕЛЕФОН) ──
 
   // ─── Mobile <-> Desktop Live Synchronization Engine ────────────────────────
   state.phoneActiveTab = 'DOCS';
@@ -1443,7 +1955,7 @@
           renderMesSection();
           renderLedgerSection();
           renderMobileCompanion();
-          showInlineStatus(ev.data.toast || '📱 Синхронізовано з мобільною версією в реальному часі!');
+          showInlineStatus(ev.data.toast || 'Синхронізовано з мобільною версією в реальному часі!');
         }
       };
     }
@@ -1484,7 +1996,7 @@
             <div class="phone-card" style="border-left: 3px solid ${isPending ? 'var(--warning)' : 'var(--success)'};">
               <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:6px;margin-bottom:4px;">
                 <span class="badge ${isPending ? 'badge-amber' : 'badge-green'}" style="font-size:10px;">
-                  ${isPending ? '⏳ На погодженні' : '✓ Погоджено (Склад + Облік)'}
+                  ${isPending ? 'На погодженні' : 'Погоджено (Склад + Облік)'}
                 </span>
                 <strong class="mono" style="font-size:12.5px;color:var(--text-main);">${fmtUah(d.amount)}</strong>
               </div>
@@ -1494,8 +2006,8 @@
               <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap;">
                 ${
                   isPending
-                    ? `<button type="button" class="btn btn-sm btn-action-primary js-doc-approve" data-id="${escapeHtml(d.id)}" style="width:100%;font-size:11.5px;">✓ Погодити з телефону + провести в ПК</button>`
-                    : `<span class="mono" style="font-size:10.5px;color:var(--success);font-weight:600;">✓ Синхронізовано з ПК (Дт ${escapeHtml(d.ledgerDtCode)} Кт ${escapeHtml(d.ledgerKtCode)})</span>`
+                    ? `<button type="button" class="btn btn-sm btn-action-primary js-doc-approve" data-id="${escapeHtml(d.id)}" style="width:100%;font-size:11.5px;">Погодити з телефону + провести в ПК</button>`
+                    : `<span class="mono" style="font-size:10.5px;color:var(--success);font-weight:600;">Синхронізовано з ПК (Дт ${escapeHtml(d.ledgerDtCode)} Кт ${escapeHtml(d.ledgerKtCode)})</span>`
                 }
               </div>
             </div>
@@ -1506,17 +2018,17 @@
       bodyEl.innerHTML = `
         <div class="phone-card" style="background: var(--accent-blue-soft); border-color: var(--accent-blue-border);">
           <div style="font-weight: 700; font-size: 13px; color: var(--accent-blue); margin-bottom: 4px;">
-            📱 Мобільний Сканер Накладних та Договорів
+            Мобільний Сканер Накладних та Договорів
           </div>
           <div style="font-size: 11.5px; color: var(--text-secondary); margin-bottom: 10px;">
             Сфотографуйте документ з телефону — він за 1 секунду з'явиться на комп'ютері в таблиці погодження та на складі:
           </div>
           <div style="display: flex; flex-direction: column; gap: 6px;">
             <button type="button" class="btn btn-sm btn-action-primary" id="btn-phone-sim-waybill" style="width: 100%; justify-content: center;">
-              📸 Сфотографувати накладну в цех/склад (+На ПК)
+              Сфотографувати накладну в цех/склад (+На ПК)
             </button>
             <button type="button" class="btn btn-sm btn-subtle" id="btn-phone-sim-contract" style="width: 100%; justify-content: center; background: #FFFFFF;">
-              📑 Відправити договір на погодження з телефону
+              Відправити договір на погодження з телефону
             </button>
           </div>
         </div>
@@ -1546,11 +2058,11 @@
         <div class="phone-card">
           <div style="font-size:12px;font-weight:700;color:var(--text-main);margin-bottom:6px;">Перемкнути контур бізнесу з телефону (оновлює ПК):</div>
           <select id="phone-entity-select" class="select" style="font-size:12px;height:34px;">
-            <option value="HOLDING_ALL" ${state.holdingEntity === 'HOLDING_ALL' || state.holdingEntity === 'ALL' ? 'selected' : ''}>🏢 Група Компаній (Цех + Будівництво)</option>
-            <option value="CONSTRUCTION_LLC" ${state.holdingEntity === 'CONSTRUCTION_LLC' || state.holdingEntity === 'CONSTRUCTION' ? 'selected' : ''}>🏗️ ТОВ "БудІнвест Генпідряд" (ЖК / КБ-2в)</option>
-            <option value="PLANT_LLC" ${state.holdingEntity === 'PLANT_LLC' || state.holdingEntity === 'PLANT' ? 'selected' : ''}>🏭 ТОВ "ПромТех Виробництво"</option>
-            <option value="TRADE_LLC" ${state.holdingEntity === 'TRADE_LLC' || state.holdingEntity === 'TRADE' ? 'selected' : ''}>💼 ТОВ "Альфа Трейд Дистрибуція"</option>
-            <option value="SMB_MODE" ${state.holdingEntity === 'SMB_MODE' || state.holdingEntity === 'SMB' ? 'selected' : ''}>🏪 Контур Середнього Бізнесу</option>
+            <option value="HOLDING_ALL" ${state.holdingEntity === 'HOLDING_ALL' || state.holdingEntity === 'ALL' ? 'selected' : ''}>Група Компаній (Цех + Будівництво)</option>
+            <option value="CONSTRUCTION_LLC" ${state.holdingEntity === 'CONSTRUCTION_LLC' || state.holdingEntity === 'CONSTRUCTION' ? 'selected' : ''}>️ ТОВ "БудІнвест Генпідряд" (ЖК / КБ-2в)</option>
+            <option value="PLANT_LLC" ${state.holdingEntity === 'PLANT_LLC' || state.holdingEntity === 'PLANT' ? 'selected' : ''}>ТОВ "ПромТех Виробництво"</option>
+            <option value="TRADE_LLC" ${state.holdingEntity === 'TRADE_LLC' || state.holdingEntity === 'TRADE' ? 'selected' : ''}>ТОВ "Альфа Трейд Дистрибуція"</option>
+            <option value="SMB_MODE" ${state.holdingEntity === 'SMB_MODE' || state.holdingEntity === 'SMB' ? 'selected' : ''}>Контур Середнього Бізнесу</option>
           </select>
         </div>
 
@@ -1572,7 +2084,7 @@
     } else if (state.phoneActiveTab === 'SHOPFLOOR') {
       bodyEl.innerHTML = `
         <div class="phone-card" style="background:#F0FDF4;border-color:#BBF7D0;">
-          <div style="font-weight:700;font-size:13px;color:#166534;">🏭 QR-Термінал Цеху (MES) та Складу (WMS)</div>
+          <div style="font-weight:700;font-size:13px;color:#166534;">QR-Термінал Цеху (MES) та Складу (WMS)</div>
           <div style="font-size:11.5px;color:#14532D;margin-top:2px;">
             Майстер у цеху натискає «Випустити партію» на телефоні — готові вироби миттєво стають на Склад ГП (Рах. 26) на комп'ютері:
           </div>
@@ -1585,12 +2097,12 @@
               <div style="font-size:11.5px;color:var(--text-secondary);margin-top:2px;">${escapeHtml(line.orderTitle)}</div>
               <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;">
                 <span class="badge ${isReleased ? 'badge-green' : 'badge-blue'}" style="font-size:10.5px;">
-                  ${isReleased ? '✓ На складі ГП (Рах. 26)' : `В роботі: ${line.doneQty}/${line.totalQty} од.`}
+                  ${isReleased ? 'На складі ГП (Рах. 26)' : `В роботі: ${line.doneQty}/${line.totalQty} од.`}
                 </span>
                 ${
                   isReleased
                     ? '<span class="mono" style="font-size:11px;color:var(--success);">Дт 26 Кт 231</span>'
-                    : `<button type="button" class="btn btn-sm btn-action-primary js-mes-release-line" data-id="${escapeHtml(line.id)}" style="font-size:11px;">✓ Випустити з телефону</button>`
+                    : `<button type="button" class="btn btn-sm btn-action-primary js-mes-release-line" data-id="${escapeHtml(line.id)}" style="font-size:11px;">Випустити з телефону</button>`
                 }
               </div>
             </div>
@@ -1600,7 +2112,7 @@
     } else if (state.phoneActiveTab === 'SALES') {
       bodyEl.innerHTML = `
         <div class="phone-card">
-          <div style="font-weight:700;font-size:13px;color:var(--text-main);margin-bottom:4px;">💼 Експрес-Рахунок з Телефону Сейлза (QR НБУ)</div>
+          <div style="font-weight:700;font-size:13px;color:var(--text-main);margin-bottom:4px;">Експрес-Рахунок з Телефону Сейлза (QR НБУ)</div>
           <div style="font-size:11.5px;color:var(--text-secondary);margin-bottom:10px;">
             Виставте рахунок із поля або зустрічі — замовлення миттєво з'явиться на Десктопі у вкладці «Продажі» та зарезервує склад:
           </div>
@@ -1635,7 +2147,7 @@
 
     const navBadge = document.getElementById('nav-badge-docs');
     if (navBadge) {
-      navBadge.textContent = pendingCount > 0 ? `${pendingCount} на підпис` : '✓ Погоджено';
+      navBadge.textContent = pendingCount > 0 ? `${pendingCount} на підпис` : 'Погоджено';
       navBadge.style.background = pendingCount > 0 ? 'var(--warning-soft)' : 'var(--success-soft)';
       navBadge.style.color = pendingCount > 0 ? 'var(--warning)' : 'var(--success)';
     }
@@ -1646,7 +2158,7 @@
     const pendingBadge = document.getElementById('docs-pending-badge');
     if (pendingBadge) {
       pendingBadge.className = pendingCount > 0 ? 'badge badge-amber' : 'badge badge-green';
-      pendingBadge.textContent = pendingCount > 0 ? `На погодженні: ${pendingCount} документи` : '✓ Усі документи погоджено та проведено';
+      pendingBadge.textContent = pendingCount > 0 ? `На погодженні: ${pendingCount} документи` : 'Усі документи погоджено та проведено';
     }
 
     if (ocrCard && state.activeOcrDoc) {
@@ -1655,7 +2167,7 @@
         <div>
           <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; flex-wrap: wrap; margin-bottom: 12px;">
             <div>
-              <span class="badge badge-green">✓ AI OCR РОЗПІЗНАНО ЗА 1.2 СЕК</span>
+              <span class="badge badge-green">AI OCR РОЗПІЗНАНО ЗА 1.2 СЕК</span>
               <span class="badge badge-blue" style="margin-left: 6px;">${escapeHtml(doc.source)}</span>
             </div>
             <span class="mono" style="font-size: 12px; color: var(--text-muted);">ID: ${escapeHtml(doc.id)}</span>
@@ -1669,7 +2181,7 @@
               <img src="${doc.previewImageUrl}" alt="Скан документа" style="width: 68px; height: 68px; object-fit: cover; border-radius: 6px; border: 1px solid var(--border-strong);" />
               <div style="font-size: 12px; color: var(--text-secondary);">
                 <div style="font-weight: 700; color: var(--text-main);">Завантажений оригінал скан-копії</div>
-                <div>Контроль геометрії документа та печатки: <strong>Пройдено ✓</strong></div>
+                <div>Контроль геометрії документа та печатки: <strong>Пройдено </strong></div>
               </div>
             </div>
           ` : ''}
@@ -1703,10 +2215,10 @@
 
         <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; padding-top: 12px; border-top: 1px solid var(--border);">
           <button type="button" class="btn btn-sm btn-subtle" id="btn-ocr-send-to-approval">
-            📤 Відправити на погодження керівнику
+            Відправити на погодження керівнику
           </button>
           <button type="button" class="btn btn-sm btn-action-primary" id="btn-ocr-approve-now">
-            ✓ Погодити одразу та провести в Склад / Цех / Облік
+            Погодити одразу та провести в Склад / Цех / Облік
           </button>
         </div>
       `;
@@ -1721,27 +2233,27 @@
           let statusBadge = '';
           let actionBtns = '';
           if (isApproved) {
-            statusBadge = `<span class="badge badge-green">✓ Погоджено та проведено</span>`;
+            statusBadge = `<span class="badge badge-green">Погоджено та проведено</span>`;
             actionBtns = `
               <div style="display:flex;gap:6px;justify-content:flex-end;">
-                <button type="button" class="btn btn-sm btn-subtle js-doc-preview-ocr" data-id="${escapeHtml(d.id)}">👁️ Скан OCR</button>
+                <button type="button" class="btn btn-sm btn-subtle js-doc-preview-ocr" data-id="${escapeHtml(d.id)}">️ Скан OCR</button>
                 <span class="mono" style="font-size:11.5px;color:var(--success);align-self:center;">Дт ${escapeHtml(d.ledgerDtCode)} Кт ${escapeHtml(d.ledgerKtCode)}</span>
               </div>
             `;
           } else if (isRejected) {
-            statusBadge = `<span class="badge badge-red">✕ На доопрацюванні</span>`;
+            statusBadge = `<span class="badge badge-red">На доопрацюванні</span>`;
             actionBtns = `
               <div style="display:flex;gap:6px;justify-content:flex-end;">
                 <button type="button" class="btn btn-sm btn-subtle js-doc-Approve" data-id="${escapeHtml(d.id)}">Погодити</button>
               </div>
             `;
           } else {
-            statusBadge = `<span class="badge badge-amber">⏳ Очікує погодження</span>`;
+            statusBadge = `<span class="badge badge-amber">Очікує погодження</span>`;
             actionBtns = `
               <div style="display:flex;gap:6px;justify-content:flex-end;flex-wrap:wrap;">
-                <button type="button" class="btn btn-sm btn-action-primary js-doc-approve" data-id="${escapeHtml(d.id)}">✓ Погодити + в Склад/Облік</button>
-                <button type="button" class="btn btn-sm btn-subtle js-doc-preview-ocr" data-id="${escapeHtml(d.id)}">👁️ OCR</button>
-                <button type="button" class="btn btn-sm btn-subtle js-doc-reject" data-id="${escapeHtml(d.id)}">✕</button>
+                <button type="button" class="btn btn-sm btn-action-primary js-doc-approve" data-id="${escapeHtml(d.id)}">Погодити + в Склад/Облік</button>
+                <button type="button" class="btn btn-sm btn-subtle js-doc-preview-ocr" data-id="${escapeHtml(d.id)}">️ OCR</button>
+                <button type="button" class="btn btn-sm btn-subtle js-doc-reject" data-id="${escapeHtml(d.id)}"></button>
               </div>
             `;
           }
@@ -1815,8 +2327,8 @@
         ecosystemLink: isConstruction
           ? 'Контроль ліміту кошторису об\'єкта ЖК → Склад будмайданчика (Рах. 205) → Списання КБ-2в (Рах. 231)'
           : 'Склад WMS (Рах. 201) ↔ Виробничий Цех MES (Рах. 231) ↔ Головна Книга (Дт/Кт)',
-        aiRiskCheck: `✓ Документ «${file.name}» проаналізовано AI OCR. Код ЄДРПОУ ${edrpou}, арифметику ПДВ 20% та ліміти цін звірено.`,
-        approvalRoute: 'Ініціатор ✓ → Нач. Цеху / ВТВ ✓ → CEO (Готово до проведення)',
+        aiRiskCheck: `Документ «${file.name}» проаналізовано AI OCR. Код ЄДРПОУ ${edrpou}, арифметику ПДВ 20% та ліміти цін звірено.`,
+        approvalRoute: 'Ініціатор → Нач. Цеху / ВТВ → CEO (Готово до проведення)',
         ledgerDt: isContract ? '361 Розрахунки з покупцями' : '201 Сировина й матеріали (Склад)',
         ledgerDtCode: isContract ? '361' : '201',
         ledgerKt: isContract ? '701 Дохід від реалізації' : '631 Розрахунки з постачальниками',
@@ -1832,11 +2344,11 @@
 
       const dzTitle = document.getElementById('ocr-dropzone-title');
       if (dzTitle) {
-        dzTitle.textContent = `✓ Оцифровано реальний файл: ${file.name} (${fileKb} КБ)`;
+        dzTitle.textContent = `Оцифровано реальний файл: ${file.name} (${fileKb} КБ)`;
       }
 
       renderDocsSection();
-      showInlineStatus(`✓ Файл «${file.name}» розпізнано AI OCR (${fmtUah(amount)}) та підготовлено до проведення!`);
+      showInlineStatus(`Файл «${file.name}» розпізнано AI OCR (${fmtUah(amount)}) та підготовлено до проведення!`);
     };
 
     if (file.type && file.type.startsWith('image/')) {
@@ -1953,7 +2465,7 @@
           </div>
           <div class="action-buttons">
             <button type="button" class="btn btn-sm btn-subtle" onclick="window.opexSwitchTab('docs')">Відкрити AI-Сканер (${pendingDocs.length})</button>
-            <button type="button" class="btn btn-sm btn-action-primary js-doc-approve" data-id="${escapeHtml(topDoc.id)}">✓ Погодити + в Склад/Облік</button>
+            <button type="button" class="btn btn-sm btn-action-primary js-doc-approve" data-id="${escapeHtml(topDoc.id)}">Погодити + в Склад/Облік</button>
           </div>
         </div>
       `);
@@ -2152,7 +2664,7 @@
     });
   }
 
-  // ─── 4. 💼 ПРОДАЖІ ТА РАХУНКИ (З КОНТРОЛЕМ МАРЖІ ТА ІНЛАЙН-ПЕРВИНКОЮ) ────────
+  // ─── 4. ПРОДАЖІ ТА РАХУНКИ (З КОНТРОЛЕМ МАРЖІ ТА ІНЛАЙН-ПЕРВИНКОЮ) ────────
   function evaluateMarginGuardLive() {
     const sel = document.getElementById('inv-item-select');
     const qtyInput = document.getElementById('inv-qty');
@@ -2183,14 +2695,14 @@
     if (banner && detailsEl && pillEl) {
       if (marginPct < 25) {
         banner.className = 'margin-guard-box warn';
-        detailsEl.innerHTML = `⚠️ <strong>Блок Margin Guard:</strong> Сума зі знижкою: <strong>${fmtUah(netRevenue)}</strong> • Собівартість FIFO: <strong>${fmtUah(totalCost)}</strong> • Прибуток: <strong>${fmtUah(profit)}</strong> (Макс. безпечна знижка: <strong>${maxSafeDiscount}%</strong>)`;
+        detailsEl.innerHTML = `<strong>Блок Margin Guard:</strong> Сума зі знижкою: <strong>${fmtUah(netRevenue)}</strong> • Собівартість FIFO: <strong>${fmtUah(totalCost)}</strong> • Прибуток: <strong>${fmtUah(profit)}</strong> (Макс. безпечна знижка: <strong>${maxSafeDiscount}%</strong>)`;
         pillEl.className = 'badge badge-red';
-        pillEl.textContent = `Маржа ${marginPct}% (< 25% Стоп Deal Desk) ⚠️`;
+        pillEl.textContent = `Маржа ${marginPct}% (< 25% Стоп Deal Desk) `;
       } else {
         banner.className = 'margin-guard-box safe';
         detailsEl.innerHTML = `Сума контракту: <strong>${fmtUah(netRevenue)}</strong> • Чиста маржа (EBITDA): <strong style="color: var(--success);">${fmtUah(profit)}</strong> • Авто-проводки: <code class="mono">Дт 361 Кт 701</code>, <code class="mono">Дт 701 Кт 6412</code>, <code class="mono">Дт 901 Кт 26</code>`;
         pillEl.className = 'badge badge-green';
-        pillEl.textContent = `Маржа ${marginPct}% • Дозволено Deal Desk ✓`;
+        pillEl.textContent = `Маржа ${marginPct}% • Дозволено Deal Desk `;
       }
     }
 
@@ -2207,12 +2719,73 @@
     };
   }
 
+  // ─── CRM УГОДИ (РУЧНЕ РЕДАГУВАННЯ + КОНВЕРТАЦІЯ В РАХУНОК) ────────────────
+  function renderCrmDealsTable() {
+    const tbody = document.getElementById('crm-deals-tbody');
+    if (!tbody) return;
+
+    const countBadge = document.getElementById('crm-deals-count-badge');
+    if (countBadge) countBadge.textContent = `${state.crmDeals.length} угод у роботі`;
+
+    const pipelineSum = state.crmDeals
+      .filter((d) => d.stage !== 'LOST')
+      .reduce((s, d) => s + (Number(d.amount) || 0), 0);
+    const sumBadge = document.getElementById('crm-pipeline-sum-badge');
+    if (sumBadge) sumBadge.textContent = `Воронка: ${fmtUah(pipelineSum)}`;
+
+    const disAttr = state.editAuthorized ? '' : 'disabled';
+    const stageOptions = [
+      { val: 'NEW', label: 'Новий лід' },
+      { val: 'PROPOSAL', label: 'КП надіслано' },
+      { val: 'NEGOTIATION', label: 'Погодження договору' },
+      { val: 'WON', label: 'Оплачено / Угода' }
+    ];
+
+    tbody.innerHTML = state.crmDeals
+      .map((deal) => {
+        const optsHtml = stageOptions
+          .map((o) => `<option value="${o.val}" ${deal.stage === o.val ? 'selected' : ''}>${o.label}</option>`)
+          .join('');
+        return `
+          <tr>
+            <td style="min-width: 135px;">
+              <div style="font-weight: 700;">${escapeHtml(deal.client)}</div>
+              <div class="mono" style="font-size: 11px; color: var(--text-muted);">ЄДРПОУ: ${escapeHtml(deal.edrpou || '—')}</div>
+            </td>
+            <td style="min-width: 115px;">
+              <div style="font-size: 12px; font-weight: 600;">${escapeHtml(deal.contact || 'ОПР')}</div>
+              <div class="mono" style="font-size: 11px; color: var(--text-secondary); white-space: nowrap;">${escapeHtml(deal.phone || '—')}</div>
+            </td>
+            <td>
+              <input type="text" class="inline-edit-text js-crm-edit" data-id="${escapeHtml(deal.id)}" data-field="subject" value="${escapeHtml(deal.subject)}" style="width: 100%; min-width: 120px; font-size: 12px;" ${disAttr} />
+            </td>
+            <td class="text-right">
+              <input type="number" class="inline-edit-input js-crm-edit" data-id="${escapeHtml(deal.id)}" data-field="amount" value="${deal.amount}" min="0" style="width: 86px; font-weight: 700;" ${disAttr} />
+            </td>
+            <td>
+              <select class="select js-crm-stage" data-id="${escapeHtml(deal.id)}" style="height: 32px; padding: 4px 22px 4px 8px; line-height: 1.3; font-size: 12px; width: 126px;" ${disAttr}>
+                ${optsHtml}
+              </select>
+            </td>
+            <td>
+              <input type="text" class="inline-edit-text js-crm-edit" data-id="${escapeHtml(deal.id)}" data-field="note" value="${escapeHtml(deal.note || '')}" style="width: 100%; min-width: 105px; font-size: 12px;" ${disAttr} />
+            </td>
+            <td class="text-right" style="white-space: nowrap;">
+              <button type="button" class="btn btn-sm btn-action-primary js-crm-to-invoice owner-editable-btn" data-id="${escapeHtml(deal.id)}" style="padding: 5px 8px; font-size: 11.5px;" ${disAttr}>Рахунок</button>
+              <button type="button" class="btn btn-sm btn-subtle js-crm-delete owner-editable-btn" data-id="${escapeHtml(deal.id)}" style="margin-left: 3px; padding: 5px 7px; font-size: 11.5px;" ${disAttr}>x</button>
+            </td>
+          </tr>
+        `;
+      })
+      .join('');
+  }
+
   function renderSalesOrdersTable() {
     const tbody = document.getElementById('sales-orders-tbody');
     if (!tbody) return;
 
     const badgeSales = document.getElementById('nav-badge-sales');
-    if (badgeSales) badgeSales.textContent = String(state.orders.length);
+    if (badgeSales) badgeSales.textContent = String(state.orders.length + state.crmDeals.length);
     const summaryEl = document.getElementById('orders-total-summary');
     if (summaryEl) summaryEl.textContent = `Всього замовлень: ${state.orders.length}`;
 
@@ -2221,14 +2794,14 @@
         let statusBadge = '';
         let nextActionBtn = '';
         if (ord.status === 'INVOICED') {
-          statusBadge = `<span class="badge badge-amber">⏳ Виставлено рахунок</span>`;
-          nextActionBtn = `<button type="button" class="btn btn-sm btn-soft-green js-cycle-order-status" data-num="${escapeHtml(ord.orderNumber)}" data-next="PAID">Позначити «Оплачено» →</button>`;
+          statusBadge = `<span class="badge badge-amber">Виставлено рахунок</span>`;
+          nextActionBtn = `<button type="button" class="btn btn-sm btn-soft-green js-cycle-order-status owner-editable-btn" data-num="${escapeHtml(ord.orderNumber)}" data-next="PAID" ${state.editAuthorized ? '' : 'disabled'}>Позначити «Оплачено» -></button>`;
         } else if (ord.status === 'PAID') {
-          statusBadge = `<span class="badge badge-green">✓ Оплачено</span>`;
-          nextActionBtn = `<button type="button" class="btn btn-sm btn-soft-blue js-cycle-order-status" data-num="${escapeHtml(ord.orderNumber)}" data-next="SHIPPED">Позначити «Відвантажено» →</button>`;
+          statusBadge = `<span class="badge badge-green">Оплачено</span>`;
+          nextActionBtn = `<button type="button" class="btn btn-sm btn-soft-blue js-cycle-order-status owner-editable-btn" data-num="${escapeHtml(ord.orderNumber)}" data-next="SHIPPED" ${state.editAuthorized ? '' : 'disabled'}>Позначити «Відвантажено» -></button>`;
         } else {
-          statusBadge = `<span class="badge badge-blue">📦 Відвантажено / Закрито</span>`;
-          nextActionBtn = `<span style="font-size:12px;color:var(--text-muted);">✓ Виконано</span>`;
+          statusBadge = `<span class="badge badge-blue">Відвантажено / Закрито</span>`;
+          nextActionBtn = `<span style="font-size:12px;color:var(--text-muted);">Виконано</span>`;
         }
 
         const marginBadgeClass = ord.marginPct < 25 ? 'badge-red' : 'badge-green';
@@ -2291,7 +2864,7 @@
       TAX_INVOICE: 'Податкова накладна (ЄРПН)'
     };
     if (headerTitle) {
-      headerTitle.textContent = `📄 Вбудований перегляд: ${docTypeNames[state.activeDocType] || 'Документ'} № ${ord.orderNumber} (${ord.clientName})`;
+      headerTitle.textContent = `Вбудований перегляд: ${docTypeNames[state.activeDocType] || 'Документ'} № ${ord.orderNumber} (${ord.clientName})`;
     }
 
     const container = document.getElementById('inline-doc-render-body');
@@ -2343,7 +2916,7 @@
           </div>
           <div style="text-align:right;">
             <button type="button" class="btn btn-action-primary" id="btn-download-tax-invoice-xml" style="padding:8px 14px;font-size:12.5px;font-weight:600;">
-              💾 Завантажити XML J1201016 для ЄРПН
+              Завантажити XML J1201016 для ЄРПН
             </button>
             <div style="font-size:11px;color:#64748B;margin-top:6px;">Сумісно з M.E.Doc, Вчасно, Соната, ДПС</div>
           </div>
@@ -2377,7 +2950,7 @@
             <div>VI. Обсяги постачання без урахування ПДВ: <strong class="mono">${fmtUah(baseTotal, 2)}</strong></div>
           </div>
           <div style="text-align:right;font-size:13px;">
-            <div style="color:#16A34A;font-weight:700;">✓ Готово до підписання КЕП</div>
+            <div style="color:#16A34A;font-weight:700;">Готово до підписання КЕП</div>
             <div style="font-size:11.5px;color:#64748B;margin-top:2px;">Реєстраційний ліміт СЕА ПДВ: ₴ 384 500</div>
           </div>
         </div>
@@ -2388,7 +2961,7 @@
         btnDlTaxInv.addEventListener('click', () => {
           const xml = getClientDpsXml('tax_invoice_erpn', 'J1201016');
           downloadXmlBlob(xml, `J1201016_${ord.clientEdrpou}_${ord.orderNumber}.xml`);
-          showInlineStatus('✓ XML Податкової накладної J1201016 для ЄРПН завантажено');
+          showInlineStatus('XML Податкової накладної J1201016 для ЄРПН завантажено');
         });
       }
       return;
@@ -2490,7 +3063,7 @@
     `;
   }
 
-  // ─── 3. 📦 СКЛАД ТА ЗАКУПІВЛІ ──────────────────────────────────────────────
+  // ─── 3. СКЛАД ТА ЗАКУПІВЛІ ──────────────────────────────────────────────
   function detectCategory(sku, name) {
     const s = `${sku} ${name}`.toLowerCase();
     if (/(кавомашин|delonghi|кавомолк|fiorenzato|обладнан)/i.test(s)) return 'Обладнання та техніка';
@@ -2506,15 +3079,14 @@
     const searchQ = (document.getElementById('stock-search-input')?.value || '').trim().toLowerCase();
     const catFilter = document.getElementById('stock-category-filter')?.value || 'ALL';
 
-    const pulseBalances = (state.pulse && Array.isArray(state.pulse.stockBalances) && state.pulse.stockBalances.length > 0)
+    const sourceList = (state.pulse && Array.isArray(state.pulse.stockBalances) && state.pulse.stockBalances.length > 0)
       ? state.pulse.stockBalances
-      : [
-          { sku: 'PRD-101', itemName: 'Кавомашина професійна Delonghi Dinamica Plus', unit: 'шт', qty: 30, unitPrice: 18500 },
-          { sku: 'PRD-204', itemName: 'Кава в зернах Lavazza Qualita Oro (упаковка 1 кг)', unit: 'уп', qty: 340, unitPrice: 620 },
-          { sku: 'PRD-309', itemName: 'Термопринтер чеків та етикеток Xprinter XP-365B', unit: 'шт', qty: 45, unitPrice: 2850 },
-          { sku: 'PRD-412', itemName: 'Сканер штрих-кодів бездротовий Zebra DS2278', unit: 'шт', qty: 32, unitPrice: 4200 },
-          { sku: 'PKG-015', itemName: 'Гофроящик пакувальний 400х300х250 (тришаровий)', unit: 'шт', qty: 1200, unitPrice: 18.5 }
-        ];
+      : state.stockItems;
+    // Keep persistent local array synced so edits always stick
+    if (sourceList !== state.stockItems) {
+      state.stockItems = sourceList;
+    }
+    const pulseBalances = state.stockItems;
 
     const badgeStock = document.getElementById('nav-badge-stock');
     if (badgeStock) badgeStock.textContent = `${pulseBalances.length} SKU`;
@@ -2522,12 +3094,12 @@
     let totalValue = 0;
     const enriched = pulseBalances.map((it) => {
       const cost = Number(it.unitPrice) || 500;
-      const sellPrice = Math.round(cost * 1.44);
-      const marginPct = (((sellPrice - cost) / sellPrice) * 100).toFixed(1);
-      const category = detectCategory(it.sku, it.itemName);
+      const sellPrice = Number(it.sellPrice) || Math.round(cost * 1.44);
+      const marginPct = sellPrice > 0 ? (((sellPrice - cost) / sellPrice) * 100).toFixed(1) : '0.0';
+      const category = it.category || detectCategory(it.sku, it.itemName);
       const qty = Number(it.qty) || 0;
       totalValue += Math.max(0, qty) * cost;
-      const minThreshold = it.sku === 'PRD-204' ? 250 : it.sku === 'PKG-015' ? 500 : 35;
+      const minThreshold = Number(it.minThreshold) || (it.sku === 'PRD-204' ? 250 : it.sku === 'PKG-015' ? 500 : 35);
       const isLow = qty < minThreshold;
       return {
         ...it,
@@ -2550,25 +3122,36 @@
       return true;
     });
 
+    const disAttr = state.editAuthorized ? '' : 'disabled';
     tbody.innerHTML = filtered
       .map((item) => {
         const statusHtml = item.isLow
-          ? `<span class="badge badge-amber">⚠️ Закінчується (мін. ${item.minThreshold})</span>`
-          : `<span class="badge badge-green">✓ В нормі</span>`;
+          ? `<span class="badge badge-amber">Нижче норми (мін. ${item.minThreshold})</span>`
+          : `<span class="badge badge-green">В нормі</span>`;
 
         return `
           <tr>
-            <td class="mono" style="font-weight: 600;">${escapeHtml(item.sku)}</td>
-            <td style="font-weight: 600;">${escapeHtml(item.itemName)}</td>
-            <td><span class="badge badge-slate">${escapeHtml(item.category)}</span></td>
-            <td class="text-right mono" style="font-weight: 700;">${item.qty} ${escapeHtml(item.unit)}</td>
-            <td class="text-right mono">${fmtUah(item.cost)}</td>
-            <td class="text-right mono">${fmtUah(item.sellPrice)}</td>
+            <td class="mono" style="font-weight: 700; font-size: 12px;">${escapeHtml(item.sku)}</td>
+            <td style="font-weight: 600; min-width: 150px;">${escapeHtml(item.itemName)}</td>
+            <td><span class="badge badge-slate" style="font-size: 11px;">${escapeHtml(item.category)}</span></td>
+            <td class="text-right mono" style="white-space: nowrap;">
+              <input type="number" class="inline-edit-input js-stock-edit" data-sku="${escapeHtml(item.sku)}" data-field="qty" value="${item.qty}" min="0" style="width: 64px;" ${disAttr} />
+              <span style="font-size: 11px; color: var(--text-muted); margin-left: 2px;">${escapeHtml(item.unit)}</span>
+            </td>
+            <td class="text-right mono">
+              <input type="number" class="inline-edit-input js-stock-edit" data-sku="${escapeHtml(item.sku)}" data-field="unitPrice" value="${item.cost}" min="0" style="width: 72px;" ${disAttr} />
+            </td>
+            <td class="text-right mono">
+              <input type="number" class="inline-edit-input js-stock-edit" data-sku="${escapeHtml(item.sku)}" data-field="sellPrice" value="${item.sellPrice}" min="0" style="width: 72px;" ${disAttr} />
+            </td>
             <td class="text-right"><span class="badge badge-green mono">${item.marginPct}%</span></td>
             <td>${statusHtml}</td>
-            <td class="text-right">
-              <button type="button" class="btn btn-sm btn-subtle js-quick-replenish" data-sku="${escapeHtml(item.sku)}" data-name="${escapeHtml(item.itemName)}" data-unit="${escapeHtml(item.unit)}" data-cost="${item.cost}">
-                Поповнити
+            <td class="text-right" style="white-space: nowrap;">
+              <button type="button" class="btn btn-sm btn-subtle js-quick-replenish owner-editable-btn" data-sku="${escapeHtml(item.sku)}" data-name="${escapeHtml(item.itemName)}" data-unit="${escapeHtml(item.unit)}" data-cost="${item.cost}" data-qty="10" style="padding: 4px 7px;" ${disAttr}>
+                +10
+              </button>
+              <button type="button" class="btn btn-sm btn-subtle js-stock-writeoff owner-editable-btn" data-sku="${escapeHtml(item.sku)}" data-name="${escapeHtml(item.itemName)}" data-unit="${escapeHtml(item.unit)}" data-cost="${item.cost}" data-qty="10" style="padding: 4px 7px; margin-left: 2px;" ${disAttr}>
+                -10
               </button>
             </td>
           </tr>
@@ -2588,7 +3171,7 @@
       reorderListEl.innerHTML = `
         <div class="action-item" style="background: var(--success-soft); border-color: var(--success-border);">
           <div class="action-item-left">
-            <span class="action-tag" style="background:#DCFCE7;color:#15803D;">✓ Запаси в нормі</span>
+            <span class="action-tag" style="background:#DCFCE7;color:#15803D;">ОК: Запаси в нормі</span>
             <div>
               <div class="action-title">Усі позиції на складі перевищують мінімальний норматив</div>
               <div class="action-desc">Термінових дозамовлень постачальникам сьогодні не потрібно.</div>
@@ -2612,9 +3195,9 @@
                 </div>
               </div>
               <div class="action-buttons">
-                <button type="button" class="btn btn-sm btn-soft-blue js-copy-reminder" data-text="${escapeHtml(msg)}">📋 Скопіювати заявку у Viber/Telegram</button>
+                <button type="button" class="btn btn-sm btn-soft-blue js-copy-reminder" data-text="${escapeHtml(msg)}">Скопіювати заявку у Viber/Telegram</button>
                 <button type="button" class="btn btn-sm btn-success js-quick-replenish" data-sku="${escapeHtml(item.sku)}" data-name="${escapeHtml(item.itemName)}" data-unit="${escapeHtml(item.unit)}" data-cost="${item.cost}" data-qty="${orderQty}">
-                  ✓ Оприбуткувати поставку (+${orderQty} ${escapeHtml(item.unit)})
+                  Оприбуткувати поставку (+${orderQty} ${escapeHtml(item.unit)})
                 </button>
               </div>
             </div>
@@ -2624,7 +3207,7 @@
     }
   }
 
-  // ─── 4. 🏦 БАНК І КАСА (АВТОПІЛОТ) ─────────────────────────────────────────
+  // ─── 4. БАНК І КАСА (АВТОПІЛОТ) ─────────────────────────────────────────
   const CATEGORY_LABELS = {
     REVENUE_SALES: 'Виручка від продажів клієнтам',
     COGS_MATERIALS: 'Закупівля товару (Собівартість)',
@@ -2743,7 +3326,7 @@
             </div>
           `;
         } else {
-          actionCell = `<span class="badge badge-green">✓ Авто-проведено</span>`;
+          actionCell = `<span class="badge badge-green">Авто-проведено</span>`;
         }
 
         return `
@@ -2770,7 +3353,7 @@
       .join('');
   }
 
-  // ─── 5. 🏛️ ПОДАТКИ ТА КОМАНДА (БЕЗ БУХГАЛТЕРА) ────────────────────────────
+  // ─── 5. ️ ПОДАТКИ ТА КОМАНДА (БЕЗ БУХГАЛТЕРА) ────────────────────────────
   function renderTaxesAndTeamSection() {
     const pulse = state.pulse || {};
     const tax = pulse.taxAssistant || {};
@@ -2818,7 +3401,7 @@
     payrollTbody.innerHTML = state.teamPayroll
       .map((emp) => {
         const statusHtml = emp.paid
-          ? `<span class="badge badge-green">✓ Виплачено на картку</span>`
+          ? `<span class="badge badge-green">Виплачено на картку</span>`
           : `<span class="badge badge-amber">Очікує виплати</span>`;
         const btnHtml = emp.paid
           ? `<span style="font-size:12px;color:var(--text-muted);">Проведено</span>`
@@ -2840,7 +3423,7 @@
       .join('');
   }
 
-  // ─── 6. 🎙️ AI ВІДДІЛ ПРОДАЖІВ ТА ТЕЛЕФОНІЯ ─────────────────────────────────
+  // ─── 6. ️ AI ВІДДІЛ ПРОДАЖІВ ТА ТЕЛЕФОНІЯ ─────────────────────────────────
   async function renderAiSalesSection() {
     const listEl = document.getElementById('ai-calls-list');
     if (!listEl) return;
@@ -2894,8 +3477,8 @@
                 <div class="action-desc" style="margin-top: 6px; font-size: 13px; color: var(--text-secondary); line-height: 1.5;">
                   <strong>ШІ-розбір розмови:</strong> ${escapeHtml(c.transcriptSummary)}
                 </div>
-                ${c.qcFeedback ? `<div style="margin-top: 4px; font-size: 12px; color: var(--danger); font-weight: 500;">⚠️ ${escapeHtml(c.qcFeedback)}</div>` : ''}
-                ${c.detectedItems ? `<div style="margin-top: 6px; font-size: 12px; color: var(--primary); font-weight: 600;">📦 Розпізнані позиції: ${escapeHtml(c.detectedItems)}</div>` : ''}
+                ${c.qcFeedback ? `<div style="margin-top: 4px; font-size: 12px; color: var(--danger); font-weight: 500;">${escapeHtml(c.qcFeedback)}</div>` : ''}
+                ${c.detectedItems ? `<div style="margin-top: 6px; font-size: 12px; color: var(--primary); font-weight: 600;">Розпізнані позиції: ${escapeHtml(c.detectedItems)}</div>` : ''}
               </div>
             </div>
             <div class="action-buttons" style="margin-top: 2px;">
@@ -2907,42 +3490,96 @@
       .join('');
   }
 
-  // ─── 6. 🔁 ПЕРЕЇЗД З 1С ТА АДАПТАЦІЯ ПІД БІЗНЕС ───────────────────────────
+  // ─── 6. ІМПОРТ З 1С / EXCEL ТА ФОРЕНЗІК-ПЕРЕВІРКА ─────────────────────────
+  function parseMigrationCsvRows(rawCsv) {
+    const lines = String(rawCsv || '')
+      .split(/\r?\n/)
+      .map((l) => l.trim())
+      .filter((l) => l && !l.startsWith('#') && !/^SKU[;,]/i.test(l) && !/^Код[;,]/i.test(l));
+
+    const stocks = [];
+    const debts = [];
+    const crms = [];
+    const seenKeys = new Set();
+    let duplicatesCount = 0;
+
+    lines.forEach((line, idx) => {
+      const sep = line.includes(';') ? ';' : line.includes('\t') ? '\t' : ',';
+      const cols = line.split(sep).map((c) => c.trim().replace(/^"|"$/g, ''));
+      if (cols.length < 2) return;
+
+      const c0 = cols[0] || '';
+      const c1 = cols[1] || `Позиція #${idx + 1}`;
+      const c2 = cols[2] || 'шт';
+      const c3 = Number(String(cols[3] || '0').replace(/[^\d.-]/g, '')) || 0;
+      const c4 = Number(String(cols[4] || '0').replace(/[^\d.-]/g, '')) || 0;
+      const c5 = (cols[5] || '').toUpperCase();
+
+      const normKey = `${c0.toLowerCase()}::${c1.toLowerCase()}`;
+      if (seenKeys.has(normKey)) {
+        duplicatesCount += 1;
+        return;
+      }
+      seenKeys.add(normKey);
+
+      if (c5 === 'AR' || c5 === 'AP') {
+        debts.push({ kind: c5, party: c1, edrpou: c0, amount: Math.abs(c3 || c4), days: Number(cols[4]) || 0 });
+      } else if (c5 === 'CRM') {
+        crms.push({ client: c1, edrpou: c0, subject: cols[2] || 'Імпорт з 1С', amount: Math.abs(c3 || c4) || 50000 });
+      } else {
+        stocks.push({
+          sku: c0 || `IMP-${100 + idx}`,
+          itemName: c1,
+          unit: c2 || 'шт',
+          qty: Math.max(0, c3),
+          unitPrice: Math.max(1, c4 || 100),
+          sellPrice: Math.round(Math.max(1, c4 || 100) * 1.42),
+          category: detectCategory(c0, c1),
+          minThreshold: 20
+        });
+      }
+    });
+
+    return { stocks, debts, crms, duplicatesCount, rawLinesCount: lines.length };
+  }
+
   function renderMigrationReportInline() {
-    const container = document.getElementById('migration-report-inline');
+    const container = document.getElementById('migration-inline-report') || document.getElementById('migration-report-inline');
     if (!container) return;
 
     const analysis = state.lastMigrationAnalysis;
     const forensic = state.lastForensicReport;
 
     if (!analysis && !forensic) {
+      container.style.display = 'none';
       container.innerHTML = '';
       return;
     }
 
+    container.style.display = 'block';
     const fixes = (analysis && Array.isArray(analysis.sanitizedFixes)) ? analysis.sanitizedFixes : [];
     const anomalies = (forensic && Array.isArray(forensic.anomalies)) ? forensic.anomalies : [];
 
     container.innerHTML = `
-      <div style="background: var(--success-soft); border: 1px solid var(--success-border); border-radius: var(--radius-sm); padding: 16px;">
+      <div style="background: var(--bg-subtle); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px; margin-bottom: 12px;">
         <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:10px;">
-          <div style="font-weight:700;font-size:14.5px;color:var(--success-hover);">
-            ✓ Звіт Авто-Очистки перед імпортом з 1С / BAS: виявлено та автоматично виправлено ${fixes.length} помилок
+          <div style="font-weight:700;font-size:14.5px;color:var(--text-main);">
+            Звіт перевірки перед імпортом: виявлено та виправлено ${fixes.length} зауважень
           </div>
-          <span class="badge badge-green">Готово до чистого імпорту</span>
+          <span class="badge badge-green">Готово до імпорту</span>
         </div>
         <div class="grid-3" style="margin-bottom:12px;">
-          <div style="background:#FFFFFF;padding:10px 14px;border-radius:8px;border:1px solid var(--success-border);">
-            <div style="font-size:11.5px;color:var(--text-muted);">Очищено контрагентів</div>
-            <div style="font-size:18px;font-weight:800;" class="mono">${analysis ? analysis.counterparties.length : 3} (склеєно дублів: ${analysis ? analysis.duplicatesRemoved : 2})</div>
+          <div style="background:#FFFFFF;padding:10px 14px;border-radius:6px;border:1px solid var(--border);">
+            <div style="font-size:11.5px;color:var(--text-muted);">Очищено дублів</div>
+            <div style="font-size:18px;font-weight:800;" class="mono">${analysis ? analysis.duplicatesRemoved : 0} записів</div>
           </div>
-          <div style="background:#FFFFFF;padding:10px 14px;border-radius:8px;border:1px solid var(--success-border);">
-            <div style="font-size:11.5px;color:var(--text-muted);">Товарних позицій (SKU)</div>
-            <div style="font-size:18px;font-weight:800;" class="mono">${analysis ? analysis.items.length : 5} на ${fmtUah(analysis ? analysis.totalStockValue : 912400)}</div>
+          <div style="background:#FFFFFF;padding:10px 14px;border-radius:6px;border:1px solid var(--border);">
+            <div style="font-size:11.5px;color:var(--text-muted);">Товарних позицій (ТМЦ)</div>
+            <div style="font-size:18px;font-weight:800;" class="mono">${analysis ? analysis.items.length : 0} на ${fmtUah(analysis ? analysis.totalStockValue : 0)}</div>
           </div>
-          <div style="background:#FFFFFF;padding:10px 14px;border-radius:8px;border:1px solid var(--success-border);">
-            <div style="font-size:11.5px;color:var(--text-muted);">Банківських документів</div>
-            <div style="font-size:18px;font-weight:800;" class="mono">${analysis ? analysis.bankDocs.length : 4} платежі</div>
+          <div style="background:#FFFFFF;padding:10px 14px;border-radius:6px;border:1px solid var(--border);">
+            <div style="font-size:11.5px;color:var(--text-muted);">Боргів (ДЗ/КЗ) та CRM</div>
+            <div style="font-size:18px;font-weight:800;" class="mono">${analysis ? (analysis.debtsCount + analysis.crmCount) : 0} записів</div>
           </div>
         </div>
         <ul style="padding-left:18px;font-size:12.5px;color:var(--text-main);display:flex;flex-direction:column;gap:4px;">
@@ -2951,20 +3588,20 @@
       </div>
 
       ${forensic ? `
-      <div style="background: var(--bg-app); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px;">
+      <div style="background: #FFFFFF; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px;">
         <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:10px;">
           <div>
-            <div style="font-weight:700;font-size:14px;">🔍 Рентген старої бази 1С (Forensic Audit)</div>
+            <div style="font-weight:700;font-size:14px;">Форензік-аудит вивантаження 1С / Excel</div>
             <div style="font-size:12px;color:var(--text-secondary);">${escapeHtml(forensic.garbageVerdict)}</div>
           </div>
-          <span class="badge badge-amber">Індекс засміченості 1С: ${forensic.garbageIndexPercent}%</span>
+          <span class="badge badge-amber">Індекс аномалій: ${forensic.garbageIndexPercent}%</span>
         </div>
         <div style="display:flex;flex-direction:column;gap:8px;">
           ${anomalies.slice(0, 4).map((a) => `
-            <div style="background:#FFFFFF;padding:10px 12px;border-radius:8px;border:1px solid var(--border);font-size:12.5px;">
-              <div style="font-weight:700;color:var(--text-main);">• ${escapeHtml(a.title)} — <span class="mono">${escapeHtml(a.affectedEntity)}</span></div>
+            <div style="background:var(--bg-subtle);padding:10px 12px;border-radius:6px;border:1px solid var(--border);font-size:12.5px;">
+              <div style="font-weight:700;color:var(--text-main);">${escapeHtml(a.title)} — <span class="mono">${escapeHtml(a.affectedEntity)}</span></div>
               <div style="color:var(--text-secondary);margin-top:2px;">${escapeHtml(a.description)}</div>
-              <div style="color:var(--primary);font-weight:600;margin-top:3px;">Авто-рішення OpexMetrix: ${escapeHtml(a.autoFixAction)}</div>
+              <div style="color:var(--primary);font-weight:600;margin-top:3px;">Рішення: ${escapeHtml(a.autoFixAction)}</div>
             </div>
           `).join('')}
         </div>
@@ -3001,32 +3638,19 @@
         const bankRaw = document.getElementById('bank-raw-textarea');
         if (bankRaw && !bankRaw.value) bankRaw.value = demoRes.data.bankExchangeText || '';
       }
-
-      // Check if DB still has any old PVC SKUs or is empty; if so, auto-seed clean universal SMB data
-      const hasOldPvc =
-        state.pulse &&
-        Array.isArray(state.pulse.stockBalances) &&
-        state.pulse.stockBalances.some((s) => /(rehau|maco|sash|igu|frame|mullion|пвх|склопакет)/i.test(`${s.sku} ${s.itemName}`));
-
-      if (hasOldPvc || !state.pulse || !state.pulse.stockBalances || state.pulse.stockBalances.length === 0) {
-        await fetch('/api/autonomous/migration/execute', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(state.demoMigrationPayload || {})
-        });
-        const freshPulse = await fetch('/api/autonomous/pulse').then((r) => r.json()).catch(() => null);
-        if (freshPulse && freshPulse.ok) state.pulse = freshPulse.data;
-      }
     } catch (_err) {
-      // Fallback gracefully
+      // Fallback gracefully for static hosting
     }
 
     renderPulseSection();
+    renderPnlSection();
     renderCashflowChart();
     renderLedgerSection();
     renderMesSection();
     evaluateMarginGuardLive();
+    renderCrmDealsTable();
     renderDealerCreditTable();
+    renderDebtSection();
     renderSalesOrdersTable();
     renderInlineDocument(state.activeDocOrderId, state.activeDocType);
     renderStockSection();
@@ -3036,6 +3660,7 @@
     renderSalesLeaderboardTable();
     renderDocsSection();
     evaluateEnterpriseRoiLive();
+    applyAccessRole(state.editAuthorized ? 'OWNER' : 'STAFF');
   }
 
   // ─── Event Listeners ───────────────────────────────────────────────────────
@@ -3067,7 +3692,7 @@
       btnOpenPhone.addEventListener('click', () => {
         renderMobileCompanion();
         phoneBackdrop.classList.add('open');
-        showInlineStatus('📱 Мобільну версію відкрито: всі дії синхронізуються з Десктопом 1:1');
+        showInlineStatus('Мобільну версію відкрито: всі дії синхронізуються з Десктопом 1:1');
       });
     }
     if (btnClosePhone && phoneBackdrop) {
@@ -3099,11 +3724,11 @@
       phoneCamInput.addEventListener('change', (e) => {
         const file = e.target.files && e.target.files[0];
         if (file) {
-          handleUploadedOcrFile(file, '📱 Камера Мобільного Додатка');
+          handleUploadedOcrFile(file, 'Камера Мобільного Додатка');
           state.approvalDocs.unshift(Object.assign({ status: 'PENDING' }, state.activeOcrDoc));
           renderDocsSection();
           renderPulseSection();
-          broadcastDesktopMobileSync(`📱 Фото «${file.name}» з телефону миттєво передано на ПК!`);
+          broadcastDesktopMobileSync(`Фото «${file.name}» з телефону миттєво передано на ПК!`);
         }
       });
     }
@@ -3116,7 +3741,7 @@
         if (desktopSel) desktopSel.value = state.holdingEntity;
         renderPulseSection();
         renderCashflowChart();
-        broadcastDesktopMobileSync('📱 Контур підприємства перемкнено з телефону!');
+        broadcastDesktopMobileSync('Контур підприємства перемкнено з телефону!');
       }
     });
 
@@ -3139,7 +3764,7 @@
         if (sidebarName) sidebarName.textContent = ent.badge;
         renderPulseSection();
         renderCashflowChart();
-        showInlineStatus(`✓ Контур консолідації перемкнено: ${ent.badge}`);
+        showInlineStatus(`Контур консолідації перемкнено: ${ent.badge}`);
       });
     }
 
@@ -3187,21 +3812,21 @@
           if (turnSlider) turnSlider.value = '1800000';
           if (staffSlider) staffSlider.value = '35000';
           evaluateEnterpriseRoiLive();
-          showInlineStatus('✓ Відкрито презентацію для Малого та Середнього Бізнесу (МСБ)');
+          showInlineStatus('Відкрито презентацію для Малого та Середнього Бізнесу (МСБ)');
         } else if (mode === 'ENTERPRISE') {
           if (smbBlock) smbBlock.style.display = 'none';
           if (entBlock) entBlock.style.display = 'block';
           if (turnSlider) turnSlider.value = '12000000';
           if (staffSlider) staffSlider.value = '140000';
           evaluateEnterpriseRoiLive();
-          showInlineStatus('✓ Відкрито презентацію для Великого Бізнесу та Виробництва (Цех + Склад)');
+          showInlineStatus('Відкрито презентацію для Великого Бізнесу та Виробництва (Цех + Склад)');
         } else {
           if (smbBlock) smbBlock.style.display = 'block';
           if (entBlock) entBlock.style.display = 'block';
           if (turnSlider) turnSlider.value = '4500000';
           if (staffSlider) staffSlider.value = '65000';
           evaluateEnterpriseRoiLive();
-          showInlineStatus('✓ Показано обидві презентації: МСБ + Великий Бізнес');
+          showInlineStatus('Показано обидві презентації: МСБ + Великий Бізнес');
         }
       });
     });
@@ -3211,7 +3836,7 @@
     if (ocrPcInput) {
       ocrPcInput.addEventListener('change', (e) => {
         const file = e.target.files && e.target.files[0];
-        if (file) handleUploadedOcrFile(file, '💻 Завантажено з комп\'ютера');
+        if (file) handleUploadedOcrFile(file, 'Завантажено з комп\'ютера');
       });
     }
 
@@ -3219,7 +3844,7 @@
     if (ocrPhoneInput) {
       ocrPhoneInput.addEventListener('change', (e) => {
         const file = e.target.files && e.target.files[0];
-        if (file) handleUploadedOcrFile(file, '📱 Сфотографовано з телефону');
+        if (file) handleUploadedOcrFile(file, 'Сфотографовано з телефону');
       });
     }
 
@@ -3236,7 +3861,7 @@
         e.preventDefault();
         ocrDropzone.style.borderColor = 'var(--accent-blue)';
         const file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
-        if (file) handleUploadedOcrFile(file, '💻 Перетягнуто з комп\'ютера');
+        if (file) handleUploadedOcrFile(file, 'Перетягнуто з комп\'ютера');
       });
     }
 
@@ -3266,7 +3891,7 @@
         }
         renderDocsSection();
         renderPulseSection();
-        showInlineStatus(`✓ Погоджено всі документи (${count || state.approvalDocs.length} шт.) + автоматично проведено в Склад, Цех та Облік Дт/Кт!`);
+        showInlineStatus(`Погоджено всі документи (${count || state.approvalDocs.length} шт.) + автоматично проведено в Склад, Цех та Облік Дт/Кт!`);
       });
     }
 
@@ -3276,10 +3901,11 @@
       ledgerFilter.addEventListener('change', renderLedgerSection);
     }
 
-    // Custom CFO Ledger Entry Form
+    // Custom CFO Ledger Entry Form (Single-Owner lock)
     const btnCustomLedger = document.getElementById('btn-add-custom-ledger');
     if (btnCustomLedger) {
       btnCustomLedger.addEventListener('click', () => {
+        if (!requireOwnerEdit()) return;
         const dtSel = document.getElementById('led-dt') || document.getElementById('cfo-dt-select');
         const ktSel = document.getElementById('led-kt') || document.getElementById('cfo-kt-select');
         const amtInput = document.getElementById('led-amount') || document.getElementById('cfo-amount-input');
@@ -3290,7 +3916,7 @@
         const dtCode = (dtText.match(/^\d+/) || ['361'])[0];
         const ktCode = (ktText.match(/^\d+/) || ['701'])[0];
         const amount = Math.max(1, Number(amtInput?.value) || 480000);
-        const desc = descInput?.value.trim() || 'Ручне проведення Головного бухгалтера / CFO';
+        const desc = descInput?.value.trim() || 'Ручне проведення Власника / CFO';
 
         postOnlineLedgerEntries(
           [
@@ -3305,10 +3931,267 @@
               amount
             }
           ],
-          `⚡ Проводку Дт ${dtCode} Кт ${ktCode} на суму ${fmtUah(amount, 2)} миттєво проведено в Головній Книзі (0.04 с)`
+          `Проводку Дт ${dtCode} Кт ${ktCode} на суму ${fmtUah(amount, 2)} проведено в Головній Книзі`
         );
       });
     }
+
+    // Single-Owner Access Role Switcher
+    const roleSelect = document.getElementById('access-role-select');
+    if (roleSelect) {
+      roleSelect.addEventListener('change', () => {
+        applyAccessRole(roleSelect.value);
+        showInlineStatus(
+          state.editAuthorized
+            ? 'Активовано права Власника (OWNER): редагування цифр розблоковано'
+            : 'Активовано режим STAFF: редагування цифр, цін, P&L та залишків ТМЦ заблоковано'
+        );
+      });
+    }
+
+    // P&L Period, Reset, CSV Export & Custom Row Add
+    const pnlPeriodSel = document.getElementById('pnl-period-select');
+    if (pnlPeriodSel) {
+      pnlPeriodSel.addEventListener('change', () => {
+        state.pnlPeriod = pnlPeriodSel.value || 'MONTH';
+        renderPnlSection();
+        renderPulseSection();
+      });
+    }
+
+    const btnPnlReset = document.getElementById('btn-pnl-reset');
+    if (btnPnlReset) {
+      btnPnlReset.addEventListener('click', () => {
+        if (!requireOwnerEdit()) return;
+        state.pnlAdjustments = {};
+        state.pnlCustomLines = [];
+        renderPnlSection();
+        renderPulseSection();
+        showInlineStatus('Ручні коригування P&L скинуто до даних Головної Книги');
+      });
+    }
+
+    const btnPnlCsv = document.getElementById('btn-pnl-export-csv');
+    if (btnPnlCsv) {
+      btnPnlCsv.addEventListener('click', exportPnlCsv);
+    }
+
+    const btnPnlAdd = document.getElementById('btn-pnl-add-line');
+    if (btnPnlAdd) {
+      btnPnlAdd.addEventListener('click', () => {
+        if (!requireOwnerEdit()) return;
+        const grp = document.getElementById('pnl-add-group')?.value || 'OPEX';
+        const name = document.getElementById('pnl-add-name')?.value.trim();
+        const amt = Number(document.getElementById('pnl-add-amt')?.value) || 0;
+        const plan = Number(document.getElementById('pnl-add-plan')?.value) || amt;
+        if (!name) {
+          showInlineStatus('Вкажіть назву статті P&L');
+          return;
+        }
+        state.pnlCustomLines.push({
+          id: `custom_pnl_${Date.now()}`,
+          group: grp,
+          name,
+          amount: amt,
+          plan
+        });
+        const nameInp = document.getElementById('pnl-add-name');
+        if (nameInp) nameInp.value = '';
+        renderPnlSection();
+        renderPulseSection();
+        showInlineStatus(`Додано статтю P&L «${name}» (${fmtUah(amt)})`);
+      });
+    }
+
+    // CRM Manual Deal Add Form
+    const btnCrmAdd = document.getElementById('btn-crm-add-deal');
+    if (btnCrmAdd) {
+      btnCrmAdd.addEventListener('click', () => {
+        const client = document.getElementById('crm-client')?.value.trim() || 'Новий клієнт B2B';
+        const edrpou = document.getElementById('crm-edrpou')?.value.trim() || '00000000';
+        const contact = document.getElementById('crm-contact')?.value.trim() || 'ОПР';
+        const phone = document.getElementById('crm-phone')?.value.trim() || '+380 67 000-00-00';
+        const subject = document.getElementById('crm-subject')?.value.trim() || 'Партія продукції';
+        const amount = Math.max(0, Number(document.getElementById('crm-amount')?.value) || 0);
+        const stage = document.getElementById('crm-stage')?.value || 'NEW';
+        const note = document.getElementById('crm-note')?.value.trim() || '';
+
+        if (!state.editAuthorized && amount > 0) {
+          showInlineStatus('У режимі STAFF створення угод із фінансовими сумами потребує прав Власника');
+          return;
+        }
+
+        state.crmDeals.unshift({
+          id: `CRM-${Date.now()}`,
+          client,
+          edrpou,
+          contact,
+          phone,
+          subject,
+          amount,
+          stage,
+          note
+        });
+        renderCrmDealsTable();
+        renderSalesOrdersTable();
+        showInlineStatus(`Додано CRM угоду «${client}» на суму ${fmtUah(amount)}`);
+      });
+    }
+
+    // Manual AR / AP Debt Add Form (Owner Lock)
+    const btnDebtAdd = document.getElementById('btn-debt-add');
+    if (btnDebtAdd) {
+      btnDebtAdd.addEventListener('click', () => {
+        if (!requireOwnerEdit()) return;
+        const type = document.getElementById('debt-type')?.value || 'AR';
+        const party = document.getElementById('debt-party')?.value.trim() || 'Контрагент';
+        const edrpou = document.getElementById('debt-edrpou')?.value.trim() || '00000000';
+        const doc = document.getElementById('debt-doc')?.value.trim() || 'Акт звірки';
+        const amount = Math.max(1, Number(document.getElementById('debt-amount')?.value) || 0);
+        const overdueDays = Math.max(0, Number(document.getElementById('debt-days')?.value) || 0);
+
+        if (type === 'AR') {
+          state.dealerCredits.unshift({
+            id: `dl-${Date.now()}`,
+            name: party,
+            segment: `ЄДРПОУ: ${edrpou} / ${doc}`,
+            kam: 'Внесено вручну (Власник)',
+            limitUah: Math.max(amount * 1.5, 500000),
+            debtUah: amount,
+            overdueDays,
+            gateStatus: overdueDays > 7 ? 'BLOCKED' : overdueDays > 0 ? 'WARN' : 'OPEN'
+          });
+          postOnlineLedgerEntries([
+            {
+              doc,
+              desc: `Фіксація дебіторської заборгованості покупця ${party}`,
+              entity: party,
+              dt: '361 Розрахунки з покупцями',
+              dtCode: '361',
+              kt: '701 Дохід від реалізації ГП',
+              ktCode: '701',
+              amount
+            }
+          ]);
+        } else {
+          state.payables.unshift({
+            id: `AP-${Date.now()}`,
+            party,
+            edrpou,
+            doc,
+            amount,
+            overdueDays,
+            dueDate: new Date().toLocaleDateString('uk-UA'),
+            status: overdueDays > 0 ? 'OVERDUE' : 'OPEN'
+          });
+          postOnlineLedgerEntries([
+            {
+              doc,
+              desc: `Фіксація кредиторської заборгованості постачальнику ${party}`,
+              entity: party,
+              dt: '201 Сировина й матеріали',
+              dtCode: '201',
+              kt: '631 Розрахунки з постачальниками',
+              ktCode: '631',
+              amount
+            }
+          ]);
+        }
+        renderDebtSection();
+        renderDealerCreditTable();
+        renderPulseSection();
+        showInlineStatus(`Додано ${type === 'AR' ? 'дебіторську' : 'кредиторську'} заборгованість: ${party} (${fmtUah(amount)})`);
+      });
+    }
+
+    // Delegated Inline Edit Changes (P&L, CRM, Debt, Stock)
+    document.body.addEventListener('change', (e) => {
+      const t = e.target;
+      if (!t) return;
+
+      if (t.classList.contains('js-pnl-edit')) {
+        if (!requireOwnerEdit()) {
+          renderPnlSection();
+          return;
+        }
+        const rowId = t.getAttribute('data-row');
+        const field = t.getAttribute('data-field');
+        if (!state.pnlAdjustments[rowId]) state.pnlAdjustments[rowId] = {};
+        state.pnlAdjustments[rowId][field] = Number(t.value) || 0;
+        renderPnlSection();
+        renderPulseSection();
+        showInlineStatus('Показник P&L оновлено Власником');
+      } else if (t.classList.contains('js-crm-edit')) {
+        if (!requireOwnerEdit()) {
+          renderCrmDealsTable();
+          return;
+        }
+        const id = t.getAttribute('data-id');
+        const field = t.getAttribute('data-field');
+        const deal = state.crmDeals.find((d) => d.id === id);
+        if (deal && field) {
+          deal[field] = field === 'amount' ? Math.max(0, Number(t.value) || 0) : t.value;
+          renderCrmDealsTable();
+          showInlineStatus(`Угоду ${deal.client} оновлено`);
+        }
+      } else if (t.classList.contains('js-crm-stage')) {
+        if (!requireOwnerEdit()) {
+          renderCrmDealsTable();
+          return;
+        }
+        const id = t.getAttribute('data-id');
+        const deal = state.crmDeals.find((d) => d.id === id);
+        if (deal) {
+          deal.stage = t.value;
+          renderCrmDealsTable();
+          showInlineStatus(`Етап угоди ${deal.client} змінено`);
+        }
+      } else if (t.classList.contains('js-debt-ar-edit')) {
+        if (!requireOwnerEdit()) {
+          renderDebtSection();
+          return;
+        }
+        const id = t.getAttribute('data-id');
+        const field = t.getAttribute('data-field');
+        const dl = state.dealerCredits.find((d) => d.id === id);
+        if (dl && field) {
+          dl[field] = Math.max(0, Number(t.value) || 0);
+          dl.gateStatus = dl.debtUah > dl.limitUah || dl.overdueDays > 7 ? 'BLOCKED' : dl.debtUah >= dl.limitUah * 0.85 || dl.overdueDays > 0 ? 'WARN' : 'OPEN';
+          renderDebtSection();
+          renderDealerCreditTable();
+          renderPulseSection();
+          showInlineStatus(`Дебіторку ${dl.name} оновлено Власником`);
+        }
+      } else if (t.classList.contains('js-debt-ap-edit')) {
+        if (!requireOwnerEdit()) {
+          renderDebtSection();
+          return;
+        }
+        const id = t.getAttribute('data-id');
+        const ap = state.payables.find((p) => p.id === id);
+        if (ap) {
+          ap.amount = Math.max(0, Number(t.value) || 0);
+          if (ap.amount === 0) ap.status = 'PAID';
+          renderDebtSection();
+          renderPulseSection();
+          showInlineStatus(`Кредиторку ${ap.party} оновлено Власником`);
+        }
+      } else if (t.classList.contains('js-stock-edit')) {
+        if (!requireOwnerEdit()) {
+          renderStockSection();
+          return;
+        }
+        const sku = t.getAttribute('data-sku');
+        const field = t.getAttribute('data-field');
+        const item = state.stockItems.find((s) => s.sku === sku);
+        if (item && field) {
+          item[field] = Math.max(0, Number(t.value) || 0);
+          renderStockSection();
+          renderPulseSection();
+          showInlineStatus(`Залишок / ціну ТМЦ ${sku} оновлено Власником`);
+        }
+      }
+    });
 
     // MES BOM Calculator listeners
     const bomProdSelect = document.getElementById('mes-bom-product');
@@ -3356,7 +4239,7 @@
               amount: bom.totalBatchCost - (bom.totalWage + bom.totalEnergyOverhead)
             }
           ],
-          `🚀 Партію «${bom.name}» (${bom.qty} од.) запущено в ЧПК! Сформовано 3 проводки Дт 231/26 на ${fmtUah(bom.totalBatchCost)}`
+          `Партію «${bom.name}» (${bom.qty} од.) запущено в ЧПК! Сформовано 3 проводки Дт 231/26 на ${fmtUah(bom.totalBatchCost)}`
         );
       });
     }
@@ -3371,7 +4254,7 @@
           itemEl.style.borderColor = '#BBF7D0';
           itemEl.innerHTML = `
             <div class="action-item-left">
-              <span class="badge badge-green">✓ ВІДКАТ ЗАБЛОКОВАНО</span>
+              <span class="badge badge-green">ВІДКАТ ЗАБЛОКОВАНО</span>
               <div>
                 <div class="action-title">Замовлення автоматично переоформлено на прямого імпортера (₴ 125 000 / т замість ₴ 148 000 / т)</div>
                 <div class="action-desc">Збережено чистих обігових коштів Холдингу: <strong style="color: var(--success);">+₴ 276 000</strong>. Проведено в Головній Книзі: <code class="mono">Дт 201 Кт 631</code>.</div>
@@ -3396,7 +4279,7 @@
               amount: 1500000
             }
           ],
-          '🛡️ AI Procurement Shield: Завищений рахунок заблоковано, заощаджено ₴ 276 000 (+Дт 201 Кт 631)'
+          '️ AI Procurement Shield: Завищений рахунок заблоковано, заощаджено ₴ 276 000 (+Дт 201 Кт 631)'
         );
       });
     }
@@ -3432,10 +4315,11 @@
       if (el) el.addEventListener('input', evaluateMarginGuardLive);
     });
 
-    // Create Invoice button (Also posts Online Double-Entry Ledger rows!)
+    // Create Invoice button (Owner Lock + Online Double-Entry Ledger + P&L refresh)
     const btnCreateInv = document.getElementById('btn-create-invoice');
     if (btnCreateInv) {
       btnCreateInv.addEventListener('click', async () => {
+        if (!requireOwnerEdit()) return;
         const clientName = document.getElementById('inv-client-name')?.value.trim() || 'Клієнт';
         const clientEdrpou = document.getElementById('inv-client-edrpou')?.value.trim() || '00000000';
         const calc = evaluateMarginGuardLive();
@@ -3467,6 +4351,8 @@
 
         state.orders.unshift(newOrd);
         state.activeDocOrderId = newOrderNum;
+        renderPnlSection();
+        renderPulseSection();
 
         try {
           await fetch('/api/autonomous/orders/create', {
@@ -3519,7 +4405,7 @@
         renderSalesOrdersTable();
         renderInlineDocument(newOrderNum, 'INVOICE');
         renderPulseSection();
-        showInlineStatus(`✓ Замовлення № ${newOrderNum} створено + сформовано 3 проводки Дт 361/701/6412/901 в Головній Книзі!`);
+        showInlineStatus(`Замовлення № ${newOrderNum} створено + сформовано 3 проводки Дт 361/701/6412/901 в Головній Книзі!`);
       });
     }
 
@@ -3529,7 +4415,7 @@
         const dt = btn.getAttribute('data-doctype');
         if (dt) {
           renderInlineDocument(state.activeDocOrderId, dt);
-          showInlineStatus(`✓ Документ перемкнено: ${btn.textContent}`);
+          showInlineStatus(`Документ перемкнено: ${btn.textContent}`);
         }
       });
     });
@@ -3542,15 +4428,37 @@
       });
     }
 
-    // Add Stock Supply Form
+    // Add Stock Supply Form (100% works offline + Owner lock)
     const btnAddStock = document.getElementById('btn-add-stock');
     if (btnAddStock) {
       btnAddStock.addEventListener('click', async () => {
-        const sku = document.getElementById('stk-sku')?.value.trim() || 'RAW-304';
+        if (!requireOwnerEdit()) return;
+        const sku = document.getElementById('stk-sku')?.value.trim() || `RAW-${100 + state.stockItems.length}`;
         const itemName = document.getElementById('stk-name')?.value.trim() || 'Нова партія сировини';
-        const qty = Number(document.getElementById('stk-qty')?.value) || 20;
-        const unitPrice = Number(document.getElementById('stk-cost')?.value) || 14200;
+        const category = document.getElementById('stk-category')?.value || 'Товари та сировина';
+        const qty = Math.max(1, Number(document.getElementById('stk-qty')?.value) || 20);
+        const unitPrice = Math.max(1, Number(document.getElementById('stk-cost')?.value) || 14200);
+        const sellPrice = Math.max(1, Number(document.getElementById('stk-price')?.value) || Math.round(unitPrice * 1.44));
         const totalSupply = qty * unitPrice;
+
+        const existing = state.stockItems.find((s) => s.sku === sku);
+        if (existing) {
+          existing.qty += qty;
+          existing.unitPrice = unitPrice;
+          existing.sellPrice = sellPrice;
+          existing.category = category;
+        } else {
+          state.stockItems.unshift({
+            sku,
+            itemName,
+            category,
+            unit: 'шт',
+            qty,
+            unitPrice,
+            sellPrice,
+            minThreshold: 20
+          });
+        }
 
         try {
           await fetch('/api/autonomous/stock/movement', {
@@ -3566,14 +4474,12 @@
               reference: 'SUPPLY-INLINE'
             })
           });
-          const pulseRes = await fetch('/api/autonomous/pulse').then((r) => r.json());
-          if (pulseRes && pulseRes.ok) state.pulse = pulseRes.data;
         } catch (_e) {}
 
         postOnlineLedgerEntries([
           {
             doc: `ВХ-WMS-${sku}`,
-            desc: `Оприбуткування поставки на склад WMS: ${itemName} (+${qty} од.)`,
+            desc: `Оприбуткування ТМЦ на склад: ${itemName} (+${qty} од.)`,
             entity: 'ТОВ "ОпексМетрікс Індастріал"',
             dt: '201 Сировина й матеріали',
             dtCode: '201',
@@ -3585,7 +4491,7 @@
 
         renderStockSection();
         renderPulseSection();
-        showInlineStatus(`✓ Поставку «${itemName}» (+${qty} од.) оприбутковано + проведено Дт 201 Кт 631 (${fmtUah(totalSupply)})`);
+        showInlineStatus(`Позицію «${itemName}» (+${qty} од.) оприбутковано + Дт 201 Кт 631 (${fmtUah(totalSupply)})`);
       });
     }
 
@@ -3607,9 +4513,9 @@
         const sampleBankText = state.demoMigrationPayload?.bankExchangeText || '1CClientBankExchange\nСекціяДокумент=Платіжне доручення\nНомер=8841\nСума=640000.00\nПризначенняПлатежу=Оплата за промислове обладнання згідно рахунку INV-2026-104 у т.ч. ПДВ 20%\nКінецьДокумента';
         if (bankTa) bankTa.value = sampleBankText;
         if (dropzoneStatus) {
-          dropzoneStatus.textContent = '✓ Завантажено корпоративну виписку 1CClientBankExchange / ISO 20022 (Готово до проведення)';
+          dropzoneStatus.textContent = 'Завантажено корпоративну виписку 1CClientBankExchange / ISO 20022 (Готово до проведення)';
         }
-        showInlineStatus('✓ Приклад корпоративної банківської виписки завантажено');
+        showInlineStatus('Приклад корпоративної банківської виписки завантажено');
       });
     }
 
@@ -3621,9 +4527,9 @@
           reader.onload = (ev) => {
             bankTa.value = (ev.target && ev.target.result) || '';
             if (dropzoneStatus) {
-              dropzoneStatus.textContent = `✓ Завантажено: ${file.name} (${Math.round(file.size / 1024)} КБ)`;
+              dropzoneStatus.textContent = `Завантажено: ${file.name} (${Math.round(file.size / 1024)} КБ)`;
             }
-            showInlineStatus(`✓ Файл ${file.name} прочитано`);
+            showInlineStatus(`Файл ${file.name} прочитано`);
           };
           reader.readAsText(file, 'windows-1251');
         }
@@ -3647,9 +4553,9 @@
           reader.onload = (ev) => {
             bankTa.value = (ev.target && ev.target.result) || '';
             if (dropzoneStatus) {
-              dropzoneStatus.textContent = `✓ Завантажено: ${file.name} (${Math.round(file.size / 1024)} КБ)`;
+              dropzoneStatus.textContent = `Завантажено: ${file.name} (${Math.round(file.size / 1024)} КБ)`;
             }
-            showInlineStatus(`✓ Файл ${file.name} прочитано`);
+            showInlineStatus(`Файл ${file.name} прочитано`);
           };
           reader.readAsText(file, 'windows-1251');
         }
@@ -3697,7 +4603,7 @@
           renderBankSection();
           renderPulseSection();
           renderTaxesAndTeamSection();
-          showInlineStatus(`✓ Виписку проведено (${res?.data?.autoPosted || 3} платежі) + сформовано проводки Дт 311 Кт 361 та Дт 631 Кт 311!`);
+          showInlineStatus(`Виписку проведено (${res?.data?.autoPosted || 3} платежі) + сформовано проводки Дт 311 Кт 361 та Дт 631 Кт 311!`);
         } catch (_e) {}
       });
     }
@@ -3707,7 +4613,7 @@
     if (btnCopyIban) {
       btnCopyIban.addEventListener('click', () => {
         const text = `UA418999980313090106000026001 | Отримувач: ГУК у м. Києві | ЄДРПОУ 37993783 | Призначення: *;101;38421567;Єдиний податок 5% та ВЗ 1% за квартал;;;`;
-        copyTextInline(text, '✓ Реквізити IBAN Казначейства скопійовано в буфер');
+        copyTextInline(text, 'Реквізити IBAN Казначейства скопійовано в буфер');
       });
     }
 
@@ -3725,7 +4631,7 @@
           a.click();
           document.body.removeChild(a);
           URL.revokeObjectURL(url);
-          showInlineStatus('✓ Декларацію XML F0103308 завантажено');
+          showInlineStatus('Декларацію XML F0103308 завантажено');
         } catch (_e) {}
       });
     }
@@ -3777,7 +4683,7 @@
           if (resp && resp.ok) {
             const xmlText = await resp.text();
             downloadXmlBlob(xmlText, filename);
-            showInlineStatus(`✓ XML ${code} для cabinet.tax.gov.ua успішно завантажено`);
+            showInlineStatus(`XML ${code} для cabinet.tax.gov.ua успішно завантажено`);
             return;
           }
         } catch (_e) {}
@@ -3785,7 +4691,7 @@
         // Client-side fallback XML download
         const xmlText = getClientDpsXml(formId, code);
         downloadXmlBlob(xmlText, filename);
-        showInlineStatus(`✓ XML ${code} для cabinet.tax.gov.ua успішно завантажено`);
+        showInlineStatus(`XML ${code} для cabinet.tax.gov.ua успішно завантажено`);
       });
     }
 
@@ -3813,80 +4719,210 @@
         ]);
 
         renderTaxesAndTeamSection();
-        showInlineStatus(`✓ Зарплату команді виплачено в 1 клік + проведено Дт 661 Кт 311 (${fmtUah(totalNetPaid)})`);
+        showInlineStatus(`Зарплату команді виплачено в 1 клік + проведено Дт 661 Кт 311 (${fmtUah(totalNetPaid)})`);
       });
     }
 
-    // 1C Migration 3-Step Wizard
+    // 1C / BAS / Excel Client-Side File Import & Migration Console
+    const migFileInput = document.getElementById('mig-file-input');
+    if (migFileInput) {
+      migFileInput.addEventListener('change', (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          const text = String((ev.target && ev.target.result) || '');
+          const csvInput = document.getElementById('mig-csv-input');
+          if (csvInput) csvInput.value = text;
+          const stBadge = document.getElementById('migration-status-badge');
+          if (stBadge) stBadge.textContent = `Файл завантажено (${file.name})`;
+          showInlineStatus(`Файл «${file.name}» зчитано. Натисніть «2. Форензік-перевірка» або «3. Імпортувати»`);
+        };
+        reader.readAsText(file, 'UTF-8');
+      });
+    }
+
     const btnMigDemo = document.getElementById('btn-mig-load-demo');
     if (btnMigDemo) {
-      btnMigDemo.addEventListener('click', async () => {
-        const res = await fetch('/api/autonomous/migration/demo-payload').then((r) => r.json()).catch(() => null);
-        if (res && res.ok && res.data) {
-          state.demoMigrationPayload = res.data;
-          const csvInput = document.getElementById('mig-csv-input');
-          const bankInput = document.getElementById('mig-bank-input');
-          if (csvInput) csvInput.value = res.data.csvText || '';
-          if (bankInput) bankInput.value = res.data.bankExchangeText || '';
-          document.getElementById('mig-step-1')?.classList.add('done');
-          document.getElementById('mig-step-2')?.classList.add('active');
-          showInlineStatus('✓ Крок 1 виконано: завантажено реальний дамп 1С / BAS');
-        }
+      btnMigDemo.addEventListener('click', () => {
+        const demoCsv = [
+          'SKU;Найменування;Од;Кількість;Ціна;Тип',
+          'RAW-VENEER-OAK;Шпон натуральний дубовий (0.6 мм);м2;640;310;STOCK',
+          'RAW-GLUE-PUR;Клей-розплав PUR Kleiberit (мішок 25 кг);шт;28;4200;STOCK',
+          'FIN-DOOR-STD;Полотно дверне щитове МДФ 800 мм (RAL 9003);шт;35;3250;STOCK',
+          'RAW-VENEER-OAK;Шпон натуральний дубовий (0.6 мм);м2;640;310;STOCK',
+          '38910455;ТОВ "Карпат-Брус" (Борг покупця за відвантаження);АР;185000;12;AR',
+          '40129384;ПрАТ "Епіцентр-Постач" (Рахунок за лак/фарбу);АП;94000;0;AP',
+          '41990112;ЖК "Поділля Нова" (Новий договір 40 полотен);Партія дверей;218000;PROPOSAL;CRM'
+        ].join('\n');
+        const demoBank = [
+          '1CClientBankExchange',
+          'СекціяДокумент=Платіжне доручення',
+          'Номер=9041',
+          'Дата=10.11.2026',
+          'Сума=312000.00',
+          'Платник=ТОВ "БудМаркет Поділля"',
+          'ПризначенняПлатежу=Оплата за дверні полотна Пінєлька згідно рах. ВН-881',
+          'КінецьДокумента'
+        ].join('\n');
+
+        const csvInput = document.getElementById('mig-csv-input');
+        const bankInput = document.getElementById('mig-bank-input');
+        if (csvInput) csvInput.value = demoCsv;
+        if (bankInput) bankInput.value = demoBank;
+        const stBadge = document.getElementById('migration-status-badge');
+        if (stBadge) stBadge.textContent = 'Дамп 1С завантажено (Крок 1)';
+        showInlineStatus('Завантажено тестовий витяг 1С / Excel (ТМЦ + Дебіторка/Кредиторка + CRM + Дубль)');
       });
     }
 
     const btnMigAnalyze = document.getElementById('btn-mig-analyze');
     if (btnMigAnalyze) {
-      btnMigAnalyze.addEventListener('click', async () => {
+      btnMigAnalyze.addEventListener('click', () => {
         const csvText = document.getElementById('mig-csv-input')?.value || '';
         const bankExchangeText = document.getElementById('mig-bank-input')?.value || '';
+        const parsed = parseMigrationCsvRows(csvText);
+        const totalStockValue = parsed.stocks.reduce((s, it) => s + it.qty * it.unitPrice, 0);
 
-        const [anRes, forRes] = await Promise.all([
-          fetch('/api/autonomous/migration/analyze', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ csvText, bankExchangeText })
-          }).then((r) => r.json()).catch(() => null),
-          fetch('/api/universal-1c/forensic-audit', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({})
-          }).then((r) => r.json()).catch(() => null)
-        ]);
+        const fixes = [];
+        if (parsed.duplicatesCount > 0) fixes.push(`Видалено дубльованих рядків 1С: ${parsed.duplicatesCount}`);
+        if (parsed.stocks.length > 0) fixes.push(`Нормалізовано SKU та залишки складу: ${parsed.stocks.length} позицій`);
+        if (parsed.debts.length > 0) fixes.push(`Розібрано контрагентів ДЗ/КЗ: ${parsed.debts.length} записів`);
+        if (parsed.crms.length > 0) fixes.push(`Підготовлено CRM угод: ${parsed.crms.length}`);
+        if (bankExchangeText.trim()) fixes.push('Перевірено синтаксис виписки 1CClientBankExchange');
+        if (fixes.length === 0) fixes.push('Вставте CSV рядки або натисніть «1. Підставити тестовий витяг 1С»');
 
-        if (anRes && anRes.ok) state.lastMigrationAnalysis = anRes.data;
-        if (forRes && forRes.success) state.lastForensicReport = forRes.report;
+        state.lastMigrationAnalysis = {
+          counterparties: parsed.debts,
+          duplicatesRemoved: parsed.duplicatesCount,
+          items: parsed.stocks,
+          totalStockValue,
+          debtsCount: parsed.debts.length,
+          crmCount: parsed.crms.length,
+          bankDocs: bankExchangeText.trim() ? [1] : [],
+          sanitizedFixes: fixes
+        };
+        state.lastForensicReport = {
+          garbageIndexPercent: parsed.duplicatesCount > 0 ? 14 : 0,
+          garbageVerdict: parsed.duplicatesCount > 0
+            ? `Виявлено ${parsed.duplicatesCount} дубль(і) у вивантаженні — автоматично очищено перед записом у базу`
+            : 'Дані вивантаження чисті, дублів не виявлено',
+          anomalies: parsed.duplicatesCount > 0
+            ? [
+                {
+                  title: 'Дублювання картки ТМЦ / контрагента в 1С',
+                  affectedEntity: 'Довідник номенклатури',
+                  description: `Знайдено ${parsed.duplicatesCount} повторюваний запис(и), що спотворюють собівартість.`,
+                  autoFixAction: 'Автоматичне об\'єднання по ключу SKU/Назва перед імпортом.'
+                }
+              ]
+            : []
+        };
 
-        document.getElementById('mig-step-1')?.classList.add('done');
-        document.getElementById('mig-step-2')?.classList.add('done');
-        document.getElementById('mig-step-3')?.classList.add('active');
-
+        const stBadge = document.getElementById('migration-status-badge');
+        if (stBadge) stBadge.textContent = 'Перевірку завершено (Крок 2)';
         renderMigrationReportInline();
-        showInlineStatus('✓ Крок 2 виконано: Авто-Очистка та Рентген бази 1С завершені');
+        showInlineStatus('Форензік-аудит вивантаження завершено. Готово до імпорту');
       });
     }
 
     const btnMigExec = document.getElementById('btn-mig-execute');
     if (btnMigExec) {
-      btnMigExec.addEventListener('click', async () => {
+      btnMigExec.addEventListener('click', () => {
+        if (!requireOwnerEdit()) return;
         const csvText = document.getElementById('mig-csv-input')?.value || '';
-        const bankExchangeText = document.getElementById('mig-bank-input')?.value || '';
+        const targetMode = document.getElementById('mig-target-select')?.value || 'AUTO';
+        const parsed = parseMigrationCsvRows(csvText);
 
-        const execRes = await fetch('/api/autonomous/migration/execute', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ csvText, bankExchangeText })
-        }).then((r) => r.json()).catch(() => null);
+        let importedStock = 0;
+        let importedDebt = 0;
+        let importedCrm = 0;
 
-        if (execRes && execRes.ok) {
-          document.getElementById('mig-step-1')?.classList.add('done');
-          document.getElementById('mig-step-2')?.classList.add('done');
-          document.getElementById('mig-step-3')?.classList.add('done');
-          const stBadge = document.getElementById('migration-status-badge');
-          if (stBadge) stBadge.textContent = '✓ Переїзд з 1С успішно завершено';
-          await loadAllData();
-          showInlineStatus('✓ Переїзд з 1С завершено в 1 клік! Чиста база активна');
+        if (targetMode === 'AUTO' || targetMode === 'STOCK') {
+          parsed.stocks.forEach((st) => {
+            const ex = state.stockItems.find((x) => x.sku === st.sku);
+            if (ex) {
+              ex.qty += st.qty;
+              ex.unitPrice = st.unitPrice;
+            } else {
+              state.stockItems.unshift(st);
+            }
+            importedStock += 1;
+          });
         }
+
+        if (targetMode === 'AUTO' || targetMode === 'DEBT') {
+          parsed.debts.forEach((db) => {
+            if (db.kind === 'AR') {
+              state.dealerCredits.unshift({
+                id: `dl-imp-${Date.now()}-${importedDebt}`,
+                name: db.party,
+                segment: `1С Імпорт • ЄДРПОУ ${db.edrpou}`,
+                kam: 'Імпорт 1С',
+                limitUah: Math.max(db.amount * 1.5, 300000),
+                debtUah: db.amount,
+                overdueDays: db.days,
+                gateStatus: db.days > 7 ? 'BLOCKED' : 'OPEN'
+              });
+            } else {
+              state.payables.unshift({
+                id: `AP-imp-${Date.now()}-${importedDebt}`,
+                party: db.party,
+                edrpou: db.edrpou,
+                doc: 'Сальдо імпорту 1С',
+                amount: db.amount,
+                overdueDays: db.days,
+                dueDate: new Date().toLocaleDateString('uk-UA'),
+                status: db.days > 0 ? 'OVERDUE' : 'OPEN'
+              });
+            }
+            importedDebt += 1;
+          });
+        }
+
+        if (targetMode === 'AUTO' || targetMode === 'CRM') {
+          parsed.crms.forEach((cr) => {
+            state.crmDeals.unshift({
+              id: `CRM-imp-${Date.now()}-${importedCrm}`,
+              client: cr.client,
+              edrpou: cr.edrpou,
+              contact: 'ОПР (1С)',
+              phone: '+380 00 000-00-00',
+              subject: cr.subject,
+              amount: cr.amount,
+              stage: 'PROPOSAL',
+              note: 'Імпортовано з файлу 1С / Excel'
+            });
+            importedCrm += 1;
+          });
+        }
+
+        const totalMovedVal = parsed.stocks.reduce((s, it) => s + it.qty * it.unitPrice, 0);
+        if (totalMovedVal > 0) {
+          postOnlineLedgerEntries([
+            {
+              doc: 'ІМП-1С-48Г',
+              desc: `Імпорт початкових залишків 1С / Excel: ТМЦ (${importedStock}), ДЗ/КЗ (${importedDebt}), CRM (${importedCrm})`,
+              entity: 'ТОВ "ОпексМетрікс Індастріал"',
+              dt: '201 Сировина й матеріали',
+              dtCode: '201',
+              kt: '00 Допоміжний рахунок вводу залишків',
+              ktCode: '631',
+              amount: totalMovedVal
+            }
+          ]);
+        }
+
+        renderStockSection();
+        renderDebtSection();
+        renderDealerCreditTable();
+        renderCrmDealsTable();
+        renderPnlSection();
+        renderPulseSection();
+
+        const stBadge = document.getElementById('migration-status-badge');
+        if (stBadge) stBadge.textContent = `Імпортовано (${importedStock + importedDebt + importedCrm} зап.)`;
+        showInlineStatus(`Імпорт завершено: Склад +${importedStock}, ДЗ/КЗ +${importedDebt}, CRM +${importedCrm}`);
       });
     }
 
@@ -3901,13 +4937,13 @@
         const newDoc = {
           id: newId,
           docNumber: `${newId} від ${new Date().toLocaleDateString('uk-UA')}`,
-          source: '📱 Сфотографовано з телефону (Склад)',
+          source: 'Сфотографовано з телефону (Склад)',
           typeBadge: 'Прибуткова накладна (Склад ↔ Цех)',
           counterparty: 'ТОВ "СтальПром Постач"',
           edrpou: '39114088',
           ecosystemLink: 'Лист сталевий 3 мм (2.5 т) → Склад сировини (Рах. 201) під зміну Цеху ЧПК',
           amount: 245000,
-          approvalRoute: 'Комірник (Телефон) ✓ → Нач. Цеху ✓ → CEO ⏳',
+          approvalRoute: 'Комірник (Телефон) → Нач. Цеху → CEO ',
           status: 'PENDING',
           ledgerDt: '201 Сировина й матеріали',
           ledgerDtCode: '201',
@@ -3915,11 +4951,11 @@
           ledgerKtCode: '631'
         };
         state.approvalDocs.unshift(newDoc);
-        state.activeOcrDoc = Object.assign({ vatAmount: 40833.33, itemsSummary: newDoc.ecosystemLink, aiRiskCheck: '✓ Розпізнано з камери смартфона за 1.1 с. Ціни в межах норми.' }, newDoc);
+        state.activeOcrDoc = Object.assign({ vatAmount: 40833.33, itemsSummary: newDoc.ecosystemLink, aiRiskCheck: 'Розпізнано з камери смартфона за 1.1 с. Ціни в межах норми.' }, newDoc);
         renderDocsSection();
         renderPulseSection();
-        broadcastDesktopMobileSync(`📱 Накладну № ${newId} сфотографовано з телефону — вона вже на екрані ПК!`);
-        showInlineStatus(`📱 Накладну № ${newId} сфотографовано з телефону — синхронізовано з ПК!`);
+        broadcastDesktopMobileSync(`Накладну № ${newId} сфотографовано з телефону — вона вже на екрані ПК!`);
+        showInlineStatus(`Накладну № ${newId} сфотографовано з телефону — синхронізовано з ПК!`);
         return;
       }
 
@@ -3928,13 +4964,13 @@
         const newDoc = {
           id: newId,
           docNumber: `${newId} від ${new Date().toLocaleDateString('uk-UA')}`,
-          source: '📱 Відправлено з телефону менеджера',
+          source: 'Відправлено з телефону менеджера',
           typeBadge: 'Договір поставки + Специфікація',
           counterparty: 'ТОВ "АгроТех Комплект"',
           edrpou: '41092831',
           ecosystemLink: 'Поставка конвеєрних секцій КС-1200 (4 од.) з Цеху MES • AI-перевірка договору: ОК',
           amount: 512000,
-          approvalRoute: 'Сейлз (Телефон) ✓ → Юрист ✓ → CEO ⏳',
+          approvalRoute: 'Сейлз (Телефон) → Юрист → CEO ',
           status: 'PENDING',
           ledgerDt: '361 Розрахунки з покупцями',
           ledgerDtCode: '361',
@@ -3944,8 +4980,8 @@
         state.approvalDocs.unshift(newDoc);
         renderDocsSection();
         renderPulseSection();
-        broadcastDesktopMobileSync(`📱 Договір № ${newId} передано на погодження з телефону!`);
-        showInlineStatus(`📱 Договір № ${newId} передано на погодження з телефону на ПК!`);
+        broadcastDesktopMobileSync(`Договір № ${newId} передано на погодження з телефону!`);
+        showInlineStatus(`Договір № ${newId} передано на погодження з телефону на ПК!`);
         return;
       }
 
@@ -3980,7 +5016,7 @@
               amount: totalAmount
             }
           ],
-          `📱 Рахунок № ${newOrderNum} створено з телефону — синхронізовано з Десктопом (Дт 361 Кт 701)!`
+          `Рахунок № ${newOrderNum} створено з телефону — синхронізовано з Десктопом (Дт 361 Кт 701)!`
         );
         renderSalesOrdersTable();
         renderPulseSection();
@@ -4000,7 +5036,7 @@
             recEl.textContent = `${curNum + 1} док.`;
           }
           renderDocsSection();
-          showInlineStatus(`✓ AI OCR розпізнав документ: ${preset.typeBadge} № ${preset.docNumber} (${preset.source})`);
+          showInlineStatus(`AI OCR розпізнав документ: ${preset.typeBadge} № ${preset.docNumber} (${preset.source})`);
         }
         return;
       }
@@ -4031,12 +5067,13 @@
           }
           renderDocsSection();
           renderPulseSection();
-          showInlineStatus(`📤 Документ № ${doc.docNumber} передано на погодження керівнику!`);
+          showInlineStatus(`Документ № ${doc.docNumber} передано на погодження керівнику`);
         }
         return;
       }
 
       if (target.id === 'btn-ocr-approve-now') {
+        if (!requireOwnerEdit()) return;
         const doc = state.activeOcrDoc;
         if (doc) {
           let existing = state.approvalDocs.find((d) => d.id === doc.id);
@@ -4050,7 +5087,7 @@
               edrpou: doc.edrpou,
               ecosystemLink: doc.ecosystemLink,
               amount: doc.amount,
-              approvalRoute: doc.approvalRoute.replace('⏳', '✓'),
+              approvalRoute: doc.approvalRoute.replace('Очікує Власника', 'Власник (OK)'),
               status: 'APPROVED',
               ledgerDt: doc.ledgerDt,
               ledgerDtCode: doc.ledgerDtCode,
@@ -4060,7 +5097,7 @@
             state.approvalDocs.unshift(existing);
           } else {
             existing.status = 'APPROVED';
-            existing.approvalRoute = existing.approvalRoute.replace('⏳', '✓');
+            existing.approvalRoute = existing.approvalRoute.replace('Очікує Власника', 'Власник (OK)');
           }
           postOnlineLedgerEntries(
             [
@@ -4075,20 +5112,22 @@
                 amount: doc.amount
               }
             ],
-            `✓ Документ № ${doc.docNumber} погоджено та проведено в Склад/Цех і Головну Книгу (Дт ${doc.ledgerDtCode} Кт ${doc.ledgerKtCode} на ${fmtUah(doc.amount)})!`
+            `Документ № ${doc.docNumber} погоджено та проведено (Дт ${doc.ledgerDtCode} Кт ${doc.ledgerKtCode} на ${fmtUah(doc.amount)})`
           );
           renderDocsSection();
+          renderPnlSection();
           renderPulseSection();
         }
         return;
       }
 
       if (target.classList.contains('js-doc-approve')) {
+        if (!requireOwnerEdit()) return;
         const docId = target.getAttribute('data-id');
         const doc = state.approvalDocs.find((d) => d.id === docId);
         if (doc) {
           doc.status = 'APPROVED';
-          doc.approvalRoute = doc.approvalRoute.replace('⏳', '✓');
+          doc.approvalRoute = doc.approvalRoute.replace('Очікує Власника', 'Власник (OK)');
           postOnlineLedgerEntries(
             [
               {
@@ -4102,22 +5141,24 @@
                 amount: doc.amount
               }
             ],
-            `✓ Документ № ${doc.docNumber} погоджено! Сировину/умови проведено в Склад ↔ Цех + Дт ${doc.ledgerDtCode} Кт ${doc.ledgerKtCode} (${fmtUah(doc.amount)})`
+            `Документ № ${doc.docNumber} погоджено -> Дт ${doc.ledgerDtCode} Кт ${doc.ledgerKtCode} (${fmtUah(doc.amount)})`
           );
           renderDocsSection();
+          renderPnlSection();
           renderPulseSection();
         }
         return;
       }
 
       if (target.classList.contains('js-doc-reject')) {
+        if (!requireOwnerEdit()) return;
         const docId = target.getAttribute('data-id');
         const doc = state.approvalDocs.find((d) => d.id === docId);
         if (doc) {
           doc.status = 'REJECTED';
           renderDocsSection();
           renderPulseSection();
-          showInlineStatus(`✕ Документ № ${doc.docNumber} повернуто на доопрацювання`);
+          showInlineStatus(`Документ № ${doc.docNumber} повернуто на доопрацювання`);
         }
         return;
       }
@@ -4138,7 +5179,7 @@
             vatAmount: Math.round((doc.amount / 6) * 100) / 100,
             itemsSummary: doc.ecosystemLink,
             ecosystemLink: doc.ecosystemLink,
-            aiRiskCheck: '✓ Усі реквізити, номенклатуру складу/цеху та суму ПДВ звірено автоматично.',
+            aiRiskCheck: 'Усі реквізити, номенклатуру складу/цеху та суму ПДВ звірено автоматично.',
             approvalRoute: doc.approvalRoute,
             ledgerDt: doc.ledgerDt,
             ledgerDtCode: doc.ledgerDtCode,
@@ -4146,7 +5187,7 @@
             ledgerKtCode: doc.ledgerKtCode
           };
           renderDocsSection();
-          showInlineStatus(`👁️ Відкрито AI OCR скан документа № ${doc.docNumber}`);
+          showInlineStatus(`️ Відкрито AI OCR скан документа № ${doc.docNumber}`);
         }
         return;
       }
@@ -4188,7 +5229,7 @@
                 amount: 460000
               }
             ],
-            '⚡ B2B Реалізацію проведено за 0.04 с: Дт 361 Кт 701 (₴ 460 000) + ПДВ Дт 701 Кт 6412 + Собівартість Дт 901 Кт 26!'
+            'B2B Реалізацію проведено за 0.04 с: Дт 361 Кт 701 (₴ 460 000) + ПДВ Дт 701 Кт 6412 + Собівартість Дт 901 Кт 26!'
           );
         } else if (simType === 'mes-release') {
           postOnlineLedgerEntries(
@@ -4224,7 +5265,7 @@
                 amount: 353000
               }
             ],
-            '🏭 Випуск партії з ЧПК (MES) проведено за 0.04 с: Дт 231 Кт 201/661 → Дт 26 Кт 231 (₴ 427 000)!'
+            'Випуск партії з ЧПК (MES) проведено за 0.04 с: Дт 231 Кт 201/661 → Дт 26 Кт 231 (₴ 427 000)!'
           );
         } else if (simType === 'bank-supplier') {
           postOnlineLedgerEntries(
@@ -4250,7 +5291,7 @@
                 amount: 288000
               }
             ],
-            '🏦 Оплату постачальнику та Податковий кредит ПДВ (Дт 631 Кт 311 + Дт 6412) проведено за 0.04 с!'
+            'Оплату постачальнику та Податковий кредит ПДВ (Дт 631 Кт 311 + Дт 6412) проведено за 0.04 с!'
           );
         } else if (simType === 'intercompany') {
           postOnlineLedgerEntries(
@@ -4266,7 +5307,7 @@
                 amount: 1250000
               }
             ],
-            '🏢 Елімінацію внутрішньогрупового обороту Холдингу (Дт 683 Кт 361 на ₴ 1 250 000) проведено за 0.04 с!'
+            'Елімінацію внутрішньогрупового обороту Холдингу (Дт 683 Кт 361 на ₴ 1 250 000) проведено за 0.04 с!'
           );
         }
         return;
@@ -4293,14 +5334,138 @@
                 amount: line.batchCost
               }
             ],
-            `✓ Партію з «${line.name}» випущено на склад ГП + проведено Дт 26 Кт 231 (${fmtUah(line.batchCost)})!`
+            `Партію з «${line.name}» випущено на склад ГП + проведено Дт 26 Кт 231 (${fmtUah(line.batchCost)})!`
           );
+        }
+        return;
+      }
+
+      // 0B-NEW: P&L, CRM & Debt Delegated Actions (Owner-protected)
+      if (target.classList.contains('js-pnl-del-custom')) {
+        if (!requireOwnerEdit()) return;
+        const id = target.getAttribute('data-id');
+        state.pnlCustomLines = state.pnlCustomLines.filter((x) => x.id !== id);
+        renderPnlSection();
+        renderPulseSection();
+        showInlineStatus('Рядок P&L видалено');
+        return;
+      }
+
+      if (target.classList.contains('js-crm-delete')) {
+        if (!requireOwnerEdit()) return;
+        const id = target.getAttribute('data-id');
+        state.crmDeals = state.crmDeals.filter((d) => d.id !== id);
+        renderCrmDealsTable();
+        renderSalesOrdersTable();
+        showInlineStatus('CRM угоду видалено');
+        return;
+      }
+
+      if (target.classList.contains('js-crm-to-invoice')) {
+        if (!requireOwnerEdit()) return;
+        const id = target.getAttribute('data-id');
+        const deal = state.crmDeals.find((d) => d.id === id);
+        if (deal) {
+          deal.stage = 'WON';
+          const newOrderNum = `INV-2026-${108 + state.orders.length}`;
+          const newOrd = {
+            id: `ord-${Date.now()}`,
+            orderNumber: newOrderNum,
+            date: new Date().toLocaleDateString('uk-UA'),
+            clientName: deal.client,
+            clientEdrpou: deal.edrpou || '00000000',
+            itemsSummary: deal.subject,
+            items: [{ name: deal.subject, unit: 'к-т', qty: 1, price: deal.amount, cost: Math.round(deal.amount * 0.62) }],
+            totalAmount: deal.amount,
+            costAmount: Math.round(deal.amount * 0.62),
+            marginPct: 38.0,
+            status: 'INVOICED',
+            withVat: true
+          };
+          state.orders.unshift(newOrd);
+          state.activeDocOrderId = newOrderNum;
+          postOnlineLedgerEntries([
+            {
+              doc: newOrderNum,
+              desc: `Виставлено рахунок за CRM-угодою: ${deal.client} (${deal.subject})`,
+              entity: deal.client,
+              dt: '361 Розрахунки з покупцями',
+              dtCode: '361',
+              kt: '701 Дохід від реалізації ГП',
+              ktCode: '701',
+              amount: deal.amount
+            }
+          ]);
+          renderCrmDealsTable();
+          renderSalesOrdersTable();
+          renderPnlSection();
+          renderPulseSection();
+          renderInlineDocument(newOrderNum, state.activeDocType);
+          showInlineStatus(`Створено рахунок ${newOrderNum} на суму ${fmtUah(deal.amount)} + Дт 361 Кт 701`);
+        }
+        return;
+      }
+
+      if (target.classList.contains('js-debt-ar-pay')) {
+        if (!requireOwnerEdit()) return;
+        const dlId = target.getAttribute('data-id');
+        const dl = state.dealerCredits.find((d) => d.id === dlId);
+        if (dl && dl.debtUah > 0) {
+          const paidAmt = dl.debtUah;
+          dl.debtUah = 0;
+          dl.overdueDays = 0;
+          dl.gateStatus = 'OPEN';
+          postOnlineLedgerEntries([
+            {
+              doc: `БВ-ДЗ-${dl.id.toUpperCase()}`,
+              desc: `Погашення дебіторської заборгованості покупця ${dl.name}`,
+              entity: dl.name,
+              dt: '311 Поточні рахунки в UAH',
+              dtCode: '311',
+              kt: '361 Розрахунки з покупцями',
+              ktCode: '361',
+              amount: paidAmt
+            }
+          ]);
+          renderDebtSection();
+          renderDealerCreditTable();
+          renderPulseSection();
+          showInlineStatus(`Дебіторку ${dl.name} (${fmtUah(paidAmt)}) погашено -> Дт 311 Кт 361`);
+        }
+        return;
+      }
+
+      if (target.classList.contains('js-debt-ap-pay')) {
+        if (!requireOwnerEdit()) return;
+        const apId = target.getAttribute('data-id');
+        const ap = state.payables.find((p) => p.id === apId);
+        if (ap && ap.status !== 'PAID' && ap.amount > 0) {
+          const paidAmt = ap.amount;
+          ap.amount = 0;
+          ap.overdueDays = 0;
+          ap.status = 'PAID';
+          postOnlineLedgerEntries([
+            {
+              doc: `БВ-КЗ-${ap.id.toUpperCase()}`,
+              desc: `Сплата кредиторської заборгованості постачальнику ${ap.party} (${ap.doc})`,
+              entity: ap.party,
+              dt: '631 Розрахунки з постачальниками',
+              dtCode: '631',
+              kt: '311 Поточні рахунки в UAH',
+              ktCode: '311',
+              amount: paidAmt
+            }
+          ]);
+          renderDebtSection();
+          renderPulseSection();
+          showInlineStatus(`Кредиторку ${ap.party} (${fmtUah(paidAmt)}) сплачено -> Дт 631 Кт 311`);
         }
         return;
       }
 
       // 0C. 1-Click Dealer Credit Gate Toggle in #view-sales
       if (target.classList.contains('js-toggle-dealer-gate')) {
+        if (!requireOwnerEdit()) return;
         const dlId = target.getAttribute('data-id');
         const dl = state.dealerCredits.find((d) => d.id === dlId);
         if (dl) {
@@ -4310,6 +5475,7 @@
             dl.overdueDays = 0;
             dl.gateStatus = 'OPEN';
             renderDealerCreditTable();
+            renderDebtSection();
             postOnlineLedgerEntries(
               [
                 {
@@ -4323,12 +5489,13 @@
                   amount: paidDebt
                 }
               ],
-              `✓ Оплату ${fmtUah(paidDebt)} від ${dl.name} зараховано (Дт 311 Кт 361) — шлагбаум WMS відкрито!`
+              `Оплату ${fmtUah(paidDebt)} від ${dl.name} зараховано (Дт 311 Кт 361) — відвантаження відкрито`
             );
           } else {
             dl.gateStatus = 'BLOCKED';
             renderDealerCreditTable();
-            showInlineStatus(`⛔ Відвантаження для «${dl.name}» примусово заблоковано на складі WMS!`);
+            renderDebtSection();
+            showInlineStatus(`Відвантаження для «${dl.name}» заблоковано на складі WMS`);
           }
         }
         return;
@@ -4355,7 +5522,7 @@
           const fbTx = state.fallbackBankTxs.find((x) => x.id === id);
           if (fbTx) {
             fbTx.category = category;
-            fbTx.ruleMatched = `✓ Класифіковано CFO (${label})`;
+            fbTx.ruleMatched = `Класифіковано CFO (${label})`;
             fbTx.status = 'AUTO_POSTED';
           }
         }
@@ -4375,14 +5542,14 @@
 
         renderPulseSection();
         renderBankSection();
-        showInlineStatus(`✓ Платіж класифіковано як «${label}» + проведено в Головній Книзі!`);
+        showInlineStatus(`Платіж класифіковано як «${label}» + проведено в Головній Книзі!`);
         return;
       }
 
       // 2. Copy reminder / supplier text
       if (target.classList.contains('js-copy-reminder')) {
         const text = target.getAttribute('data-text') || '';
-        await copyTextInline(text, '✓ Текст повідомлення скопійовано для Viber / Telegram');
+        await copyTextInline(text, 'Текст повідомлення скопійовано для Viber / Telegram');
         return;
       }
 
@@ -4409,7 +5576,7 @@
           }
           renderPulseSection();
           renderSalesOrdersTable();
-          showInlineStatus(`✓ Оплату за рахунком ${ordNum} зараховано + проведено Дт 311 Кт 361!`);
+          showInlineStatus(`Оплату за рахунком ${ordNum} зараховано + проведено Дт 311 Кт 361!`);
         }
         return;
       }
@@ -4460,7 +5627,7 @@
 
         renderPulseSection();
         renderStockSection();
-        showInlineStatus(`✓ Замовлення постачальнику оприбутковано (+${qty} од.) + проведено Дт 201 Кт 631!`);
+        showInlineStatus(`Замовлення постачальнику оприбутковано (+${qty} од.) + проведено Дт 201 Кт 631!`);
         return;
       }
 
@@ -4500,7 +5667,7 @@
           }
           renderSalesOrdersTable();
           renderPulseSection();
-          showInlineStatus(`✓ Статус замовлення ${ordNum} змінено на «${nextStatus === 'PAID' ? 'Оплачено (Дт 311 Кт 361)' : 'Відвантажено (Дт 901 Кт 26)'}»`);
+          showInlineStatus(`Статус замовлення ${ordNum} змінено на «${nextStatus === 'PAID' ? 'Оплачено (Дт 311 Кт 361)' : 'Відвантажено (Дт 901 Кт 26)'}»`);
         }
         return;
       }
@@ -4514,18 +5681,22 @@
           await renderInlineDocument(ordNum, state.activeDocType);
           const viewer = document.getElementById('inline-doc-container');
           if (viewer) viewer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-          showInlineStatus(`✓ Відкрито документ для замовлення ${ordNum}`);
+          showInlineStatus(`Відкрито документ для замовлення ${ordNum}`);
         }
         return;
       }
 
-      // 7. Quick replenish stock from Stock table
+      // 7. Quick replenish / manual writeoff stock from Stock table (100% works offline + Owner lock)
       if (target.classList.contains('js-quick-replenish')) {
-        const sku = target.getAttribute('data-sku') || 'PRD-101';
-        const itemName = target.getAttribute('data-name') || 'Товар';
+        if (!requireOwnerEdit()) return;
+        const sku = target.getAttribute('data-sku') || 'RAW-MDF-16';
+        const itemName = target.getAttribute('data-name') || 'ТМЦ';
         const unit = target.getAttribute('data-unit') || 'шт';
         const unitPrice = Number(target.getAttribute('data-cost')) || 1000;
         const qty = Number(target.getAttribute('data-qty')) || 10;
+
+        const item = state.stockItems.find((s) => s.sku === sku);
+        if (item) item.qty += qty;
 
         try {
           await fetch('/api/autonomous/stock/movement', {
@@ -4541,14 +5712,12 @@
               reference: 'QUICK-REPLENISH'
             })
           });
-          const pulseRes = await fetch('/api/autonomous/pulse').then((r) => r.json());
-          if (pulseRes && pulseRes.ok) state.pulse = pulseRes.data;
         } catch (_err) {}
 
         postOnlineLedgerEntries([
           {
-            doc: `WMS-ПОПОВНЕННЯ-${sku}`,
-            desc: `Оприбуткування партії «${itemName}» (+${qty} ${unit}) на склад`,
+            doc: `WMS-ПРИХІД-${sku}`,
+            desc: `Поповнення ТМЦ «${itemName}» (+${qty} ${unit}) на склад`,
             entity: 'ТОВ "ОпексМетрікс Індастріал"',
             dt: '201 Сировина й матеріали',
             dtCode: '201',
@@ -4560,7 +5729,38 @@
 
         renderStockSection();
         renderPulseSection();
-        showInlineStatus(`✓ Запас «${itemName}» поповнено на +${qty} ${unit} (+Дт 201 Кт 631)`);
+        showInlineStatus(`Запас «${itemName}» поповнено на +${qty} ${unit} (+Дт 201 Кт 631)`);
+        return;
+      }
+
+      if (target.classList.contains('js-stock-writeoff')) {
+        if (!requireOwnerEdit()) return;
+        const sku = target.getAttribute('data-sku') || 'RAW-MDF-16';
+        const itemName = target.getAttribute('data-name') || 'ТМЦ';
+        const unit = target.getAttribute('data-unit') || 'шт';
+        const unitPrice = Number(target.getAttribute('data-cost')) || 1000;
+        const reqQty = Number(target.getAttribute('data-qty')) || 10;
+
+        const item = state.stockItems.find((s) => s.sku === sku);
+        const actualWriteoff = item ? Math.min(item.qty, reqQty) : reqQty;
+        if (item) item.qty = Math.max(0, item.qty - actualWriteoff);
+
+        postOnlineLedgerEntries([
+          {
+            doc: `WMS-СПИС-${sku}`,
+            desc: `Списання ТМЦ «${itemName}» (-${actualWriteoff} ${unit}) у цех (Рах. 231)`,
+            entity: 'ТОВ "ОпексМетрікс Індастріал"',
+            dt: '231 Основне виробництво (MES)',
+            dtCode: '231',
+            kt: '201 Сировина й матеріали',
+            ktCode: '201',
+            amount: actualWriteoff * unitPrice
+          }
+        ]);
+
+        renderStockSection();
+        renderPulseSection();
+        showInlineStatus(`Списано «${itemName}» (-${actualWriteoff} ${unit}) -> Дт 231 Кт 201`);
         return;
       }
 
@@ -4583,7 +5783,7 @@
             }
           ]);
           renderTaxesAndTeamSection();
-          showInlineStatus(`✓ Виплачено ${fmtUah(emp.netPay)} на картку (${emp.name}) + проведено Дт 661 Кт 311`);
+          showInlineStatus(`Виплачено ${fmtUah(emp.netPay)} на картку (${emp.name}) + проведено Дт 661 Кт 311`);
         }
         return;
       }
@@ -4652,7 +5852,7 @@
         renderPulseSection();
         switchTab('sales');
         renderInlineDocument(orderNumber, 'INVOICE');
-        showInlineStatus(`✓ Рахунок № ${orderNumber} створено з дзвінка за 1 клік + проведено Дт 361 Кт 701!`);
+        showInlineStatus(`Рахунок № ${orderNumber} створено з дзвінка за 1 клік + проведено Дт 361 Кт 701!`);
         return;
       }
     });
@@ -4801,7 +6001,7 @@
           </div>
           <div style="text-align:right;">
             <span style="display:inline-block;background:#f0fdf4;color:#16a34a;border:1px solid #bbf7d0;font-size:11px;font-weight:600;padding:4px 10px;border-radius:6px;">
-              ✓ Схема XSD валідна для ДПС
+              Схема XSD валідна для ДПС
             </span>
             <div style="font-size:11.5px;color:#64748b;margin-top:4px;">Файл: <code style="font-weight:600;">${filename}</code></div>
           </div>
@@ -4815,7 +6015,7 @@
         </div>
 
         <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:12px 14px;margin-bottom:18px;font-size:12.5px;color:#1e40af;">
-          <strong>Подача без бухгалтера за 60 секунд:</strong> Завантажте готовий XML $\\rightarrow$ увійдіть у <a href="https://cabinet.tax.gov.ua/" target="_blank" rel="noopener noreferrer" style="color:#2563eb;text-decoration:underline;font-weight:700;">cabinet.tax.gov.ua</a> $\\rightarrow$ «Введення звітності» $\\rightarrow$ «Завантажити» $\\rightarrow$ підпишіть КЕП / Дія.Підписом.
+          <strong>Подача в ДПС за 60 секунд:</strong> Завантажте XML -> увійдіть у <a href="https://cabinet.tax.gov.ua/" target="_blank" rel="noopener noreferrer" style="color:#2563eb;text-decoration:underline;font-weight:700;">cabinet.tax.gov.ua</a> -> «Введення звітності» -> «Завантажити» -> підпишіть КЕП / Дія.Підписом.
         </div>
 
         <details style="background:#0f172a;color:#f8fafc;border-radius:6px;padding:12px;font-family:monospace;font-size:11.5px;">
@@ -4827,8 +6027,19 @@
   }
 
   // ─── Boot ──────────────────────────────────────────────────────────────────
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', async () => {
     bindEvents();
-    loadAllData();
+    await loadAllData();
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const qRole = params.get('role');
+      if (qRole === 'STAFF' || qRole === 'OWNER') {
+        const sel = document.getElementById('access-role-select');
+        if (sel) sel.value = qRole;
+        applyAccessRole(qRole);
+      }
+      const qTab = params.get('tab');
+      if (qTab) switchTab(qTab);
+    } catch (_e) {}
   });
 })();

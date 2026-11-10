@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OpexMetrix Enterprise & MES — Автономна ERP, Онлайн-Проводки та Управління Виробництвом</title>
+  <title>OpexMetrix ERP — Операційна система підприємства</title>
   <link rel="icon" type="image/png" href="./opex-logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -11,38 +11,38 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <style>
     :root {
-      --bg-app: #F8FAFC;
+      --bg-app: #FFFFFF;
       --bg-card: #FFFFFF;
-      --bg-subtle: #F1F5F9;
-      --bg-hover: #F8FAFC;
-      --border: #E2E8F0;
-      --border-strong: #CBD5E1;
-      --text-main: #0F172A;
-      --text-secondary: #475569;
-      --text-muted: #94A3B8;
-      --primary: #0F172A;
-      --primary-hover: #1E293B;
-      --primary-soft: #F1F5F9;
-      --primary-border: #E2E8F0;
-      --accent-blue: #2563EB;
-      --accent-blue-hover: #1D4ED8;
-      --accent-blue-soft: #EFF6FF;
-      --accent-blue-border: #BFDBFE;
-      --success: #16A34A;
-      --success-hover: #15803D;
+      --bg-subtle: #F8FAFC;
+      --bg-hover: #F4F4F5;
+      --border: #E4E4E7;
+      --border-strong: #D4D4D8;
+      --text-main: #09090B;
+      --text-secondary: #3F3F46;
+      --text-muted: #71717A;
+      --primary: #09090B;
+      --primary-hover: #27272A;
+      --primary-soft: #F4F4F5;
+      --primary-border: #D4D4D8;
+      --accent-blue: #09090B;
+      --accent-blue-hover: #27272A;
+      --accent-blue-soft: #F4F4F5;
+      --accent-blue-border: #D4D4D8;
+      --success: #15803D;
+      --success-hover: #166534;
       --success-soft: #F0FDF4;
       --success-border: #BBF7D0;
-      --warning: #D97706;
+      --warning: #B45309;
       --warning-soft: #FFFBEB;
       --warning-border: #FDE68A;
-      --danger: #DC2626;
+      --danger: #B91C1C;
       --danger-soft: #FEF2F2;
       --danger-border: #FECACA;
       --radius-sm: 6px;
-      --radius-md: 10px;
-      --radius-lg: 14px;
-      --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
-      --shadow-card: 0 1px 3px rgba(15, 23, 42, 0.04), 0 1px 2px rgba(15, 23, 42, 0.02);
+      --radius-md: 8px;
+      --radius-lg: 10px;
+      --shadow-sm: none;
+      --shadow-card: none;
       --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       --font-serif: var(--font-sans);
       --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
@@ -1652,6 +1652,87 @@
         grid-template-columns: 1fr !important;
       }
     }
+
+    /* Single-Owner Lock & Manual Inline Inputs */
+    .access-banner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 8px 14px;
+      margin-bottom: 16px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: #FAFAFA;
+      font-size: 12.5px;
+      color: var(--text-main);
+    }
+    .access-banner.locked {
+      background: #FEF2F2;
+      border-color: #FECACA;
+      color: #991B1B;
+    }
+    .inline-edit-input {
+      width: 120px;
+      padding: 4px 8px;
+      border: 1px solid var(--border-strong);
+      border-radius: 4px;
+      font-family: var(--mono);
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-main);
+      background: #FFFFFF;
+      text-align: right;
+    }
+    .inline-edit-input:disabled {
+      background: #F4F4F5;
+      color: #71717A;
+      border-color: #E4E4E7;
+      cursor: not-allowed;
+    }
+    .inline-edit-text {
+      width: 100%;
+      min-width: 140px;
+      padding: 4px 8px;
+      border: 1px solid var(--border-strong);
+      border-radius: 4px;
+      font-family: var(--sans);
+      font-size: 12.5px;
+      color: var(--text-main);
+      background: #FFFFFF;
+    }
+    .inline-edit-text:disabled {
+      background: #F4F4F5;
+      color: #71717A;
+      border-color: #E4E4E7;
+      cursor: not-allowed;
+    }
+    .pnl-subtotal-row {
+      background: #FAFAFA;
+      font-weight: 700;
+    }
+    .pnl-final-row {
+      background: #09090B;
+      color: #FFFFFF;
+      font-weight: 700;
+    }
+    .pnl-final-row td {
+      color: #FFFFFF !important;
+      border-bottom: none;
+    }
+    .btn-action-primary, .btn-primary {
+      background: #09090B !important;
+      color: #FFFFFF !important;
+      border-color: #09090B !important;
+    }
+    .btn-action-primary:hover:not(:disabled), .btn-primary:hover:not(:disabled) {
+      background: #27272A !important;
+    }
+    button:disabled, select:disabled, input:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
   </style>
 </head>
 <body>
@@ -1662,81 +1743,90 @@
         <div class="brand-box" style="flex-direction: column; align-items: flex-start; gap: 2px;">
           <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
             <div class="brand-title">OpexMetrix</div>
-            <span class="badge badge-blue" style="font-size: 10px; padding: 2px 6px;">ECOSYSTEM</span>
+            <span class="badge badge-slate" style="font-size: 10px; padding: 2px 6px;">ERP / MES</span>
           </div>
-          <div class="brand-subtitle">ЦЕХ • СКЛАД • ДОКУМЕНТИ • ОБЛІК</div>
+          <div class="brand-subtitle">ОБЛІК • СКЛАД • ЦЕХ • ФІНАНСИ</div>
         </div>
 
-        <div class="nav-section-label">Єдина Екосистема Бізнесу</div>
+        <div class="nav-section-label">Робочі розділи</div>
         <ul class="nav-list" id="main-nav">
           <li>
             <button type="button" class="nav-btn active" data-tab="pulse">
               <span class="nav-btn-left">
                 <svg class="nav-icon-svg" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                <span>Пульс Екосистеми (CEO)</span>
+                <span>Пульс (Головна)</span>
               </span>
-              <span class="nav-badge" id="nav-badge-pulse">Цех+Склад</span>
+              <span class="nav-badge" id="nav-badge-pulse">3 дії</span>
             </button>
           </li>
           <li>
-            <button type="button" class="nav-btn" data-tab="docs">
+            <button type="button" class="nav-btn" data-tab="pnl">
               <span class="nav-btn-left">
-                <svg class="nav-icon-svg" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
-                <span>Документи, OCR &amp; Погодження</span>
+                <svg class="nav-icon-svg" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                <span>P&amp;L та Аналітика</span>
               </span>
-              <span class="nav-badge" id="nav-badge-docs" style="background: var(--warning-soft); color: var(--warning); border: 1px solid var(--warning-border);">3 на підпис</span>
-            </button>
-          </li>
-          <li>
-            <button type="button" class="nav-btn" data-tab="mes">
-              <span class="nav-btn-left">
-                <svg class="nav-icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
-                <span>Цех MES (Зв'язаний зі Складом)</span>
-              </span>
-              <span class="nav-badge" id="nav-badge-mes" style="background:#EFF6FF; color:#2563EB; border:1px solid #BFDBFE;">OEE 89%</span>
-            </button>
-          </li>
-          <li>
-            <button type="button" class="nav-btn" data-tab="stock">
-              <span class="nav-btn-left">
-                <svg class="nav-icon-svg" viewBox="0 0 24 24"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-                <span>Склад WMS &amp; Закупівлі</span>
-              </span>
-              <span class="nav-badge" id="nav-badge-stock" style="display:none;"></span>
+              <span class="nav-badge" id="nav-badge-pnl">P&amp;L</span>
             </button>
           </li>
           <li>
             <button type="button" class="nav-btn" data-tab="sales">
               <span class="nav-btn-left">
                 <svg class="nav-icon-svg" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-                <span>Продажі &amp; B2B Deal Desk</span>
+                <span>CRM та Продажі</span>
               </span>
-              <span class="nav-badge" id="nav-badge-sales" style="display:none;"></span>
+              <span class="nav-badge" id="nav-badge-sales">6</span>
             </button>
           </li>
           <li>
-            <button type="button" class="nav-btn" data-tab="ai-sales">
+            <button type="button" class="nav-btn" data-tab="debt">
               <span class="nav-btn-left">
-                <svg class="nav-icon-svg" viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" x2="12" y1="19" y2="22"></line></svg>
-                <span>Відділ Продажів &amp; AI Call</span>
+                <svg class="nav-icon-svg" viewBox="0 0 24 24"><path d="M16 3h5v5"></path><path d="M8 21H3v-5"></path><path d="M21 3l-7 7"></path><path d="M3 21l7-7"></path></svg>
+                <span>Дебіторка і Кредиторка</span>
               </span>
-              <span class="nav-badge" id="nav-badge-ai-sales" style="background: var(--success-soft); color: var(--success); border: 1px solid var(--success-border);">+28%</span>
+              <span class="nav-badge" id="nav-badge-debt">ДЗ/КЗ</span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="nav-btn" data-tab="stock">
+              <span class="nav-btn-left">
+                <svg class="nav-icon-svg" viewBox="0 0 24 24"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                <span>Склад і ТМЦ</span>
+              </span>
+              <span class="nav-badge" id="nav-badge-stock">ТМЦ</span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="nav-btn" data-tab="mes">
+              <span class="nav-btn-left">
+                <svg class="nav-icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                <span>Цех MES та Техкарти</span>
+              </span>
+              <span class="nav-badge" id="nav-badge-mes">OEE 89%</span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="nav-btn" data-tab="docs">
+              <span class="nav-btn-left">
+                <svg class="nav-icon-svg" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                <span>Документи, OCR і Підпис</span>
+              </span>
+              <span class="nav-badge" id="nav-badge-docs">3</span>
             </button>
           </li>
           <li>
             <button type="button" class="nav-btn" data-tab="ledger">
               <span class="nav-btn-left">
                 <svg class="nav-icon-svg" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
-                <span>Проводки та Облік (Дт/Кт)</span>
+                <span>Проводки та ОСВ (Дт/Кт)</span>
               </span>
-              <span class="nav-badge" id="nav-badge-ledger" style="background: var(--success-soft); color: var(--success); border: 1px solid var(--success-border);">Дт=Кт</span>
+              <span class="nav-badge" id="nav-badge-ledger">Дт=Кт</span>
             </button>
           </li>
           <li>
             <button type="button" class="nav-btn" data-tab="bank">
               <span class="nav-btn-left">
                 <svg class="nav-icon-svg" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-                <span>Банк, Казначейство &amp; ЦФВ</span>
+                <span>Банк, Каса та Бюджети</span>
               </span>
               <span class="nav-badge danger" id="nav-badge-bank" style="display:none;"></span>
             </button>
@@ -1745,35 +1835,43 @@
             <button type="button" class="nav-btn" data-tab="taxes">
               <span class="nav-btn-left">
                 <svg class="nav-icon-svg" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                <span>Податки ДПС &amp; Персонал</span>
+                <span>Податки ДПС та Зарплата</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="nav-btn" data-tab="ai-sales">
+              <span class="nav-btn-left">
+                <svg class="nav-icon-svg" viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" x2="12" y1="19" y2="22"></line></svg>
+                <span>IP-Телефонія та Менеджери</span>
               </span>
             </button>
           </li>
           <li>
             <button type="button" class="nav-btn" data-tab="about">
               <span class="nav-btn-left">
-                <svg class="nav-icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-                <span>Презентація (МСБ + Великий)</span>
+                <svg class="nav-icon-svg" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                <span>Імпорт бази (1С / Excel)</span>
               </span>
-              <span class="nav-badge" style="background:#EFF6FF; color:#2563EB; border:1px solid #BFDBFE;">2 в 1</span>
+              <span class="nav-badge">48 год</span>
             </button>
           </li>
         </ul>
       </div>
 
       <div class="sidebar-footer">
-        <div class="niche-pill-card" id="sidebar-scale-card" title="Натисніть для відкриття презентації (МСБ та Великий Бізнес)">
-          <div class="niche-pill-label">Екосистема Підприємства</div>
-          <div class="niche-pill-value">
-            <span>Цех ↔ Склад ↔ Облік</span>
-            <span style="color: var(--accent-blue); font-size: 11px;">КП + ROI</span>
+        <div class="niche-pill-card" id="sidebar-scale-card" title="Перейти до переносу бази з 1С або Excel за 48 годин">
+          <div class="niche-pill-label">Імпорт та Обладнання</div>
+          <div class="niche-pill-value" style="gap: 6px;">
+            <span style="white-space: nowrap;">Імпорт (48 год)</span>
+            <a href="./how-it-works.html" target="_blank" style="color: var(--text-main); font-size: 11px; text-decoration: underline; white-space: nowrap;" onclick="event.stopPropagation();">Цех MES</a>
           </div>
         </div>
         <div class="user-profile-badge">
-          <div class="user-avatar">МК</div>
+          <div class="user-avatar">ВЛ</div>
           <div class="user-info">
-            <span class="user-name">Михайло Кузьміч</span>
-            <span class="user-role">CEO Холдингу • OpexMetrix</span>
+            <span class="user-name" id="sidebar-user-name">Власник (Єдиний адмін)</span>
+            <span class="user-role" id="sidebar-user-role">Правка цифр: Дозволено</span>
           </div>
         </div>
       </div>
@@ -1781,47 +1879,46 @@
 
     <!-- Main Area -->
     <div class="main-area">
-      <!-- Clean Top Header (Removed "Онлайн" pill per user request) -->
       <header class="top-header">
-        <div class="header-left">
+        <div class="header-left" style="flex-wrap: nowrap; min-width: 0; gap: 10px;">
           <button type="button" class="mobile-menu-toggle-btn" id="btn-mobile-sidebar-toggle" title="Відкрити меню навігації">
-            <span>☰ Меню</span>
+            <span>Меню</span>
           </button>
-          <h1 class="page-title" id="header-page-title">Єдина Екосистема Бізнесу (Цех ↔ Склад ↔ Облік)</h1>
-          <select id="holding-entity-select" class="select" style="height: 32px; font-size: 12.5px; font-weight: 600; padding: 0 28px 0 10px; background: var(--bg-subtle); border-color: var(--border);">
-            <option value="HOLDING_ALL">🏢 Група Компаній (Виробництво MES + Будівництво + Склад WMS)</option>
-            <option value="CONSTRUCTION_LLC">🏗️ ТОВ "БудІнвест Генпідряд" (Об'єкти ЖК, КБ-2в &amp; Склад Матеріалів)</option>
-            <option value="PLANT_LLC">🏭 ТОВ "ПромТех Виробництво" (Цех MES + Склад Сировини • ПДВ 20%)</option>
-            <option value="TRADE_LLC">💼 ТОВ "Альфа Трейд Дистрибуція" (Оптовий Склад &amp; B2B • ПДВ 20%)</option>
-            <option value="SMB_MODE">🏪 Контур Середнього Бізнесу (ФОП + ТОВ • Торгівля / Інжиніринг)</option>
+          <h1 class="page-title" id="header-page-title" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 245px;">Пульс підприємства</h1>
+          <select id="holding-entity-select" class="select" style="height: 32px; font-size: 12px; font-weight: 600; padding: 0 24px 0 10px; background: var(--bg-subtle); border-color: var(--border); min-width: 210px; max-width: 245px; flex-shrink: 0;">
+            <option value="HOLDING_ALL">Група Компаній (Цех + Склад)</option>
+            <option value="PLANT_LLC">ТОВ "ПромТех Виробництво"</option>
+            <option value="CONSTRUCTION_LLC">ТОВ "БудІнвест Генпідряд"</option>
+            <option value="TRADE_LLC">ТОВ "Альфа Трейд Дистрибуція"</option>
+            <option value="SMB_MODE">Контур ФОП + ТОВ (МСБ)</option>
           </select>
           <span id="header-niche-badge" style="display: none;"></span>
         </div>
-        <div class="header-right">
-          <button type="button" id="btn-open-mobile-companion" class="btn btn-sm btn-subtle" style="font-size:12.5px; font-weight:600; color:var(--success-hover); border-color:var(--success-border); background:var(--success-soft);">
-            <span>📱 Мобільна версія (Синхронно з ПК)</span>
+        <div class="header-right" style="flex-wrap: nowrap; gap: 6px; flex-shrink: 0;">
+          <select id="access-role-select" class="select" style="height: 32px; font-size: 12px; font-weight: 600; padding: 0 24px 0 10px; background: #FFFFFF; border-color: var(--border-strong); min-width: 185px; max-width: 205px; flex-shrink: 0;" title="Права на редагування фінансових цифр, P&L, залишків ТМЦ та боргів">
+            <option value="OWNER" selected>Права: Власник (Edit)</option>
+            <option value="STAFF">Права: Персонал (View)</option>
+          </select>
+          <button type="button" id="btn-open-mobile-companion" class="btn btn-sm btn-subtle" style="font-size:12px; font-weight:600; color:var(--text-main); border-color:var(--border-strong); background:#FFFFFF; white-space:nowrap;">
+            <span>Мобільний</span>
           </button>
-          <button type="button" class="btn btn-sm btn-subtle" onclick="window.opexSwitchTab && window.opexSwitchTab('docs')" style="font-size:12.5px; font-weight:600; color:var(--text-main); border-color:var(--border); background:#FFFFFF;">
-            <span>📄 Скан / Погодження</span>
+          <button type="button" class="btn btn-sm btn-subtle" onclick="window.opexSwitchTab && window.opexSwitchTab('pnl')" style="font-size:12px; font-weight:600; color:var(--text-main); border-color:var(--border-strong); background:#FFFFFF; white-space:nowrap;">
+            <span>P&amp;L</span>
           </button>
-          <button type="button" id="btn-header-open-pitch" class="btn btn-sm btn-subtle" style="font-size:12.5px; font-weight:600; color:var(--accent-blue); border-color:var(--accent-blue-border); background:var(--accent-blue-soft);">
-            <span>📊 Презентація: МСБ + Великий Бізнес</span>
+          <button type="button" class="btn btn-sm btn-subtle" onclick="window.opexSwitchTab && window.opexSwitchTab('about')" style="font-size:12px; font-weight:600; color:var(--text-main); border-color:var(--border-strong); background:#FFFFFF; white-space:nowrap;">
+            <span>Імпорт 1С</span>
           </button>
-          <a href="./how-it-works.html" target="_blank" class="btn btn-sm btn-subtle" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px; font-size:12.5px; font-weight:500; color:var(--text-secondary); border:1px solid var(--border); padding:6px 12px; border-radius:6px; background:#FFFFFF;">
-            <span>Схема цеху</span>
-            <span style="font-size:11px; color:var(--accent-blue);">↗</span>
-          </a>
-          <a href="./pitch.html" target="_blank" class="btn btn-sm btn-subtle" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px; font-size:12.5px; font-weight:500; color:var(--text-secondary); border:1px solid var(--border); padding:6px 12px; border-radius:6px; background:#FFFFFF;">
-            <span>Комерційна (PDF)</span>
-            <span style="font-size:11px; color:var(--accent-blue);">↗</span>
-          </a>
           <div class="inline-feedback" id="global-inline-status">
-            <span>✓ Збережено</span>
+            <span>Збережено</span>
           </div>
         </div>
       </header>
 
       <main class="content-container">
+        <div class="access-banner" id="global-access-banner">
+          <span id="global-access-text"><strong>Режим єдиного редактора (Власник):</strong> дозволено змінювати цифри P&amp;L, коригувати ТМЦ на складі, фіксувати борги та проводити ручні проводки.</span>
+          <span class="mono" style="font-size:11.5px; color: var(--text-muted);" id="global-access-code">ACCESS: OWNER_FULL_WRITE</span>
+        </div>
         <!-- ================================================================
              1. ГОЛОВНА (ЄДИНА ЕКОСИСТЕМА БІЗНЕСУ: ЦЕХ ↔ СКЛАД ↔ ДОКУМЕНТИ ↔ ОБЛІК)
              ================================================================ -->
@@ -1867,12 +1964,12 @@
             <!-- Card 3: Дебіторська заборгованість та Кредитний контроль -->
             <div class="kpi-card">
               <div class="kpi-header">
-                <span class="kpi-title">Дебіторка клієнтів &amp; Дилерів</span>
+                <span class="kpi-title">Дебіторка (Рах. 361)</span>
               </div>
-              <div class="kpi-value" id="kpi-receivables-total">₴ 1 180 000</div>
+              <div class="kpi-value" id="kpi-receivables-total">₴ 7 155 000</div>
               <div class="kpi-context-row" id="kpi-receivables-overdue">
-                <span class="kpi-context-label">Стоп-відвантаження на складі:</span>
-                <span class="kpi-context-value amber">₴ 185 000 (1 дилер)</span>
+                <span class="kpi-context-label">Прострочка / Стоп:</span>
+                <span class="kpi-context-value amber" style="white-space: nowrap;">₴ 185 000</span>
               </div>
               <div class="kpi-meta-row" id="kpi-receivables-list">
                 <span>Активних угод: <strong id="kpi-receivables-count">18</strong></span>
@@ -1884,12 +1981,12 @@
             <!-- Card 4: План оплат & Ліміт СЕА ПДВ -->
             <div class="kpi-card">
               <div class="kpi-header">
-                <span class="kpi-title">Обов'язкові платежі (7 дн) &amp; ПДВ</span>
+                <span class="kpi-title">Платежі (7 дн) &amp; ПДВ</span>
               </div>
               <div class="kpi-value" id="kpi-payables-total">₴ 640 000</div>
               <div class="kpi-context-row" id="kpi-cashgap-status">
-                <span class="kpi-context-label">Ліміт СЕА ПДВ (Σ Накл):</span>
-                <span class="kpi-context-value emerald">₴ 480 000 (Запас)</span>
+                <span class="kpi-context-label">Ліміт СЕА ПДВ:</span>
+                <span class="kpi-context-value emerald" style="white-space: nowrap;">₴ 480 000</span>
               </div>
               <div class="kpi-meta-row">
                 <span>Сировина в цех: <strong id="kpi-payables-suppliers">₴ 420k</strong></span>
@@ -1899,51 +1996,21 @@
             </div>
           </div>
 
-          <!-- CLEAN WHITE ECOSYSTEM CARD (Replaced the dark block per user request!) -->
-          <div class="card" style="padding: 18px 22px; background: #FFFFFF; color: var(--text-main); border: 1px solid var(--border); border-left: 4px solid var(--accent-blue);">
-            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 14px;">
+          <!-- Quick Operational Summary Strip (Links directly to P&L, Debt, Stock) -->
+          <div class="card" style="padding: 16px 20px; border-left: 3px solid #09090B;">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
               <div>
-                <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 4px;">
-                  <span class="badge badge-blue">🔗 ЄДИНА ЕКОСИСТЕМА БІЗНЕСУ</span>
-                  <span style="font-size: 15px; font-weight: 700; color: var(--text-main);">Ми підключаємося до Цеху, поєднаного зі Складом, Відділом Продажів та Бухгалтерією</span>
-                </div>
-                <div style="font-size: 13px; color: var(--text-secondary);">
-                  Весь ваш бізнес живе всередині однієї системи: від фото накладної з телефону комірника та погодження договору — до списання сировини зі складу в цех, випуску готової продукції та проводок <strong class="mono">Дт/Кт</strong> (за сьогодні: <strong class="mono" id="pulse-live-ledger-count">1 428</strong> операцій).
+                <div style="font-size: 14px; font-weight: 700; color: var(--text-main);">Операційне зведення: P&amp;L, Заборгованість, Склад та Проводки</div>
+                <div style="font-size: 12.5px; color: var(--text-secondary); margin-top: 2px;">
+                  Проведень за сьогодні: <strong class="mono" id="pulse-live-ledger-count">1 428</strong> · Чистий прибуток (P&amp;L): <strong class="mono" id="pulse-pnl-summary">₴ 1 420 000</strong> · Баланс ДЗ/КЗ: <strong class="mono" id="pulse-debt-summary">+₴ 540 000</strong>
                 </div>
               </div>
               <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                <button type="button" class="btn btn-sm btn-action-primary" onclick="window.opexSwitchTab && window.opexSwitchTab('docs')">📄 Погодження &amp; AI-Скан документів (ПК + Телефон)</button>
-                <button type="button" class="btn btn-sm btn-subtle" onclick="window.opexSwitchTab && window.opexSwitchTab('mes')">🏭 Цех + Склад (MES ↔ WMS)</button>
-                <button type="button" class="btn btn-sm btn-subtle" onclick="window.opexSwitchTab && window.opexSwitchTab('ledger')">📖 Проводки Дт/Кт</button>
-              </div>
-            </div>
-
-            <!-- Connected 5-Stage Ecosystem Chain -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(185px, 1fr)); gap: 10px; padding-top: 12px; border-top: 1px solid var(--border);">
-              <div style="background: var(--bg-app); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 12px;">
-                <div style="font-size: 11px; font-weight: 700; color: var(--accent-blue); text-transform: uppercase;">1. Документ / Фото з телефону</div>
-                <div style="font-size: 12.5px; font-weight: 600; color: var(--text-main); margin-top: 2px;">AI-Розпізнавання &amp; Погодження</div>
-                <div style="font-size: 11.5px; color: var(--text-muted); margin-top: 2px;">Накладні, договори, рахунки з ПК або камери смартфона</div>
-              </div>
-              <div style="background: var(--bg-app); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 12px;">
-                <div style="font-size: 11px; font-weight: 700; color: var(--success); text-transform: uppercase;">2. Склад Сировини (WMS)</div>
-                <div style="font-size: 12.5px; font-weight: 600; color: var(--text-main); margin-top: 2px;">Оприбуткування Рах. 201</div>
-                <div style="font-size: 11.5px; color: var(--text-muted); margin-top: 2px;">Авто-резерв під замовлення та передача зміни в цех</div>
-              </div>
-              <div style="background: var(--bg-app); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 12px;">
-                <div style="font-size: 11px; font-weight: 700; color: var(--accent-blue); text-transform: uppercase;">3. Виробничий Цех (MES)</div>
-                <div style="font-size: 12.5px; font-weight: 600; color: var(--text-main); margin-top: 2px;">Лінії ЧПК, BOM &amp; Обрізки</div>
-                <div style="font-size: 11.5px; color: var(--text-muted); margin-top: 2px;">Списання за техкартою (Рах. 231) та відрядна ЗП</div>
-              </div>
-              <div style="background: var(--bg-app); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 12px;">
-                <div style="font-size: 11px; font-weight: 700; color: var(--success); text-transform: uppercase;">4. Склад Готової Продукції</div>
-                <div style="font-size: 12.5px; font-weight: 600; color: var(--text-main); margin-top: 2px;">Випуск з цеху на Рах. 26</div>
-                <div style="font-size: 11.5px; color: var(--text-muted); margin-top: 2px;">Точна собівартість партії та готовність до відвантаження</div>
-              </div>
-              <div style="background: var(--bg-app); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 12px;">
-                <div style="font-size: 11px; font-weight: 700; color: var(--text-main); text-transform: uppercase;">5. Продажі, Банк &amp; ДПС</div>
-                <div style="font-size: 12.5px; font-weight: 600; color: var(--text-main); margin-top: 2px;">Авто-проводки Дт === Кт</div>
-                <div style="font-size: 11.5px; color: var(--text-muted); margin-top: 2px;">Рахунок з QR НБУ, контроль дебіторки та ПН в ЄРПН</div>
+                <button type="button" class="btn btn-sm btn-primary" onclick="window.opexSwitchTab && window.opexSwitchTab('pnl')">P&amp;L та Аналітика</button>
+                <button type="button" class="btn btn-sm btn-subtle" onclick="window.opexSwitchTab && window.opexSwitchTab('sales')">CRM та Рахунки</button>
+                <button type="button" class="btn btn-sm btn-subtle" onclick="window.opexSwitchTab && window.opexSwitchTab('debt')">Дебіторка / Кредиторка</button>
+                <button type="button" class="btn btn-sm btn-subtle" onclick="window.opexSwitchTab && window.opexSwitchTab('stock')">Склад ТМЦ</button>
+                <button type="button" class="btn btn-sm btn-subtle" onclick="window.opexSwitchTab && window.opexSwitchTab('ledger')">Проводки Дт/Кт</button>
               </div>
             </div>
           </div>
@@ -1967,8 +2034,8 @@
           <div class="card">
             <div class="card-header">
               <div>
-                <div class="card-title">Прогноз Грошового Потоку Підприємства на 30 днів (Rolling Cashflow Forecast)</div>
-                <div class="card-subtitle">Моделювання залишку коштів з урахуванням оплат клієнтів, закупівель сировини на склад під план цеху, податків та зарплати.</div>
+                <div class="card-title">Прогноз грошового потоку на 30 днів</div>
+                <div class="card-subtitle">Залишок коштів з урахуванням надходжень від клієнтів, закупівель, податків та ФОП.</div>
               </div>
               <div style="display: flex; gap: 8px; align-items: center;">
                 <span class="quiet-metric" id="chart-min-balance-badge">Мін. залишок (30 дн): ₴ 3 840 000</span>
@@ -1982,7 +2049,162 @@
         </section>
 
         <!-- ================================================================
-             1B. 📄 ДОКУМЕНТИ, AI-РОЗПІЗНАВАННЯ (НАКЛАДНІ / ДОГОВОРИ) ТА ПОГОДЖЕННЯ (ПК + ТЕЛЕФОН)
+             1A. PROFIT & LOSS (P&L) ТА ПОВНА АНАЛІТИКА
+             ================================================================ -->
+        <section class="view-section" id="view-pnl">
+          <div class="kpi-grid-4">
+            <div class="kpi-card">
+              <div class="kpi-header"><span class="kpi-title">Виручка (Revenue)</span></div>
+              <div class="kpi-value mono" id="pnl-kpi-rev">₴ 5 500 000</div>
+              <div class="kpi-meta-row"><span>За даними Кт 701/702 + ручні коригування</span></div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-header"><span class="kpi-title">Валовий прибуток (Gross Profit)</span></div>
+              <div class="kpi-value mono" id="pnl-kpi-gross">₴ 2 320 000</div>
+              <div class="kpi-meta-row"><span>Валова маржа: <strong id="pnl-kpi-gross-pct">42.2%</strong></span></div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-header"><span class="kpi-title">Операційний прибуток (EBITDA)</span></div>
+              <div class="kpi-value mono" id="pnl-kpi-ebitda">₴ 1 710 000</div>
+              <div class="kpi-meta-row"><span>EBITDA Margin: <strong id="pnl-kpi-ebitda-pct">31.1%</strong></span></div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-header"><span class="kpi-title">Чистий прибуток (Net Profit)</span></div>
+              <div class="kpi-value mono" id="pnl-kpi-net">₴ 1 420 000</div>
+              <div class="kpi-meta-row"><span>Чиста рентабельність: <strong id="pnl-kpi-net-pct">25.8%</strong></span></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Звіт про прибутки та збитки (Profit &amp; Loss / P&amp;L)</div>
+                <div class="card-subtitle">Автоматичний розрахунок з проводок Головної Книги. Ручне редагування сум та додавання статей доступне лише Власнику.</div>
+              </div>
+              <div style="display: flex; gap: 8px; flex-wrap: nowrap; flex-shrink: 0; align-items: center;">
+                <select id="pnl-period-select" class="select" style="height: 32px; font-size: 12px; width: 150px;">
+                  <option value="MONTH">Поточний місяць</option>
+                  <option value="QUARTER">Квартал (Q3 2026)</option>
+                  <option value="YEAR">Рік (2026 YTD)</option>
+                </select>
+                <button type="button" class="btn btn-sm btn-subtle" id="btn-pnl-reset" style="white-space: nowrap;">Скинути правки</button>
+                <button type="button" class="btn btn-sm btn-primary" id="btn-pnl-export-csv" style="white-space: nowrap;">Експорт CSV</button>
+              </div>
+            </div>
+
+            <div class="table-wrap" style="margin-bottom: 14px;">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Стаття звіту P&amp;L</th>
+                    <th>Рахунок / Джерело</th>
+                    <th class="text-right">Авто (З обліку, ₴)</th>
+                    <th class="text-right">Ручне коригування (₴)</th>
+                    <th class="text-right">Разом Факт (₴)</th>
+                    <th class="text-right">% від виручки</th>
+                    <th class="text-right">План (₴)</th>
+                  </tr>
+                </thead>
+                <tbody id="pnl-statement-tbody"></tbody>
+              </table>
+            </div>
+
+            <!-- Add Custom P&L Item (Owner Only) -->
+            <form id="pnl-custom-form" onsubmit="return false;" style="background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px;">
+              <div style="font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px;">Додати статтю доходу або витрат у P&amp;L вручну (права Власника):</div>
+              <div class="form-grid" style="grid-template-columns: 1.1fr 1.8fr 1fr 1fr auto;">
+                <div class="field-group">
+                  <label class="field-label" for="pnl-add-group">Розділ P&amp;L</label>
+                  <select id="pnl-add-group" class="select" style="font-size: 12.5px;">
+                    <option value="REVENUE">Дохід (Виручка)</option>
+                    <option value="COGS">Собівартість (COGS)</option>
+                    <option value="OPEX" selected>Операційні витрати (OPEX)</option>
+                    <option value="TAX">Податки / Фінансові</option>
+                  </select>
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="pnl-add-name">Назва статті</label>
+                  <input type="text" id="pnl-add-name" class="input" placeholder="Наприклад: Електроенергія цеху / Оренда складу" value="Електроенергія та резервне живлення" />
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="pnl-add-amt">Сума факт (₴)</label>
+                  <input type="number" id="pnl-add-amt" class="input mono" value="85000" min="0" step="1000" />
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="pnl-add-plan">План (₴)</label>
+                  <input type="number" id="pnl-add-plan" class="input mono" value="90000" min="0" step="1000" />
+                </div>
+                <div class="field-group">
+                  <button type="button" class="btn btn-primary owner-editable-btn" id="btn-pnl-add-line" style="height: 38px;">+ Додати в P&amp;L</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <div class="card-title">Динаміка P&amp;L по місяцях (Виручка, Витрати, Чистий прибуток)</div>
+                  <div class="card-subtitle">Зведена помісячна аналітика фінансового результату</div>
+                </div>
+              </div>
+              <div style="height: 260px; position: relative;">
+                <canvas id="pnlChart"></canvas>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <div class="card-title">Аналітика маржинальності за напрямками та типами продукції</div>
+                  <div class="card-subtitle">Зріз: Серійна продукція (Пінєлька), Погонаж, Нестандарт / Індивідуальні замовлення, Торгівля</div>
+                </div>
+              </div>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Напрямок / Категорія</th>
+                      <th class="text-right">Виручка</th>
+                      <th class="text-right">Собівартість</th>
+                      <th class="text-right">Маржа %</th>
+                      <th class="text-right">Прибуток (₴)</th>
+                    </tr>
+                  </thead>
+                  <tbody id="pnl-analytics-tbody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">ABC-Аналітика клієнтів та рентабельності угод</div>
+                <div class="card-subtitle">Внесок ключових контрагентів у чистий валовий прибуток підприємства</div>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Контрагент / Сегмент</th>
+                    <th>Група ABC</th>
+                    <th class="text-right">Обороти (₴)</th>
+                    <th class="text-right">Валовий прибуток (₴)</th>
+                    <th class="text-right">Рентабельність</th>
+                    <th class="text-right">Частка у прибутку</th>
+                  </tr>
+                </thead>
+                <tbody id="pnl-abc-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             1B. ДОКУМЕНТИ, OCR-РОЗПІЗНАВАННЯ ТА ПОГОДЖЕННЯ (ПК + ТЕЛЕФОН)
              ================================================================ -->
         <section class="view-section" id="view-docs">
           <!-- 4 KPI Cards for Document Ecosystem -->
@@ -2005,13 +2227,13 @@
               <div class="kpi-header">
                 <span class="kpi-title">Канали завантаження</span>
               </div>
-              <div class="kpi-value" style="font-size: 22px;">ПК + Телефон 📱</div>
+              <div class="kpi-value" style="font-size: 22px;">ПК + Телефон</div>
               <div class="kpi-context-row">
-                <span class="kpi-context-label">Мобільний патч (Камера):</span>
-                <span class="kpi-context-value emerald">Фото → В системі за 3 сек</span>
+                <span class="kpi-context-label">Мобільна камера:</span>
+                <span class="kpi-context-value emerald">Фото в системі за 3 сек</span>
               </div>
               <div class="kpi-meta-row">
-                <span>PDF, JPG, PNG, DOCX, XML з ПК або смартфона</span>
+                <span>PDF, JPG, PNG, DOCX, XML</span>
               </div>
             </div>
 
@@ -2051,26 +2273,26 @@
               <div>
                 <div class="card-header">
                   <div>
-                    <div class="card-title">📤 Завантаження з Комп'ютера або Фото з Телефону (AI-Сканер Накладних та Договорів)</div>
-                    <div class="card-subtitle">Завантажте файл із комп'ютера (PDF, фото, скан, Word) або сфотографуйте паперову накладну в цеху/на складі з телефону — система сама розпізнає кожну позицію і передасть на погодження.</div>
+                    <div class="card-title">Завантаження з комп'ютера або фото з телефону (OCR)</div>
+                    <div class="card-subtitle">PDF, фото накладних, договори та рахунки з ПК або мобільного пристрою.</div>
                   </div>
                 </div>
 
                 <!-- Dropzone for PC + Mobile Camera Patch -->
-                <div id="ocr-upload-dropzone" style="background: var(--bg-app); border: 1.5px dashed var(--accent-blue); border-radius: var(--radius-sm); padding: 20px; text-align: center; margin-bottom: 16px;">
+                <div id="ocr-upload-dropzone" style="background: var(--bg-subtle); border: 1.5px dashed var(--border-strong); border-radius: var(--radius-sm); padding: 20px; text-align: center; margin-bottom: 16px;">
                   <div style="font-size: 14px; font-weight: 700; color: var(--text-main); margin-bottom: 6px;" id="ocr-dropzone-title">
-                    Перетягніть сюди накладну, договір або рахунок з комп'ютера
+                    Перетягніть накладну, договір або рахунок з комп'ютера
                   </div>
                   <div style="font-size: 12.5px; color: var(--text-secondary); margin-bottom: 14px;">
-                    Підтримуються: <strong>Видаткові/Прибуткові накладні, Договори з контрагентами, Рахунки-фактури, Акти, ТТН</strong> (PDF, JPG, PNG, DOCX, XML)
+                    Підтримуються: видаткові/прибуткові накладні, договори, рахунки, акти, ТТН (PDF, JPG, PNG, DOCX, XML)
                   </div>
                   <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
-                    <label class="btn btn-action-primary" style="cursor: pointer; margin: 0;">
-                      💻 Завантажити файл з комп'ютера
+                    <label class="btn btn-primary" style="cursor: pointer; margin: 0;">
+                      Завантажити файл з комп'ютера
                       <input type="file" id="ocr-pc-file-input" accept=".pdf,.png,.jpg,.jpeg,.webp,.doc,.docx,.xml,.csv" style="display: none;" />
                     </label>
-                    <label class="btn btn-subtle" style="cursor: pointer; margin: 0; border-color: var(--accent-blue-border); background: var(--accent-blue-soft); color: var(--accent-blue); font-weight: 600;">
-                      📱 Сфотографувати з телефону (Патч Камери)
+                    <label class="btn btn-subtle" style="cursor: pointer; margin: 0; border-color: var(--border-strong); background: #FFFFFF; color: var(--text-main); font-weight: 600;">
+                      Сфотографувати з телефону
                       <input type="file" id="ocr-phone-camera-input" accept="image/*" capture="environment" style="display: none;" />
                     </label>
                   </div>
@@ -2078,39 +2300,39 @@
 
                 <!-- 1-Click Instant Production & Construction Scenarios -->
                 <div style="font-size: 12px; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px;">
-                  Швидке проведення первинних документів у реєстрі (Виробництво, Будівництво, Постачання):
+                  Типові первинні документи реєстру:
                 </div>
                 <div style="display: flex; flex-direction: column; gap: 8px;">
                   <button type="button" class="btn btn-subtle js-ocr-sim-preset" data-preset="WAYBILL_PHONE" style="justify-content: space-between; text-align: left; padding: 10px 14px; height: auto;">
                     <div>
-                      <div style="font-weight: 700; font-size: 13px; color: var(--text-main);">📥 1. Провести прибуткову накладну з телефону комірника (Сировина на склад → в цех)</div>
-                      <div style="font-size: 11.5px; color: var(--text-secondary);">Видаткова накладна № ВН-4418 від ТОВ "Метал-Холдинг" • Лист сталевий AISI 304 (4 т) та Профіль • ₴ 480 000</div>
+                      <div style="font-weight: 700; font-size: 13px; color: var(--text-main);">1. Прибуткова накладна на сировину (Склад - Цех)</div>
+                      <div style="font-size: 11.5px; color: var(--text-secondary);">ВН-4418 від ТОВ "Метал-Холдинг" • Лист сталевий AISI 304 (4 т) та Профіль • ₴ 480 000</div>
                     </div>
-                    <span class="badge badge-blue">Провести OCR</span>
+                    <span class="badge badge-slate">Відкрити OCR</span>
                   </button>
 
                   <button type="button" class="btn btn-subtle js-ocr-sim-preset" data-preset="CONSTRUCTION_KB2V" style="justify-content: space-between; text-align: left; padding: 10px 14px; height: auto;">
                     <div>
-                      <div style="font-weight: 700; font-size: 13px; color: var(--text-main);">🏗️ 2. Будівництво &amp; Генпідряд: Сканувати ТТН на Бетон В25 / Арматуру А500С + Акт КБ-2в</div>
-                      <div style="font-size: 11.5px; color: var(--text-secondary);">Об'єкт ЖК «Патріотика-Парк» (Секція 3) • Бетон В25 М350 (45 м³) + Арматура Ø16 (12 т) • Звірка з лімітом кошторису • ₴ 684 000</div>
+                      <div style="font-weight: 700; font-size: 13px; color: var(--text-main);">2. Будівництво: ТТН Бетон В25 / Арматура + Акт КБ-2в</div>
+                      <div style="font-size: 11.5px; color: var(--text-secondary);">Об'єкт ЖК «Патріотика-Парк» • Бетон В25 (45 м3) + Арматура 16 мм (12 т) • ₴ 684 000</div>
                     </div>
-                    <span class="badge badge-green">Контроль Кошторису</span>
+                    <span class="badge badge-slate">Кошторис</span>
                   </button>
 
                   <button type="button" class="btn btn-subtle js-ocr-sim-preset" data-preset="CONTRACT_PC" style="justify-content: space-between; text-align: left; padding: 10px 14px; height: auto;">
                     <div>
-                      <div style="font-weight: 700; font-size: 13px; color: var(--text-main);">📑 3. Юридичний та фінансовий AI-контроль: Договір поставки + Специфікація</div>
-                      <div style="font-size: 11.5px; color: var(--text-secondary);">Договір № ДП-2026/114 • Відстрочка 14 днів, перевірка штрафних клаузул, ліміту ЄРПН та кредитного плеча • ₴ 920 000</div>
+                      <div style="font-weight: 700; font-size: 13px; color: var(--text-main);">3. Договір поставки B2B + Специфікація</div>
+                      <div style="font-size: 11.5px; color: var(--text-secondary);">Договір № ДП-2026/114 • Відстрочка 14 днів, перевірка ліміту • ₴ 920 000</div>
                     </div>
                     <span class="badge badge-amber">На погодження</span>
                   </button>
 
                   <button type="button" class="btn btn-subtle js-ocr-sim-preset" data-preset="INVOICE_SHOPFLOOR" style="justify-content: space-between; text-align: left; padding: 10px 14px; height: auto;">
                     <div>
-                      <div style="font-weight: 700; font-size: 13px; color: var(--text-main);">🧾 4. Скан рахунку-фактури на промислові комплектуючі для цеху (MES / АСУ-ТП)</div>
-                      <div style="font-size: 11.5px; color: var(--text-secondary);">Рахунок № СФ-902 від ТОВ "ЕлектроПривод Україна" • Мотор-редуктори та оптичні датчики ЧПК • ₴ 168 000 з ПДВ</div>
+                      <div style="font-weight: 700; font-size: 13px; color: var(--text-main);">4. Рахунок-фактура на комплектуючі цеху (MES)</div>
+                      <div style="font-size: 11.5px; color: var(--text-secondary);">Рахунок № СФ-902 від ТОВ "ЕлектроПривод Україна" • ₴ 168 000 з ПДВ</div>
                     </div>
-                    <span class="badge badge-blue">Провести OCR</span>
+                    <span class="badge badge-slate">Відкрити OCR</span>
                   </button>
                 </div>
               </div>
@@ -2126,13 +2348,13 @@
           <div class="card">
             <div class="card-header">
               <div>
-                <div class="card-title">✅ Центр Погодження Документів у Системі (Склад ↔ Цех ↔ Бухгалтерія ↔ Директор)</div>
-                <div class="card-subtitle">Жоден папірець не губиться в месенджерах. Будь-який договір, накладну чи рахунок можна відправити на погодження, перевірити розпізнані позиції та затвердити в 1 клік з автоматичним проведенням по складу, цеху та бухгалтерії.</div>
+                <div class="card-title">Реєстр погодження документів</div>
+                <div class="card-subtitle">Маршрут: Склад - Начальник цеху - Бухгалтерія - Власник.</div>
               </div>
               <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
                 <span class="badge badge-amber" id="docs-pending-badge">На погодженні: 3 документи</span>
-                <button type="button" class="btn btn-sm btn-action-primary" id="btn-approve-all-docs">
-                  ✓ Погодити всі та провести в Склад / Облік
+                <button type="button" class="btn btn-sm btn-action-primary owner-editable-btn" id="btn-approve-all-docs">
+                  Погодити всі та провести в облік
                 </button>
               </div>
             </div>
@@ -2159,7 +2381,7 @@
         </section>
 
         <!-- ================================================================
-             2. ⚡ ПРОВОДКИ ОНЛАЙН ТА ГОЛОВНА КНИГА (LIVE GENERAL LEDGER Дт/Кт)
+             2. ПРОВОДКИ ОНЛАЙН ТА ГОЛОВНА КНИГА (GENERAL LEDGER Дт/Кт)
              ================================================================ -->
         <section class="view-section" id="view-ledger">
           <!-- 4 Ledger KPI Cards -->
@@ -2222,40 +2444,40 @@
           </div>
 
           <!-- Interactive 1-Click Live Posting Engine -->
-          <div class="card" style="border-left: 4px solid var(--accent-blue);">
+          <div class="card" style="border-left: 3px solid #09090B;">
             <div class="card-header">
               <div>
-                <div class="card-title">⚡ Операційне Проведення Господарських Подій у Головній Книзі (Дт/Кт за 0.04 сек)</div>
-                <div class="card-subtitle">В 1С/BAS проводки з'являються через дні після ручного рознесення бухгалтером. В OpexMetrix кожна бізнес-подія в цеху, на будмайданчику, на складі чи у відділі продажів формує бухгалтерський та управлінський запис миттєво.</div>
+                <div class="card-title">Проведення господарських операцій (Дт / Кт)</div>
+                <div class="card-subtitle">Типові події цеху, складу та банку або ручний запис (доступно Власнику).</div>
               </div>
-              <span class="badge badge-green">● WebSocket Live Engine</span>
+              <span class="badge badge-green">Дт = Кт</span>
             </div>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-bottom: 16px;">
-              <button type="button" class="btn btn-subtle js-sim-ledger" data-sim="b2b-sale" style="justify-content: flex-start; text-align: left; padding: 12px 14px; height: auto; flex-direction: column; align-items: flex-start; gap: 4px; border-color: var(--accent-blue-border); background: var(--accent-blue-soft);">
-                <div style="font-weight: 700; color: var(--accent-blue); font-size: 13px;">🚀 1. Провести B2B Відвантаження / Акт КБ-2в (₴ 460 000)</div>
-                <div style="font-size: 11.5px; color: var(--text-secondary); white-space: normal;">Авто-генерація: <strong>Дт 361 Кт 701</strong> (Дохід) + <strong>Дт 701 Кт 6412</strong> (ПДВ 20%) + <strong>Дт 901 Кт 26</strong> (Собівартість FIFO)</div>
+              <button type="button" class="btn btn-subtle js-sim-ledger owner-editable-btn" data-sim="b2b-sale" style="justify-content: flex-start; text-align: left; padding: 12px 14px; height: auto; flex-direction: column; align-items: flex-start; gap: 4px;">
+                <div style="font-weight: 700; color: var(--text-main); font-size: 13px;">1. B2B Відвантаження / Акт КБ-2в (₴ 460 000)</div>
+                <div style="font-size: 11.5px; color: var(--text-secondary); white-space: normal;">Дт 361 Кт 701 + Дт 701 Кт 6412 (ПДВ) + Дт 901 Кт 26</div>
               </button>
 
-              <button type="button" class="btn btn-subtle js-sim-ledger" data-sim="mes-release" style="justify-content: flex-start; text-align: left; padding: 12px 14px; height: auto; flex-direction: column; align-items: flex-start; gap: 4px; border-color: var(--success-border); background: var(--success-soft);">
-                <div style="font-weight: 700; color: var(--success-hover); font-size: 13px;">🏭 2. Провести випуск партії з цеху MES (₴ 427 000)</div>
-                <div style="font-size: 11.5px; color: var(--text-secondary); white-space: normal;">Авто-генерація: <strong>Дт 231 Кт 201</strong> (Сировина) + <strong>Дт 231 Кт 661/651</strong> (ЗП ЧПК) + <strong>Дт 26 Кт 231</strong> (Готова продукція)</div>
+              <button type="button" class="btn btn-subtle js-sim-ledger owner-editable-btn" data-sim="mes-release" style="justify-content: flex-start; text-align: left; padding: 12px 14px; height: auto; flex-direction: column; align-items: flex-start; gap: 4px;">
+                <div style="font-weight: 700; color: var(--text-main); font-size: 13px;">2. Випуск партії з цеху MES (₴ 427 000)</div>
+                <div style="font-size: 11.5px; color: var(--text-secondary); white-space: normal;">Дт 231 Кт 201 + Дт 231 Кт 661 + Дт 26 Кт 231</div>
               </button>
 
-              <button type="button" class="btn btn-subtle js-sim-ledger" data-sim="bank-supplier" style="justify-content: flex-start; text-align: left; padding: 12px 14px; height: auto; flex-direction: column; align-items: flex-start; gap: 4px;">
-                <div style="font-weight: 700; color: var(--text-main); font-size: 13px;">🏦 3. Провести оплату сировини + ПДВ Кредит (₴ 336 000)</div>
-                <div style="font-size: 11.5px; color: var(--text-secondary); white-space: normal;">Авто-генерація: <strong>Дт 631 Кт 311</strong> (Банк) + <strong>Дт 6412 Кт 631</strong> (Реєстрація вхідної ПН в ЄРПН ₴ 48 000)</div>
+              <button type="button" class="btn btn-subtle js-sim-ledger owner-editable-btn" data-sim="bank-supplier" style="justify-content: flex-start; text-align: left; padding: 12px 14px; height: auto; flex-direction: column; align-items: flex-start; gap: 4px;">
+                <div style="font-weight: 700; color: var(--text-main); font-size: 13px;">3. Оплата постачальнику сировини (₴ 336 000)</div>
+                <div style="font-size: 11.5px; color: var(--text-secondary); white-space: normal;">Дт 631 Кт 311 + Дт 6412 Кт 631 (ПДВ кредит)</div>
               </button>
 
-              <button type="button" class="btn btn-subtle js-sim-ledger" data-sim="intercompany" style="justify-content: flex-start; text-align: left; padding: 12px 14px; height: auto; flex-direction: column; align-items: flex-start; gap: 4px;">
-                <div style="font-weight: 700; color: var(--text-main); font-size: 13px;">🔄 4. Провести Intercompany Елімінацію (₴ 1 250 000)</div>
-                <div style="font-size: 11.5px; color: var(--text-secondary); white-space: normal;">Виключення внутрішнього обороту (Завод ↔ Генпідряд ↔ Торговий Дім): <strong>Дт 683 Кт 361</strong> для чистого P&amp;L холдингу</div>
+              <button type="button" class="btn btn-subtle js-sim-ledger owner-editable-btn" data-sim="intercompany" style="justify-content: flex-start; text-align: left; padding: 12px 14px; height: auto; flex-direction: column; align-items: flex-start; gap: 4px;">
+                <div style="font-weight: 700; color: var(--text-main); font-size: 13px;">4. Елімінація внутрішнього обороту (₴ 1 250 000)</div>
+                <div style="font-size: 11.5px; color: var(--text-secondary); white-space: normal;">Дт 683 Кт 361 (Консолідація холдингу)</div>
               </button>
             </div>
 
             <!-- Custom CFO Manual / Parametric Entry Form -->
             <form id="custom-ledger-form" onsubmit="return false;" style="background: var(--bg-subtle); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px;">
-              <div style="font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px;">Ручне проведення операції Фіндиректором / Головним бухгалтером (миттєва перевірка кореспонденції):</div>
+              <div style="font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px;">Ручна бухгалтерська проводка (права Власника / Головного бухгалтера):</div>
               <div class="form-grid" style="grid-template-columns: 1.2fr 1.2fr 1fr 1fr 1.6fr auto;">
                 <div class="field-group">
                   <label class="field-label" for="led-dt">Рахунок Дебет (Дт)</label>
@@ -2316,8 +2538,8 @@
           <div class="card">
             <div class="card-header">
               <div>
-                <div class="card-title">📖 Журнал Проводок Головної Книги в Реальному Часі (Live Double-Entry Stream)</div>
-                <div class="card-subtitle">Кожна операція має криптографічний хеш, прив'язку до первинного документа, Центру Фінансової Відповідальності (ЦФВ) та автоматичний мапінг у МСФЗ (IFRS).</div>
+                <div class="card-title">Журнал бухгалтерських проводок (Дт / Кт)</div>
+                <div class="card-subtitle">Всі проводки прив'язані до первинних документів та Центрів Фінансової Відповідальності (ЦФВ).</div>
               </div>
               <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
                 <select id="ledger-filter-account" class="select" style="width: 240px; height: 34px; font-size: 12.5px;">
@@ -2332,7 +2554,7 @@
                   <option value="701">Рах. 701 — Дохід від реалізації</option>
                   <option value="901">Рах. 901 — Собівартість реалізації</option>
                 </select>
-                <span class="badge badge-green">● Синхронно з ОСВ та Балансом</span>
+                <span class="badge badge-green">Дт = Кт</span>
               </div>
             </div>
 
@@ -2360,10 +2582,10 @@
           <div class="card">
             <div class="card-header">
               <div>
-                <div class="card-title">📊 Оборотно-Сальдова Відомість (ОСВ / Trial Balance) та Авто-Баланс Онлайн</div>
-                <div class="card-subtitle">Зведена таблиця сальдо та оборотів по класах рахунків. Оновлюється миттєво після кожної проводки без ручного перерахунку.</div>
+                <div class="card-title">Оборотно-сальдова відомість (ОСВ)</div>
+                <div class="card-subtitle">Зведена таблиця сальдо та оборотів по класах рахунків.</div>
               </div>
-              <span class="badge badge-blue" id="trial-balance-status-badge">✓ Сальдо Дт === Сальдо Кт (Баланс зійшовся до 0.00 ₴)</span>
+              <span class="badge badge-slate" id="trial-balance-status-badge">Сальдо Дт = Сальдо Кт (0.00 ₴)</span>
             </div>
 
             <div class="table-wrap">
@@ -2389,7 +2611,7 @@
         </section>
 
         <!-- ================================================================
-             3. 🏭 ВБИВЧА MES: ВИРОБНИЦТВО, ЧПК, ТЕХКАРТИ ТА OEE
+             3. MES: ВИРОБНИЦТВО, ЧПК, ТЕХКАРТИ ТА OEE
              ================================================================ -->
         <section class="view-section" id="view-mes">
           <!-- 4 Industrial MES KPI Cards -->
@@ -2455,10 +2677,10 @@
           <div class="card">
             <div class="card-header">
               <div>
-                <div class="card-title">🏭 Цифровий Двійник Цеху (Shopfloor Digital Twin): Диспетчеризація Ліній та ЧПК-Центрів Онлайн</div>
-                <div class="card-subtitle">Прямий збір телеметрії з верстатів ЧПК (Modbus / OPC UA) та цехових QR-терміналів. При натисканні «Випустити партію» система списує сировину за техкартою, нараховує відрядну ЗП оператору та формує проводки в Головній книзі.</div>
+                <div class="card-title">Диспетчеризація цеху та верстатів (MES)</div>
+                <div class="card-subtitle">Збір даних із ЧПК-центрів та цехових терміналів. Випуск партії автоматично списує сировину та формує проводки.</div>
               </div>
-              <span class="badge badge-green">● 6 Виробничих дільниць онлайн</span>
+              <span class="badge badge-green">6 дільниць активні</span>
             </div>
 
             <div class="table-wrap">
@@ -2486,18 +2708,19 @@
             <div class="card">
               <div class="card-header">
                 <div>
-                  <div class="card-title">📐 Інтерактивна Технологічна Карта (BOM) та Розрахунок Заводської Собівартості</div>
-                  <div class="card-subtitle">Повна декомпозиція виробничої собівартості виробу (Рах. 231 → Рах. 26) до запуску партії в цех</div>
+                  <div class="card-title">Технологічна карта (BOM) та собівартість партії</div>
+                  <div class="card-subtitle">Калькуляція виробничої собівартості (Рах. 231 - 26) до запуску в цех.</div>
                 </div>
-                <span class="badge badge-blue">Авто-калькуляція FIFO</span>
+                <span class="badge badge-slate">FIFO калькуляція</span>
               </div>
 
               <div class="form-grid" style="grid-template-columns: 2fr 1fr; margin-bottom: 14px;">
                 <div class="field-group">
-                  <label class="field-label" for="mes-bom-product">Промисловий виріб / Будівельний об'єкт (Специфікація BOM)</label>
+                  <label class="field-label" for="mes-bom-product">Виріб / Специфікація (BOM)</label>
                   <select id="mes-bom-product" class="select">
                     <option value="PEM-400" data-raw="34500" data-comp="18200" data-remnant="-3800" data-wage="6400" data-energy="2100" data-overhead="4600" data-price="92000">Промисловий енергомодуль ПЕМ-400 (B2B Серія) — Відпускна: ₴ 92 000</option>
-                    <option value="BUILD-MONO" data-raw="410000" data-comp="195000" data-remnant="-28000" data-wage="94000" data-energy="18000" data-overhead="35000" data-price="980000">🏗️ Монолітний каркас секції ЖК (100 м³: Бетон В25 + Арматура А500С) — Акт КБ-2в: ₴ 980 000</option>
+                    <option value="DOOR-PINELKA" data-raw="1450" data-comp="620" data-remnant="-140" data-wage="310" data-energy="95" data-overhead="190" data-price="4600">Дверне полотно МДФ (Пінєлька / Серія ПВХ 800мм) — Відпускна: ₴ 4 600</option>
+                    <option value="BUILD-MONO" data-raw="410000" data-comp="195000" data-remnant="-28000" data-wage="94000" data-energy="18000" data-overhead="35000" data-price="980000">Монолітний каркас секції ЖК (100 м3: Бетон В25 + Арматура) — КБ-2в: ₴ 980 000</option>
                     <option value="CS-1200" data-raw="48000" data-comp="24500" data-remnant="-5200" data-wage="8800" data-energy="3100" data-overhead="6200" data-price="128000">Автоматизована конвеєрна секція КС-1200 — Відпускна: ₴ 128 000</option>
                     <option value="FS-85" data-raw="14200" data-comp="6800" data-remnant="-1900" data-wage="2900" data-energy="850" data-overhead="1650" data-price="36500">Алюмінієво-скляний фасадний блок ФС-85 — Відпускна: ₴ 36 500</option>
                     <option value="SCADA-PRO" data-raw="22000" data-comp="39500" data-remnant="-1500" data-wage="7500" data-energy="1200" data-overhead="4300" data-price="110000">Шафа керування та автоматики АСУ-ТП Pro — Відпускна: ₴ 110 000</option>
@@ -2509,16 +2732,16 @@
                 </div>
               </div>
 
-              <div class="kpi-breakdown" id="mes-bom-breakdown" style="font-size: 13px; gap: 8px; background: var(--bg-app); padding: 14px; border-radius: var(--radius-sm); border: 1px solid var(--border);">
+              <div class="kpi-breakdown" id="mes-bom-breakdown" style="font-size: 13px; gap: 8px; background: var(--bg-subtle); padding: 14px; border-radius: var(--radius-sm); border: 1px solid var(--border);">
                 <!-- Populated dynamically by app.js -->
               </div>
 
               <div style="margin-top: 16px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;">
                 <div style="font-size: 12px; color: var(--text-secondary);">
-                  Проводки при запуску: <code class="mono" style="color: var(--accent-blue);">Дт 231 Кт 201/202/661/651/91</code> → <code class="mono" style="color: var(--success);">Дт 26 Кт 231</code>
+                  Проводки: <code class="mono">Дт 231 Кт 201/202/661/91</code> - <code class="mono">Дт 26 Кт 231</code>
                 </div>
-                <button type="button" class="btn btn-action-primary" id="btn-mes-launch-batch">
-                  🚀 Запустити партію в цех та провести списання
+                <button type="button" class="btn btn-action-primary owner-editable-btn" id="btn-mes-launch-batch">
+                  Запустити партію в цех + провести списання
                 </button>
               </div>
             </div>
@@ -2527,10 +2750,10 @@
             <div class="card">
               <div class="card-header">
                 <div>
-                  <div class="card-title">♻️ Банк Ділових Залишків (Zero-Waste) та Computer Vision ВТК</div>
-                  <div class="card-subtitle">В 1С обрізки металу, профілю та плити списуються в брухт (до 12% втрат). OpexMetrix маркує кожен діловий залишок QR-кодом і першочергово ставить його в розкрій ЧПК.</div>
+                  <div class="card-title">Банк ділових залишків (Обрізки) та контроль ВТК</div>
+                  <div class="card-subtitle">Повернення ділових залишків металу, профілю й плит на повторний розкрій.</div>
                 </div>
-                <span class="badge badge-green">Економія +₴ 642 тис./міс</span>
+                <span class="badge badge-green">Облік залишків</span>
               </div>
 
               <div class="action-stream" id="mes-remnant-qc-stream">
@@ -2572,19 +2795,98 @@
         </section>
 
         <!-- ================================================================
-             4. 💼 SALES & B2B DEAL DESK (ПРОДАЖІ, ТЕНДЕРИ ТА КРЕДИТНИЙ КОНТРОЛЬ)
+             4. CRM, ВОРОНКА УГОД ТА РАХУНКИ B2B
              ================================================================ -->
         <section class="view-section" id="view-sales">
+          <!-- Interactive Manual CRM Card -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">CRM: Воронка продажів та база клієнтів (Ручне додавання та редагування)</div>
+                <div class="card-subtitle">Введення нових лідів вручну, зміна етапів угоди та миттєве виставлення рахунку в 1 клік.</div>
+              </div>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <span class="badge badge-slate" id="crm-deals-count-badge">Угод у роботі: 4</span>
+                <span class="badge badge-green" id="crm-pipeline-sum-badge">Пайплайн: ₴ 2 140 000</span>
+              </div>
+            </div>
+
+            <form id="crm-add-deal-form" onsubmit="return false;" style="background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; margin-bottom: 14px;">
+              <div style="font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px;">Додати клієнта або угоду в CRM вручну:</div>
+              <div class="form-grid" style="grid-template-columns: 1.5fr 1fr 1.2fr 1fr 1.5fr 1fr 1fr auto;">
+                <div class="field-group">
+                  <label class="field-label" for="crm-client">Компанія / Клієнт</label>
+                  <input type="text" id="crm-client" class="input" placeholder='ТОВ "Назва"' value='ТОВ "Поділля Двері"' />
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="crm-edrpou">ЄДРПОУ</label>
+                  <input type="text" id="crm-edrpou" class="input mono" value="39481205" />
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="crm-contact">Контакт (ОПР)</label>
+                  <input type="text" id="crm-contact" class="input" value="Директор" />
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="crm-phone">Телефон</label>
+                  <input type="text" id="crm-phone" class="input mono" value="+380673104422" />
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="crm-subject">Продукт / Суть</label>
+                  <input type="text" id="crm-subject" class="input" value="Партія полотен + погонаж (120 од.)" />
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="crm-amount">Сума угоди (₴)</label>
+                  <input type="number" id="crm-amount" class="input mono" value="480000" min="100" step="1000" />
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="crm-stage">Етап</label>
+                  <select id="crm-stage" class="select" style="font-size: 12.5px;">
+                    <option value="NEW">Новий лід</option>
+                    <option value="PROPOSAL" selected>КП надіслано</option>
+                    <option value="NEGOTIATION">Погодження договору</option>
+                    <option value="WON">Оплачено / Угода</option>
+                  </select>
+                </div>
+                <div class="field-group">
+                  <button type="button" class="btn btn-primary" id="btn-crm-add-deal" style="height: 38px;">+ Внести в CRM</button>
+                </div>
+              </div>
+              <div class="form-grid" style="grid-template-columns: 1fr; margin-top: 8px;">
+                <div class="field-group">
+                  <label class="field-label" for="crm-note">Коментар / Наступний крок (можна вписувати вручну)</label>
+                  <input type="text" id="crm-note" class="input" value="Погоджуємо специфікацію та графік відвантаження" />
+                </div>
+              </div>
+            </form>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Клієнт / ЄДРПОУ</th>
+                    <th>ОПР та Телефон</th>
+                    <th>Предмет угоди</th>
+                    <th class="text-right">Сума (₴)</th>
+                    <th>Етап воронки</th>
+                    <th>Нотатка менеджера</th>
+                    <th class="text-right">Дії</th>
+                  </tr>
+                </thead>
+                <tbody id="crm-deals-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+
           <!-- Quick Order / Invoice Form with Live Margin Guard & Online Ledger Posting -->
           <div class="card">
             <div class="card-header">
               <div>
-                <div class="card-title">💼 B2B Deal Desk: Виставлення рахунку, Специфікації та Авто-проводки Онлайн</div>
-                <div class="card-subtitle">Кожне проведене замовлення миттєво перевіряє кредитний ліміт контрагента, захищає маржу (Margin Guard) і формує проводки в Головній Книзі (Дт 361 Кт 701/702 • Дт 701 Кт 6412 • Дт 901 Кт 26).</div>
+                <div class="card-title">Виставлення рахунку B2B та контроль маржинальності</div>
+                <div class="card-subtitle">Формування рахунку з QR НБУ, перевірка кредитного ліміту та автоматична проводка (Дт 361 Кт 701).</div>
               </div>
               <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
-                <span class="badge badge-green">● Авто-проводка Дт 361 / Кт 701</span>
-                <span class="badge badge-blue" id="sales-niche-hint">Рахунок з QR НБУ + ПН ЄРПН</span>
+                <span class="badge badge-slate">Дт 361 / Кт 701</span>
+                <span class="badge badge-slate" id="sales-niche-hint">Рахунок з QR НБУ + ПН ЄРПН</span>
               </div>
             </div>
 
@@ -2639,14 +2941,14 @@
             </div>
           </div>
 
-          <!-- Dealer Credit Limit & Stop-Shipment Gate (Enterprise Feature) -->
+          <!-- Dealer Credit Limit & Stop-Shipment Gate -->
           <div class="card">
             <div class="card-header">
               <div>
-                <div class="card-title">🛡️ Кредитний Контроль Дилерів, Дебіторська Заборгованість (Рах. 361) та Авто-Стоп Відвантажень</div>
-                <div class="card-subtitle">В малому бізнесі та 1С менеджери відвантажують товар боржникам «під чесне слово», заморожуючи мільйони обігових коштів. OpexMetrix автоматично блокує відвантаження на складі (WMS Gate) при перевищенні кредитного ліміту або простроченні оплати.</div>
+                <div class="card-title">Кредитні ліміти покупців та блок відвантажень (Дт 361)</div>
+                <div class="card-subtitle">При перевищенні ліміту або простроченні оплати відвантаження зі складу блокується.</div>
               </div>
-              <span class="badge badge-red" id="dealer-stop-badge">● 1 Дилер на Стоп-Відвантаженні</span>
+              <span class="badge badge-red" id="dealer-stop-badge">1 контрагент заблокований</span>
             </div>
 
             <div class="table-wrap">
@@ -2714,7 +3016,7 @@
                   <button type="button" class="btn btn-sm btn-subtle doc-type-switch" data-doctype="WAYBILL">Видаткова накладна</button>
                   <button type="button" class="btn btn-sm btn-subtle doc-type-switch" data-doctype="ACT">Акт виконаних робіт</button>
                   <button type="button" class="btn btn-sm btn-subtle doc-type-switch" data-doctype="WARRANTY">Гарантійний паспорт</button>
-                  <button type="button" class="btn btn-sm btn-subtle doc-type-switch" data-doctype="TAX_INVOICE">🏛️ Податкова накладна (ДПС)</button>
+                  <button type="button" class="btn btn-sm btn-subtle doc-type-switch" data-doctype="TAX_INVOICE">Податкова накладна (ДПС)</button>
                   <button type="button" class="btn btn-sm btn-subtle" id="btn-print-inline-doc">Друкувати</button>
                 </div>
               </div>
@@ -2726,15 +3028,136 @@
         </section>
 
         <!-- ================================================================
-             5. 📦 СКЛАД WMS ТА AI АНТИ-ВІДКАТ У ЗАКУПІВЛЯХ
+             4A. ДЕБІТОРСЬКА ТА КРЕДИТОРСЬКА ЗАБОРГОВАНІСТЬ (AR / AP)
              ================================================================ -->
-        <section class="view-section" id="view-stock">
-          <!-- Enterprise AI Procurement Anti-Kickback Shield -->
+        <section class="view-section" id="view-debt">
+          <div class="kpi-grid-4">
+            <div class="kpi-card">
+              <div class="kpi-header"><span class="kpi-title">Дебіторка (Нам винні, Дт 361)</span></div>
+              <div class="kpi-value mono" id="debt-kpi-ar">₴ 7 155 000</div>
+              <div class="kpi-meta-row"><span>Заборгованість покупців та дилерів</span></div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-header"><span class="kpi-title">Прострочена дебіторка</span></div>
+              <div class="kpi-value mono" id="debt-kpi-overdue" style="color: var(--danger);">₴ 1 385 000</div>
+              <div class="kpi-meta-row"><span>Під контролем стоп-відвантаження</span></div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-header"><span class="kpi-title">Кредиторка (Ми винні, Кт 631/685)</span></div>
+              <div class="kpi-value mono" id="debt-kpi-ap">₴ 2 940 000</div>
+              <div class="kpi-meta-row"><span>Постачальники сировини, субпідряд, сервіс</span></div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-header"><span class="kpi-title">Чисте сальдо (Дебіторка - Кредиторка)</span></div>
+              <div class="kpi-value mono" id="debt-kpi-net">+₴ 4 215 000</div>
+              <div class="kpi-meta-row"><span>Поточна платіжна позиція</span></div>
+            </div>
+          </div>
+
+          <!-- Manual Debt Entry Form (Owner Only) -->
           <div class="card">
             <div class="card-header">
               <div>
-                <div class="card-title">🛡️ AI Procurement Shield: Захист від «відкатів» у закупівлях та завищення цін постачальниками</div>
-                <div class="card-subtitle">Найбільша діра великого бізнесу — змови постачальників із відділом постачання (+10..20% до ринку). Алгоритм звіряє кожен вхідний рахунок (Дт 201/281 Кт 631) з медіаною ринку та тендерами Prozorro і блокує оплату при перевищенні.</div>
+                <div class="card-title">Ручне внесення заборгованості або коригування ліміту (Права Власника)</div>
+                <div class="card-subtitle">Внесення початкових або нових зобов'язань по Дт 361 (Дебіторка) та Кт 631 (Кредиторка) з формуванням проводки.</div>
+              </div>
+            </div>
+            <form id="debt-manual-form" onsubmit="return false;" style="background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px;">
+              <div class="form-grid" style="grid-template-columns: 1.2fr 1.6fr 1fr 1.3fr 1fr 1fr auto;">
+                <div class="field-group">
+                  <label class="field-label" for="debt-type">Тип боргу</label>
+                  <select id="debt-type" class="select" style="font-size: 12.5px;">
+                    <option value="AR">Дебіторка (Нам винні, 361)</option>
+                    <option value="AP">Кредиторка (Ми винні, 631)</option>
+                  </select>
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="debt-party">Контрагент</label>
+                  <input type="text" id="debt-party" class="input" value='ТОВ "Метал-Трейд Постач"' />
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="debt-edrpou">ЄДРПОУ</label>
+                  <input type="text" id="debt-edrpou" class="input mono" value="39104422" />
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="debt-doc">Договір / Підстава</label>
+                  <input type="text" id="debt-doc" class="input" value="Договір поставки № 48" />
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="debt-amount">Сума (₴)</label>
+                  <input type="number" id="debt-amount" class="input mono" value="320000" min="100" step="1000" />
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="debt-days">Простроч. (дн.)</label>
+                  <input type="number" id="debt-days" class="input mono" value="0" min="0" />
+                </div>
+                <div class="field-group">
+                  <button type="button" class="btn btn-primary owner-editable-btn" id="btn-debt-add" style="height: 38px;">+ Внести запис</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Дебіторська заборгованість покупців (Рахунок 361)</div>
+                <div class="card-subtitle">Кредитні ліміти та суми боргу можуть коригуватися вручну лише Власником.</div>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Покупець / Контрагент</th>
+                    <th>Менеджер</th>
+                    <th class="text-right">Кредитний ліміт (₴)</th>
+                    <th class="text-right">Сума боргу (₴)</th>
+                    <th class="text-right">Прострочення</th>
+                    <th>Статус відвантаження</th>
+                    <th class="text-right">Оплата / Дії</th>
+                  </tr>
+                </thead>
+                <tbody id="debt-ar-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Кредиторська заборгованість постачальникам та підрядникам (Рахунки 631 / 685)</div>
+                <div class="card-subtitle">Контроль строків оплат за сировину, комплектуючі, оренду та сервісні роботи.</div>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Постачальник (ЄДРПОУ)</th>
+                    <th>Підстава / Призначення</th>
+                    <th>Термін оплати</th>
+                    <th class="text-right">Сума боргу (₴)</th>
+                    <th>Статус</th>
+                    <th class="text-right">Дія</th>
+                  </tr>
+                </thead>
+                <tbody id="debt-ap-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             5. СКЛАД ТА ТМЦ
+             ================================================================ -->
+        <section class="view-section" id="view-stock">
+          <!-- Procurement Price Audit -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Контроль вхідних закупівельних цін (Рах. 201 / 281 - Кт 631)</div>
+                <div class="card-subtitle">Звірка вхідних рахунків із середніми цінами закупівель та прайсами постачальників.</div>
               </div>
               <span class="badge badge-green" id="kickback-saved-badge">Заощаджено: ₴ 584 000 / міс</span>
             </div>
@@ -2742,40 +3165,40 @@
             <div class="action-stream" id="procurement-kickback-stream">
               <div class="action-item" id="kickback-item-1">
                 <div class="action-item-left">
-                  <span class="action-tag alert">БЛОК ОПЛАТИ (+18.4%)</span>
+                  <span class="action-tag alert">ВІДХИЛЕННЯ (+18.4%)</span>
                   <div>
                     <div class="action-title">Вхідний рахунок № СФ-8821 від ТОВ "ПромМетал-Трейд Плюс" — Сталь листова AISI 304 (12 т)</div>
                     <div class="action-desc">
-                      Ціна в рахунку менеджера із закупівель: <strong>₴ 148 000 / т</strong> • Медіана ринку та прямий імпортер: <strong>₴ 125 000 / т</strong>. Переплата (ризик відкату): <strong style="color: var(--danger);">₴ 276 000</strong>.
+                      Ціна в рахунку: <strong>₴ 148 000 / т</strong> • Базова ціна прямого постачальника: <strong>₴ 125 000 / т</strong>. Переплата: <strong style="color: var(--danger);">₴ 276 000</strong>.
                     </div>
                   </div>
                 </div>
-                <button type="button" class="btn btn-sm btn-action-primary" id="btn-switch-supplier-1">
-                  ⚡ Переключити на прямого імпортера (−₴ 276 000)
+                <button type="button" class="btn btn-sm btn-action-primary owner-editable-btn" id="btn-switch-supplier-1">
+                  Переключити на прямого постачальника (-₴ 276 000)
                 </button>
               </div>
 
               <div class="action-item" id="kickback-item-2">
                 <div class="action-item-left">
-                  <span class="action-tag stock">ТЕНДЕР АВТО-ТОРГ</span>
+                  <span class="action-tag stock">ЗАКУПІВЛЯ ПОГОДЖЕНА</span>
                   <div>
-                    <div class="action-title">Закупівля промислових частотних перетворювачів ABB ACS580 (40 шт.) — Рахунок Дт 202 Кт 631</div>
+                    <div class="action-title">Частотні перетворювачі ABB ACS580 (40 шт.) — Рахунок Дт 202 Кт 631</div>
                     <div class="action-desc">
-                      AI-агент розіслав авто-запит 5 офіційним дистриб'юторам і знизив ціну контракту на <strong>9.2%</strong> без участі покупця. Економія на партії: <strong style="color: var(--success);">₴ 184 000</strong>.
+                      Знижено ціну контракту на <strong>9.2%</strong> після звірки по 5 дистриб'юторах. Економія на партії: <strong style="color: var(--success);">₴ 184 000</strong>.
                     </div>
                   </div>
                 </div>
-                <span class="badge badge-green">Узгоджено в 1 клік</span>
+                <span class="badge badge-green">Узгоджено</span>
               </div>
             </div>
           </div>
 
-          <!-- Quick Stock Receipt Form -->
+          <!-- Quick Stock Receipt / Manual Entry Form -->
           <div class="card">
             <div class="card-header">
               <div>
-                <div class="card-title">📥 Швидке оприбуткування поставки на склад WMS (Авто-проводка Дт 201/281 Кт 631 + ПДВ Дт 6412)</div>
-                <div class="card-subtitle">Додайте нову поставку в 1 клік — залишки по складах, FIFO-собівартість та проводки в Головній Книзі оновляться миттєво.</div>
+                <div class="card-title">Прихід / Внесення ТМЦ на склад (Ручний ввід + Авто-проводка Дт 201 Кт 631)</div>
+                <div class="card-subtitle">Внесення нових залишків ТМЦ та поставок. Ручне редагування залишків і цін доступне Власнику.</div>
               </div>
               <span class="badge badge-green" id="stock-total-val-badge">Вартість складу: ₴ 912 400</span>
             </div>
@@ -2787,7 +3210,7 @@
                   <input type="text" id="stk-sku" class="input mono" value="RAW-304" required />
                 </div>
                 <div class="field-group" style="grid-column: span 2;">
-                  <label class="field-label" for="stk-name">Назва сировини / комплектуючих / товару</label>
+                  <label class="field-label" for="stk-name">Назва сировини / комплектуючих / ТМЦ</label>
                   <input type="text" id="stk-name" class="input" value="Лист нержавіючий AISI 304 (4 мм, партія ЧПК)" required />
                 </div>
                 <div class="field-group">
@@ -2812,8 +3235,8 @@
                   <input type="number" id="stk-price" class="input mono" value="21500" min="1" required />
                 </div>
                 <div class="field-group">
-                  <button type="button" class="btn btn-primary" id="btn-add-stock" style="width: 100%; height: 38px;">
-                    + Оприбуткувати + Дт/Кт
+                  <button type="button" class="btn btn-primary owner-editable-btn" id="btn-add-stock" style="width: 100%; height: 38px;">
+                    + Оприбуткувати ТМЦ
                   </button>
                 </div>
               </div>
@@ -2824,11 +3247,11 @@
           <div class="card">
             <div class="card-header">
               <div>
-                <div class="card-title">📦 Адресний Каталог Складів WMS (Сировина Рах. 201, Готова продукція Рах. 26, Товари Рах. 281)</div>
-                <div class="card-subtitle">Повний контроль партійної собівартості (FIFO), ціни реалізації, маржі та мінімального незнижуваного запасу.</div>
+                <div class="card-title">Залишки Складу та ТМЦ (Рах. 201, 202, 26, 281)</div>
+                <div class="card-subtitle">Контроль залишків, ручне поповнення та списання в цех (редагування цифр — Власник).</div>
               </div>
               <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                <input type="text" id="stock-search-input" class="input" placeholder="🔍 Пошук за назвою або артикулом..." style="width: 250px;" />
+                <input type="text" id="stock-search-input" class="input" placeholder="Пошук за назвою або артикулом..." style="width: 250px;" />
                 <select id="stock-category-filter" class="select" style="width: 210px;">
                   <option value="ALL">Всі категорії</option>
                   <option value="Обладнання та техніка">Обладнання та техніка</option>
@@ -2844,14 +3267,14 @@
                 <thead>
                   <tr>
                     <th>Артикул</th>
-                    <th>Назва позиції</th>
+                    <th>Назва позиції (ТМЦ)</th>
                     <th>Категорія</th>
-                    <th class="text-right">Залишок</th>
-                    <th class="text-right">Собівартість</th>
+                    <th class="text-right">Залишок (Редаг.)</th>
+                    <th class="text-right">Собівартість (₴)</th>
                     <th class="text-right">Ціна продажу</th>
                     <th class="text-right">Маржа %</th>
-                    <th>Статус запасу</th>
-                    <th class="text-right">Дія в 1 клік</th>
+                    <th>Статус</th>
+                    <th class="text-right">Дії (Прихід / Списання)</th>
                   </tr>
                 </thead>
                 <tbody id="stock-catalog-tbody">
@@ -2865,8 +3288,8 @@
           <div class="card">
             <div class="card-header">
               <div>
-                <div class="card-title">🚚 Автоматичне поповнення критичних запасів (MRP / Auto-Reorder)</div>
-                <div class="card-subtitle">Система розраховує потребу в сировині під поточний план виробництва MES і формує замовлення постачальникам без зупинки конвеєра.</div>
+                <div class="card-title">Критичні залишки та авто-дозамовлення (MRP)</div>
+                <div class="card-subtitle">Позиції нижче мінімального нормативу запасу.</div>
               </div>
               <span class="badge badge-amber" id="reorder-alerts-badge">Потребують уваги: 2 позиції</span>
             </div>
@@ -2877,7 +3300,7 @@
         </section>
 
         <!-- ================================================================
-             6. 🏦 КАЗНАЧЕЙСТВО, БАНК ТА ЦФВ (КОРПОРАТИВНИЙ АВТОПІЛОТ)
+             6. КАЗНАЧЕЙСТВО, БАНК ТА ЦФВ
              ================================================================ -->
         <section class="view-section" id="view-bank">
           <!-- 3 Bank & Cash Account Cards -->
@@ -2917,10 +3340,10 @@
           <div class="card">
             <div class="card-header">
               <div>
-                <div class="card-title">🏛️ Казначейський Контроль Бюджетів по Центрах Фінансової Відповідальності (ЦФВ / Cost Centers)</div>
-                <div class="card-subtitle">В 1С ви дізнаєтесь про перевитрату бюджету департаментом лише після закриття місяця. У Казначействі OpexMetrix кожен платіж перевіряється на ліміт ЦФВ до відправки в банк.</div>
+                <div class="card-title">Бюджети по Центрах Фінансової Відповідальності (ЦФВ)</div>
+                <div class="card-subtitle">Контроль місячних лімітів підрозділів при проведенні оплат.</div>
               </div>
-              <span class="badge badge-blue">Захист OPEX-бюджетів</span>
+              <span class="badge badge-slate">Ліміти ЦФВ</span>
             </div>
 
             <div class="table-wrap">
@@ -2951,8 +3374,8 @@
                 <div class="card-subtitle">Підтримуються формати 1CClientBankExchange, ISO 20022 XML, CSV або прямий вебхук API корпоративного банкінгу.</div>
               </div>
               <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                <button type="button" class="btn btn-sm btn-subtle" id="btn-fill-demo-bank">📥 Завантажити пакет виписок (Приват24 / Моно / ISO 20022)</button>
-                <button type="button" class="btn btn-sm btn-action-primary" id="btn-run-bank-import">Провести виписку + Дт/Кт</button>
+                <button type="button" class="btn btn-sm btn-subtle" id="btn-fill-demo-bank">Завантажити приклад виписки</button>
+                <button type="button" class="btn btn-sm btn-action-primary owner-editable-btn" id="btn-run-bank-import">Провести виписку + Дт/Кт</button>
               </div>
             </div>
 
@@ -3009,7 +3432,7 @@
         </section>
 
         <!-- ================================================================
-             7. 🏛️ ПОДАТКИ ДПС, ПДВ ТА ЗП (БЕЗ ШТАТУ БУХГАЛТЕРІВ)
+             7. ПОДАТКИ ДПС, ПДВ ТА ЗАРПЛАТА
              ================================================================ -->
         <section class="view-section" id="view-taxes">
           <div class="grid-2">
@@ -3110,12 +3533,12 @@
             <div class="card-header" style="flex-direction: column; align-items: flex-start; gap: 8px;">
               <div style="display: flex; justify-content: space-between; width: 100%; align-items: center; flex-wrap: wrap; gap: 10px;">
                 <div class="card-title" style="display: flex; align-items: center; gap: 8px;">
-                  <span>🏛️ Офіційні бланки та звіти ДПС України (Електронний кабінет)</span>
+                  <span>Електронні бланки та звіти ДПС України</span>
                   <span class="badge badge-green">cabinet.tax.gov.ua</span>
                 </div>
                 <a href="https://cabinet.tax.gov.ua/" target="_blank" rel="noopener noreferrer" class="btn btn-subtle" style="font-size: 12px; padding: 6px 12px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
-                  <span>🌐 Відкрити cabinet.tax.gov.ua</span>
-                  <span style="font-size: 11px;">↗</span>
+                  <span>Відкрити cabinet.tax.gov.ua</span>
+                  <span style="font-size: 11px;">-></span>
                 </a>
               </div>
               <div class="card-subtitle">
@@ -3144,12 +3567,12 @@
                 </div>
                 <div>
                   <button type="button" class="btn btn-subtle" id="btn-preview-dps-form" style="padding: 8px 14px; font-weight: 600;">
-                    📄 Переглянути бланк
+                    Переглянути бланк
                   </button>
                 </div>
                 <div>
                   <button type="button" class="btn btn-action-primary" id="btn-download-selected-dps-xml" style="padding: 8px 14px; font-weight: 600;">
-                    💾 Завантажити XML для ДПС
+                    Завантажити XML для ДПС
                   </button>
                 </div>
               </div>
@@ -3165,11 +3588,11 @@
           <div class="card">
             <div class="card-header">
               <div>
-                <div class="card-title">👥 Зарплатний проєкт, Відрядна оплата ЧПК (MES) та Бонуси KPI Сейлзів (Рах. 661 / 651)</div>
-                <div class="card-subtitle">Автоматичний розрахунок окладів, відрядної премії операторів ліній за QR-нарядами та бонусів сейлзів від чистої маржі (ПДФО 18%, ВЗ 5%, ЄСВ 22%).</div>
+                <div class="card-title">Зарплатна відомість, відрядна оплата цеху та бонуси (Рах. 661 / 651)</div>
+                <div class="card-subtitle">Оклади, виробничі нарахування, ПДФО 18%, ВЗ 5% та ЄСВ 22%.</div>
               </div>
-              <button type="button" class="btn btn-success" id="btn-pay-all-team">
-                ✓ Провести відомість та виплатити ЗП в 1 клік (Дт 661 Кт 311)
+              <button type="button" class="btn btn-primary owner-editable-btn" id="btn-pay-all-team">
+                Провести відомість та виплатити ЗП (Дт 661 Кт 311)
               </button>
             </div>
 
@@ -3196,7 +3619,7 @@
         </section>
 
         <!-- ================================================================
-             8. 🎙️ AI CALL-CENTER ТА ENTERPRISE ДЕПАРТАМЕНТ ПРОДАЖІВ (20+ СЕЙЛЗІВ)
+             8. ВІДДІЛ ПРОДАЖІВ ТА IP-ТЕЛЕФОНІЯ
              ================================================================ -->
         <section class="view-section" id="view-ai-sales">
           <!-- KPI Cards -->
@@ -3204,60 +3627,60 @@
             <div class="kpi-card">
               <div class="kpi-header">
                 <span class="kpi-title">Конверсія у контракт</span>
-                <span class="badge badge-green">B2B + Key Accounts</span>
+                <span class="badge badge-slate">B2B + Key Accounts</span>
               </div>
               <div class="kpi-value" id="ai-stat-conv">38.4%</div>
               <div class="kpi-context-row">
-                <span class="kpi-context-label">Приріст до 1С/CRM:</span>
-                <span class="kpi-context-value emerald">+27.0%</span>
+                <span class="kpi-context-label">Поточний місяць:</span>
+                <span class="kpi-context-value emerald">142 угоди</span>
               </div>
             </div>
 
             <div class="kpi-card">
               <div class="kpi-header">
                 <span class="kpi-title">Дотримання скрипта</span>
-                <span class="badge badge-blue">24 сейлзи в штаті</span>
+                <span class="badge badge-slate">24 менеджери</span>
               </div>
               <div class="kpi-value" id="ai-stat-qc">92 / 100</div>
               <div class="kpi-context-row">
-                <span class="kpi-context-label">Аудит 100% дзвінків:</span>
-                <span class="kpi-context-value">Whisper AI QC</span>
+                <span class="kpi-context-label">Перевірка дзвінків:</span>
+                <span class="kpi-context-value">Авто-аудит QC</span>
               </div>
             </div>
 
             <div class="kpi-card">
               <div class="kpi-header">
-                <span class="kpi-title">Врятована маржа</span>
+                <span class="kpi-title">Захищена маржа</span>
                 <span class="badge badge-green">Margin Guard</span>
               </div>
               <div class="kpi-value" id="ai-stat-margin">₴ 684 000</div>
               <div class="kpi-context-row">
-                <span class="kpi-context-label">Заблоковано відкатів/знижок:</span>
-                <span class="kpi-context-value emerald">19 угод за місяць</span>
+                <span class="kpi-context-label">Відхилено знижок нижче норми:</span>
+                <span class="kpi-context-value emerald">19 запитів</span>
               </div>
             </div>
 
             <div class="kpi-card">
               <div class="kpi-header">
-                <span class="kpi-title">Від дзвінка до рахунку</span>
+                <span class="kpi-title">Швидкість формування КП</span>
                 <span class="badge badge-slate">Авто-специфікація</span>
               </div>
               <div class="kpi-value">14 сек</div>
               <div class="kpi-context-row">
-                <span class="kpi-context-label">Рахунок + Резерв WMS + Дт/Кт:</span>
-                <span class="kpi-context-value">1 клік</span>
+                <span class="kpi-context-label">Рахунок + Резерв + Дт/Кт:</span>
+                <span class="kpi-context-value">Прямий запис</span>
               </div>
             </div>
           </div>
 
-          <!-- Enterprise Sales Divisions Leaderboard (Ranked by Net Margin EBITDA, not raw turnover) -->
+          <!-- Sales Divisions Leaderboard -->
           <div class="card">
             <div class="card-header">
               <div>
-                <div class="card-title">🏆 Матриця Ефективності Департаменту Продажів (Рейтинг по Чистій Маржі EBITDA та Поверненню Дебіторки)</div>
-                <div class="card-subtitle">В класичному бізнесі сейлзи женуться за оборотом, роздаючи максимальні знижки та плодячи безнадійну дебіторку. В OpexMetrix премія менеджера автоматично прив'язана до <strong>Чистої Маржі після собівартості (Рах. 701 мінус Рах. 901)</strong> та фактично отриманих грошей на рахунок 311.</div>
+                <div class="card-title">Матриця ефективності відділу продажів (Чиста маржа EBITDA та інкасація)</div>
+                <div class="card-subtitle">Розрахунок KPI та бонусного фонду за чистою маржею (Рах. 701 мінус Рах. 901) та фактичними надходженнями на рахунок 311.</div>
               </div>
-              <span class="badge badge-blue">3 Дивізіони • 24 Менеджери</span>
+              <span class="badge badge-slate">3 дивізіони / 24 менеджери</span>
             </div>
 
             <div class="table-wrap">
@@ -3269,8 +3692,8 @@
                     <th class="text-right">Чиста Маржа EBITDA</th>
                     <th class="text-right">Середня знижка</th>
                     <th class="text-right">Інкасація грошей (Дт 311)</th>
-                    <th class="text-right">AI Call QC Бал</th>
-                    <th>Статус виконання KPI</th>
+                    <th class="text-right">Якість дзвінків QC</th>
+                    <th>Статус KPI</th>
                   </tr>
                 </thead>
                 <tbody id="sales-leaderboard-tbody">
@@ -3284,342 +3707,114 @@
           <div class="card">
             <div class="card-header">
               <div>
-                <div class="card-title">🎙️ Живий Моніторинг Переговорів (Whisper AI) та Миттєва Генерація Контрактів із Голосу</div>
-                <div class="card-subtitle">Інтеграція з корпоративною телефонією (Binotel / Ringostat / Phonet / Cisco SIP). ШІ розпізнає номенклатуру під час розмови, перевіряє залишок на складі чи у графіку ЧПК і готує рахунок за 14 секунд.</div>
+                <div class="card-title">Моніторинг переговорів (IP-телефонія / SIP)</div>
+                <div class="card-subtitle">Інтеграція з Binotel / Ringostat / Phonet / SIP. Фіксація номенклатури розмови, перевірка залишків та формування рахунку.</div>
               </div>
-              <span class="badge badge-green">● 24 лінії під AI-контролем</span>
+              <span class="badge badge-green">24 лінії активні</span>
             </div>
 
             <div id="ai-calls-list" class="action-stream">
               <!-- Populated by app.js -->
             </div>
           </div>
-
-          <!-- Battle Differentiators vs Competitors -->
-          <div class="card">
-            <div class="card-header">
-              <div>
-                <div class="card-title">Чому звичайна CRM (Бітрікс / Amo / Salesforce) програє наскрізному контуру OpexMetrix Enterprise</div>
-                <div class="card-subtitle">Коли CRM відірвана від виробництва MES, складу та бухгалтерських проводок — бізнес втрачає до 8% чистого прибутку</div>
-              </div>
-            </div>
-
-            <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px;">
-              <div style="border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px; background: var(--bg-app);">
-                <div style="font-weight: 700; font-size: 14px; color: var(--text-main); margin-bottom: 6px;">1. Сейлз бачить реальне завантаження цеху ЧПК</div>
-                <div style="font-size: 12.5px; color: var(--text-secondary); line-height: 1.5;">
-                  Менеджер під час дзвінка обіцяє клієнту точний термін відвантаження не «зі стелі», а на основі живого графіка ліній MES та наявності сировини на Рахунку 201.
-                </div>
-              </div>
-
-              <div style="border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px; background: var(--bg-app);">
-                <div style="font-weight: 700; font-size: 14px; color: var(--text-main); margin-bottom: 6px;">2. Залізобетонний Margin Guard & Credit Gate</div>
-                <div style="font-size: 12.5px; color: var(--text-secondary); line-height: 1.5;">
-                  Система фізично не дасть менеджеру виставити рахунок із маржею нижче нормативу або відвантажити продукцію дилеру, який прострочив оплату за попередні поставки.
-                </div>
-              </div>
-
-              <div style="border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px; background: var(--bg-app);">
-                <div style="font-weight: 700; font-size: 14px; color: var(--text-main); margin-bottom: 6px;">3. Миттєва проводка в Головну Книгу та ЄРПН</div>
-                <div style="font-size: 12.5px; color: var(--text-secondary); line-height: 1.5;">
-                  Щойно клієнт погоджується на угоду — формується специфікація, резервується партія, а при відвантаженні за 0.04 с летить проводка <code class="mono">Дт 361 Кт 701</code> та драфт ПН J1201016.
-                </div>
-              </div>
-            </div>
-          </div>
         </section>
 
         <!-- ================================================================
-             9. 📊 ПРЕЗЕНТАЦІЯ: МАЛИЙ/СЕРЕДНІЙ БІЗНЕС (МСБ) ТА ВЕЛИКИЙ БІЗНЕС (ЕКОСИСТЕМА ЦЕХ + СКЛАД)
+             9. ІМПОРТ БАЗИ З 1С / BAS / EXCEL (РЕГЛАМЕНТ 48 ГОДИН)
              ================================================================ -->
         <section class="view-section" id="view-about">
-          <!-- Mode Switcher Bar: SMB Presentation + Enterprise Presentation -->
-          <div class="panel" style="margin-bottom: 20px; padding: 18px 24px; background: #FFFFFF; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
-            <div>
-              <div style="font-size: 16px; font-weight: 700; color: var(--text-main);">Оберіть формат презентації та фінансової моделі:</div>
-              <div style="font-size: 13px; color: var(--text-secondary);">У нас готові обидві презентації — для Малого та Середнього Бізнесу (МСБ) і для Великого Виробництва (Цех + Склад + Облік)</div>
-            </div>
-            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-              <button type="button" class="btn btn-sm btn-action-primary js-pres-mode-btn" data-mode="BOTH">📋 Обидві презентації (МСБ + Великий Бізнес)</button>
-              <button type="button" class="btn btn-sm btn-subtle js-pres-mode-btn" data-mode="SMB">🏪 Презентація для МСБ (Малий/Середній)</button>
-              <button type="button" class="btn btn-sm btn-subtle js-pres-mode-btn" data-mode="ENTERPRISE">🏭 Презентація для Великого Бізнесу (Цех+Склад)</button>
-              <a href="./pitch.html" target="_blank" class="btn btn-sm btn-subtle" style="text-decoration: none; font-weight: 600; color: var(--accent-blue); border-color: var(--accent-blue-border); background: var(--accent-blue-soft);">
-                ↗ Відкрити Комерційну Пропозицію (pitch.html)
-              </a>
-            </div>
-          </div>
-
-          <!-- ==============================================================
-               ЧАСТИНА А: ПРЕЗЕНТАЦІЯ ДЛЯ МАЛОГО ТА СЕРЕДНЬОГО БІЗНЕСУ (МСБ)
-               ============================================================== -->
-          <div id="pres-block-smb">
-            <div class="panel" style="margin-bottom: 24px; background: #FFFFFF; color: var(--text-main); border: 1px solid var(--border); border-left: 4px solid var(--success); padding: 26px 30px;">
-              <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; margin-bottom: 10px;">
-                <span class="badge badge-green">🏪 ПРЕЗЕНТАЦІЯ ДЛЯ МАЛОГО ТА СЕРЕДНЬОГО БІЗНЕСУ (МСБ • ФОП + ТОВ • ДО 50 ОСІБ)</span>
-                <span class="badge badge-slate">Заміна 1С та штату бухгалтерів за 48 годин</span>
-              </div>
-              <h2 style="font-family: var(--font-sans); font-size: 24px; font-weight: 700; color: var(--text-main); margin-bottom: 10px; line-height: 1.3;">
-                OpexMetrix для МСБ: Автономний Кабінет Власника без рутини 1С, хаосу в Excel та переплат бухгалтерам
-              </h2>
-              <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.6; max-width: 920px; margin-bottom: 18px;">
-                Власник малого чи середнього бізнесу щодня бачить одне питання: <strong>«Скільки чистих грошей я можу забрати на дивіденди сьогодні, щоб завтра вистачило на закупівлю товару, податки та зарплату?»</strong> OpexMetrix автоматично розносить банківські виписки Монобанк / Приват24, блокує збиткові знижки менеджерів (Margin Guard), розпізнає накладні з комп'ютера чи фото з телефону та сам формує звіти в Електронний кабінет ДПС (<code class="mono">cabinet.tax.gov.ua</code>).
-              </p>
-              <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                <span class="badge badge-green">✓ Переїзд із 1С / Excel за 48 годин</span>
-                <span class="badge badge-blue">✓ Первинні документи та Рахунки з QR НБУ в 1 клік</span>
-                <span class="badge badge-amber">✓ AI-Розпізнавання накладних з телефону та ПК</span>
-                <span class="badge badge-slate">✓ Податки ФОП 3 гр. та ТОВ з ПДВ без бухгалтера</span>
-              </div>
-
-              <!-- 4 Niche Profiles for SMB -->
-              <div style="margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--border);">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
-                  <div style="font-size: 13.5px; font-weight: 700; color: var(--text-main);">Миттєва адаптація інтерфейсу під вашу нішу МСБ (натисніть для перемикання профілю):</div>
-                  <span class="badge badge-blue" id="active-profile-pill">Активний: 🛒 Оптова та роздрібна торгівля</span>
-                </div>
-                <div class="niche-grid" id="niche-cards-container">
-                  <div class="niche-card selected" data-niche="PRODUCTION">
-                    <div class="niche-card-title">🏭 Виробництво, Заводи &amp; MES</div>
-                    <div class="niche-card-desc">Зв'язка Склад сировини ↔ Цех ЧПК ↔ Готова продукція, техкарти BOM, контроль обрізків та відрядна ЗП.</div>
-                  </div>
-                  <div class="niche-card" data-niche="CONSTRUCTION">
-                    <div class="niche-card-title">🏗️ Будівництво, Девелопмент &amp; Генпідряд</div>
-                    <div class="niche-card-desc">Облік по об'єктах/ЖК, ліміти списання бетону та арматури за кошторисом, акти КБ-2в / КБ-3 та ТТН з майданчика.</div>
-                  </div>
-                  <div class="niche-card" data-niche="TRADE">
-                    <div class="niche-card-title">🛒 Оптова Дистрибуція &amp; B2B Торгівля</div>
-                    <div class="niche-card-desc">Контроль маржі 25%+, партійний склад FIFO, кредитні ліміти дилерів та видаткові накладні з QR НБУ.</div>
-                  </div>
-                  <div class="niche-card" data-niche="SERVICES">
-                    <div class="niche-card-title">🛠️ Інжиніринг, Енергетика &amp; Сервіс</div>
-                    <div class="niche-card-desc">Проєктний P&amp;L, специфікації обладнання, акти виконаних робіт, договори на погодження та податковий контур.</div>
-                  </div>
-                </div>
-                <div style="margin-top: 10px; font-size: 12.5px; color: var(--success); font-weight: 600;" id="niche-adaptation-summary">
-                  ✓ Адаптовано під профіль «Оптова та роздрібна торгівля»: увімкнено контроль мінімальної маржі 25%, автоматичне списання зі складу за FIFO та формування видаткових накладних з QR-оплатою НБУ.
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- ==============================================================
-               ЧАСТИНА Б: ПРЕЗЕНТАЦІЯ ДЛЯ ВЕЛИКОГО БІЗНЕСУ ТА ВИРОБНИЦТВА (ЦЕХ + СКЛАД + ЕКОСИСТЕМА)
-               ============================================================== -->
-          <div id="pres-block-enterprise">
-            <!-- Clean White Executive Hero Card (Replaced black card per user request!) -->
-            <div class="panel" style="margin-bottom: 24px; background: #FFFFFF; color: var(--text-main); border: 1px solid var(--border); border-left: 4px solid var(--accent-blue); padding: 26px 30px;">
-              <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; margin-bottom: 10px;">
-                <span class="badge badge-blue">🏭 ПРЕЗЕНТАЦІЯ ДЛЯ ВЕЛИКОГО БІЗНЕСУ, ВИРОБНИЦТВА ТА ДИСТРИБУЦІЇ</span>
-                <span class="badge badge-green">Єдина Екосистема: Цех ↔ Склад ↔ Документи ↔ Облік</span>
-              </div>
-              <h2 style="font-family: var(--font-sans); font-size: 24px; font-weight: 700; color: var(--text-main); margin-bottom: 10px; line-height: 1.3;">
-                OpexMetrix Ecosystem: Ми підключаємося до вашого Цеху, поєднаного зі Складом, Документообігом та Бухгалтерією
-              </h2>
-              <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.6; max-width: 920px; margin-bottom: 18px;">
-                Ми не чергова програма лише для бухгалтера. <strong>Ми є цілою операційною екосистемою, в якій живе весь ваш бізнес</strong>: комірник на складі фотографує прибуткову накладну з телефону — система розпізнає кожну позицію (AI OCR), передає документ на погодження керівнику, оприбутковує сировину на склад (Рах. 201), передає її за техкартою у виробничий цех (MES Рах. 231), повертає готову продукцію на склад (Рах. 26) і миттєво формує всі бухгалтерські проводки <strong class="mono">Дт/Кт</strong>.
-              </p>
-              <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                <span class="badge badge-blue">🏭 Цех (MES) напряму з'єднаний зі Складом (WMS)</span>
-                <span class="badge badge-green">📱 AI-Розпізнавання накладних і договорів з ПК та Телефону</span>
-                <span class="badge badge-amber">✅ Погодження документів прямо в системі в 1 клік</span>
-                <span class="badge badge-slate">📖 Миттєві проводки Дт/Кт, B2B Deal Desk та Анти-Відкат</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Interactive ROI Calculator (Realistic Turnover Scale: Default 4.5M UAH/month) -->
+          <!-- 48-Hour 1C/BAS/Excel Migration Schedule -->
           <div class="panel" style="margin-bottom: 24px; background: #FFFFFF; border: 1px solid var(--border);">
             <div class="panel-header">
               <div>
-                <h3 class="panel-title">🧮 Інтерактивний Калькулятор Економічного Ефекту (Для МСБ та Виробничих Підприємств)</h3>
-                <p class="panel-subtitle">Пересувайте повзунки під реальний оборот вашого бізнесу — розрахунок збережених грошей і чистого прибутку виконується миттєво</p>
+                <h3 class="panel-title">Регламент перенесення даних з 1С / BAS / Excel за 48 годин (2 робочі дні)</h3>
+                <p class="panel-subtitle">Покроковий операційний план переходу без зупинки відвантажень та роботи цеху</p>
               </div>
-              <span class="badge badge-green" id="roi-payback-badge">Окупність системи: 14 днів</span>
+              <div style="display: flex; gap: 8px; align-items: center;">
+                <span class="badge badge-slate">Термін запуску: 48 годин</span>
+                <a href="./how-it-works.html" target="_blank" class="btn btn-sm btn-subtle" style="text-decoration: none;">Панель верстатів ЧПК (MES)</a>
+              </div>
             </div>
 
-            <div class="grid-2" style="align-items: stretch;">
-              <!-- Sliders Column -->
-              <div style="display: flex; flex-direction: column; gap: 18px; background: var(--bg-app); padding: 20px; border-radius: var(--radius-sm); border: 1px solid var(--border);">
-                <div>
-                  <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 600; margin-bottom: 6px;">
-                    <span>1. Щомісячний оборот вашого бізнесу / виробництва:</span>
-                    <strong class="mono" style="color: var(--accent-blue); font-size: 15px;" id="roi-turnover-val">₴ 4 500 000 / міс</strong>
-                  </div>
-                  <input type="range" id="roi-turnover-slider" min="500000" max="50000000" step="500000" value="4500000" style="width: 100%; accent-color: var(--accent-blue); cursor: pointer;" />
-                  <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); margin-top: 4px;">
-                    <span>₴ 500 тис./міс (МСБ)</span>
-                    <span>₴ 4.5 млн/міс (Середній бізнес / Цех)</span>
-                    <span>₴ 50 млн/міс (Великий завод)</span>
-                  </div>
-                </div>
-
-                <div>
-                  <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 600; margin-bottom: 6px;">
-                    <span>2. Втрати на знижках сейлзів, переплатах у закупівлях та списаннях цеху/складу:</span>
-                    <strong class="mono" style="color: var(--warning); font-size: 15px;" id="roi-leak-val">3.5% від обороту</strong>
-                  </div>
-                  <input type="range" id="roi-leak-slider" min="1.5" max="7.0" step="0.1" value="3.5" style="width: 100%; accent-color: var(--accent-blue); cursor: pointer;" />
-                  <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); margin-top: 4px;">
-                    <span>1.5% (мінімальні)</span>
-                    <span>3.5% (середній показник)</span>
-                    <span>7.0% (без контролю)</span>
-                  </div>
-                </div>
-
-                <div>
-                  <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 600; margin-bottom: 6px;">
-                    <span>3. Витрати на бухгалтерію, ручне введення первинних накладних та підтримку 1С:</span>
-                    <strong class="mono" style="color: var(--primary); font-size: 15px;" id="roi-staff-val">₴ 65 000 / міс</strong>
-                  </div>
-                  <input type="range" id="roi-staff-slider" min="20000" max="350000" step="5000" value="65000" style="width: 100%; accent-color: var(--accent-blue); cursor: pointer;" />
-                  <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); margin-top: 4px;">
-                    <span>₴ 20 тис./міс (1 бух.)</span>
-                    <span>₴ 65 тис./міс (2–3 бух. + 1С)</span>
-                    <span>₴ 350 тис./міс (штат)</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Calculated Impact Column -->
-              <div style="display: flex; flex-direction: column; justify-content: space-between; background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: var(--radius-sm); padding: 22px;">
-                <div>
-                  <div style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #166534; margin-bottom: 6px;">
-                    Чистий фінансовий ефект для власника (Збережений прибуток)
-                  </div>
-                  <div class="mono" style="font-size: 30px; font-weight: 700; color: #14532D; letter-spacing: -0.03em; margin-bottom: 4px;" id="roi-annual-total">
-                    +₴ 2 553 000 / рік
-                  </div>
-                  <div style="font-size: 13px; color: #166534; margin-bottom: 16px;" id="roi-monthly-total">
-                    або <strong>+₴ 212 750 щомісяця</strong> додаткового чистого грошового потоку
-                  </div>
-
-                  <div class="kpi-breakdown" style="font-size: 13px; gap: 8px; border-top: 1px solid #BBF7D0; padding-top: 12px;">
-                    <div class="kpi-breakdown-row">
-                      <span>🛡️ Захист маржі у продажах + Контроль цін у накладних:</span>
-                      <strong class="mono" style="color: #14532D;" id="roi-break-margin">+₴ 102 375 / міс</strong>
-                    </div>
-                    <div class="kpi-breakdown-row">
-                      <span>🏭 Зв'язка Цех ↔ Склад (ліквідація втрат сировини та залишків):</span>
-                      <strong class="mono" style="color: #14532D;" id="roi-break-mes">+₴ 55 125 / міс</strong>
-                    </div>
-                    <div class="kpi-breakdown-row">
-                      <span>📄 AI-Розпізнавання накладних/договорів та авто-облік Дт/Кт:</span>
-                      <strong class="mono" style="color: #14532D;" id="roi-break-staff">+₴ 55 250 / міс</strong>
-                    </div>
-                  </div>
-                </div>
-
-                <div style="margin-top: 16px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding-top: 12px; border-top: 1px solid #BBF7D0;">
-                  <span style="font-size: 12px; color: #166534; font-weight: 600;">Протестуйте розпізнавання та погодження документів прямо зараз:</span>
-                  <button type="button" class="btn btn-sm btn-action-primary" onclick="window.opexSwitchTab('docs')">
-                    📄 Відкрити Документи, OCR &amp; Погодження
-                  </button>
-                </div>
-              </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Етап / Часове вікно</th>
+                    <th>Джерело вивантаження</th>
+                    <th>Які дані переносяться у систему</th>
+                    <th>Контроль звірки</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="mono" style="font-weight: 700;">День 1 (0 - 8 год)</td>
+                    <td>1С / BAS / Excel (.csv, .xml)</td>
+                    <td>Довідник контрагентів (ЄДРПОУ, ІПН, IBAN), договори, прайси та залишки ТМЦ на складі (Рах. 201, 26, 281).</td>
+                    <td><span class="badge badge-green">Звірка кількості та сум залишків</span></td>
+                  </tr>
+                  <tr>
+                    <td class="mono" style="font-weight: 700;">День 1 (8 - 24 год)</td>
+                    <td>Оборотно-сальдова відомість</td>
+                    <td>Дебіторська заборгованість покупців (Рах. 361), кредиторська постачальників (Рах. 631), очистка дублів контрагентів.</td>
+                    <td><span class="badge badge-slate">Акт звірки ДЗ / КЗ до копійки</span></td>
+                  </tr>
+                  <tr>
+                    <td class="mono" style="font-weight: 700;">День 2 (24 - 36 год)</td>
+                    <td>Техкарти цеху + Клієнт-банк</td>
+                    <td>Специфікації BOM (Пінєлька, Погонаж, Нестандарт), незавершене виробництво (Рах. 231), виписка 1CClientBankExchange.</td>
+                    <td><span class="badge badge-slate">Перевірка норм списання сировини</span></td>
+                  </tr>
+                  <tr>
+                    <td class="mono" style="font-weight: 700;">День 2 (36 - 48 год)</td>
+                    <td>Ролі доступу та старт зміни</td>
+                    <td>Налаштування прав редагування (Single-Owner Lock для цифр/ТМЦ/P&amp;L), підключення верстатів ЧПК та запуск бойової зміни.</td>
+                    <td><span class="badge badge-green">Контрольна ОСВ та перший Z-день</span></td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
 
-          <!-- 6 Core Ecosystem Pillars -->
-          <div class="panel" style="margin-bottom: 24px; background: #FFFFFF; border: 1px solid var(--border);">
-            <div class="panel-header">
-              <div>
-                <h3 class="panel-title">🏗️ Як працює Екосистема OpexMetrix (Від Малого Бізнесу до Заводу з Цехом і Складом)</h3>
-                <p class="panel-subtitle">6 модулів, з'єднаних у єдиний живий організм без дублювання даних</p>
-              </div>
-            </div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 16px;">
-              <div style="border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 18px; background: #FFFFFF;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                  <span class="badge badge-blue">1. Цех + Склад = Єдине Ціле</span>
-                  <span class="mono" style="font-size: 11.5px; color: var(--text-muted);">WMS ↔ MES</span>
-                </div>
-                <div style="font-weight: 700; font-size: 15px; color: var(--text-main); margin-bottom: 6px;">Пряме підключення Цеху до Складу Сировини і ГП</div>
-                <div style="font-size: 13px; color: var(--text-secondary); line-height: 1.55;">
-                  Замовлення клієнта автоматично резервує сировину на складі (Рах. 201), формує змінне завдання у цех (Рах. 231), враховує ділові обрізки, нараховує відрядну ЗП і передає готову продукцію на склад відвантаження (Рах. 26).
-                </div>
-              </div>
-
-              <div style="border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 18px; background: #FFFFFF;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                  <span class="badge badge-green">2. AI OCR &amp; Патч з Телефону</span>
-                  <span class="mono" style="font-size: 11.5px; color: var(--text-muted);">ПК + Камера 📱</span>
-                </div>
-                <div style="font-weight: 700; font-size: 15px; color: var(--text-main); margin-bottom: 6px;">Розпізнавання Накладних, Договорів та Рахунків</div>
-                <div style="font-size: 13px; color: var(--text-secondary); line-height: 1.55;">
-                  Завантажуйте файли з комп'ютера або просто сфотографуйте паперову накладну з телефону на складі чи в цеху — ШІ миттєво розпізнає контрагента, ЄДРПОУ, номенклатуру, ціни та умови договору.
-                </div>
-              </div>
-
-              <div style="border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 18px; background: #FFFFFF;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                  <span class="badge badge-amber">3. Погодження в Системі</span>
-                  <span class="mono" style="font-size: 11.5px; color: var(--text-muted);">1-Клік Акцепт</span>
-                </div>
-                <div style="font-weight: 700; font-size: 15px; color: var(--text-main); margin-bottom: 6px;">Внутрішнє Погодження Документів без Хаосу в Чатах</div>
-                <div style="font-size: 13px; color: var(--text-secondary); line-height: 1.55;">
-                  Будь-який договір, специфікацію чи прибуткову накладну можна дати на погодження прямо в системі (Склад → Начальник цеху → Бухгалтерія → Директор). Після натискання «Погодити» документ одразу проводиться в обліку.
-                </div>
-              </div>
-
-              <div style="border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 18px; background: #FFFFFF;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                  <span class="badge badge-blue">4. Відділ Продажів &amp; Маржа</span>
-                  <span class="mono" style="font-size: 11.5px; color: var(--text-muted);">Deal Desk + AI Call</span>
-                </div>
-                <div style="font-weight: 700; font-size: 15px; color: var(--text-main); margin-bottom: 6px;">Контроль Сейлзів, Знижок та Дебіторки Дилерів</div>
-                <div style="font-size: 13px; color: var(--text-secondary); line-height: 1.55;">
-                  Менеджери бачать реальні залишки складу та графік цеху, виставляють рахунки з QR НБУ за 10 секунд, а система блокує збиткові знижки та відвантаження боржникам.
-                </div>
-              </div>
-
-              <div style="border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 18px; background: #FFFFFF;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                  <span class="badge badge-green">5. Авто-Проводки Дт/Кт</span>
-                  <span class="mono" style="font-size: 11.5px; color: var(--text-muted);">НП(С)БО + ОСВ</span>
-                </div>
-                <div style="font-weight: 700; font-size: 15px; color: var(--text-main); margin-bottom: 6px;">Миттєвий Бухгалтерський та Управлінський Баланс</div>
-                <div style="font-size: 13px; color: var(--text-secondary); line-height: 1.55;">
-                  Кожна дія на складі, в цеху або в банку автоматично формує подвійний запис Дт/Кт та оновлює Оборотно-Сальдову Відомість і P&amp;L без очікування кінця місяця.
-                </div>
-              </div>
-
-              <div style="border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 18px; background: #FFFFFF;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                  <span class="badge badge-slate">6. Податки ДПС &amp; 1С-Міграція</span>
-                  <span class="mono" style="font-size: 11.5px; color: var(--text-muted);">cabinet.tax.gov.ua</span>
-                </div>
-                <div style="font-weight: 700; font-size: 15px; color: var(--text-main); margin-bottom: 6px;">Офіційні XML-Звіти ДПС та Переїзд із 1С/BAS</div>
-                <div style="font-size: 13px; color: var(--text-secondary); line-height: 1.55;">
-                  Автоматична генерація декларацій ФОП 3 гр., ПДВ, Податкових накладних ЄРПН та зарплатної звітності у форматі XSD/XML ДПС України + безшовне перенесення бази з 1С.
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 3-Step 1C/BAS Migration Wizard (Kept so SMB & Enterprise can test migration live!) -->
+          <!-- Working 1C/CSV/Excel Import Console -->
           <div class="panel" style="background: #FFFFFF; border: 1px solid var(--border);">
             <div class="panel-header">
               <div>
-                <h3 class="panel-title">🚀 Інтерактивний Майстер Переїзду з 1С / BAS та Форензік-Аудиту Бази</h3>
-                <p class="panel-subtitle">Перевірте, як система за 3 кліки очищує стару базу 1С від дублів, знаходить завищені закупівельні ціни та переносить залишки складу й цеху</p>
+                <h3 class="panel-title">Консоль імпорту та форензік-перевірки даних (CSV / XML / 1С / Excel)</h3>
+                <p class="panel-subtitle">Завантажте файл або вставте таблицю з 1С / Excel — дані автоматично перевіряються на дублі та імпортуються в Склад, CRM та ДЗ/КЗ</p>
               </div>
               <span class="badge badge-green" id="migration-status-badge">Готово до імпорту</span>
             </div>
 
-            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px;">
-              <button type="button" class="btn btn-sm btn-subtle" id="btn-mig-load-demo">1. Підключити вивантаження бази 1С / BAS (XML / CSV)</button>
-              <button type="button" class="btn btn-sm btn-subtle" id="btn-mig-analyze">2. Запустити Форензік-Аудит та очистку дублів</button>
-              <button type="button" class="btn btn-sm btn-action-primary" id="btn-mig-execute">3. Імпортувати чисту базу в Екосистему</button>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 14px;">
+              <label class="btn btn-sm btn-subtle" style="cursor: pointer; margin: 0;">
+                Завантажити файл (.csv / .tsv / .xml)
+                <input type="file" id="mig-file-input" accept=".csv,.tsv,.txt,.xml" style="display: none;" />
+              </label>
+              <select id="mig-target-select" class="select-field" style="width: auto; min-width: 210px; font-size: 12.5px;">
+                <option value="AUTO">Авто-визначення (1С Залишки + Борги + CRM)</option>
+                <option value="STOCK">Тільки Залишки складу ТМЦ (Рах. 201 / 281)</option>
+                <option value="DEBT">Тільки Дебіторка / Кредиторка (361 / 631)</option>
+                <option value="CRM">Тільки CRM Контрагенти та Угоди</option>
+              </select>
+              <button type="button" class="btn btn-sm btn-subtle" id="btn-mig-load-demo">1. Підставити тестовий витяг 1С</button>
+              <button type="button" class="btn btn-sm btn-subtle" id="btn-mig-analyze">2. Форензік-перевірка дублів</button>
+              <button type="button" class="btn btn-sm btn-action-primary owner-editable-btn" id="btn-mig-execute">3. Імпортувати в базу ERP</button>
+            </div>
+
+            <div style="font-size: 11.5px; color: var(--text-muted); margin-bottom: 12px; padding: 8px 12px; background: var(--bg-subtle); border: 1px solid var(--border); border-radius: var(--radius-xs);">
+              <strong>Формат рядків CSV/Excel (роздільник «;» або «,»):</strong>
+              <span class="mono">SKU;Найменування;Од;Кількість;Ціна;Тип(STOCK/AR/AP/CRM)</span> — або вставте стандартне дерево 1С / BAS з кроку 1.
             </div>
 
             <div class="grid-2" style="margin-bottom: 12px;">
               <div>
-                <label class="field-label" for="mig-csv-input">Дамп контрагентів, складу та техкарт (CSV / XML з 1С):</label>
-                <textarea id="mig-csv-input" class="textarea mono" rows="3" placeholder="Натисніть «1. Завантажити тестовий витяг із 1С / BAS»..."></textarea>
+                <label class="field-label" for="mig-csv-input">Дамп контрагентів, ТМЦ та боргів (CSV / TSV / XML з 1С або Excel):</label>
+                <textarea id="mig-csv-input" class="textarea mono" rows="6" placeholder="Завантажте файл або натисніть «1. Підставити тестовий витяг 1С»..."></textarea>
               </div>
               <div>
                 <label class="field-label" for="mig-bank-input">Банківська виписка (1CClientBankExchange):</label>
-                <textarea id="mig-bank-input" class="textarea mono" rows="3" placeholder="Дані клієнт-банку..."></textarea>
+                <textarea id="mig-bank-input" class="textarea mono" rows="6" placeholder="Дані клієнт-банку (Монобанк / Приват24 / Ощадбанк)..."></textarea>
               </div>
             </div>
 
@@ -3631,79 +3826,68 @@
   </div>
 
 
-  <!-- Sticky Mobile Bottom Navigation Bar (For Smartphones & Mobile Viewport) -->
+  <!-- Sticky Mobile Bottom Navigation Bar -->
   <nav class="mobile-bottom-nav no-print" id="mobile-bottom-nav">
     <button type="button" class="mobile-bottom-btn active" data-mob-tab="pulse">
-      <span class="mob-icon">🏠</span>
       <span>Пульс</span>
     </button>
-    <button type="button" class="mobile-bottom-btn" data-mob-tab="docs">
-      <span class="mob-icon">📄</span>
-      <span>Скан/Підпис</span>
-    </button>
-    <button type="button" class="mobile-bottom-btn" data-mob-tab="mes">
-      <span class="mob-icon">🏭</span>
-      <span>Цех MES</span>
-    </button>
-    <button type="button" class="mobile-bottom-btn" data-mob-tab="stock">
-      <span class="mob-icon">📦</span>
-      <span>Склад</span>
+    <button type="button" class="mobile-bottom-btn" data-mob-tab="pnl">
+      <span>P&amp;L</span>
     </button>
     <button type="button" class="mobile-bottom-btn" data-mob-tab="sales">
-      <span class="mob-icon">💼</span>
-      <span>Продажі</span>
+      <span>CRM</span>
+    </button>
+    <button type="button" class="mobile-bottom-btn" data-mob-tab="debt">
+      <span>ДЗ/КЗ</span>
+    </button>
+    <button type="button" class="mobile-bottom-btn" data-mob-tab="stock">
+      <span>Склад</span>
     </button>
     <button type="button" class="mobile-bottom-btn" data-mob-tab="about">
-      <span class="mob-icon">📊</span>
-      <span>Презентація</span>
+      <span>Імпорт 1С</span>
     </button>
   </nav>
 
-  <!-- Live Synchronized Mobile App Companion (Телефон ↔ Десктоп у реальному часі) -->
+  <!-- Live Synchronized Mobile App Companion -->
   <div class="mobile-companion-backdrop no-print" id="mobile-companion-backdrop">
     <div class="phone-simulator-shell">
-      <!-- Phone Top Status Bar -->
       <div class="phone-status-bar">
-        <span class="mono">10:15 • 5G</span>
-        <span class="phone-notch-pill">● Синхронно з Десктопом</span>
+        <span class="mono">10:15 / 5G</span>
+        <span class="phone-notch-pill">Синхронізація активна</span>
         <button type="button" id="btn-close-mobile-companion" style="border: 1px solid var(--border); background: var(--bg-subtle); color: var(--text-main); border-radius: 6px; padding: 2px 8px; font-size: 11px; font-weight: 700; cursor: pointer;">
-          ✕ Закрити
+          Закрити
         </button>
       </div>
 
-      <!-- Phone App Brand Header -->
       <div class="phone-app-header">
         <div>
           <div style="display: flex; align-items: center; gap: 6px;">
             <strong style="font-size: 15px; color: var(--text-main); letter-spacing: -0.02em;">OpexMetrix Mobile</strong>
-            <span class="badge badge-blue" style="font-size: 10px; padding: 1px 6px;">iOS / Android</span>
+            <span class="badge badge-slate" style="font-size: 10px; padding: 1px 6px;">iOS / Android</span>
           </div>
           <div style="font-size: 11px; color: var(--text-secondary);" id="phone-active-entity-label">
-            Єдина база: Телефон ↔ Комп'ютер
+            Єдина база: Телефон / Комп'ютер
           </div>
         </div>
         <label class="btn btn-sm btn-action-primary" style="cursor: pointer; margin: 0; padding: 5px 10px; font-size: 11.5px;">
-          📸 Камера OCR
+          Камера OCR
           <input type="file" id="phone-companion-camera-input" accept="image/*,.pdf" capture="environment" style="display: none;" />
         </label>
       </div>
 
-      <!-- 4 Role/Screen Switcher Tabs inside Mobile App (Matches Desktop 1:1) -->
       <div class="phone-role-tabs" id="phone-role-tabs">
-        <button type="button" class="phone-role-tab active" data-phone-tab="DOCS">📄 Скан &amp; Підпис</button>
-        <button type="button" class="phone-role-tab" data-phone-tab="OWNER">📊 Пульс CEO</button>
-        <button type="button" class="phone-role-tab" data-phone-tab="SHOPFLOOR">🏭 Цех &amp; Склад</button>
-        <button type="button" class="phone-role-tab" data-phone-tab="SALES">💼 Рахунок QR</button>
+        <button type="button" class="phone-role-tab active" data-phone-tab="DOCS">Скан / Підпис</button>
+        <button type="button" class="phone-role-tab" data-phone-tab="OWNER">Пульс CEO</button>
+        <button type="button" class="phone-role-tab" data-phone-tab="SHOPFLOOR">Цех / Склад</button>
+        <button type="button" class="phone-role-tab" data-phone-tab="SALES">Рахунок QR</button>
       </div>
 
-      <!-- Dynamic Phone Screen Content (Populated & Synced by app.js) -->
       <div class="phone-app-body" id="phone-app-body">
         <!-- Rendered dynamically by renderMobileCompanion() in app.js -->
       </div>
 
-      <!-- Phone App Footer -->
       <div class="phone-app-footer">
-        <span>⚡ Будь-яка дія на телефоні миттєво оновлює ПК</span>
+        <span>Дії з телефону миттєво записуються у загальний контур</span>
         <span class="mono" style="color: var(--success); font-weight: 700;">LIVE SYNC</span>
       </div>
     </div>
