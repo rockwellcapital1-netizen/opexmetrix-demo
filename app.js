@@ -507,22 +507,78 @@
         status: 'OK'
       }
     ],
+    accessRole: 'OWNER',
     editAuthorized: true,
+    crmViewMode: 'KANBAN',
+    activeCrmModalId: null,
+    activeDocOrigId: null,
+    scannedStockSku: null,
     pnlPeriod: 'MONTH',
     pnlChartInstance: null,
     pnlAdjustments: {},
     pnlCustomLines: [],
+    primaryDocuments: [
+      {
+        id: 'DOC-PN-4401',
+        docNumber: 'ПН-4401 від 09.11.2026',
+        typeBadge: 'Прибуткова накладна (Склад QR)',
+        counterparty: 'ТОВ "Кроноспан УА"',
+        edrpou: '33219480',
+        amount: 412000,
+        itemsSummary: 'Плита МДФ шліфована 16 мм (145 лист. x 1 240 ₴) + МДФ 10 мм',
+        ledgerNote: 'Дт 201 Кт 631 • Проведено після сканування 4820010400016',
+        signedBy: 'Комірник Іванченко С.П. / Директор'
+      },
+      {
+        id: 'DOC-SF-8821',
+        docNumber: 'СФ-8821 від 10.11.2026',
+        typeBadge: 'Вхідний рахунок постачальника',
+        counterparty: 'ТОВ "ПромМетал-Трейд Плюс"',
+        edrpou: '39114022',
+        amount: 276000,
+        itemsSummary: 'Листовий матеріал / комплектуючі (перевірка вхідної ціни)',
+        ledgerNote: 'Очікує переключення на прямого постачальника',
+        signedBy: 'Відділ постачання'
+      },
+      {
+        id: 'DOC-CRM-101',
+        docNumber: 'ДП-2026/101 від 08.11.2026',
+        typeBadge: 'Договір поставки + Специфікація',
+        counterparty: 'ТОВ "БудМаркет Поділля"',
+        edrpou: '39148205',
+        amount: 264000,
+        itemsSummary: 'Полотна дверні МДФ Класік (48 шт) + Погонаж телескоп',
+        ledgerNote: 'CRM Картка CRM-101 • Передоплата 50%',
+        signedBy: 'Мельник О.В. / Менеджер продажів'
+      },
+      {
+        id: 'DOC-INV-104',
+        docNumber: 'INV-2026-104 від 17.10.2026',
+        typeBadge: 'Видаткова накладна + Рахунок B2B',
+        counterparty: 'ТОВ "Розетка Маркетплейс Україна"',
+        edrpou: '00482194',
+        amount: 124500,
+        itemsSummary: 'Обладнання та комплектуючі за замовленням INV-2026-104',
+        ledgerNote: 'Дт 361 Кт 701 • Проведено в Головній Книзі',
+        signedBy: 'Власник / Бухгалтерія'
+      }
+    ],
     stockItems: [
-      { sku: 'RAW-MDF-16', itemName: 'Плита МДФ шліфована 16 мм (2800x2070)', category: 'Товари та сировина', unit: 'лист', qty: 145, unitPrice: 1240, sellPrice: 1680, minThreshold: 60 },
-      { sku: 'RAW-PINE-BRUS', itemName: 'Брус клеєний сосновий 40x50 (зрощений)', category: 'Товари та сировина', unit: 'мп', qty: 1850, unitPrice: 118, sellPrice: 165, minThreshold: 800 },
-      { sku: 'FIN-DOOR-MDF', itemName: 'Полотно дверне серійне МДФ (800 мм, ПВХ)', category: 'Обладнання та техніка', unit: 'шт', qty: 42, unitPrice: 2890, sellPrice: 4450, minThreshold: 25 },
-      { sku: 'FIN-POGONAZH', itemName: 'Коробка + лиштва телескоп (Погонаж комплект, МДФ)', category: 'Обладнання та техніка', unit: 'к-т', qty: 68, unitPrice: 740, sellPrice: 1280, minThreshold: 40 },
-      { sku: 'CMP-AGB-MAG', itemName: 'Фурнітура прихована AGB Eclipse + замок магнітний', category: 'POS та комплектуючі', unit: 'к-т', qty: 54, unitPrice: 960, sellPrice: 1490, minThreshold: 50 },
-      { sku: 'PKG-CARDBOARD', itemName: 'Захисний гофрокороб + стретч-плівка дверна', category: 'Пакування та витратні', unit: 'шт', qty: 320, unitPrice: 44, sellPrice: 68, minThreshold: 400 }
+      { sku: 'RAW-MDF-16', barcode: '4820010400016', itemName: 'Плита МДФ шліфована 16 мм (2800x2070)', category: 'Товари та сировина', unit: 'лист', qty: 145, unitPrice: 1240, sellPrice: 1680, minThreshold: 60, lastDocId: 'DOC-PN-4401' },
+      { sku: 'RAW-PINE-BRUS', barcode: '4820010400023', itemName: 'Брус клеєний сосновий 40x50 (зрощений)', category: 'Товари та сировина', unit: 'мп', qty: 1850, unitPrice: 118, sellPrice: 165, minThreshold: 800, lastDocId: 'DOC-PN-4401' },
+      { sku: 'FIN-DOOR-MDF', barcode: '4820010400030', itemName: 'Полотно дверне серійне МДФ (800 мм, ПВХ)', category: 'Обладнання та техніка', unit: 'шт', qty: 42, unitPrice: 2890, sellPrice: 4450, minThreshold: 25, lastDocId: 'DOC-CRM-101' },
+      { sku: 'FIN-POGONAZH', barcode: '4820010400047', itemName: 'Коробка + лиштва телескоп (Погонаж комплект, МДФ)', category: 'Обладнання та техніка', unit: 'к-т', qty: 68, unitPrice: 740, sellPrice: 1280, minThreshold: 40, lastDocId: 'DOC-CRM-101' },
+      { sku: 'CMP-AGB-MAG', barcode: '4820010400054', itemName: 'Фурнітура прихована AGB Eclipse + замок магнітний', category: 'POS та комплектуючі', unit: 'к-т', qty: 54, unitPrice: 960, sellPrice: 1490, minThreshold: 50, lastDocId: 'DOC-PN-4401' },
+      { sku: 'PKG-CARDBOARD', barcode: '4820010400061', itemName: 'Захисний гофрокороб + стретч-плівка дверна', category: 'Пакування та витратні', unit: 'шт', qty: 320, unitPrice: 44, sellPrice: 68, minThreshold: 400, lastDocId: 'DOC-PN-4401' }
+    ],
+    stockMovements: [
+      { id: 'MOV-101', time: '09:14:22', opLabel: 'Прихід (Дт 201 Кт 631)', barcode: '4820010400016', sku: 'RAW-MDF-16', itemName: 'Плита МДФ шліфована 16 мм', qtyDelta: '+45 лист', docNum: 'ПН-4401', docId: 'DOC-PN-4401' },
+      { id: 'MOV-102', time: '10:05:11', opLabel: 'Видача в цех ЧПК (Дт 231 Кт 201)', barcode: '4820010400023', sku: 'RAW-PINE-BRUS', itemName: 'Брус клеєний сосновий 40x50', qtyDelta: '-150 мп', docNum: 'ЛЗК-904', docId: 'DOC-INV-104' }
     ],
     crmDeals: [
       {
         id: 'CRM-101',
+        origin: 'INBOUND_CALL',
         client: 'ТОВ "БудМаркет Поділля"',
         edrpou: '39148205',
         contact: 'Мельник О.В.',
@@ -530,10 +586,15 @@
         subject: 'Полотна дверні МДФ Класік (48 шт) + Погонаж телескоп',
         amount: 264000,
         stage: 'PROPOSAL',
-        note: 'Очікується передоплата 50% після звірки комплектації'
+        note: 'Очікується передоплата 50% після звірки комплектації',
+        docId: 'DOC-CRM-101',
+        callHistory: [
+          { time: '10:42', dir: 'Вхідний (SIP)', duration: '3 хв 15 сек', summary: 'Уточнили наявність 48 полотен і ціну на погонаж.' }
+        ]
       },
       {
         id: 'CRM-102',
+        origin: 'OUTBOUND_CALL',
         client: 'ЖК «Рів\'єра Сіті» (Генпідряд)',
         edrpou: '41209412',
         contact: 'Савчук І.М.',
@@ -541,10 +602,15 @@
         subject: 'Нестандартні блоки 2300х900 (22 шт) + монтаж',
         amount: 198000,
         stage: 'NEGOTIATION',
-        note: 'Погоджено графік запуску у цех ЧПК'
+        note: 'Погоджено графік запуску у цех ЧПК',
+        docId: 'DOC-INV-104',
+        callHistory: [
+          { time: '09:50', dir: 'Вихідний (SIP)', duration: '4 хв 40 сек', summary: 'Погодили терміни поставки на об\'єкт ЖК Рів\'єра.' }
+        ]
       },
       {
         id: 'CRM-103',
+        origin: 'MANUAL',
         client: 'Салон «Еліт-Двері Львів»',
         edrpou: '35882104',
         contact: 'Ткачук Д.Р.',
@@ -552,10 +618,15 @@
         subject: 'Дилерська партія полотен МДФ + Погонаж (65 к-тів)',
         amount: 342500,
         stage: 'WON',
-        note: 'Оформлено специфікацію на відвантаження'
+        note: 'Оформлено специфікацію на відвантаження',
+        docId: 'DOC-CRM-101',
+        callHistory: [
+          { time: 'Вчора 16:15', dir: 'Вхідний (SIP)', duration: '2 хв 55 сек', summary: 'Підтвердили відвантаження нової партії.' }
+        ]
       },
       {
         id: 'CRM-104',
+        origin: 'OUTBOUND_CALL',
         client: 'ТОВ "АгроПромБуд"',
         edrpou: '40291823',
         contact: 'Коваль В.П.',
@@ -563,15 +634,38 @@
         subject: 'Офісні полотна Глухі МДФ (18 шт)',
         amount: 79200,
         stage: 'NEW',
-        note: 'Надіслано базовий прайс'
+        note: 'Надіслано базовий прайс',
+        docId: 'DOC-INV-104',
+        callHistory: [
+          { time: '09:12', dir: 'Вихідний (SIP)', duration: '1 хв 48 сек', summary: 'Первинний контакт з постачальником будмайданчика.' }
+        ]
       }
     ],
     payables: [
-      { id: 'AP-1', party: 'ТОВ "Кроноспан УА"', edrpou: '33219480', doc: 'ПН-8812 (МДФ 16 мм / ХДФ)', amount: 412000, overdueDays: 0, dueDate: '24.11.2026', status: 'OPEN' },
-      { id: 'AP-2', party: 'ПП "Ліс-Карпати Експорт"', edrpou: '29481029', doc: 'ПН-4410 (Брус сосновий зрощений)', amount: 186000, overdueDays: 6, dueDate: '04.11.2026', status: 'OVERDUE' },
-      { id: 'AP-3', party: 'ТОВ "СІМ-Фурнітура Україна"', edrpou: '37102944', doc: 'РН-1190 (Завіси AGB / Замки)', amount: 128500, overdueDays: 0, dueDate: '29.11.2026', status: 'OPEN' },
-      { id: 'AP-4', party: 'АТ "Хмельницькобленерго"', edrpou: '22767506', doc: 'Рах. 11/2026 (Електроенергія ЧПК)', amount: 64200, overdueDays: 0, dueDate: '20.11.2026', status: 'OPEN' }
-    ]
+      { id: 'AP-1', party: 'ТОВ "Кроноспан УА"', edrpou: '33219480', doc: 'ПН-8812 (МДФ 16 мм / ХДФ)', docId: 'DOC-PN-4401', amount: 412000, overdueDays: 0, dueDate: '24.11.2026', status: 'OPEN' },
+      { id: 'AP-2', party: 'ПП "Ліс-Карпати Експорт"', edrpou: '29481029', doc: 'ПН-4410 (Брус сосновий зрощений)', docId: 'DOC-PN-4401', amount: 186000, overdueDays: 6, dueDate: '04.11.2026', status: 'OVERDUE' },
+      { id: 'AP-3', party: 'ТОВ "СІМ-Фурнітура Україна"', edrpou: '37102944', doc: 'РН-1190 (Завіси AGB / Замки)', docId: 'DOC-SF-8821', amount: 128500, overdueDays: 0, dueDate: '29.11.2026', status: 'OPEN' },
+      { id: 'AP-4', party: 'АТ "Хмельницькобленерго"', edrpou: '22767506', doc: 'Рах. 11/2026 (Електроенергія ЧПК)', docId: 'DOC-INV-104', amount: 64200, overdueDays: 0, dueDate: '20.11.2026', status: 'OPEN' }
+    ],
+    companyLogs: [
+      { time: '09:14:22', role: 'STAFF (Комірник)', module: 'Склад QR', sheet: 'Склад_QR_ТМЦ', action: 'Скановано 4820010400016 -> Прихід RAW-MDF-16 (+45 лист)', amount: 55800 },
+      { time: '10:42:05', role: 'STAFF (Менеджер)', module: 'CRM / SIP', sheet: 'CRM_Дзвінки_Угоди', action: 'Авто-створено/оновлено картку ТОВ "БудМаркет Поділля" (Вхідний дзвінок)', amount: 264000 },
+      { time: '14:52:18', role: 'CHIEF_ACCOUNTANT', module: 'Облік / ОСВ', sheet: 'Проводки_ОСВ_ДЗКЗ', action: 'Проводка JL-9428: Дт 361 Кт 701 (ТОВ "Епіцентр К")', amount: 460000 }
+    ],
+    hiddenExcelMirror: {
+      CRM_Дзвінки_Угоди: [
+        { ID: 'CRM-101', Тип: 'Вхідний дзвінок', Клієнт: 'ТОВ "БудМаркет Поділля"', Телефон: '+380 67 312-44-10', Сума: 264000, Етап: 'PROPOSAL' }
+      ],
+      Склад_QR_ТМЦ: [
+        { Час: '09:14:22', Штрихкод: '4820010400016', SKU: 'RAW-MDF-16', Операція: 'Прихід +45 лист', Документ: 'ПН-4401' }
+      ],
+      Проводки_ОСВ_ДЗКЗ: [
+        { ID: 'JL-9428', Дт: '361', Кт: '701', Сума: 460000, Документ: 'ВН-2026-841' }
+      ],
+      PnL_Звіт: [
+        { Стаття: 'Базовий зріз P&L', Період: 'MONTH', Виручка: 5500000, ЧистийПрибуток: 1420000 }
+      ]
+    }
   };
 
   // ─── Document OCR & Approval Ecosystem State ───────────────────────────────
@@ -902,30 +996,73 @@
   // ─── Single-Owner Edit Authorization Guard ──────────────────────────────────
   function requireOwnerEdit() {
     if (state.editAuthorized) return true;
-    showInlineStatus('Доступ STAFF (Перегляд): редагування цифр P&L, цін, ТМЦ, боргів та проводок дозволено лише Власнику.');
+    showInlineStatus('Доступ STAFF: редагування фінансових цифр, P&L, цін, боргів та доступ до логів/Excel обмежені Власником та Главбухом.');
     return false;
   }
 
+  // ─── Silent Background Excel Shadow Backup & Company Audit Log ─────────────
+  function recordCompanyAuditAndExcelMirror(sheetName, rowObj, actionText, amountUah) {
+    const t = new Date().toLocaleTimeString('uk-UA');
+    const modMap = {
+      CRM_Дзвінки_Угоди: 'CRM / Телефонія',
+      Склад_QR_ТМЦ: 'Склад QR',
+      Проводки_ОСВ_ДЗКЗ: 'Облік / ОСВ',
+      PnL_Звіт: 'P&L Звіт'
+    };
+    state.companyLogs.unshift({
+      time: t,
+      role: state.accessRole || 'OWNER',
+      module: modMap[sheetName] || 'ERP',
+      sheet: sheetName,
+      action: actionText,
+      amount: Number(amountUah) || 0
+    });
+    if (!state.hiddenExcelMirror[sheetName]) state.hiddenExcelMirror[sheetName] = [];
+    state.hiddenExcelMirror[sheetName].unshift(Object.assign({ ЧасЗапису: t }, rowObj));
+
+    const vaultModal = document.getElementById('vault-logs-modal');
+    if (vaultModal && vaultModal.classList.contains('open')) {
+      renderVaultLogsModal();
+    }
+  }
+
   function applyAccessRole(role) {
-    state.editAuthorized = role !== 'STAFF';
+    state.accessRole = role || 'OWNER';
+    const isPriv = state.accessRole === 'OWNER' || state.accessRole === 'CHIEF_ACCOUNTANT';
+    state.editAuthorized = isPriv;
+
     const banner = document.getElementById('global-access-banner');
     const txt = document.getElementById('global-access-text');
     const code = document.getElementById('global-access-code');
     const uName = document.getElementById('sidebar-user-name');
     const uRole = document.getElementById('sidebar-user-role');
+    const vaultBtn = document.getElementById('btn-open-vault-logs');
 
-    if (banner) banner.classList.toggle('locked', !state.editAuthorized);
+    if (banner) banner.classList.toggle('locked', !isPriv);
     if (txt) {
-      txt.textContent = state.editAuthorized
-        ? 'Права редагування (OWNER): повний доступ до правки P&L, залишків ТМЦ, цін, ДЗ/КЗ, CRM та ручних проводок.'
-        : 'Режим STAFF (Лише перегляд): ручне редагування цифр P&L, залишків ТМЦ, цін, ДЗ/КЗ та проводок заблоковано.';
+      txt.textContent = state.accessRole === 'OWNER'
+        ? 'Роль Власника (OWNER): повний доступ до редагування цифр P&L, цін, ДЗ/КЗ, проводок та перегляду прихованого Excel-архіву й логів.'
+        : state.accessRole === 'CHIEF_ACCOUNTANT'
+        ? 'Роль Головного бухгалтера (CHIEF_ACCOUNTANT): повний доступ до обліку, ДЗ/КЗ, ОСВ, проводок, P&L та Excel-архіву компанії.'
+        : 'Операційний режим Персоналу (STAFF): робота в CRM/дзвінках та QR-сканування на складі дозволені; редагування фінансових цифр та приховані логи/Excel заблоковано.';
     }
-    if (code) code.textContent = state.editAuthorized ? 'ROLE: OWNER' : 'ROLE: STAFF (LOCKED)';
-    if (uName) uName.textContent = state.editAuthorized ? 'Власник (Єдиний адмін)' : 'Співробітник (Перегляд)';
-    if (uRole) uRole.textContent = state.editAuthorized ? 'Правка цифр: Дозволено' : 'Правка цифр: Заблоковано';
+    if (code) code.textContent = `ROLE: ${state.accessRole}${isPriv ? '' : ' (OPERATIONAL ONLY)'}`;
+    if (uName) {
+      uName.textContent = state.accessRole === 'OWNER'
+        ? 'Власник'
+        : state.accessRole === 'CHIEF_ACCOUNTANT'
+        ? 'Головний бухгалтер'
+        : 'Персонал (Операційна)';
+    }
+    if (uRole) {
+      uRole.textContent = isPriv ? 'Повні права + Excel-лог' : 'Робота з клієнтами / QR';
+    }
+    if (vaultBtn) {
+      vaultBtn.style.display = isPriv ? 'inline-flex' : 'none';
+    }
 
     document.querySelectorAll('.owner-editable-btn, .inline-edit-input, .inline-edit-text').forEach((el) => {
-      el.disabled = !state.editAuthorized;
+      el.disabled = !isPriv;
     });
 
     if (typeof renderPnlSection === 'function') renderPnlSection();
@@ -935,23 +1072,184 @@
     if (typeof renderDealerCreditTable === 'function') renderDealerCreditTable();
   }
 
-  // ─── Navigation ─────────────────────────────────────────────────────────────
+  // ─── Original Primary Document Viewer Modal ────────────────────────────────
+  function openOriginalDocumentModal(docIdOrObj) {
+    const modal = document.getElementById('doc-original-modal');
+    const body = document.getElementById('doc-original-modal-body');
+    const titleEl = document.getElementById('doc-orig-title');
+    const badgeEl = document.getElementById('doc-orig-badge');
+    if (!modal || !body) return;
+
+    let docObj = typeof docIdOrObj === 'string'
+      ? state.primaryDocuments.find((d) => d.id === docIdOrObj)
+      : docIdOrObj;
+
+    if (!docObj) {
+      docObj = state.primaryDocuments[0] || {
+        id: 'DOC-DEFAULT',
+        docNumber: 'Первинний документ',
+        typeBadge: 'Накладна / Договір',
+        counterparty: 'Контрагент',
+        edrpou: '00000000',
+        amount: 0,
+        itemsSummary: 'Товарно-матеріальні цінності',
+        ledgerNote: 'Дт/Кт проведено',
+        signedBy: 'Власник / Бухгалтер'
+      };
+    }
+
+    state.activeDocOrigId = docObj.id;
+    if (badgeEl) badgeEl.textContent = docObj.typeBadge || 'Оригінал документа';
+    if (titleEl) titleEl.textContent = `${docObj.docNumber} (${docObj.counterparty})`;
+
+    const amt = Number(docObj.amount) || 0;
+    const vat = Math.round((amt / 6) * 100) / 100;
+    const scanImgHtml = docObj.attachmentUrl
+      ? `<div style="margin-top:12px; border:1px solid var(--border); padding:10px; border-radius:6px; background:#FAFAFA;">
+           <div style="font-size:11.5px; font-weight:700; margin-bottom:6px;">Прикріплений файл скан-копії: ${escapeHtml(docObj.attachmentName || 'scan')}</div>
+           ${String(docObj.attachmentUrl).startsWith('data:image/') ? `<img src="${docObj.attachmentUrl}" style="max-width:100%; max-height:360px; border:1px solid var(--border); border-radius:4px;" />` : `<a href="${docObj.attachmentUrl}" target="_blank" class="btn btn-sm btn-subtle">Відкрити прикріплений PDF</a>`}
+         </div>`
+      : `<div style="margin-top:12px; padding:10px 12px; border:1px dashed var(--border); border-radius:4px; font-size:11.5px; color:var(--text-muted);">Електронна скан-копія сформована з первинного реєстру. За потреби можна прикріпити фото паперового оригіналу кнопкою зверху.</div>`;
+
+    body.innerHTML = `
+      <div style="border:1px solid #09090B; padding:18px 20px; border-radius:6px; background:#FFFFFF;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; border-bottom:2px solid #09090B; padding-bottom:10px; margin-bottom:12px; gap:12px;">
+          <div>
+            <div style="font-size:11px; color:var(--text-muted); text-transform:uppercase;">${escapeHtml(docObj.typeBadge || 'ПЕРВИННИЙ ДОКУМЕНТ')}</div>
+            <div style="font-size:16px; font-weight:800; margin-top:2px;">${escapeHtml(docObj.docNumber)}</div>
+          </div>
+          <div style="text-align:right;" class="mono">
+            <div style="font-size:11.5px; font-weight:700;">ЄДРПОУ: ${escapeHtml(docObj.edrpou || '—')}</div>
+            <div style="font-size:11px; color:var(--text-muted);">ID: ${escapeHtml(docObj.id)}</div>
+          </div>
+        </div>
+        <div style="font-size:13px; margin-bottom:10px;">
+          <strong>Контрагент:</strong> ${escapeHtml(docObj.counterparty)}<br/>
+          <strong>Номенклатура / Суть:</strong> ${escapeHtml(docObj.itemsSummary)}<br/>
+          <strong>Бухгалтерська прив'язка:</strong> <span class="mono">${escapeHtml(docObj.ledgerNote || 'Дт / Кт')}</span>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#FAFAFA; border:1px solid var(--border); padding:10px 12px; border-radius:4px;">
+          <div>
+            <div style="font-size:11.5px; color:var(--text-muted);">Сума документа (з ПДВ 20%: ${fmtUah(vat, 2)})</div>
+            <div class="mono" style="font-size:18px; font-weight:800;">${fmtUah(amt, 2)}</div>
+          </div>
+          <div style="text-align:right; font-size:11.5px;">
+            <div style="font-weight:700;">ПІДПИСАНО / ОРИГІНАЛ</div>
+            <div style="color:var(--text-secondary);">${escapeHtml(docObj.signedBy || 'Уповноважена особа')}</div>
+          </div>
+        </div>
+        ${scanImgHtml}
+      </div>
+    `;
+    modal.classList.add('open');
+  }
+
+  // ─── Hidden Shadow Excel Workbook & Logs Vault (OWNER / CHIEF_ACCOUNTANT) ─
+  function renderVaultLogsModal() {
+    if (state.accessRole !== 'OWNER' && state.accessRole !== 'CHIEF_ACCOUNTANT') return;
+    const body = document.getElementById('vault-logs-modal-body');
+    if (!body) return;
+
+    const sheetsSummary = Object.keys(state.hiddenExcelMirror).map((sheet) => {
+      const cnt = state.hiddenExcelMirror[sheet].length;
+      return `<div style="border:1px solid var(--border); border-radius:6px; padding:10px 12px; background:#FAFAFA;">
+        <div class="mono" style="font-size:12px; font-weight:700;">Аркуш: ${escapeHtml(sheet)}</div>
+        <div style="font-size:12px; color:var(--text-secondary); margin-top:2px;">Записів у дзеркалі: <strong>${cnt}</strong></div>
+      </div>`;
+    }).join('');
+
+    const logsHtml = state.companyLogs.slice(0, 40).map((lg) => `
+      <tr>
+        <td class="mono" style="font-size:11.5px;">${escapeHtml(lg.time)}</td>
+        <td><span class="badge badge-slate mono" style="font-size:10.5px;">${escapeHtml(lg.role)}</span></td>
+        <td style="font-weight:600; font-size:12px;">${escapeHtml(lg.module)}</td>
+        <td style="font-size:12.5px;">${escapeHtml(lg.action)}</td>
+        <td class="mono" style="font-size:11px; color:var(--text-muted);">${escapeHtml(lg.sheet)}</td>
+        <td class="text-right mono" style="font-weight:700;">${lg.amount ? fmtUah(lg.amount) : '—'}</td>
+      </tr>
+    `).join('');
+
+    body.innerHTML = `
+      <div style="display:grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap:10px; margin-bottom:14px;">
+        ${sheetsSummary}
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Час</th>
+              <th>Роль</th>
+              <th>Модуль</th>
+              <th>Зафіксована дія (Аудит-лог)</th>
+              <th>Аркуш Excel</th>
+              <th class="text-right">Сума</th>
+            </tr>
+          </thead>
+          <tbody>${logsHtml}</tbody>
+        </table>
+      </div>
+    `;
+  }
+
+  function downloadExcelWorkbook() {
+    if (state.accessRole !== 'OWNER' && state.accessRole !== 'CHIEF_ACCOUNTANT') {
+      showInlineStatus('Доступ до Excel-архіву мають лише Власник та Головний бухгалтер.');
+      return;
+    }
+
+    const buildSheetXml = (sheetName, rows) => {
+      const safeRows = rows && rows.length ? rows : [{ Повідомлення: 'Немає записів' }];
+      const headers = Object.keys(safeRows[0]);
+      const trs = [
+        '<Row>' + headers.map((h) => `<Cell><Data ss:Type="String">${escapeHtml(h)}</Data></Cell>`).join('') + '</Row>',
+        ...safeRows.map((r) =>
+          '<Row>' + headers.map((h) => {
+            const v = r[h] ?? '';
+            const isNum = typeof v === 'number' && !isNaN(v);
+            return `<Cell><Data ss:Type="${isNum ? 'Number' : 'String'}">${escapeHtml(v)}</Data></Cell>`;
+          }).join('') + '</Row>'
+        )
+      ].join('');
+      return `<Worksheet ss:Name="${escapeHtml(sheetName.slice(0, 30))}"><Table>${trs}</Table></Worksheet>`;
+    };
+
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">
+  ${buildSheetXml('Журнал_Подій_Компанії', state.companyLogs.map((l) => ({ Час: l.time, Роль: l.role, Модуль: l.module, Дія: l.action, АркушExcel: l.sheet, Сума: l.amount })))}
+  ${buildSheetXml('CRM_Дзвінки_Угоди', state.hiddenExcelMirror.CRM_Дзвінки_Угоди)}
+  ${buildSheetXml('Склад_QR_ТМЦ', state.hiddenExcelMirror.Склад_QR_ТМЦ)}
+  ${buildSheetXml('Проводки_ОСВ_ДЗКЗ', state.hiddenExcelMirror.Проводки_ОСВ_ДЗКЗ)}
+  ${buildSheetXml('PnL_Звіт', state.hiddenExcelMirror.PnL_Звіт)}
+</Workbook>`;
+
+    const blob = new Blob([xml], { type: 'application/vnd.ms-excel;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `OpexMetrix_Company_Mirror_${new Date().toISOString().slice(0, 10)}.xls`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    showInlineStatus('Повну дзеркальну Excel-книгу (.xls, 5 аркушів) завантажено');
+  }
+
+  // ─── Navigation (8 Streamlined Modules) ────────────────────────────────────
   const TAB_TITLES = {
     pulse: 'Пульс підприємства',
     pnl: 'Звіт P&L та Аналітика',
-    docs: 'Документи та OCR',
-    ledger: 'Проводки та ОСВ',
+    sales: 'CRM та Телефонія',
+    stock: 'Склад QR і ТМЦ',
     mes: 'Цех MES та ЧПК',
-    sales: 'CRM та Продажі',
-    debt: 'Дебіторка і Кредиторка',
-    'ai-sales': 'IP-Телефонія та KPI',
-    stock: 'Склад і ТМЦ',
-    bank: 'Банк і Бюджети',
-    taxes: 'Податки ДПС та ЗП',
-    about: 'Імпорт 1С / Excel (48 год)'
+    ledger: 'Облік: Проводки, ОСВ і Борги',
+    bank: 'Банк і Каса',
+    taxes: 'Податки ДПС та ЗП'
   };
 
   function switchTab(tabId) {
+    if (tabId === 'debt') tabId = 'ledger';
+    if (tabId === 'ai-sales') tabId = 'sales';
     if (!TAB_TITLES[tabId]) return;
     state.activeTab = tabId;
 
@@ -975,22 +1273,19 @@
 
     if (tabId === 'pnl') {
       renderPnlSection();
-    } else if (tabId === 'debt') {
-      renderDebtSection();
     } else if (tabId === 'sales') {
       renderCrmDealsTable();
+      renderAiSalesSection();
+      renderSalesLeaderboardTable();
       renderSalesOrdersTable();
       renderDealerCreditTable();
     } else if (tabId === 'stock') {
       renderStockSection();
     } else if (tabId === 'ledger') {
+      renderDebtSection();
       renderLedgerSection();
-    } else if (tabId === 'docs') {
-      renderDocsSection();
     } else if (tabId === 'mes') {
       renderMesSection();
-    } else if (tabId === 'ai-sales') {
-      renderAiSalesSection();
     }
   }
 
@@ -1431,13 +1726,18 @@
       const amt = Math.round((Number(entry.amount) || 0) * 100) / 100;
       const dtCode = String(entry.dtCode || (entry.dt || '').split(' ')[0] || '361').trim();
       const ktCode = String(entry.ktCode || (entry.kt || '').split(' ')[0] || '701').trim();
+      const docLabel = entry.doc || `AUTO-${state.ledgerSeq}`;
+      const descText = entry.desc || 'Автоматична господарська операція в онлайні';
+      const entityName = entry.entity || 'ТОВ "ОпексМетрікс Індастріал"';
+      const docId = entry.docId || `DOC-JL-${state.ledgerSeq}`;
 
       state.ledgerEntries.unshift({
         id: `JL-${state.ledgerSeq}`,
+        docId,
         time: formatTimeNowMs(),
-        doc: entry.doc || `AUTO-${state.ledgerSeq}`,
-        desc: entry.desc || 'Автоматична господарська операція в онлайні',
-        entity: entry.entity || 'ТОВ "ОпексМетрікс Індастріал"',
+        doc: docLabel,
+        desc: descText,
+        entity: entityName,
         dt: entry.dt || `${dtCode} Рахунок Дт`,
         dtCode,
         kt: entry.kt || `${ktCode} Рахунок Кт`,
@@ -1445,6 +1745,20 @@
         amount: amt,
         isNew: true
       });
+
+      if (!state.primaryDocuments.some((d) => d.id === docId)) {
+        state.primaryDocuments.unshift({
+          id: docId,
+          docNumber: docLabel,
+          typeBadge: 'Бухгалтерський первинний документ',
+          counterparty: entityName,
+          edrpou: entry.edrpou || '—',
+          amount: amt,
+          itemsSummary: descText,
+          ledgerNote: `Проводка JL-${state.ledgerSeq}: Дт ${dtCode} Кт ${ktCode}`,
+          signedBy: state.accessRole === 'CHIEF_ACCOUNTANT' ? 'Головний бухгалтер' : 'Власник / Бухгалтерія'
+        });
+      }
 
       // Update Trial Balance (ОСВ) turnovers so Дт === Кт always holds
       let dtAcc = state.trialBalanceAccounts.find((a) => a.code === dtCode);
@@ -1460,6 +1774,23 @@
         state.trialBalanceAccounts.push(ktAcc);
       }
       ktAcc.turnKt += amt;
+
+      if (!entry.skipExcelMirror) {
+        recordCompanyAuditAndExcelMirror(
+          'Проводки_ОСВ_ДЗКЗ',
+          {
+            ID: `JL-${state.ledgerSeq}`,
+            Документ: docLabel,
+            Контрагент: entityName,
+            Дебет: dtCode,
+            Кредит: ktCode,
+            Сума_UAH: amt,
+            Опис: descText
+          },
+          `Проводка JL-${state.ledgerSeq}: Дт ${dtCode} Кт ${ktCode} (${docLabel})`,
+          amt
+        );
+      }
     });
 
     // Pulse the header Live Ledger button
@@ -1474,7 +1805,7 @@
 
     const navBadge = document.getElementById('nav-badge-ledger');
     if (navBadge) {
-      navBadge.textContent = `LIVE ${state.ledgerEntries.length}`;
+      navBadge.textContent = `ДЗ/КЗ • ${state.ledgerEntries.length}`;
     }
 
     renderLedgerSection();
@@ -1490,16 +1821,17 @@
     const filterSelect = document.getElementById('ledger-filter-account');
     const accFilter = filterSelect ? filterSelect.value : 'ALL';
 
+    const countVal = (1420 + state.ledgerEntries.length).toLocaleString('uk-UA');
     const countEl = document.getElementById('ledger-stat-count');
-    if (countEl) {
-      countEl.textContent = (1420 + state.ledgerEntries.length).toLocaleString('uk-UA');
-    }
+    if (countEl) countEl.textContent = countVal;
+    const kpiCountEl = document.getElementById('ledger-kpi-entries-count');
+    if (kpiCountEl) kpiCountEl.textContent = String(state.ledgerEntries.length);
 
     const totalTurn = state.trialBalanceAccounts.reduce((s, a) => s + a.turnDt, 0);
     const turnEl = document.getElementById('ledger-stat-turnover');
-    if (turnEl) {
-      turnEl.textContent = fmtUah(Math.round(totalTurn));
-    }
+    if (turnEl) turnEl.textContent = fmtUah(Math.round(totalTurn));
+    const kpiTurnEl = document.getElementById('ledger-kpi-turnover');
+    if (kpiTurnEl) kpiTurnEl.textContent = fmtUah(Math.round(totalTurn));
 
     if (streamTbody) {
       const filtered = state.ledgerEntries.filter((e) => {
@@ -1532,8 +1864,8 @@
               <td class="text-right mono" style="font-weight: 700; font-size: 13.5px; color: var(--primary);">
                 ${fmtUah(e.amount, 2)}
               </td>
-              <td class="text-right">
-                <span class="badge badge-green mono" style="font-size: 11px;">Дт=Кт • 0.04s</span>
+              <td class="text-right" style="white-space: nowrap;">
+                <button type="button" class="btn btn-sm btn-subtle js-open-doc-original" data-doc-id="${escapeHtml(e.docId || '')}" data-doc-num="${escapeHtml(e.doc)}" data-party="${escapeHtml(e.entity)}" data-summary="${escapeHtml(e.desc)}" data-amount="${e.amount}" data-ledger="Дт ${escapeHtml(e.dtCode)} Кт ${escapeHtml(e.ktCode)}">Оригінал</button>
               </td>
             </tr>
           `;
@@ -1830,10 +2162,10 @@
     const elNet = document.getElementById('debt-kpi-net');
     if (elNet) elNet.textContent = `${netPos >= 0 ? '+' : ''}${fmtUah(netPos)}`;
 
-    const navDebtBadge = document.getElementById('nav-badge-debt');
-    if (navDebtBadge) {
+    const navLedgerBadge = document.getElementById('nav-badge-ledger');
+    if (navLedgerBadge) {
       const ovCnt = state.dealerCredits.filter((d) => d.overdueDays > 0 && d.debtUah > 0).length;
-      navDebtBadge.textContent = ovCnt > 0 ? `${ovCnt} простр.` : fmtUah(totalAr);
+      navLedgerBadge.textContent = ovCnt > 0 ? `ДЗ/КЗ (${ovCnt} простр.)` : `ДЗ/КЗ • ${state.ledgerEntries.length}`;
     }
 
     const disAttr = state.editAuthorized ? '' : 'disabled';
@@ -1868,6 +2200,7 @@
               <td>${statusBadge}</td>
               <td class="text-right" style="white-space: nowrap;">
                 ${dl.debtUah > 0 ? `<button type="button" class="btn btn-sm btn-action-primary js-debt-ar-pay owner-editable-btn" data-id="${escapeHtml(dl.id)}" ${disAttr}>Погасити</button>` : '<span style="font-size:12px;color:var(--text-muted);">Оплачено</span>'}
+                <button type="button" class="btn btn-sm btn-subtle js-open-doc-original" style="margin-left: 4px;" data-doc-id="${escapeHtml(dl.docId || '')}" data-doc-num="Акт звірки ДЗ ${escapeHtml(dl.id)}" data-party="${escapeHtml(dl.name)}" data-summary="${escapeHtml(dl.segment || 'Дебіторська заборгованість покупця (Рах. 361)')}" data-amount="${dl.debtUah}" data-ledger="Рах. 361 • Прострочення ${dl.overdueDays} дн.">Оригінал</button>
               </td>
             </tr>
           `;
@@ -1896,8 +2229,9 @@
                 <input type="number" class="inline-edit-input js-debt-ap-edit" data-id="${escapeHtml(ap.id)}" data-field="amount" value="${ap.amount}" min="0" style="width: 110px; font-weight: 700;" ${disAttr} />
               </td>
               <td>${statusHtml}</td>
-              <td class="text-right">
+              <td class="text-right" style="white-space: nowrap;">
                 ${!isPaid ? `<button type="button" class="btn btn-sm btn-subtle js-debt-ap-pay owner-editable-btn" data-id="${escapeHtml(ap.id)}" ${disAttr}>Сплатити (Кт 311)</button>` : '<span style="font-size:12px;color:var(--text-muted);">Закрито</span>'}
+                <button type="button" class="btn btn-sm btn-subtle js-open-doc-original" style="margin-left: 4px;" data-doc-id="${escapeHtml(ap.docId || '')}" data-doc-num="${escapeHtml(ap.doc)}" data-party="${escapeHtml(ap.party)}" data-edrpou="${escapeHtml(ap.edrpou || '')}" data-summary="${escapeHtml(ap.doc)}" data-amount="${ap.amount}" data-ledger="Рах. 631 Кредиторська заборгованість">Оригінал</button>
               </td>
             </tr>
           `;
@@ -1922,10 +2256,8 @@
             <td class="text-right mono" style="font-weight: 800; color: var(--success);">
               +${fmtUah(div.ebitdaMarginUah)} <span class="badge badge-green" style="margin-left:4px;">${div.marginPct}%</span>
             </td>
-            <td class="text-right mono">${div.avgDiscountPct}%</td>
             <td class="text-right mono" style="font-weight: 700; color: var(--accent-blue);">${div.cashCollectionPct}%</td>
             <td class="text-right mono"><span class="badge badge-blue">${div.qcScore} / 100</span></td>
-            <td><span class="badge badge-green">${escapeHtml(div.status)}</span></td>
           </tr>
         `;
       })
@@ -2059,7 +2391,7 @@
           <div style="font-size:12px;font-weight:700;color:var(--text-main);margin-bottom:6px;">Перемкнути контур бізнесу з телефону (оновлює ПК):</div>
           <select id="phone-entity-select" class="select" style="font-size:12px;height:34px;">
             <option value="HOLDING_ALL" ${state.holdingEntity === 'HOLDING_ALL' || state.holdingEntity === 'ALL' ? 'selected' : ''}>Група Компаній (Цех + Будівництво)</option>
-            <option value="CONSTRUCTION_LLC" ${state.holdingEntity === 'CONSTRUCTION_LLC' || state.holdingEntity === 'CONSTRUCTION' ? 'selected' : ''}>️ ТОВ "БудІнвест Генпідряд" (ЖК / КБ-2в)</option>
+            <option value="CONSTRUCTION_LLC" ${state.holdingEntity === 'CONSTRUCTION_LLC' || state.holdingEntity === 'CONSTRUCTION' ? 'selected' : ''}>ТОВ "БудІнвест Генпідряд" (ЖК / КБ-2в)</option>
             <option value="PLANT_LLC" ${state.holdingEntity === 'PLANT_LLC' || state.holdingEntity === 'PLANT' ? 'selected' : ''}>ТОВ "ПромТех Виробництво"</option>
             <option value="TRADE_LLC" ${state.holdingEntity === 'TRADE_LLC' || state.holdingEntity === 'TRADE' ? 'selected' : ''}>ТОВ "Альфа Трейд Дистрибуція"</option>
             <option value="SMB_MODE" ${state.holdingEntity === 'SMB_MODE' || state.holdingEntity === 'SMB' ? 'selected' : ''}>Контур Середнього Бізнесу</option>
@@ -2236,7 +2568,7 @@
             statusBadge = `<span class="badge badge-green">Погоджено та проведено</span>`;
             actionBtns = `
               <div style="display:flex;gap:6px;justify-content:flex-end;">
-                <button type="button" class="btn btn-sm btn-subtle js-doc-preview-ocr" data-id="${escapeHtml(d.id)}">️ Скан OCR</button>
+                <button type="button" class="btn btn-sm btn-subtle js-doc-preview-ocr" data-id="${escapeHtml(d.id)}">Оригінал</button>
                 <span class="mono" style="font-size:11.5px;color:var(--success);align-self:center;">Дт ${escapeHtml(d.ledgerDtCode)} Кт ${escapeHtml(d.ledgerKtCode)}</span>
               </div>
             `;
@@ -2244,7 +2576,7 @@
             statusBadge = `<span class="badge badge-red">На доопрацюванні</span>`;
             actionBtns = `
               <div style="display:flex;gap:6px;justify-content:flex-end;">
-                <button type="button" class="btn btn-sm btn-subtle js-doc-Approve" data-id="${escapeHtml(d.id)}">Погодити</button>
+                <button type="button" class="btn btn-sm btn-subtle js-doc-approve" data-id="${escapeHtml(d.id)}">Погодити</button>
               </div>
             `;
           } else {
@@ -2252,8 +2584,8 @@
             actionBtns = `
               <div style="display:flex;gap:6px;justify-content:flex-end;flex-wrap:wrap;">
                 <button type="button" class="btn btn-sm btn-action-primary js-doc-approve" data-id="${escapeHtml(d.id)}">Погодити + в Склад/Облік</button>
-                <button type="button" class="btn btn-sm btn-subtle js-doc-preview-ocr" data-id="${escapeHtml(d.id)}">️ OCR</button>
-                <button type="button" class="btn btn-sm btn-subtle js-doc-reject" data-id="${escapeHtml(d.id)}"></button>
+                <button type="button" class="btn btn-sm btn-subtle js-doc-preview-ocr" data-id="${escapeHtml(d.id)}">Оригінал</button>
+                <button type="button" class="btn btn-sm btn-subtle js-doc-reject" data-id="${escapeHtml(d.id)}">Відхилити</button>
               </div>
             `;
           }
@@ -2457,14 +2789,14 @@
       itemsHtml.push(`
         <div class="action-item" style="border-left: 3px solid var(--accent-blue);">
           <div class="action-item-left">
-            <span class="action-tag-quiet" style="background: var(--accent-blue-soft); color: var(--accent-blue); border-color: var(--accent-blue-border);">Погодження OCR</span>
+            <span class="action-tag-quiet" style="background: var(--accent-blue-soft); color: var(--accent-blue); border-color: var(--accent-blue-border);">Первинний документ</span>
             <div>
               <div class="action-title">${escapeHtml(topDoc.typeBadge)}: № ${escapeHtml(topDoc.docNumber)} (${escapeHtml(topDoc.counterparty)}) — <span class="action-amount">${fmtUah(topDoc.amount)}</span></div>
               <div class="action-desc">${escapeHtml(topDoc.source)} • ${escapeHtml(topDoc.ecosystemLink)}. На погодженні (${pendingDocs.length} док.).</div>
             </div>
           </div>
           <div class="action-buttons">
-            <button type="button" class="btn btn-sm btn-subtle" onclick="window.opexSwitchTab('docs')">Відкрити AI-Сканер (${pendingDocs.length})</button>
+            <button type="button" class="btn btn-sm btn-subtle js-open-doc-original" data-doc-id="DOC-PN-4401" data-doc-num="${escapeHtml(topDoc.docNumber)}" data-party="${escapeHtml(topDoc.counterparty)}" data-edrpou="${escapeHtml(topDoc.edrpou)}" data-summary="${escapeHtml(topDoc.ecosystemLink)}" data-amount="${topDoc.amount}" data-ledger="Дт ${escapeHtml(topDoc.ledgerDtCode)} Кт ${escapeHtml(topDoc.ledgerKtCode)}">Відкрити оригінал (${pendingDocs.length})</button>
             <button type="button" class="btn btn-sm btn-action-primary js-doc-approve" data-id="${escapeHtml(topDoc.id)}">Погодити + в Склад/Облік</button>
           </div>
         </div>
@@ -2719,13 +3051,38 @@
     };
   }
 
-  // ─── CRM УГОДИ (РУЧНЕ РЕДАГУВАННЯ + КОНВЕРТАЦІЯ В РАХУНОК) ────────────────
+  // ─── CRM КАРТКИ, АВТО-СТВОРЕННЯ НА ДЗВІНКИ ТА РАХУНКИ ─────────────────────
+  function normalizePhoneKey(phone) {
+    return String(phone || '').replace(/\D/g, '').slice(-9);
+  }
+
+  function formatOriginBadge(origin) {
+    if (origin === 'INBOUND_CALL') {
+      return '<span class="badge badge-green" style="font-size:10px;">Вхідний дзвінок</span>';
+    }
+    if (origin === 'OUTBOUND_CALL') {
+      return '<span class="badge badge-blue" style="font-size:10px;">Вихідний дзвінок</span>';
+    }
+    return '<span class="badge badge-slate" style="font-size:10px;">Ручна картка</span>';
+  }
+
   function renderCrmDealsTable() {
+    const boardEl = document.getElementById('crm-cards-board');
+    const tableWrapEl = document.getElementById('crm-deals-table-wrap');
     const tbody = document.getElementById('crm-deals-tbody');
-    if (!tbody) return;
+    const searchVal = (document.getElementById('crm-search-input')?.value || '').trim().toLowerCase();
+
+    const btnKanban = document.getElementById('btn-crm-view-kanban');
+    const btnTable = document.getElementById('btn-crm-view-table');
+    if (btnKanban && btnTable) {
+      btnKanban.className = state.crmViewMode === 'KANBAN' ? 'btn btn-sm btn-primary' : 'btn btn-sm btn-subtle';
+      btnTable.className = state.crmViewMode === 'TABLE' ? 'btn btn-sm btn-primary' : 'btn btn-sm btn-subtle';
+    }
+    if (boardEl) boardEl.style.display = state.crmViewMode === 'KANBAN' ? 'grid' : 'none';
+    if (tableWrapEl) tableWrapEl.style.display = state.crmViewMode === 'TABLE' ? 'block' : 'none';
 
     const countBadge = document.getElementById('crm-deals-count-badge');
-    if (countBadge) countBadge.textContent = `${state.crmDeals.length} угод у роботі`;
+    if (countBadge) countBadge.textContent = `Карток: ${state.crmDeals.length}`;
 
     const pipelineSum = state.crmDeals
       .filter((d) => d.stage !== 'LOST')
@@ -2733,51 +3090,298 @@
     const sumBadge = document.getElementById('crm-pipeline-sum-badge');
     if (sumBadge) sumBadge.textContent = `Воронка: ${fmtUah(pipelineSum)}`;
 
-    const disAttr = state.editAuthorized ? '' : 'disabled';
+    const navSalesBadge = document.getElementById('nav-badge-sales');
+    if (navSalesBadge) navSalesBadge.textContent = String(state.orders.length + state.crmDeals.length);
+
+    const filteredDeals = state.crmDeals.filter((d) => {
+      if (!searchVal) return true;
+      const hay = `${d.id} ${d.client} ${d.contact} ${d.phone} ${d.edrpou} ${d.subject}`.toLowerCase();
+      return hay.includes(searchVal);
+    });
+
     const stageOptions = [
       { val: 'NEW', label: 'Новий лід' },
-      { val: 'PROPOSAL', label: 'КП надіслано' },
-      { val: 'NEGOTIATION', label: 'Погодження договору' },
+      { val: 'PROPOSAL', label: 'КП / Специфікація' },
+      { val: 'NEGOTIATION', label: 'Погодження' },
       { val: 'WON', label: 'Оплачено / Угода' }
     ];
 
-    tbody.innerHTML = state.crmDeals
+    if (boardEl) {
+      boardEl.innerHTML = stageOptions
+        .map((st) => {
+          const stageDeals = filteredDeals.filter((d) => d.stage === st.val);
+          const stageSum = stageDeals.reduce((s, d) => s + (Number(d.amount) || 0), 0);
+          const cardsHtml = stageDeals.length === 0
+            ? `<div style="font-size:11.5px;color:var(--text-muted);padding:12px;text-align:center;border:1px dashed var(--border);border-radius:4px;">Немає карток</div>`
+            : stageDeals.map((deal) => {
+                const callsCnt = Array.isArray(deal.callHistory) ? deal.callHistory.length : 0;
+                return `
+                  <div class="crm-card" data-deal-id="${escapeHtml(deal.id)}">
+                    <div style="display:flex;justify-content:space-between;align-items:center;gap:6px;margin-bottom:6px;flex-wrap:wrap;">
+                      ${formatOriginBadge(deal.origin)}
+                      <span class="mono" style="font-size:10.5px;color:var(--text-muted);">${escapeHtml(deal.id)}</span>
+                    </div>
+                    <div style="font-weight:700;font-size:13.5px;color:var(--text-main);line-height:1.3;">${escapeHtml(deal.client)}</div>
+                    <div class="mono" style="font-size:11.5px;color:var(--text-secondary);margin-top:3px;">${escapeHtml(deal.phone || '—')} • ${escapeHtml(deal.contact || 'ОПР')}</div>
+                    <div style="font-size:12px;color:var(--text-secondary);margin-top:6px;line-height:1.4;">${escapeHtml(deal.subject)}</div>
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;padding-top:6px;border-top:1px solid var(--border);">
+                      <strong class="mono" style="font-size:13.5px;color:var(--text-main);">${fmtUah(deal.amount)}</strong>
+                      <span style="font-size:11px;color:var(--text-muted);">Дзвінків: ${callsCnt}</span>
+                    </div>
+                    <div style="display:flex;gap:4px;margin-top:8px;flex-wrap:wrap;">
+                      <button type="button" class="btn btn-sm btn-primary js-crm-open-card" data-id="${escapeHtml(deal.id)}" style="padding:3px 8px;font-size:11px;">Картка</button>
+                      <button type="button" class="btn btn-sm btn-subtle js-crm-to-invoice owner-editable-btn" data-id="${escapeHtml(deal.id)}" style="padding:3px 8px;font-size:11px;" ${state.editAuthorized ? '' : 'disabled'}>Рахунок</button>
+                      <button type="button" class="btn btn-sm btn-subtle js-open-doc-original" data-doc-id="${escapeHtml(deal.docId || '')}" data-doc-num="Специфікація ${escapeHtml(deal.id)}" data-party="${escapeHtml(deal.client)}" data-edrpou="${escapeHtml(deal.edrpou || '')}" data-summary="${escapeHtml(deal.subject)}" data-amount="${deal.amount}" data-ledger="CRM Картка ${escapeHtml(deal.id)}" style="padding:3px 8px;font-size:11px;">Оригінал</button>
+                    </div>
+                  </div>
+                `;
+              }).join('');
+
+          return `
+            <div class="crm-col">
+              <div class="crm-col-head">
+                <span>${escapeHtml(st.label)} (${stageDeals.length})</span>
+                <span class="mono" style="font-size:11px;color:var(--text-muted);">${fmtUah(stageSum)}</span>
+              </div>
+              ${cardsHtml}
+            </div>
+          `;
+        })
+        .join('');
+    }
+
+    if (!tbody) return;
+    const disAttr = state.editAuthorized ? '' : 'disabled';
+
+    tbody.innerHTML = filteredDeals
       .map((deal) => {
         const optsHtml = stageOptions
           .map((o) => `<option value="${o.val}" ${deal.stage === o.val ? 'selected' : ''}>${o.label}</option>`)
           .join('');
         return `
           <tr>
-            <td style="min-width: 135px;">
+            <td style="min-width: 145px;">
               <div style="font-weight: 700;">${escapeHtml(deal.client)}</div>
-              <div class="mono" style="font-size: 11px; color: var(--text-muted);">ЄДРПОУ: ${escapeHtml(deal.edrpou || '—')}</div>
+              <div style="display:flex;gap:6px;align-items:center;margin-top:2px;">
+                ${formatOriginBadge(deal.origin)}
+                <span class="mono" style="font-size: 11px; color: var(--text-muted);">${escapeHtml(deal.edrpou || '—')}</span>
+              </div>
             </td>
-            <td style="min-width: 115px;">
+            <td style="min-width: 120px;">
               <div style="font-size: 12px; font-weight: 600;">${escapeHtml(deal.contact || 'ОПР')}</div>
               <div class="mono" style="font-size: 11px; color: var(--text-secondary); white-space: nowrap;">${escapeHtml(deal.phone || '—')}</div>
             </td>
             <td>
-              <input type="text" class="inline-edit-text js-crm-edit" data-id="${escapeHtml(deal.id)}" data-field="subject" value="${escapeHtml(deal.subject)}" style="width: 100%; min-width: 120px; font-size: 12px;" ${disAttr} />
+              <input type="text" class="inline-edit-text js-crm-edit" data-id="${escapeHtml(deal.id)}" data-field="subject" value="${escapeHtml(deal.subject)}" style="width: 100%; min-width: 130px; font-size: 12px;" ${disAttr} />
             </td>
             <td class="text-right">
               <input type="number" class="inline-edit-input js-crm-edit" data-id="${escapeHtml(deal.id)}" data-field="amount" value="${deal.amount}" min="0" style="width: 86px; font-weight: 700;" ${disAttr} />
             </td>
             <td>
-              <select class="select js-crm-stage" data-id="${escapeHtml(deal.id)}" style="height: 32px; padding: 4px 22px 4px 8px; line-height: 1.3; font-size: 12px; width: 126px;" ${disAttr}>
+              <select class="select js-crm-stage" data-id="${escapeHtml(deal.id)}" style="height: 32px; padding: 4px 22px 4px 8px; line-height: 1.3; font-size: 12px; width: 126px;">
                 ${optsHtml}
               </select>
             </td>
             <td>
-              <input type="text" class="inline-edit-text js-crm-edit" data-id="${escapeHtml(deal.id)}" data-field="note" value="${escapeHtml(deal.note || '')}" style="width: 100%; min-width: 105px; font-size: 12px;" ${disAttr} />
+              <input type="text" class="inline-edit-text js-crm-edit" data-id="${escapeHtml(deal.id)}" data-field="note" value="${escapeHtml(deal.note || '')}" style="width: 100%; min-width: 105px; font-size: 12px;" />
             </td>
             <td class="text-right" style="white-space: nowrap;">
-              <button type="button" class="btn btn-sm btn-action-primary js-crm-to-invoice owner-editable-btn" data-id="${escapeHtml(deal.id)}" style="padding: 5px 8px; font-size: 11.5px;" ${disAttr}>Рахунок</button>
+              <button type="button" class="btn btn-sm btn-primary js-crm-open-card" data-id="${escapeHtml(deal.id)}" style="padding: 5px 8px; font-size: 11.5px;">Картка</button>
+              <button type="button" class="btn btn-sm btn-action-primary js-crm-to-invoice owner-editable-btn" data-id="${escapeHtml(deal.id)}" style="margin-left: 3px; padding: 5px 8px; font-size: 11.5px;" ${disAttr}>Рахунок</button>
+              <button type="button" class="btn btn-sm btn-subtle js-open-doc-original" data-doc-id="${escapeHtml(deal.docId || '')}" data-doc-num="Специфікація ${escapeHtml(deal.id)}" data-party="${escapeHtml(deal.client)}" data-edrpou="${escapeHtml(deal.edrpou || '')}" data-summary="${escapeHtml(deal.subject)}" data-amount="${deal.amount}" style="margin-left: 3px; padding: 5px 7px; font-size: 11.5px;">Оригінал</button>
               <button type="button" class="btn btn-sm btn-subtle js-crm-delete owner-editable-btn" data-id="${escapeHtml(deal.id)}" style="margin-left: 3px; padding: 5px 7px; font-size: 11.5px;" ${disAttr}>x</button>
             </td>
           </tr>
         `;
       })
       .join('');
+  }
+
+  function openCrmCardModal(dealId) {
+    const deal = state.crmDeals.find((d) => d.id === dealId);
+    const modal = document.getElementById('crm-card-modal');
+    const body = document.getElementById('crm-card-modal-body');
+    if (!deal || !modal || !body) return;
+
+    state.activeCrmModalId = deal.id;
+    const idEl = document.getElementById('modal-crm-id');
+    const origEl = document.getElementById('modal-crm-origin');
+    const titleEl = document.getElementById('modal-crm-title');
+    if (idEl) idEl.textContent = deal.id;
+    if (origEl) origEl.textContent = deal.origin === 'INBOUND_CALL' ? 'Вхідний дзвінок SIP' : deal.origin === 'OUTBOUND_CALL' ? 'Вихідний дзвінок SIP' : 'Ручна картка';
+    if (titleEl) titleEl.textContent = deal.client;
+
+    const history = Array.isArray(deal.callHistory) ? deal.callHistory : [];
+    const historyHtml = history.length === 0
+      ? '<div style="font-size:12px;color:var(--text-muted);padding:8px 0;">Історія дзвінків порожня.</div>'
+      : history.map((ch) => `
+          <div style="border-bottom:1px solid var(--border);padding:8px 0;font-size:12.5px;">
+            <div style="display:flex;justify-content:space-between;gap:8px;">
+              <strong>${escapeHtml(ch.dir)}</strong>
+              <span class="mono" style="font-size:11.5px;color:var(--text-muted);">${escapeHtml(ch.time)} • ${escapeHtml(ch.duration || '—')}</span>
+            </div>
+            <div style="color:var(--text-secondary);margin-top:2px;">${escapeHtml(ch.summary || '')}</div>
+          </div>
+        `).join('');
+
+    const finDisabled = state.editAuthorized ? '' : 'disabled';
+    body.innerHTML = `
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+        <div>
+          <label class="form-label">Клієнт / Компанія</label>
+          <input type="text" id="crm-modal-client" class="input" value="${escapeHtml(deal.client)}" />
+        </div>
+        <div>
+          <label class="form-label">Телефон (SIP авто-ідентифікація)</label>
+          <input type="text" id="crm-modal-phone" class="input mono" value="${escapeHtml(deal.phone || '')}" />
+        </div>
+        <div>
+          <label class="form-label">Контактна особа (ОПР)</label>
+          <input type="text" id="crm-modal-contact" class="input" value="${escapeHtml(deal.contact || '')}" />
+        </div>
+        <div>
+          <label class="form-label">Код ЄДРПОУ</label>
+          <input type="text" id="crm-modal-edrpou" class="input mono" value="${escapeHtml(deal.edrpou || '')}" />
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px;margin-bottom:12px;">
+        <div>
+          <label class="form-label">Предмет замовлення / Номенклатура</label>
+          <input type="text" id="crm-modal-subject" class="input" value="${escapeHtml(deal.subject)}" />
+        </div>
+        <div>
+          <label class="form-label">Сума угоди (₴)</label>
+          <input type="number" id="crm-modal-amount" class="input mono" value="${deal.amount}" min="0" ${finDisabled} />
+        </div>
+        <div>
+          <label class="form-label">Етап воронки</label>
+          <select id="crm-modal-stage" class="select">
+            <option value="NEW" ${deal.stage === 'NEW' ? 'selected' : ''}>Новий лід</option>
+            <option value="PROPOSAL" ${deal.stage === 'PROPOSAL' ? 'selected' : ''}>КП / Специфікація</option>
+            <option value="NEGOTIATION" ${deal.stage === 'NEGOTIATION' ? 'selected' : ''}>Погодження</option>
+            <option value="WON" ${deal.stage === 'WON' ? 'selected' : ''}>Оплачено / Угода</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="margin-bottom:14px;">
+        <label class="form-label">Коментар менеджера та умови</label>
+        <input type="text" id="crm-modal-note" class="input" value="${escapeHtml(deal.note || '')}" />
+      </div>
+
+      <div style="display:flex;gap:8px;flex-wrap:wrap;padding-bottom:14px;border-bottom:1px solid var(--border);margin-bottom:14px;">
+        <button type="button" class="btn btn-sm btn-primary" id="btn-crm-modal-save">Зберегти картку</button>
+        <button type="button" class="btn btn-sm btn-subtle js-modal-crm-call" data-dir="Вхідний (SIP)">+ Вхідний дзвінок</button>
+        <button type="button" class="btn btn-sm btn-subtle js-modal-crm-call" data-dir="Вихідний (SIP)">+ Вихідний дзвінок</button>
+        <button type="button" class="btn btn-sm btn-subtle js-open-doc-original" data-doc-id="${escapeHtml(deal.docId || '')}" data-doc-num="Договір ${escapeHtml(deal.id)}" data-party="${escapeHtml(deal.client)}" data-edrpou="${escapeHtml(deal.edrpou || '')}" data-summary="${escapeHtml(deal.subject)}" data-amount="${deal.amount}">Відкрити оригінал</button>
+        <button type="button" class="btn btn-sm btn-action-primary js-crm-to-invoice owner-editable-btn" data-id="${escapeHtml(deal.id)}" ${finDisabled}>Створити рахунок</button>
+      </div>
+
+      <div>
+        <div style="font-size:12px;font-weight:700;text-transform:uppercase;color:var(--text-secondary);margin-bottom:6px;">Журнал телефонних розмов за карткою (${history.length})</div>
+        <div style="background:#FAFAFA;border:1px solid var(--border);border-radius:6px;padding:6px 12px;max-height:190px;overflow-y:auto;">
+          ${historyHtml}
+        </div>
+      </div>
+    `;
+    modal.classList.add('open');
+  }
+
+  function handleCrmPhoneCallEvent(direction) {
+    const rawPhone = document.getElementById('crm-call-phone')?.value.trim() || '+380678451900';
+    const rawClient = document.getElementById('crm-call-client')?.value.trim() || 'Новий клієнт (SIP)';
+    const rawSubject = document.getElementById('crm-call-subject')?.value.trim() || 'Запит по продукції (дзвінок)';
+    const pKey = normalizePhoneKey(rawPhone);
+    const nowTime = new Date().toLocaleTimeString('uk-UA', { hour: '2-digit', minute: '2-digit' });
+    const dirLabel = direction === 'INBOUND' ? 'Вхідний (SIP)' : 'Вихідний (SIP)';
+
+    let deal = pKey ? state.crmDeals.find((d) => normalizePhoneKey(d.phone) === pKey) : null;
+    let isNewCard = false;
+
+    if (!deal) {
+      isNewCard = true;
+      const newId = `CRM-${105 + state.crmDeals.length}`;
+      const newDocId = `DOC-${newId}`;
+      const estAmt = direction === 'INBOUND' ? 148000 : 96000;
+      state.primaryDocuments.unshift({
+        id: newDocId,
+        docNumber: `КП-${newId} від ${new Date().toLocaleDateString('uk-UA')}`,
+        typeBadge: `Картка клієнта (${dirLabel})`,
+        counterparty: rawClient,
+        edrpou: '—',
+        amount: estAmt,
+        itemsSummary: rawSubject,
+        ledgerNote: `Автоматично сформовано з ${direction === 'INBOUND' ? 'вхідного' : 'вихідного'} дзвінка ${rawPhone}`,
+        signedBy: 'Менеджер CRM'
+      });
+      deal = {
+        id: newId,
+        origin: direction === 'INBOUND' ? 'INBOUND_CALL' : 'OUTBOUND_CALL',
+        client: rawClient,
+        edrpou: '—',
+        contact: 'ОПР (за телефоном)',
+        phone: rawPhone,
+        subject: rawSubject,
+        amount: estAmt,
+        stage: 'NEW',
+        note: `Авто-картка створена системою на ${direction === 'INBOUND' ? 'вхідний' : 'вихідний'} дзвінок.`,
+        docId: newDocId,
+        callHistory: []
+      };
+      state.crmDeals.unshift(deal);
+    }
+
+    if (!Array.isArray(deal.callHistory)) deal.callHistory = [];
+    deal.callHistory.unshift({
+      time: nowTime,
+      dir: dirLabel,
+      duration: '1 хв 42 сек',
+      summary: `${dirLabel}: ${rawSubject}`
+    });
+
+    if (!state.aiSales) {
+      state.aiSales = { stats: { conversionRate: 34.2, conversionLiftPct: 25.0, averageQcScore: 89, marginLeakPreventedUah: 48200 }, calls: [] };
+    }
+    state.aiSales.calls.unshift({
+      id: `call-${Date.now()}`,
+      direction,
+      clientName: deal.client,
+      phone: deal.phone,
+      time: `Щойно (${nowTime})`,
+      duration: '1 хв 42 сек',
+      manager: 'Менеджер B2B',
+      qcScore: 92,
+      transcriptSummary: `${dirLabel}: ${rawSubject}`,
+      detectedItems: rawSubject,
+      status: 'CRM_CARD_LINKED',
+      dealId: deal.id,
+      orderDraft: {
+        orderNumber: `INV-${200 + state.orders.length}`,
+        amount: deal.amount,
+        edrpou: deal.edrpou || '38421567'
+      }
+    });
+
+    recordCompanyAuditAndExcelMirror(
+      'CRM_Дзвінки_Угоди',
+      {
+        ID_Картки: deal.id,
+        Подія: `${dirLabel}${isNewCard ? ' (Нова картка)' : ' (Оновлено)'}`,
+        Клієнт: deal.client,
+        Телефон: deal.phone,
+        Суть: rawSubject,
+        Сума_UAH: deal.amount
+      },
+      `${dirLabel}: ${isNewCard ? 'Авто-створено картку' : 'Додано дзвінок у картку'} ${deal.client} (${deal.phone})`,
+      deal.amount
+    );
+
+    renderCrmDealsTable();
+    renderSalesOrdersTable();
+    renderAiSalesSection();
+    openCrmCardModal(deal.id);
+    showInlineStatus(`${dirLabel}: ${isNewCard ? 'створено нову картку' : 'відкрито існуючу картку'} ${deal.client} (${deal.id})`);
   }
 
   function renderSalesOrdersTable() {
@@ -2830,9 +3434,12 @@
                 ${nextActionBtn}
               </div>
             </td>
-            <td class="text-right">
+            <td class="text-right" style="white-space: nowrap;">
               <button type="button" class="btn btn-sm ${isCurrentDoc ? 'btn-action-primary' : 'btn-subtle'} js-open-inline-doc" data-num="${escapeHtml(ord.orderNumber)}">
-                Документ ↗
+                Документ
+              </button>
+              <button type="button" class="btn btn-sm btn-subtle js-open-doc-original" style="margin-left: 4px;" data-doc-id="DOC-INV-104" data-doc-num="${escapeHtml(ord.orderNumber)}" data-party="${escapeHtml(ord.clientName)}" data-edrpou="${escapeHtml(ord.clientEdrpou)}" data-summary="${escapeHtml(ord.itemsSummary)}" data-amount="${ord.totalAmount}" data-ledger="Замовлення B2B (Дт 361 Кт 701)">
+                Оригінал
               </button>
             </td>
           </tr>
@@ -3072,6 +3679,219 @@
     return 'Пакування та витратні';
   }
 
+  function renderStockScanGate() {
+    const boxEl = document.getElementById('stk-scan-gate-box');
+    const badgeEl = document.getElementById('stk-scan-status-badge');
+    const infoEl = document.getElementById('stk-scan-verified-info');
+    const controls = [
+      document.getElementById('stk-op-type'),
+      document.getElementById('stk-op-qty'),
+      document.getElementById('stk-op-doc'),
+      document.getElementById('stk-op-file'),
+      document.getElementById('btn-stk-exec-op')
+    ];
+
+    const scannedItem = state.scannedStockSku
+      ? state.stockItems.find((s) => s.sku === state.scannedStockSku)
+      : null;
+
+    if (boxEl) boxEl.classList.toggle('verified', Boolean(scannedItem));
+    if (badgeEl) {
+      badgeEl.className = scannedItem ? 'badge badge-green' : 'badge badge-amber';
+      badgeEl.textContent = scannedItem ? `Скановано: ${scannedItem.barcode}` : 'Очікування скану';
+    }
+    if (infoEl) {
+      if (scannedItem) {
+        infoEl.innerHTML = `<strong style="color:#065F46;">QR/Штрихкод підтверджено:</strong> <span class="mono">${escapeHtml(scannedItem.barcode)}</span> • <strong>${escapeHtml(scannedItem.itemName)}</strong> (SKU: <span class="mono">${escapeHtml(scannedItem.sku)}</span>, поточний залишок: <strong>${scannedItem.qty} ${escapeHtml(scannedItem.unit)}</strong>). Оформлення дозволено.`;
+        infoEl.style.borderColor = '#10B981';
+        infoEl.style.background = '#FFFFFF';
+      } else {
+        infoEl.innerHTML = 'Штрихкод не відскановано — рух товару та проведення заблоковано системою. Відскануйте QR/штрихкод або оберіть позицію з каталогу нижче.';
+        infoEl.style.borderColor = 'var(--border)';
+        infoEl.style.background = '#FFFFFF';
+      }
+    }
+    controls.forEach((el) => {
+      if (el) el.disabled = !scannedItem;
+    });
+  }
+
+  function confirmStockScan(rawCode) {
+    const q = String(rawCode || '').trim().toLowerCase();
+    if (!q) {
+      showInlineStatus('Введіть або відскануйте штрихкод / QR код позиції');
+      return;
+    }
+    const found = state.stockItems.find((s) =>
+      String(s.barcode || '').toLowerCase() === q || String(s.sku || '').toLowerCase() === q
+    );
+    if (!found) {
+      state.scannedStockSku = null;
+      renderStockScanGate();
+      showInlineStatus(`Код «${rawCode}» не знайдено у каталозі ТМЦ. Оформлення заблоковано.`);
+      return;
+    }
+    state.scannedStockSku = found.sku;
+    const scanInp = document.getElementById('stk-scan-input');
+    if (scanInp) scanInp.value = found.barcode || found.sku;
+
+    recordCompanyAuditAndExcelMirror(
+      'Склад_QR_ТМЦ',
+      {
+        Штрихкод: found.barcode || found.sku,
+        SKU: found.sku,
+        Назва: found.itemName,
+        Подія: 'QR/Штрихкод підтверджено сканером',
+        Залишок_До: found.qty,
+        Од: found.unit
+      },
+      `Сканером підтверджено ${found.barcode || found.sku} (${found.itemName})`,
+      0
+    );
+
+    renderStockScanGate();
+    const qtyEl = document.getElementById('stk-op-qty');
+    if (qtyEl) qtyEl.focus();
+    showInlineStatus(`Штрихкод ${found.barcode || found.sku} підтверджено: форма оформлення розблокована!`);
+  }
+
+  function executeScannedStockMovement() {
+    if (!state.scannedStockSku) {
+      showInlineStatus('Помилка контролю: без попереднього скану QR/штрихкоду оформлення неможливе');
+      renderStockScanGate();
+      return;
+    }
+    const item = state.stockItems.find((s) => s.sku === state.scannedStockSku);
+    if (!item) {
+      state.scannedStockSku = null;
+      renderStockScanGate();
+      return;
+    }
+
+    const opType = document.getElementById('stk-op-type')?.value || 'IN';
+    const reqQty = Math.max(1, Number(document.getElementById('stk-op-qty')?.value) || 1);
+    const docNum = document.getElementById('stk-op-doc')?.value.trim() || `QR-${Date.now().toString().slice(-4)}`;
+    const fileEl = document.getElementById('stk-op-file');
+
+    let actualQty = reqQty;
+    let qtyDeltaStr = `+${actualQty} ${item.unit}`;
+    let opLabel = 'Прихід від постачальника (Дт 201 Кт 631)';
+    let dt = '201 Сировина й матеріали';
+    let dtCode = '201';
+    let kt = '631 Розрахунки з постачальниками';
+    let ktCode = '631';
+
+    if (opType === 'OUT_MES') {
+      if (item.qty <= 0) {
+        showInlineStatus(`Нульовий залишок «${item.itemName}» — неможливо списати в цех.`);
+        return;
+      }
+      actualQty = Math.min(item.qty, reqQty);
+      item.qty = Math.max(0, item.qty - actualQty);
+      qtyDeltaStr = `-${actualQty} ${item.unit}`;
+      opLabel = 'Видача в цех ЧПК (Дт 231 Кт 201)';
+      dt = '231 Основне виробництво (MES)';
+      dtCode = '231';
+      kt = '201 Сировина й матеріали';
+      ktCode = '201';
+    } else if (opType === 'OUT_SHIP') {
+      if (item.qty <= 0) {
+        showInlineStatus(`Нульовий залишок «${item.itemName}» — неможливо відвантажити.`);
+        return;
+      }
+      actualQty = Math.min(item.qty, reqQty);
+      item.qty = Math.max(0, item.qty - actualQty);
+      qtyDeltaStr = `-${actualQty} ${item.unit}`;
+      opLabel = 'Відвантаження клієнту (Дт 901 Кт 26)';
+      dt = '901 Собівартість реалізації';
+      dtCode = '901';
+      kt = '26 Готова продукція';
+      ktCode = '26';
+    } else {
+      item.qty += actualQty;
+    }
+
+    const opAmount = Math.round(actualQty * (Number(item.unitPrice) || 500));
+    const docId = `DOC-STK-${Date.now().toString().slice(-5)}`;
+    const newDocObj = {
+      id: docId,
+      docNumber: docNum,
+      typeBadge: opType === 'IN' ? 'Прибуткова накладна (QR-скан)' : 'Видаткова / Лімітна картка (QR-скан)',
+      counterparty: opType === 'IN' ? 'Постачальник ТМЦ' : opType === 'OUT_MES' ? 'Виробничий цех ЧПК' : 'Кінцевий отримувач B2B',
+      edrpou: '38421567',
+      amount: opAmount,
+      itemsSummary: `${item.itemName} [${item.barcode || item.sku}] (${qtyDeltaStr})`,
+      ledgerNote: `${opLabel} • Підтверджено QR-сканом`,
+      signedBy: state.accessRole === 'STAFF' ? 'Комірник (QR-сканер)' : 'Комірник + Контроль Власника'
+    };
+
+    const chosenFile = fileEl && fileEl.files && fileEl.files[0];
+    if (chosenFile && typeof FileReader !== 'undefined') {
+      const reader = new FileReader();
+      reader.onload = () => {
+        newDocObj.attachmentUrl = String(reader.result || '');
+        newDocObj.attachmentName = chosenFile.name;
+      };
+      reader.readAsDataURL(chosenFile);
+    }
+
+    state.primaryDocuments.unshift(newDocObj);
+    item.lastDocId = docId;
+
+    const nowTime = new Date().toLocaleTimeString('uk-UA');
+    state.stockMovements.unshift({
+      id: `MOV-${100 + state.stockMovements.length + 1}`,
+      time: nowTime,
+      opLabel,
+      barcode: item.barcode || item.sku,
+      sku: item.sku,
+      itemName: item.itemName,
+      qtyDelta: qtyDeltaStr,
+      docNum,
+      docId
+    });
+
+    recordCompanyAuditAndExcelMirror(
+      'Склад_QR_ТМЦ',
+      {
+        Штрихкод: item.barcode || item.sku,
+        SKU: item.sku,
+        Назва: item.itemName,
+        Операція: opLabel,
+        Зміна: qtyDeltaStr,
+        Новий_Залишок: item.qty,
+        Документ: docNum,
+        Сума_UAH: opAmount
+      },
+      `QR-рух ТМЦ ${item.barcode || item.sku}: ${qtyDeltaStr} (${docNum})`,
+      opAmount
+    );
+
+    postOnlineLedgerEntries([
+      {
+        doc: docNum,
+        docId,
+        desc: `${opLabel}: ${item.itemName} (${qtyDeltaStr})`,
+        entity: 'ТОВ "ОпексМетрікс Індастріал"',
+        dt,
+        dtCode,
+        kt,
+        ktCode,
+        amount: opAmount,
+        skipExcelMirror: true
+      }
+    ]);
+
+    state.scannedStockSku = null;
+    const scanInp = document.getElementById('stk-scan-input');
+    if (scanInp) scanInp.value = '';
+    if (fileEl) fileEl.value = '';
+
+    renderStockSection();
+    renderPulseSection();
+    showInlineStatus(`Проведено після скану: ${item.itemName} (${qtyDeltaStr}) + Дт ${dtCode} Кт ${ktCode} (${fmtUah(opAmount)})`);
+  }
+
   function renderStockSection() {
     const tbody = document.getElementById('stock-catalog-tbody');
     if (!tbody) return;
@@ -3079,20 +3899,19 @@
     const searchQ = (document.getElementById('stock-search-input')?.value || '').trim().toLowerCase();
     const catFilter = document.getElementById('stock-category-filter')?.value || 'ALL';
 
-    const sourceList = (state.pulse && Array.isArray(state.pulse.stockBalances) && state.pulse.stockBalances.length > 0)
-      ? state.pulse.stockBalances
-      : state.stockItems;
-    // Keep persistent local array synced so edits always stick
-    if (sourceList !== state.stockItems) {
-      state.stockItems = sourceList;
+    if (state.pulse && Array.isArray(state.pulse.stockBalances) && state.pulse.stockBalances.length > 0 && state.stockItems.length === 0) {
+      state.stockItems = state.pulse.stockBalances;
     }
-    const pulseBalances = state.stockItems;
+
+    state.stockItems.forEach((it, idx) => {
+      if (!it.barcode) it.barcode = `4820010400${String(10 + idx).padStart(3, '0')}`;
+    });
 
     const badgeStock = document.getElementById('nav-badge-stock');
-    if (badgeStock) badgeStock.textContent = `${pulseBalances.length} SKU`;
+    if (badgeStock) badgeStock.textContent = `${state.stockItems.length} SKU`;
 
     let totalValue = 0;
-    const enriched = pulseBalances.map((it) => {
+    const enriched = state.stockItems.map((it) => {
       const cost = Number(it.unitPrice) || 500;
       const sellPrice = Number(it.sellPrice) || Math.round(cost * 1.44);
       const marginPct = sellPrice > 0 ? (((sellPrice - cost) / sellPrice) * 100).toFixed(1) : '0.0';
@@ -3118,7 +3937,7 @@
 
     const filtered = enriched.filter((item) => {
       if (catFilter !== 'ALL' && item.category !== catFilter) return false;
-      if (searchQ && !`${item.sku} ${item.itemName}`.toLowerCase().includes(searchQ)) return false;
+      if (searchQ && !`${item.barcode} ${item.sku} ${item.itemName}`.toLowerCase().includes(searchQ)) return false;
       return true;
     });
 
@@ -3131,7 +3950,10 @@
 
         return `
           <tr>
-            <td class="mono" style="font-weight: 700; font-size: 12px;">${escapeHtml(item.sku)}</td>
+            <td style="white-space: nowrap;">
+              <div class="barcode-pill"><span class="barcode-bars"></span>${escapeHtml(item.barcode)}</div>
+              <div class="mono" style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">${escapeHtml(item.sku)}</div>
+            </td>
             <td style="font-weight: 600; min-width: 150px;">${escapeHtml(item.itemName)}</td>
             <td><span class="badge badge-slate" style="font-size: 11px;">${escapeHtml(item.category)}</span></td>
             <td class="text-right mono" style="white-space: nowrap;">
@@ -3147,17 +3969,37 @@
             <td class="text-right"><span class="badge badge-green mono">${item.marginPct}%</span></td>
             <td>${statusHtml}</td>
             <td class="text-right" style="white-space: nowrap;">
-              <button type="button" class="btn btn-sm btn-subtle js-quick-replenish owner-editable-btn" data-sku="${escapeHtml(item.sku)}" data-name="${escapeHtml(item.itemName)}" data-unit="${escapeHtml(item.unit)}" data-cost="${item.cost}" data-qty="10" style="padding: 4px 7px;" ${disAttr}>
-                +10
-              </button>
-              <button type="button" class="btn btn-sm btn-subtle js-stock-writeoff owner-editable-btn" data-sku="${escapeHtml(item.sku)}" data-name="${escapeHtml(item.itemName)}" data-unit="${escapeHtml(item.unit)}" data-cost="${item.cost}" data-qty="10" style="padding: 4px 7px; margin-left: 2px;" ${disAttr}>
-                -10
-              </button>
+              <button type="button" class="btn btn-sm btn-primary js-stk-scan-row" data-barcode="${escapeHtml(item.barcode)}" data-sku="${escapeHtml(item.sku)}" style="padding: 4px 8px;">Сканувати</button>
+              <button type="button" class="btn btn-sm btn-subtle js-open-doc-original" style="margin-left: 4px; padding: 4px 8px;" data-doc-id="${escapeHtml(item.lastDocId || 'DOC-PN-4401')}" data-doc-num="Картка ТМЦ ${escapeHtml(item.sku)}" data-party="Склад ТМЦ" data-summary="${escapeHtml(item.itemName)} (${escapeHtml(item.barcode)}) • Залишок ${item.qty} ${escapeHtml(item.unit)}" data-amount="${item.qty * item.cost}" data-ledger="Рах. 201 / 26 • Штрихкод ${escapeHtml(item.barcode)}">Оригінал</button>
             </td>
           </tr>
         `;
       })
       .join('');
+
+    const movTbody = document.getElementById('stock-movements-tbody');
+    if (movTbody) {
+      movTbody.innerHTML = state.stockMovements
+        .slice(0, 15)
+        .map((m) => `
+          <tr>
+            <td class="mono" style="font-size: 11.5px; color: var(--text-muted);">${escapeHtml(m.time)}</td>
+            <td style="font-size: 12.5px; font-weight: 600;">${escapeHtml(m.opLabel)}</td>
+            <td>
+              <span class="mono" style="font-size: 11px; color: var(--text-muted);">${escapeHtml(m.barcode)}</span>
+              <div style="font-weight: 600; font-size: 12.5px;">${escapeHtml(m.itemName)}</div>
+            </td>
+            <td class="text-right mono" style="font-weight: 700;">${escapeHtml(m.qtyDelta)}</td>
+            <td class="mono" style="font-size: 12px;">${escapeHtml(m.docNum)}</td>
+            <td class="text-right">
+              <button type="button" class="btn btn-sm btn-subtle js-open-doc-original" data-doc-id="${escapeHtml(m.docId || 'DOC-PN-4401')}" data-doc-num="${escapeHtml(m.docNum)}" data-party="Складська операція QR" data-summary="${escapeHtml(m.opLabel)}: ${escapeHtml(m.itemName)} (${escapeHtml(m.qtyDelta)})" data-ledger="${escapeHtml(m.opLabel)}">Оригінал</button>
+            </td>
+          </tr>
+        `)
+        .join('');
+    }
+
+    renderStockScanGate();
 
     // Render auto-reorder alerts block
     const reorderListEl = document.getElementById('stock-reorder-list');
@@ -3196,8 +4038,8 @@
               </div>
               <div class="action-buttons">
                 <button type="button" class="btn btn-sm btn-soft-blue js-copy-reminder" data-text="${escapeHtml(msg)}">Скопіювати заявку у Viber/Telegram</button>
-                <button type="button" class="btn btn-sm btn-success js-quick-replenish" data-sku="${escapeHtml(item.sku)}" data-name="${escapeHtml(item.itemName)}" data-unit="${escapeHtml(item.unit)}" data-cost="${item.cost}" data-qty="${orderQty}">
-                  Оприбуткувати поставку (+${orderQty} ${escapeHtml(item.unit)})
+                <button type="button" class="btn btn-sm btn-primary js-stk-scan-row" data-barcode="${escapeHtml(item.barcode)}" data-sku="${escapeHtml(item.sku)}">
+                  Сканувати QR для приходу
                 </button>
               </div>
             </div>
@@ -3353,7 +4195,7 @@
       .join('');
   }
 
-  // ─── 5. ️ ПОДАТКИ ТА КОМАНДА (БЕЗ БУХГАЛТЕРА) ────────────────────────────
+  // ─── 5. ПОДАТКИ ТА КОМАНДА (БЕЗ БУХГАЛТЕРА) ──────────────────────────────
   function renderTaxesAndTeamSection() {
     const pulse = state.pulse || {};
     const tax = pulse.taxAssistant || {};
@@ -3423,7 +4265,7 @@
       .join('');
   }
 
-  // ─── 6. ️ AI ВІДДІЛ ПРОДАЖІВ ТА ТЕЛЕФОНІЯ ─────────────────────────────────
+  // ─── IP-ТЕЛЕФОНІЯ В CRM (ЖУРНАЛ ВХІДНИХ І ВИХІДНИХ ДЗВІНКІВ) ─────────────────
   async function renderAiSalesSection() {
     const listEl = document.getElementById('ai-calls-list');
     if (!listEl) return;
@@ -3435,10 +4277,58 @@
       }
     } catch (_e) {}
 
-    const data = state.aiSales || {
-      stats: { conversionRate: 34.2, conversionLiftPct: 25.0, averageQcScore: 89, marginLeakPreventedUah: 48200 },
-      calls: []
-    };
+    if (!state.aiSales) {
+      state.aiSales = {
+        stats: { conversionRate: 34.2, conversionLiftPct: 25.0, averageQcScore: 89, marginLeakPreventedUah: 48200 },
+        calls: [
+          {
+            id: 'call-init-1',
+            direction: 'INBOUND',
+            clientName: 'ТОВ "БудМаркет Поділля"',
+            phone: '+380 67 312-44-10',
+            time: 'Сьогодні 10:42',
+            duration: '3 хв 15 сек',
+            manager: 'Менеджер B2B',
+            qcScore: 91,
+            transcriptSummary: 'Вхідний запит на 48 серійних полотен МДФ Класік та погонаж. Картку автоматично прив\'язано.',
+            detectedItems: 'Полотна МДФ Класік (48 шт) + Погонаж телескоп',
+            status: 'READY_TO_INVOICE',
+            dealId: 'CRM-101',
+            orderDraft: { orderNumber: 'INV-2026-109', amount: 264000, edrpou: '39148205' }
+          },
+          {
+            id: 'call-init-2',
+            direction: 'OUTBOUND',
+            clientName: 'ЖК «Рів\'єра Сіті» (Генпідряд)',
+            phone: '+380 50 419-88-22',
+            time: 'Сьогодні 09:50',
+            duration: '4 хв 40 сек',
+            manager: 'Сейлз-менеджер',
+            qcScore: 88,
+            transcriptSummary: 'Вихідний дзвінок по графіку поставки нестандартних дверних блоків 2300х900.',
+            detectedItems: 'Нестандартні блоки 2300х900 (22 шт)',
+            status: 'CRM_CARD_LINKED',
+            dealId: 'CRM-102'
+          },
+          {
+            id: 'call-init-3',
+            direction: 'OUTBOUND',
+            clientName: 'ТОВ "АгроПромБуд"',
+            phone: '+380 63 220-19-40',
+            time: 'Сьогодні 09:12',
+            duration: '1 хв 48 сек',
+            manager: 'Відділ продажів',
+            qcScore: 84,
+            transcriptSummary: 'Холодний вихідний дзвінок на будівельний майданчик. Авто-створено картку нового ліда.',
+            detectedItems: 'Офісні полотна Глухі МДФ (18 шт)',
+            status: 'CRM_CARD_LINKED',
+            dealId: 'CRM-104'
+          }
+        ]
+      };
+    }
+
+    const data = state.aiSales;
 
     const convEl = document.getElementById('ai-stat-conv');
     if (convEl) convEl.textContent = `${data.stats.conversionRate}%`;
@@ -3446,25 +4336,33 @@
     if (qcEl) qcEl.textContent = `${data.stats.averageQcScore} / 100`;
     const marginEl = document.getElementById('ai-stat-margin');
     if (marginEl) marginEl.textContent = fmtUah(data.stats.marginLeakPreventedUah);
+    const badgeEl = document.getElementById('crm-calls-count-badge');
+    if (badgeEl) badgeEl.textContent = `Дзвінків: ${(data.calls || []).length}`;
 
     if (!data.calls || data.calls.length === 0) {
-      listEl.innerHTML = `<div style="padding:20px;text-align:center;color:var(--text-muted);">Немає записів дзвінків. Лінії телефонії очікують вхідних подій.</div>`;
+      listEl.innerHTML = `<div style="padding:20px;text-align:center;color:var(--text-muted);">Немає записів дзвінків. Лінії телефонії очікують вхідних або вихідних подій.</div>`;
       return;
     }
 
     listEl.innerHTML = data.calls
       .map((c) => {
+        const dirBadge = c.direction === 'OUTBOUND'
+          ? '<span class="badge badge-blue">Вихідний SIP</span>'
+          : '<span class="badge badge-green">Вхідний SIP</span>';
         const qcBadgeClass = c.qcScore >= 80 ? 'badge-green' : c.qcScore >= 60 ? 'badge-amber' : 'badge-red';
         const actionBtn = c.orderDraft && c.status === 'READY_TO_INVOICE'
-          ? `<button type="button" class="btn btn-sm btn-action-primary js-ai-create-order" data-ord="${escapeHtml(c.orderDraft.orderNumber)}" data-amt="${c.orderDraft.amount}" data-client="${escapeHtml(c.clientName)}" data-edrpou="${c.orderDraft.edrpou}">Створити рахунок ${escapeHtml(c.orderDraft.orderNumber)} (₴ ${c.orderDraft.amount.toLocaleString('uk-UA')})</button>`
+          ? `<button type="button" class="btn btn-sm btn-action-primary js-ai-create-order owner-editable-btn" data-ord="${escapeHtml(c.orderDraft.orderNumber)}" data-amt="${c.orderDraft.amount}" data-client="${escapeHtml(c.clientName)}" data-edrpou="${c.orderDraft.edrpou}" ${state.editAuthorized ? '' : 'disabled'}>Рахунок (${fmtUah(c.orderDraft.amount)})</button>`
           : c.status === 'INVOICED'
           ? `<span class="badge badge-green">Рахунок виставлено</span>`
-          : `<span class="badge badge-amber">Завдання в CRM створено</span>`;
+          : `<span class="badge badge-slate">Прив'язано до CRM</span>`;
 
         return `
-          <div class="action-item" style="align-items: flex-start; padding: 16px;">
+          <div class="action-item" style="align-items: flex-start; padding: 14px 16px;">
             <div class="action-item-left" style="align-items: flex-start;">
-              <span class="badge ${qcBadgeClass}" style="margin-top: 2px;">QC: ${c.qcScore}/100</span>
+              <div style="display:flex;flex-direction:column;gap:4px;align-items:flex-start;">
+                ${dirBadge}
+                <span class="badge ${qcBadgeClass} mono">QC: ${c.qcScore}/100</span>
+              </div>
               <div style="flex: 1;">
                 <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap;">
                   <div class="action-title" style="font-size: 14px;">
@@ -3475,13 +4373,14 @@
                   </div>
                 </div>
                 <div class="action-desc" style="margin-top: 6px; font-size: 13px; color: var(--text-secondary); line-height: 1.5;">
-                  <strong>ШІ-розбір розмови:</strong> ${escapeHtml(c.transcriptSummary)}
+                  <strong>Зміст розмови:</strong> ${escapeHtml(c.transcriptSummary)}
                 </div>
                 ${c.qcFeedback ? `<div style="margin-top: 4px; font-size: 12px; color: var(--danger); font-weight: 500;">${escapeHtml(c.qcFeedback)}</div>` : ''}
-                ${c.detectedItems ? `<div style="margin-top: 6px; font-size: 12px; color: var(--primary); font-weight: 600;">Розпізнані позиції: ${escapeHtml(c.detectedItems)}</div>` : ''}
+                ${c.detectedItems ? `<div style="margin-top: 6px; font-size: 12px; color: var(--primary); font-weight: 600;">Позиції: ${escapeHtml(c.detectedItems)}</div>` : ''}
               </div>
             </div>
             <div class="action-buttons" style="margin-top: 2px;">
+              <button type="button" class="btn btn-sm btn-subtle js-open-crm-from-call" data-phone="${escapeHtml(c.phone || '')}" data-client="${escapeHtml(c.clientName || '')}" data-subject="${escapeHtml(c.detectedItems || c.transcriptSummary || '')}">Картка CRM</button>
               ${actionBtn}
             </div>
           </div>
@@ -3490,134 +4389,13 @@
       .join('');
   }
 
-  // ─── 6. ІМПОРТ З 1С / EXCEL ТА ФОРЕНЗІК-ПЕРЕВІРКА ─────────────────────────
-  function parseMigrationCsvRows(rawCsv) {
-    const lines = String(rawCsv || '')
-      .split(/\r?\n/)
-      .map((l) => l.trim())
-      .filter((l) => l && !l.startsWith('#') && !/^SKU[;,]/i.test(l) && !/^Код[;,]/i.test(l));
-
-    const stocks = [];
-    const debts = [];
-    const crms = [];
-    const seenKeys = new Set();
-    let duplicatesCount = 0;
-
-    lines.forEach((line, idx) => {
-      const sep = line.includes(';') ? ';' : line.includes('\t') ? '\t' : ',';
-      const cols = line.split(sep).map((c) => c.trim().replace(/^"|"$/g, ''));
-      if (cols.length < 2) return;
-
-      const c0 = cols[0] || '';
-      const c1 = cols[1] || `Позиція #${idx + 1}`;
-      const c2 = cols[2] || 'шт';
-      const c3 = Number(String(cols[3] || '0').replace(/[^\d.-]/g, '')) || 0;
-      const c4 = Number(String(cols[4] || '0').replace(/[^\d.-]/g, '')) || 0;
-      const c5 = (cols[5] || '').toUpperCase();
-
-      const normKey = `${c0.toLowerCase()}::${c1.toLowerCase()}`;
-      if (seenKeys.has(normKey)) {
-        duplicatesCount += 1;
-        return;
-      }
-      seenKeys.add(normKey);
-
-      if (c5 === 'AR' || c5 === 'AP') {
-        debts.push({ kind: c5, party: c1, edrpou: c0, amount: Math.abs(c3 || c4), days: Number(cols[4]) || 0 });
-      } else if (c5 === 'CRM') {
-        crms.push({ client: c1, edrpou: c0, subject: cols[2] || 'Імпорт з 1С', amount: Math.abs(c3 || c4) || 50000 });
-      } else {
-        stocks.push({
-          sku: c0 || `IMP-${100 + idx}`,
-          itemName: c1,
-          unit: c2 || 'шт',
-          qty: Math.max(0, c3),
-          unitPrice: Math.max(1, c4 || 100),
-          sellPrice: Math.round(Math.max(1, c4 || 100) * 1.42),
-          category: detectCategory(c0, c1),
-          minThreshold: 20
-        });
-      }
-    });
-
-    return { stocks, debts, crms, duplicatesCount, rawLinesCount: lines.length };
-  }
-
-  function renderMigrationReportInline() {
-    const container = document.getElementById('migration-inline-report') || document.getElementById('migration-report-inline');
-    if (!container) return;
-
-    const analysis = state.lastMigrationAnalysis;
-    const forensic = state.lastForensicReport;
-
-    if (!analysis && !forensic) {
-      container.style.display = 'none';
-      container.innerHTML = '';
-      return;
-    }
-
-    container.style.display = 'block';
-    const fixes = (analysis && Array.isArray(analysis.sanitizedFixes)) ? analysis.sanitizedFixes : [];
-    const anomalies = (forensic && Array.isArray(forensic.anomalies)) ? forensic.anomalies : [];
-
-    container.innerHTML = `
-      <div style="background: var(--bg-subtle); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px; margin-bottom: 12px;">
-        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:10px;">
-          <div style="font-weight:700;font-size:14.5px;color:var(--text-main);">
-            Звіт перевірки перед імпортом: виявлено та виправлено ${fixes.length} зауважень
-          </div>
-          <span class="badge badge-green">Готово до імпорту</span>
-        </div>
-        <div class="grid-3" style="margin-bottom:12px;">
-          <div style="background:#FFFFFF;padding:10px 14px;border-radius:6px;border:1px solid var(--border);">
-            <div style="font-size:11.5px;color:var(--text-muted);">Очищено дублів</div>
-            <div style="font-size:18px;font-weight:800;" class="mono">${analysis ? analysis.duplicatesRemoved : 0} записів</div>
-          </div>
-          <div style="background:#FFFFFF;padding:10px 14px;border-radius:6px;border:1px solid var(--border);">
-            <div style="font-size:11.5px;color:var(--text-muted);">Товарних позицій (ТМЦ)</div>
-            <div style="font-size:18px;font-weight:800;" class="mono">${analysis ? analysis.items.length : 0} на ${fmtUah(analysis ? analysis.totalStockValue : 0)}</div>
-          </div>
-          <div style="background:#FFFFFF;padding:10px 14px;border-radius:6px;border:1px solid var(--border);">
-            <div style="font-size:11.5px;color:var(--text-muted);">Боргів (ДЗ/КЗ) та CRM</div>
-            <div style="font-size:18px;font-weight:800;" class="mono">${analysis ? (analysis.debtsCount + analysis.crmCount) : 0} записів</div>
-          </div>
-        </div>
-        <ul style="padding-left:18px;font-size:12.5px;color:var(--text-main);display:flex;flex-direction:column;gap:4px;">
-          ${fixes.map((f) => `<li>${escapeHtml(f)}</li>`).join('')}
-        </ul>
-      </div>
-
-      ${forensic ? `
-      <div style="background: #FFFFFF; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px;">
-        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:10px;">
-          <div>
-            <div style="font-weight:700;font-size:14px;">Форензік-аудит вивантаження 1С / Excel</div>
-            <div style="font-size:12px;color:var(--text-secondary);">${escapeHtml(forensic.garbageVerdict)}</div>
-          </div>
-          <span class="badge badge-amber">Індекс аномалій: ${forensic.garbageIndexPercent}%</span>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:8px;">
-          ${anomalies.slice(0, 4).map((a) => `
-            <div style="background:var(--bg-subtle);padding:10px 12px;border-radius:6px;border:1px solid var(--border);font-size:12.5px;">
-              <div style="font-weight:700;color:var(--text-main);">${escapeHtml(a.title)} — <span class="mono">${escapeHtml(a.affectedEntity)}</span></div>
-              <div style="color:var(--text-secondary);margin-top:2px;">${escapeHtml(a.description)}</div>
-              <div style="color:var(--primary);font-weight:600;margin-top:3px;">Рішення: ${escapeHtml(a.autoFixAction)}</div>
-            </div>
-          `).join('')}
-        </div>
-      </div>
-      ` : ''}
-    `;
-  }
-
   // ─── Data Fetching & Initialization ────────────────────────────────────────
   async function loadAllData() {
     try {
-      const [pulseRes, cfRes, reorderRes, demoRes] = await Promise.all([
+      const [pulseRes, cfRes, reorderRes] = await Promise.all([
         fetch('/api/autonomous/pulse').then((r) => r.json()).catch(() => null),
         fetch('/api/smb-cashflow/forecast').then((r) => r.json()).catch(() => null),
-        fetch('/api/smb-cashflow/reorder-alerts').then((r) => r.json()).catch(() => null),
-        fetch('/api/autonomous/migration/demo-payload').then((r) => r.json()).catch(() => null)
+        fetch('/api/smb-cashflow/reorder-alerts').then((r) => r.json()).catch(() => null)
       ]);
 
       if (pulseRes && pulseRes.ok && pulseRes.data) {
@@ -3628,15 +4406,6 @@
       }
       if (reorderRes && reorderRes.ok) {
         state.reorderAlerts = reorderRes.data || reorderRes;
-      }
-      if (demoRes && demoRes.ok && demoRes.data) {
-        state.demoMigrationPayload = demoRes.data;
-        const csvInput = document.getElementById('mig-csv-input');
-        const bankInput = document.getElementById('mig-bank-input');
-        if (csvInput && !csvInput.value) csvInput.value = demoRes.data.csvText || '';
-        if (bankInput && !bankInput.value) bankInput.value = demoRes.data.bankExchangeText || '';
-        const bankRaw = document.getElementById('bank-raw-textarea');
-        if (bankRaw && !bankRaw.value) bankRaw.value = demoRes.data.bankExchangeText || '';
       }
     } catch (_err) {
       // Fallback gracefully for static hosting
@@ -3649,6 +4418,7 @@
     renderMesSection();
     evaluateMarginGuardLive();
     renderCrmDealsTable();
+    renderAiSalesSection();
     renderDealerCreditTable();
     renderDebtSection();
     renderSalesOrdersTable();
@@ -3658,9 +4428,8 @@
     renderBankSection();
     renderTaxesAndTeamSection();
     renderSalesLeaderboardTable();
-    renderDocsSection();
     evaluateEnterpriseRoiLive();
-    applyAccessRole(state.editAuthorized ? 'OWNER' : 'STAFF');
+    applyAccessRole(state.accessRole || 'OWNER');
   }
 
   // ─── Event Listeners ───────────────────────────────────────────────────────
@@ -3776,60 +4545,80 @@
       });
     }
 
-    const btnHeaderPitch = document.getElementById('btn-header-open-pitch');
-    if (btnHeaderPitch) {
-      btnHeaderPitch.addEventListener('click', () => {
-        switchTab('about');
+    // Vault Audit Logs & Shadow Excel Workbook Modal (OWNER & CHIEF_ACCOUNTANT ONLY)
+    const btnOpenVault = document.getElementById('btn-open-vault-logs');
+    const vaultModal = document.getElementById('vault-logs-modal');
+    const btnCloseVault = document.getElementById('btn-close-vault-logs');
+    const btnDownloadXls = document.getElementById('btn-download-excel-workbook');
+
+    if (btnOpenVault && vaultModal) {
+      btnOpenVault.addEventListener('click', () => {
+        if (state.accessRole !== 'OWNER' && state.accessRole !== 'CHIEF_ACCOUNTANT') {
+          showInlineStatus('Доступ до прихованих логів та Excel-дзеркала дозволено лише Власнику та Головному бухгалтеру.');
+          return;
+        }
+        renderVaultLogsModal();
+        vaultModal.classList.add('open');
+      });
+    }
+    if (btnCloseVault && vaultModal) {
+      btnCloseVault.addEventListener('click', () => vaultModal.classList.remove('open'));
+    }
+    if (vaultModal) {
+      vaultModal.addEventListener('click', (e) => {
+        if (e.target === vaultModal) vaultModal.classList.remove('open');
+      });
+    }
+    if (btnDownloadXls) {
+      btnDownloadXls.addEventListener('click', downloadExcelWorkbook);
+    }
+
+    // Original Primary Document Modal (Optional View + Scan Attachment)
+    const docOrigModal = document.getElementById('doc-original-modal');
+    const btnCloseDocOrig = document.getElementById('btn-close-doc-orig');
+    const btnDocOrigPrint = document.getElementById('btn-doc-orig-print');
+    const docOrigUpload = document.getElementById('doc-orig-upload-input');
+
+    if (btnCloseDocOrig && docOrigModal) {
+      btnCloseDocOrig.addEventListener('click', () => docOrigModal.classList.remove('open'));
+    }
+    if (docOrigModal) {
+      docOrigModal.addEventListener('click', (e) => {
+        if (e.target === docOrigModal) docOrigModal.classList.remove('open');
+      });
+    }
+    if (btnDocOrigPrint) {
+      btnDocOrigPrint.addEventListener('click', () => window.print());
+    }
+    if (docOrigUpload) {
+      docOrigUpload.addEventListener('change', (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (!file || !state.activeDocOrigId) return;
+        const docObj = state.primaryDocuments.find((d) => d.id === state.activeDocOrigId);
+        if (!docObj || typeof FileReader === 'undefined') return;
+        const reader = new FileReader();
+        reader.onload = () => {
+          docObj.attachmentUrl = String(reader.result || '');
+          docObj.attachmentName = file.name;
+          openOriginalDocumentModal(docObj);
+          showInlineStatus(`Скан-копію «${file.name}» прикріплено до оригіналу ${docObj.docNumber}`);
+        };
+        reader.readAsDataURL(file);
+        docOrigUpload.value = '';
       });
     }
 
-    // Sidebar niche pill trigger -> opens Presentation (SMB + Enterprise) tab
-    const nicheTrigger = document.getElementById('sidebar-niche-trigger');
-    const scaleCard = document.getElementById('sidebar-scale-card');
-    [nicheTrigger, scaleCard].forEach((el) => {
-      if (el) {
-        el.addEventListener('click', () => {
-          switchTab('about');
-        });
-      }
-    });
-
-    // Presentation Mode Switcher (BOTH / SMB / ENTERPRISE) in #view-about
-    document.querySelectorAll('.js-pres-mode-btn').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const mode = btn.getAttribute('data-mode') || 'BOTH';
-        document.querySelectorAll('.js-pres-mode-btn').forEach((b) => {
-          const isCurrent = b === btn;
-          b.className = isCurrent ? 'btn btn-sm btn-action-primary js-pres-mode-btn' : 'btn btn-sm btn-subtle js-pres-mode-btn';
-        });
-        const smbBlock = document.getElementById('pres-block-smb');
-        const entBlock = document.getElementById('pres-block-enterprise');
-        const turnSlider = document.getElementById('roi-turnover-slider');
-        const staffSlider = document.getElementById('roi-staff-slider');
-        if (mode === 'SMB') {
-          if (smbBlock) smbBlock.style.display = 'block';
-          if (entBlock) entBlock.style.display = 'none';
-          if (turnSlider) turnSlider.value = '1800000';
-          if (staffSlider) staffSlider.value = '35000';
-          evaluateEnterpriseRoiLive();
-          showInlineStatus('Відкрито презентацію для Малого та Середнього Бізнесу (МСБ)');
-        } else if (mode === 'ENTERPRISE') {
-          if (smbBlock) smbBlock.style.display = 'none';
-          if (entBlock) entBlock.style.display = 'block';
-          if (turnSlider) turnSlider.value = '12000000';
-          if (staffSlider) staffSlider.value = '140000';
-          evaluateEnterpriseRoiLive();
-          showInlineStatus('Відкрито презентацію для Великого Бізнесу та Виробництва (Цех + Склад)');
-        } else {
-          if (smbBlock) smbBlock.style.display = 'block';
-          if (entBlock) entBlock.style.display = 'block';
-          if (turnSlider) turnSlider.value = '4500000';
-          if (staffSlider) staffSlider.value = '65000';
-          evaluateEnterpriseRoiLive();
-          showInlineStatus('Показано обидві презентації: МСБ + Великий Бізнес');
-        }
+    // CRM Card Modal close
+    const crmModal = document.getElementById('crm-card-modal');
+    const btnCloseCrmModal = document.getElementById('btn-close-crm-modal');
+    if (btnCloseCrmModal && crmModal) {
+      btnCloseCrmModal.addEventListener('click', () => crmModal.classList.remove('open'));
+    }
+    if (crmModal) {
+      crmModal.addEventListener('click', (e) => {
+        if (e.target === crmModal) crmModal.classList.remove('open');
       });
-    });
+    }
 
     // OCR File Input (PC) & Phone Camera Patch Input
     const ocrPcInput = document.getElementById('ocr-pc-file-input');
@@ -3936,16 +4725,17 @@
       });
     }
 
-    // Single-Owner Access Role Switcher
+    // Single-Owner / Chief Accountant / Staff Access Role Switcher
     const roleSelect = document.getElementById('access-role-select');
     if (roleSelect) {
       roleSelect.addEventListener('change', () => {
         applyAccessRole(roleSelect.value);
-        showInlineStatus(
-          state.editAuthorized
-            ? 'Активовано права Власника (OWNER): редагування цифр розблоковано'
-            : 'Активовано режим STAFF: редагування цифр, цін, P&L та залишків ТМЦ заблоковано'
-        );
+        const msg = state.accessRole === 'OWNER'
+          ? 'Роль Власника (OWNER): повні права + прихований Excel-лог'
+          : state.accessRole === 'CHIEF_ACCOUNTANT'
+          ? 'Роль Головного бухгалтера: облік, P&L, ДЗ/КЗ та прихований Excel-лог відкриті'
+          : 'Операційний режим Персоналу (STAFF): CRM-картки й QR-склад доступні; фінансові цифри та логи заблоковано';
+        showInlineStatus(msg);
       });
     }
 
@@ -3965,6 +4755,7 @@
         if (!requireOwnerEdit()) return;
         state.pnlAdjustments = {};
         state.pnlCustomLines = [];
+        recordCompanyAuditAndExcelMirror('PnL_Звіт', { Подія: 'Скидання коригувань P&L до Головної Книги', Період: state.pnlPeriod }, 'Скидання коригувань P&L', 0);
         renderPnlSection();
         renderPulseSection();
         showInlineStatus('Ручні коригування P&L скинуто до даних Головної Книги');
@@ -3995,11 +4786,53 @@
           amount: amt,
           plan
         });
+        recordCompanyAuditAndExcelMirror(
+          'PnL_Звіт',
+          { Стаття: name, Група: grp, Факт_UAH: amt, План_UAH: plan, Період: state.pnlPeriod },
+          `Додано статтю P&L «${name}»`,
+          amt
+        );
         const nameInp = document.getElementById('pnl-add-name');
         if (nameInp) nameInp.value = '';
         renderPnlSection();
         renderPulseSection();
         showInlineStatus(`Додано статтю P&L «${name}» (${fmtUah(amt)})`);
+      });
+    }
+
+    // CRM IP-Telephony Auto-Card Buttons + View Controls
+    const btnCrmInCall = document.getElementById('btn-crm-in-call');
+    if (btnCrmInCall) {
+      btnCrmInCall.addEventListener('click', () => handleCrmPhoneCallEvent('INBOUND'));
+    }
+    const btnCrmOutCall = document.getElementById('btn-crm-out-call');
+    if (btnCrmOutCall) {
+      btnCrmOutCall.addEventListener('click', () => handleCrmPhoneCallEvent('OUTBOUND'));
+    }
+    const btnCrmKanban = document.getElementById('btn-crm-view-kanban');
+    if (btnCrmKanban) {
+      btnCrmKanban.addEventListener('click', () => {
+        state.crmViewMode = 'KANBAN';
+        renderCrmDealsTable();
+      });
+    }
+    const btnCrmTable = document.getElementById('btn-crm-view-table');
+    if (btnCrmTable) {
+      btnCrmTable.addEventListener('click', () => {
+        state.crmViewMode = 'TABLE';
+        renderCrmDealsTable();
+      });
+    }
+    const crmSearchInp = document.getElementById('crm-search-input');
+    if (crmSearchInp) {
+      crmSearchInp.addEventListener('input', renderCrmDealsTable);
+    }
+    const btnToggleCrmForm = document.getElementById('btn-toggle-crm-manual-form');
+    const crmFormEl = document.getElementById('crm-add-deal-form');
+    if (btnToggleCrmForm && crmFormEl) {
+      btnToggleCrmForm.addEventListener('click', () => {
+        const isOpen = crmFormEl.style.display === 'block';
+        crmFormEl.style.display = isOpen ? 'none' : 'block';
       });
     }
 
@@ -4017,12 +4850,27 @@
         const note = document.getElementById('crm-note')?.value.trim() || '';
 
         if (!state.editAuthorized && amount > 0) {
-          showInlineStatus('У режимі STAFF створення угод із фінансовими сумами потребує прав Власника');
+          showInlineStatus('У режимі STAFF створення угод із фінансовими сумами потребує прав Власника / Главбуха');
           return;
         }
 
+        const newDealId = `CRM-${105 + state.crmDeals.length}`;
+        const newDocId = `DOC-${newDealId}`;
+        state.primaryDocuments.unshift({
+          id: newDocId,
+          docNumber: `КП-${newDealId} від ${new Date().toLocaleDateString('uk-UA')}`,
+          typeBadge: 'Комерційна пропозиція / Картка CRM',
+          counterparty: client,
+          edrpou,
+          amount,
+          itemsSummary: subject,
+          ledgerNote: `CRM Картка ${newDealId}`,
+          signedBy: 'Менеджер CRM'
+        });
+
         state.crmDeals.unshift({
-          id: `CRM-${Date.now()}`,
+          id: newDealId,
+          origin: 'MANUAL',
           client,
           edrpou,
           contact,
@@ -4030,11 +4878,21 @@
           subject,
           amount,
           stage,
-          note
+          note,
+          docId: newDocId,
+          callHistory: []
         });
+
+        recordCompanyAuditAndExcelMirror(
+          'CRM_Дзвінки_Угоди',
+          { ID_Картки: newDealId, Подія: 'Ручне створення картки', Клієнт: client, Телефон: phone, Суть: subject, Сума_UAH: amount },
+          `Створено картку CRM «${client}»`,
+          amount
+        );
+
         renderCrmDealsTable();
         renderSalesOrdersTable();
-        showInlineStatus(`Додано CRM угоду «${client}» на суму ${fmtUah(amount)}`);
+        showInlineStatus(`Додано CRM картку «${client}» на суму ${fmtUah(amount)}`);
       });
     }
 
@@ -4049,23 +4907,39 @@
         const doc = document.getElementById('debt-doc')?.value.trim() || 'Акт звірки';
         const amount = Math.max(1, Number(document.getElementById('debt-amount')?.value) || 0);
         const overdueDays = Math.max(0, Number(document.getElementById('debt-days')?.value) || 0);
+        const docId = `DOC-DEBT-${Date.now().toString().slice(-5)}`;
+
+        state.primaryDocuments.unshift({
+          id: docId,
+          docNumber: doc,
+          typeBadge: type === 'AR' ? 'Акт звірки ДЗ (Рах. 361)' : 'Вхідний рахунок / Акт КЗ (Рах. 631)',
+          counterparty: party,
+          edrpou,
+          amount,
+          itemsSummary: `${doc} • Прострочення ${overdueDays} дн.`,
+          ledgerNote: type === 'AR' ? 'Дт 361 Кт 701' : 'Дт 201 Кт 631',
+          signedBy: state.accessRole === 'CHIEF_ACCOUNTANT' ? 'Головний бухгалтер' : 'Власник'
+        });
 
         if (type === 'AR') {
           state.dealerCredits.unshift({
             id: `dl-${Date.now()}`,
             name: party,
             segment: `ЄДРПОУ: ${edrpou} / ${doc}`,
-            kam: 'Внесено вручну (Власник)',
+            kam: 'Внесено в облік',
             limitUah: Math.max(amount * 1.5, 500000),
             debtUah: amount,
             overdueDays,
+            docId,
             gateStatus: overdueDays > 7 ? 'BLOCKED' : overdueDays > 0 ? 'WARN' : 'OPEN'
           });
           postOnlineLedgerEntries([
             {
               doc,
+              docId,
               desc: `Фіксація дебіторської заборгованості покупця ${party}`,
               entity: party,
+              edrpou,
               dt: '361 Розрахунки з покупцями',
               dtCode: '361',
               kt: '701 Дохід від реалізації ГП',
@@ -4079,6 +4953,7 @@
             party,
             edrpou,
             doc,
+            docId,
             amount,
             overdueDays,
             dueDate: new Date().toLocaleDateString('uk-UA'),
@@ -4087,8 +4962,10 @@
           postOnlineLedgerEntries([
             {
               doc,
+              docId,
               desc: `Фіксація кредиторської заборгованості постачальнику ${party}`,
               entity: party,
+              edrpou,
               dt: '201 Сировина й матеріали',
               dtCode: '201',
               kt: '631 Розрахунки з постачальниками',
@@ -4116,35 +4993,50 @@
         }
         const rowId = t.getAttribute('data-row');
         const field = t.getAttribute('data-field');
+        const val = Number(t.value) || 0;
         if (!state.pnlAdjustments[rowId]) state.pnlAdjustments[rowId] = {};
-        state.pnlAdjustments[rowId][field] = Number(t.value) || 0;
+        state.pnlAdjustments[rowId][field] = val;
+        recordCompanyAuditAndExcelMirror(
+          'PnL_Звіт',
+          { ID_Статті: rowId, Поле: field, Значення_UAH: val, Період: state.pnlPeriod },
+          `Коригування P&L (${rowId}.${field} = ${val})`,
+          val
+        );
         renderPnlSection();
         renderPulseSection();
-        showInlineStatus('Показник P&L оновлено Власником');
+        showInlineStatus('Показник P&L оновлено');
       } else if (t.classList.contains('js-crm-edit')) {
-        if (!requireOwnerEdit()) {
+        const id = t.getAttribute('data-id');
+        const field = t.getAttribute('data-field');
+        if (field === 'amount' && !requireOwnerEdit()) {
           renderCrmDealsTable();
           return;
         }
-        const id = t.getAttribute('data-id');
-        const field = t.getAttribute('data-field');
         const deal = state.crmDeals.find((d) => d.id === id);
         if (deal && field) {
           deal[field] = field === 'amount' ? Math.max(0, Number(t.value) || 0) : t.value;
+          recordCompanyAuditAndExcelMirror(
+            'CRM_Дзвінки_Угоди',
+            { ID_Картки: deal.id, Подія: `Зміна поля ${field}`, Клієнт: deal.client, Телефон: deal.phone, Суть: deal.subject, Сума_UAH: deal.amount },
+            `Оновлено поле ${field} у картці ${deal.client}`,
+            deal.amount
+          );
           renderCrmDealsTable();
-          showInlineStatus(`Угоду ${deal.client} оновлено`);
+          showInlineStatus(`Картку ${deal.client} оновлено`);
         }
       } else if (t.classList.contains('js-crm-stage')) {
-        if (!requireOwnerEdit()) {
-          renderCrmDealsTable();
-          return;
-        }
         const id = t.getAttribute('data-id');
         const deal = state.crmDeals.find((d) => d.id === id);
         if (deal) {
           deal.stage = t.value;
+          recordCompanyAuditAndExcelMirror(
+            'CRM_Дзвінки_Угоди',
+            { ID_Картки: deal.id, Подія: `Перехід на етап ${deal.stage}`, Клієнт: deal.client, Телефон: deal.phone, Суть: deal.subject, Сума_UAH: deal.amount },
+            `Картку ${deal.client} переведено на етап ${deal.stage}`,
+            deal.amount
+          );
           renderCrmDealsTable();
-          showInlineStatus(`Етап угоди ${deal.client} змінено`);
+          showInlineStatus(`Етап картки ${deal.client} змінено`);
         }
       } else if (t.classList.contains('js-debt-ar-edit')) {
         if (!requireOwnerEdit()) {
@@ -4157,10 +5049,16 @@
         if (dl && field) {
           dl[field] = Math.max(0, Number(t.value) || 0);
           dl.gateStatus = dl.debtUah > dl.limitUah || dl.overdueDays > 7 ? 'BLOCKED' : dl.debtUah >= dl.limitUah * 0.85 || dl.overdueDays > 0 ? 'WARN' : 'OPEN';
+          recordCompanyAuditAndExcelMirror(
+            'Проводки_ОСВ_ДЗКЗ',
+            { ID: dl.id, Документ: 'ДЗ-ПРАВКА', Контрагент: dl.name, Поле: field, Сума_UAH: dl.debtUah },
+            `Редагування ДЗ ${dl.name} (${field}=${dl[field]})`,
+            dl.debtUah
+          );
           renderDebtSection();
           renderDealerCreditTable();
           renderPulseSection();
-          showInlineStatus(`Дебіторку ${dl.name} оновлено Власником`);
+          showInlineStatus(`Дебіторку ${dl.name} оновлено`);
         }
       } else if (t.classList.contains('js-debt-ap-edit')) {
         if (!requireOwnerEdit()) {
@@ -4172,9 +5070,15 @@
         if (ap) {
           ap.amount = Math.max(0, Number(t.value) || 0);
           if (ap.amount === 0) ap.status = 'PAID';
+          recordCompanyAuditAndExcelMirror(
+            'Проводки_ОСВ_ДЗКЗ',
+            { ID: ap.id, Документ: ap.doc, Контрагент: ap.party, Поле: 'amount', Сума_UAH: ap.amount },
+            `Редагування КЗ ${ap.party} (${ap.amount} ₴)`,
+            ap.amount
+          );
           renderDebtSection();
           renderPulseSection();
-          showInlineStatus(`Кредиторку ${ap.party} оновлено Власником`);
+          showInlineStatus(`Кредиторку ${ap.party} оновлено`);
         }
       } else if (t.classList.contains('js-stock-edit')) {
         if (!requireOwnerEdit()) {
@@ -4186,9 +5090,15 @@
         const item = state.stockItems.find((s) => s.sku === sku);
         if (item && field) {
           item[field] = Math.max(0, Number(t.value) || 0);
+          recordCompanyAuditAndExcelMirror(
+            'Склад_QR_ТМЦ',
+            { Штрихкод: item.barcode || item.sku, SKU: item.sku, Назва: item.itemName, Операція: `Правка ${field}`, Нове_Значення: item[field] },
+            `Коригування ТМЦ ${sku} (${field}=${item[field]})`,
+            item.qty * item.unitPrice
+          );
           renderStockSection();
           renderPulseSection();
-          showInlineStatus(`Залишок / ціну ТМЦ ${sku} оновлено Власником`);
+          showInlineStatus(`Залишок / ціну ТМЦ ${sku} оновлено`);
         }
       }
     });
@@ -4279,7 +5189,7 @@
               amount: 1500000
             }
           ],
-          '️ AI Procurement Shield: Завищений рахунок заблоковано, заощаджено ₴ 276 000 (+Дт 201 Кт 631)'
+          'Procurement Shield: Завищений рахунок заблоковано, заощаджено ₴ 276 000 (+Дт 201 Кт 631)'
         );
       });
     }
@@ -4428,7 +5338,31 @@
       });
     }
 
-    // Add Stock Supply Form (100% works offline + Owner lock)
+    // QR / Barcode Scan Gate Listeners (Warehouse Scan-First Control)
+    const btnStkScanConfirm = document.getElementById('btn-stk-scan-confirm');
+    const stkScanInput = document.getElementById('stk-scan-input');
+    const btnStkScanDemo = document.getElementById('btn-stk-scan-demo');
+    const btnStkExecOp = document.getElementById('btn-stk-exec-op');
+
+    if (btnStkScanConfirm && stkScanInput) {
+      btnStkScanConfirm.addEventListener('click', () => confirmStockScan(stkScanInput.value));
+    }
+    if (stkScanInput) {
+      stkScanInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          confirmStockScan(stkScanInput.value);
+        }
+      });
+    }
+    if (btnStkScanDemo) {
+      btnStkScanDemo.addEventListener('click', () => confirmStockScan('4820010400016'));
+    }
+    if (btnStkExecOp) {
+      btnStkExecOp.addEventListener('click', executeScannedStockMovement);
+    }
+
+    // Add Stock Catalog Item Form (Auto-generates EAN-13 Barcode + Owner lock)
     const btnAddStock = document.getElementById('btn-add-stock');
     if (btnAddStock) {
       btnAddStock.addEventListener('click', async () => {
@@ -4436,62 +5370,73 @@
         const sku = document.getElementById('stk-sku')?.value.trim() || `RAW-${100 + state.stockItems.length}`;
         const itemName = document.getElementById('stk-name')?.value.trim() || 'Нова партія сировини';
         const category = document.getElementById('stk-category')?.value || 'Товари та сировина';
-        const qty = Math.max(1, Number(document.getElementById('stk-qty')?.value) || 20);
+        const qty = Math.max(0, Number(document.getElementById('stk-qty')?.value) || 20);
         const unitPrice = Math.max(1, Number(document.getElementById('stk-cost')?.value) || 14200);
         const sellPrice = Math.max(1, Number(document.getElementById('stk-price')?.value) || Math.round(unitPrice * 1.44));
         const totalSupply = qty * unitPrice;
+        const genBarcode = `4820010400${String(10 + state.stockItems.length).padStart(3, '0')}`;
+        const docId = `DOC-CAT-${Date.now().toString().slice(-5)}`;
 
         const existing = state.stockItems.find((s) => s.sku === sku);
+        let assignedBarcode = genBarcode;
         if (existing) {
           existing.qty += qty;
           existing.unitPrice = unitPrice;
           existing.sellPrice = sellPrice;
           existing.category = category;
+          assignedBarcode = existing.barcode || genBarcode;
         } else {
           state.stockItems.unshift({
             sku,
+            barcode: genBarcode,
             itemName,
             category,
             unit: 'шт',
             qty,
             unitPrice,
             sellPrice,
-            minThreshold: 20
+            minThreshold: 20,
+            lastDocId: docId
           });
         }
 
-        try {
-          await fetch('/api/autonomous/stock/movement', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              sku,
-              itemName,
-              unit: 'шт',
-              qty,
-              unitPrice,
-              type: 'IN_PURCHASE',
-              reference: 'SUPPLY-INLINE'
-            })
-          });
-        } catch (_e) {}
+        state.primaryDocuments.unshift({
+          id: docId,
+          docNumber: `КАРТ-${sku}`,
+          typeBadge: 'Акт постановки позиції ТМЦ на QR-облік',
+          counterparty: 'Внутрішній склад / Постачальник',
+          edrpou: '38421567',
+          amount: totalSupply,
+          itemsSummary: `${itemName} [Штрихкод ${assignedBarcode}] • ${qty} шт`,
+          ledgerNote: 'Дт 201 Кт 631',
+          signedBy: 'Власник / Комірник'
+        });
+
+        recordCompanyAuditAndExcelMirror(
+          'Склад_QR_ТМЦ',
+          { Штрихкод: assignedBarcode, SKU: sku, Назва: itemName, Операція: 'Реєстрація позиції / Залишок', Кількість: qty, Сума_UAH: totalSupply },
+          `Зареєстровано ТМЦ ${sku} (Штрихкод ${assignedBarcode}, +${qty} од.)`,
+          totalSupply
+        );
 
         postOnlineLedgerEntries([
           {
-            doc: `ВХ-WMS-${sku}`,
-            desc: `Оприбуткування ТМЦ на склад: ${itemName} (+${qty} од.)`,
+            doc: `КАРТ-${sku}`,
+            docId,
+            desc: `Оприбуткування нової позиції ТМЦ: ${itemName} (+${qty} од.)`,
             entity: 'ТОВ "ОпексМетрікс Індастріал"',
             dt: '201 Сировина й матеріали',
             dtCode: '201',
             kt: '631 Розрахунки з постачальниками',
             ktCode: '631',
-            amount: totalSupply
+            amount: totalSupply,
+            skipExcelMirror: true
           }
         ]);
 
         renderStockSection();
         renderPulseSection();
-        showInlineStatus(`Позицію «${itemName}» (+${qty} од.) оприбутковано + Дт 201 Кт 631 (${fmtUah(totalSupply)})`);
+        showInlineStatus(`Позицію «${itemName}» (штрихкод ${assignedBarcode}) додано + Дт 201 Кт 631`);
       });
     }
 
@@ -4742,194 +5687,179 @@
       });
     }
 
-    const btnMigDemo = document.getElementById('btn-mig-load-demo');
-    if (btnMigDemo) {
-      btnMigDemo.addEventListener('click', () => {
-        const demoCsv = [
-          'SKU;Найменування;Од;Кількість;Ціна;Тип',
-          'RAW-VENEER-OAK;Шпон натуральний дубовий (0.6 мм);м2;640;310;STOCK',
-          'RAW-GLUE-PUR;Клей-розплав PUR Kleiberit (мішок 25 кг);шт;28;4200;STOCK',
-          'FIN-DOOR-STD;Полотно дверне щитове МДФ 800 мм (RAL 9003);шт;35;3250;STOCK',
-          'RAW-VENEER-OAK;Шпон натуральний дубовий (0.6 мм);м2;640;310;STOCK',
-          '38910455;ТОВ "Карпат-Брус" (Борг покупця за відвантаження);АР;185000;12;AR',
-          '40129384;ПрАТ "Епіцентр-Постач" (Рахунок за лак/фарбу);АП;94000;0;AP',
-          '41990112;ЖК "Поділля Нова" (Новий договір 40 полотен);Партія дверей;218000;PROPOSAL;CRM'
-        ].join('\n');
-        const demoBank = [
-          '1CClientBankExchange',
-          'СекціяДокумент=Платіжне доручення',
-          'Номер=9041',
-          'Дата=10.11.2026',
-          'Сума=312000.00',
-          'Платник=ТОВ "БудМаркет Поділля"',
-          'ПризначенняПлатежу=Оплата за дверні полотна МДФ згідно рах. ВН-881',
-          'КінецьДокумента'
-        ].join('\n');
-
-        const csvInput = document.getElementById('mig-csv-input');
-        const bankInput = document.getElementById('mig-bank-input');
-        if (csvInput) csvInput.value = demoCsv;
-        if (bankInput) bankInput.value = demoBank;
-        const stBadge = document.getElementById('migration-status-badge');
-        if (stBadge) stBadge.textContent = 'Дамп 1С завантажено (Крок 1)';
-        showInlineStatus('Завантажено тестовий витяг 1С / Excel (ТМЦ + Дебіторка/Кредиторка + CRM + Дубль)');
-      });
-    }
-
-    const btnMigAnalyze = document.getElementById('btn-mig-analyze');
-    if (btnMigAnalyze) {
-      btnMigAnalyze.addEventListener('click', () => {
-        const csvText = document.getElementById('mig-csv-input')?.value || '';
-        const bankExchangeText = document.getElementById('mig-bank-input')?.value || '';
-        const parsed = parseMigrationCsvRows(csvText);
-        const totalStockValue = parsed.stocks.reduce((s, it) => s + it.qty * it.unitPrice, 0);
-
-        const fixes = [];
-        if (parsed.duplicatesCount > 0) fixes.push(`Видалено дубльованих рядків 1С: ${parsed.duplicatesCount}`);
-        if (parsed.stocks.length > 0) fixes.push(`Нормалізовано SKU та залишки складу: ${parsed.stocks.length} позицій`);
-        if (parsed.debts.length > 0) fixes.push(`Розібрано контрагентів ДЗ/КЗ: ${parsed.debts.length} записів`);
-        if (parsed.crms.length > 0) fixes.push(`Підготовлено CRM угод: ${parsed.crms.length}`);
-        if (bankExchangeText.trim()) fixes.push('Перевірено синтаксис виписки 1CClientBankExchange');
-        if (fixes.length === 0) fixes.push('Вставте CSV рядки або натисніть «1. Підставити тестовий витяг 1С»');
-
-        state.lastMigrationAnalysis = {
-          counterparties: parsed.debts,
-          duplicatesRemoved: parsed.duplicatesCount,
-          items: parsed.stocks,
-          totalStockValue,
-          debtsCount: parsed.debts.length,
-          crmCount: parsed.crms.length,
-          bankDocs: bankExchangeText.trim() ? [1] : [],
-          sanitizedFixes: fixes
-        };
-        state.lastForensicReport = {
-          garbageIndexPercent: parsed.duplicatesCount > 0 ? 14 : 0,
-          garbageVerdict: parsed.duplicatesCount > 0
-            ? `Виявлено ${parsed.duplicatesCount} дубль(і) у вивантаженні — автоматично очищено перед записом у базу`
-            : 'Дані вивантаження чисті, дублів не виявлено',
-          anomalies: parsed.duplicatesCount > 0
-            ? [
-                {
-                  title: 'Дублювання картки ТМЦ / контрагента в 1С',
-                  affectedEntity: 'Довідник номенклатури',
-                  description: `Знайдено ${parsed.duplicatesCount} повторюваний запис(и), що спотворюють собівартість.`,
-                  autoFixAction: 'Автоматичне об\'єднання по ключу SKU/Назва перед імпортом.'
-                }
-              ]
-            : []
-        };
-
-        const stBadge = document.getElementById('migration-status-badge');
-        if (stBadge) stBadge.textContent = 'Перевірку завершено (Крок 2)';
-        renderMigrationReportInline();
-        showInlineStatus('Форензік-аудит вивантаження завершено. Готово до імпорту');
-      });
-    }
-
-    const btnMigExec = document.getElementById('btn-mig-execute');
-    if (btnMigExec) {
-      btnMigExec.addEventListener('click', () => {
-        if (!requireOwnerEdit()) return;
-        const csvText = document.getElementById('mig-csv-input')?.value || '';
-        const targetMode = document.getElementById('mig-target-select')?.value || 'AUTO';
-        const parsed = parseMigrationCsvRows(csvText);
-
-        let importedStock = 0;
-        let importedDebt = 0;
-        let importedCrm = 0;
-
-        if (targetMode === 'AUTO' || targetMode === 'STOCK') {
-          parsed.stocks.forEach((st) => {
-            const ex = state.stockItems.find((x) => x.sku === st.sku);
-            if (ex) {
-              ex.qty += st.qty;
-              ex.unitPrice = st.unitPrice;
-            } else {
-              state.stockItems.unshift(st);
-            }
-            importedStock += 1;
-          });
-        }
-
-        if (targetMode === 'AUTO' || targetMode === 'DEBT') {
-          parsed.debts.forEach((db) => {
-            if (db.kind === 'AR') {
-              state.dealerCredits.unshift({
-                id: `dl-imp-${Date.now()}-${importedDebt}`,
-                name: db.party,
-                segment: `1С Імпорт • ЄДРПОУ ${db.edrpou}`,
-                kam: 'Імпорт 1С',
-                limitUah: Math.max(db.amount * 1.5, 300000),
-                debtUah: db.amount,
-                overdueDays: db.days,
-                gateStatus: db.days > 7 ? 'BLOCKED' : 'OPEN'
-              });
-            } else {
-              state.payables.unshift({
-                id: `AP-imp-${Date.now()}-${importedDebt}`,
-                party: db.party,
-                edrpou: db.edrpou,
-                doc: 'Сальдо імпорту 1С',
-                amount: db.amount,
-                overdueDays: db.days,
-                dueDate: new Date().toLocaleDateString('uk-UA'),
-                status: db.days > 0 ? 'OVERDUE' : 'OPEN'
-              });
-            }
-            importedDebt += 1;
-          });
-        }
-
-        if (targetMode === 'AUTO' || targetMode === 'CRM') {
-          parsed.crms.forEach((cr) => {
-            state.crmDeals.unshift({
-              id: `CRM-imp-${Date.now()}-${importedCrm}`,
-              client: cr.client,
-              edrpou: cr.edrpou,
-              contact: 'ОПР (1С)',
-              phone: '+380 00 000-00-00',
-              subject: cr.subject,
-              amount: cr.amount,
-              stage: 'PROPOSAL',
-              note: 'Імпортовано з файлу 1С / Excel'
-            });
-            importedCrm += 1;
-          });
-        }
-
-        const totalMovedVal = parsed.stocks.reduce((s, it) => s + it.qty * it.unitPrice, 0);
-        if (totalMovedVal > 0) {
-          postOnlineLedgerEntries([
-            {
-              doc: 'ІМП-1С-48Г',
-              desc: `Імпорт початкових залишків 1С / Excel: ТМЦ (${importedStock}), ДЗ/КЗ (${importedDebt}), CRM (${importedCrm})`,
-              entity: 'ТОВ "ОпексМетрікс Індастріал"',
-              dt: '201 Сировина й матеріали',
-              dtCode: '201',
-              kt: '00 Допоміжний рахунок вводу залишків',
-              ktCode: '631',
-              amount: totalMovedVal
-            }
-          ]);
-        }
-
-        renderStockSection();
-        renderDebtSection();
-        renderDealerCreditTable();
-        renderCrmDealsTable();
-        renderPnlSection();
-        renderPulseSection();
-
-        const stBadge = document.getElementById('migration-status-badge');
-        if (stBadge) stBadge.textContent = `Імпортовано (${importedStock + importedDebt + importedCrm} зап.)`;
-        showInlineStatus(`Імпорт завершено: Склад +${importedStock}, ДЗ/КЗ +${importedDebt}, CRM +${importedCrm}`);
-      });
-    }
-
-    // Delegated Clicks for Dynamic Tables & 1-Click Actions
+    // Delegated Clicks for Dynamic Tables, CRM Cards, QR Scan Gate & Modals
     document.body.addEventListener('click', async (e) => {
+      // Allow clicking anywhere on a CRM Kanban Card (outside nested buttons) to open its detailed card modal
+      if (!e.target.closest('button')) {
+        const cardEl = e.target.closest('.crm-card');
+        if (cardEl) {
+          const dealId = cardEl.getAttribute('data-deal-id');
+          if (dealId) openCrmCardModal(dealId);
+        }
+        return;
+      }
+
       const target = e.target.closest('button');
       if (!target) return;
+
+      // 1. Optional Original Document Viewer Modal (triggered from CRM / Stock / Ledger / Debts / Orders)
+      if (target.classList.contains('js-open-doc-original')) {
+        const docId = target.getAttribute('data-doc-id') || '';
+        let docObj = docId ? state.primaryDocuments.find((d) => d.id === docId) : null;
+        if (!docObj) {
+          const docNum = target.getAttribute('data-doc-num') || 'Первинний документ';
+          const party = target.getAttribute('data-party') || 'Контрагент';
+          const edrpou = target.getAttribute('data-edrpou') || '—';
+          const summary = target.getAttribute('data-summary') || 'Господарська операція';
+          const amt = Number(target.getAttribute('data-amount')) || 0;
+          const ledger = target.getAttribute('data-ledger') || 'Проведено в Головній Книзі';
+          const genId = docId || `DOC-VIEW-${Date.now().toString().slice(-4)}`;
+          docObj = {
+            id: genId,
+            docNumber: docNum,
+            typeBadge: 'Оригінал первинного документа',
+            counterparty: party,
+            edrpou,
+            amount: amt,
+            itemsSummary: summary,
+            ledgerNote: ledger,
+            signedBy: 'Уповноважена особа'
+          };
+          state.primaryDocuments.unshift(docObj);
+        }
+        openOriginalDocumentModal(docObj);
+        return;
+      }
+
+      // 2. Merged Ledger Sub-view Filter Pills (ALL / DEBT / JOURNAL / OSV)
+      if (target.classList.contains('js-ledger-subfilter')) {
+        const sub = target.getAttribute('data-sub') || 'ALL';
+        document.querySelectorAll('.js-ledger-subfilter').forEach((b) => {
+          b.className = b === target ? 'btn btn-sm btn-primary js-ledger-subfilter' : 'btn btn-sm btn-subtle js-ledger-subfilter';
+        });
+        const bDebt = document.getElementById('ledger-block-debt');
+        const bJournal = document.getElementById('ledger-block-journal');
+        const bOsv = document.getElementById('ledger-block-osv');
+        if (bDebt) bDebt.style.display = (sub === 'ALL' || sub === 'DEBT') ? 'block' : 'none';
+        if (bJournal) bJournal.style.display = (sub === 'ALL' || sub === 'JOURNAL') ? 'block' : 'none';
+        if (bOsv) bOsv.style.display = (sub === 'ALL' || sub === 'OSV') ? 'block' : 'none';
+        return;
+      }
+
+      // 3. Warehouse QR / Barcode Row Scan Trigger
+      if (target.classList.contains('js-stk-scan-row')) {
+        const code = target.getAttribute('data-barcode') || target.getAttribute('data-sku') || '';
+        confirmStockScan(code);
+        const gateBox = document.getElementById('stk-scan-gate-box');
+        if (gateBox) gateBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      // 4. CRM Card Modal Triggers & Call Linking
+      if (target.classList.contains('js-crm-open-card')) {
+        const dealId = target.getAttribute('data-id');
+        if (dealId) openCrmCardModal(dealId);
+        return;
+      }
+
+      if (target.classList.contains('js-open-crm-from-call')) {
+        const phone = target.getAttribute('data-phone') || '';
+        const pKey = normalizePhoneKey(phone);
+        let deal = pKey ? state.crmDeals.find((d) => normalizePhoneKey(d.phone) === pKey) : null;
+        if (!deal) {
+          const client = target.getAttribute('data-client') || 'Новий клієнт (SIP)';
+          const subject = target.getAttribute('data-subject') || 'Запит з телефонної лінії';
+          const inpP = document.getElementById('crm-call-phone');
+          const inpC = document.getElementById('crm-call-client');
+          const inpS = document.getElementById('crm-call-subject');
+          if (inpP) inpP.value = phone;
+          if (inpC) inpC.value = client;
+          if (inpS) inpS.value = subject;
+          handleCrmPhoneCallEvent('INBOUND');
+        } else {
+          openCrmCardModal(deal.id);
+        }
+        return;
+      }
+
+      if (target.id === 'btn-crm-modal-save') {
+        const deal = state.crmDeals.find((d) => d.id === state.activeCrmModalId);
+        if (!deal) return;
+        const newClient = document.getElementById('crm-modal-client')?.value.trim();
+        const newPhone = document.getElementById('crm-modal-phone')?.value.trim();
+        const newContact = document.getElementById('crm-modal-contact')?.value.trim();
+        const newEdrpou = document.getElementById('crm-modal-edrpou')?.value.trim();
+        const newSubject = document.getElementById('crm-modal-subject')?.value.trim();
+        const newStage = document.getElementById('crm-modal-stage')?.value;
+        const newNote = document.getElementById('crm-modal-note')?.value.trim();
+        const amtInp = document.getElementById('crm-modal-amount');
+        const reqAmt = amtInp ? Math.max(0, Number(amtInp.value) || 0) : deal.amount;
+
+        if (reqAmt !== deal.amount && !requireOwnerEdit()) return;
+
+        if (newClient) deal.client = newClient;
+        if (newPhone !== undefined) deal.phone = newPhone;
+        if (newContact !== undefined) deal.contact = newContact;
+        if (newEdrpou !== undefined) deal.edrpou = newEdrpou;
+        if (newSubject) deal.subject = newSubject;
+        if (newStage) deal.stage = newStage;
+        if (newNote !== undefined) deal.note = newNote;
+        if (state.editAuthorized) deal.amount = reqAmt;
+
+        recordCompanyAuditAndExcelMirror(
+          'CRM_Дзвінки_Угоди',
+          { ID_Картки: deal.id, Подія: 'Редагування картки', Клієнт: deal.client, Телефон: deal.phone, Суть: deal.subject, Сума_UAH: deal.amount },
+          `Оновлено CRM картку ${deal.id} (${deal.client})`,
+          deal.amount
+        );
+
+        renderCrmDealsTable();
+        renderSalesOrdersTable();
+        document.getElementById('crm-card-modal')?.classList.remove('open');
+        showInlineStatus(`Картку CRM «${deal.client}» збережено`);
+        return;
+      }
+
+      if (target.classList.contains('js-modal-crm-call')) {
+        const deal = state.crmDeals.find((d) => d.id === state.activeCrmModalId);
+        if (!deal) return;
+        const dir = target.getAttribute('data-dir') || 'Вихідний (SIP)';
+        const nowTime = new Date().toLocaleTimeString('uk-UA', { hour: '2-digit', minute: '2-digit' });
+        if (!Array.isArray(deal.callHistory)) deal.callHistory = [];
+        deal.callHistory.unshift({
+          time: nowTime,
+          dir,
+          duration: '2 хв 10 сек',
+          summary: `${dir}: Уточнення замовлення та деталей відвантаження`
+        });
+        if (state.aiSales && Array.isArray(state.aiSales.calls)) {
+          state.aiSales.calls.unshift({
+            id: `call-${Date.now()}`,
+            direction: dir.includes('Вхідний') ? 'INBOUND' : 'OUTBOUND',
+            clientName: deal.client,
+            phone: deal.phone,
+            time: `Щойно (${nowTime})`,
+            duration: '2 хв 10 сек',
+            manager: 'Менеджер CRM',
+            qcScore: 93,
+            transcriptSummary: `${dir}: зафіксовано розмову у картці ${deal.id}`,
+            detectedItems: deal.subject,
+            status: 'CRM_CARD_LINKED',
+            dealId: deal.id
+          });
+        }
+        recordCompanyAuditAndExcelMirror(
+          'CRM_Дзвінки_Угоди',
+          { ID_Картки: deal.id, Подія: dir, Клієнт: deal.client, Телефон: deal.phone, Суть: deal.subject, Сума_UAH: deal.amount },
+          `Зафіксовано ${dir} по картці ${deal.client}`,
+          deal.amount
+        );
+        renderAiSalesSection();
+        renderCrmDealsTable();
+        openCrmCardModal(deal.id);
+        showInlineStatus(`${dir} зафіксовано у картці ${deal.client}`);
+        return;
+      }
 
 
       if (target.id === 'btn-phone-sim-waybill') {
@@ -5187,7 +6117,18 @@
             ledgerKtCode: doc.ledgerKtCode
           };
           renderDocsSection();
-          showInlineStatus(`️ Відкрито AI OCR скан документа № ${doc.docNumber}`);
+          openOriginalDocumentModal({
+            id: doc.id,
+            docNumber: doc.docNumber,
+            typeBadge: doc.typeBadge,
+            counterparty: doc.counterparty,
+            edrpou: doc.edrpou,
+            amount: doc.amount,
+            itemsSummary: doc.ecosystemLink,
+            ledgerNote: `Дт ${doc.ledgerDtCode} Кт ${doc.ledgerKtCode}`,
+            signedBy: doc.approvalRoute
+          });
+          showInlineStatus(`Відкрито оригінал документа № ${doc.docNumber}`);
         }
         return;
       }
@@ -5345,6 +6286,7 @@
         if (!requireOwnerEdit()) return;
         const id = target.getAttribute('data-id');
         state.pnlCustomLines = state.pnlCustomLines.filter((x) => x.id !== id);
+        recordCompanyAuditAndExcelMirror('PnL_Звіт', { ID_Статті: id, Подія: 'Видалено статтю P&L' }, `Видалено кастомну статтю P&L (${id})`, 0);
         renderPnlSection();
         renderPulseSection();
         showInlineStatus('Рядок P&L видалено');
@@ -5354,10 +6296,17 @@
       if (target.classList.contains('js-crm-delete')) {
         if (!requireOwnerEdit()) return;
         const id = target.getAttribute('data-id');
+        const deletedDeal = state.crmDeals.find((d) => d.id === id);
         state.crmDeals = state.crmDeals.filter((d) => d.id !== id);
+        recordCompanyAuditAndExcelMirror(
+          'CRM_Дзвінки_Угоди',
+          { ID_Картки: id, Подія: 'Видалено картку CRM', Клієнт: deletedDeal ? deletedDeal.client : id },
+          `Видалено картку CRM (${id})`,
+          deletedDeal ? deletedDeal.amount : 0
+        );
         renderCrmDealsTable();
         renderSalesOrdersTable();
-        showInlineStatus('CRM угоду видалено');
+        showInlineStatus('CRM картку видалено');
         return;
       }
 
@@ -5384,11 +6333,19 @@
           };
           state.orders.unshift(newOrd);
           state.activeDocOrderId = newOrderNum;
+          recordCompanyAuditAndExcelMirror(
+            'CRM_Дзвінки_Угоди',
+            { ID_Картки: deal.id, Подія: `Конвертовано в рахунок ${newOrderNum}`, Клієнт: deal.client, Телефон: deal.phone, Суть: deal.subject, Сума_UAH: deal.amount },
+            `Картку ${deal.id} (${deal.client}) переведено в рахунок ${newOrderNum}`,
+            deal.amount
+          );
           postOnlineLedgerEntries([
             {
               doc: newOrderNum,
-              desc: `Виставлено рахунок за CRM-угодою: ${deal.client} (${deal.subject})`,
+              docId: deal.docId || undefined,
+              desc: `Виставлено рахунок за CRM-карткою: ${deal.client} (${deal.subject})`,
               entity: deal.client,
+              edrpou: deal.edrpou || '—',
               dt: '361 Розрахунки з покупцями',
               dtCode: '361',
               kt: '701 Дохід від реалізації ГП',
@@ -5396,6 +6353,7 @@
               amount: deal.amount
             }
           ]);
+          document.getElementById('crm-card-modal')?.classList.remove('open');
           renderCrmDealsTable();
           renderSalesOrdersTable();
           renderPnlSection();
@@ -5686,84 +6644,6 @@
         return;
       }
 
-      // 7. Quick replenish / manual writeoff stock from Stock table (100% works offline + Owner lock)
-      if (target.classList.contains('js-quick-replenish')) {
-        if (!requireOwnerEdit()) return;
-        const sku = target.getAttribute('data-sku') || 'RAW-MDF-16';
-        const itemName = target.getAttribute('data-name') || 'ТМЦ';
-        const unit = target.getAttribute('data-unit') || 'шт';
-        const unitPrice = Number(target.getAttribute('data-cost')) || 1000;
-        const qty = Number(target.getAttribute('data-qty')) || 10;
-
-        const item = state.stockItems.find((s) => s.sku === sku);
-        if (item) item.qty += qty;
-
-        try {
-          await fetch('/api/autonomous/stock/movement', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              sku,
-              itemName,
-              unit,
-              qty,
-              unitPrice,
-              type: 'IN_PURCHASE',
-              reference: 'QUICK-REPLENISH'
-            })
-          });
-        } catch (_err) {}
-
-        postOnlineLedgerEntries([
-          {
-            doc: `WMS-ПРИХІД-${sku}`,
-            desc: `Поповнення ТМЦ «${itemName}» (+${qty} ${unit}) на склад`,
-            entity: 'ТОВ "ОпексМетрікс Індастріал"',
-            dt: '201 Сировина й матеріали',
-            dtCode: '201',
-            kt: '631 Розрахунки з постачальниками',
-            ktCode: '631',
-            amount: qty * unitPrice
-          }
-        ]);
-
-        renderStockSection();
-        renderPulseSection();
-        showInlineStatus(`Запас «${itemName}» поповнено на +${qty} ${unit} (+Дт 201 Кт 631)`);
-        return;
-      }
-
-      if (target.classList.contains('js-stock-writeoff')) {
-        if (!requireOwnerEdit()) return;
-        const sku = target.getAttribute('data-sku') || 'RAW-MDF-16';
-        const itemName = target.getAttribute('data-name') || 'ТМЦ';
-        const unit = target.getAttribute('data-unit') || 'шт';
-        const unitPrice = Number(target.getAttribute('data-cost')) || 1000;
-        const reqQty = Number(target.getAttribute('data-qty')) || 10;
-
-        const item = state.stockItems.find((s) => s.sku === sku);
-        const actualWriteoff = item ? Math.min(item.qty, reqQty) : reqQty;
-        if (item) item.qty = Math.max(0, item.qty - actualWriteoff);
-
-        postOnlineLedgerEntries([
-          {
-            doc: `WMS-СПИС-${sku}`,
-            desc: `Списання ТМЦ «${itemName}» (-${actualWriteoff} ${unit}) у цех (Рах. 231)`,
-            entity: 'ТОВ "ОпексМетрікс Індастріал"',
-            dt: '231 Основне виробництво (MES)',
-            dtCode: '231',
-            kt: '201 Сировина й матеріали',
-            ktCode: '201',
-            amount: actualWriteoff * unitPrice
-          }
-        ]);
-
-        renderStockSection();
-        renderPulseSection();
-        showInlineStatus(`Списано «${itemName}» (-${actualWriteoff} ${unit}) -> Дт 231 Кт 201`);
-        return;
-      }
-
       // 8. Pay single employee
       if (target.classList.contains('js-pay-single-emp')) {
         const empId = target.getAttribute('data-id');
@@ -6033,7 +6913,7 @@
     try {
       const params = new URLSearchParams(window.location.search);
       const qRole = params.get('role');
-      if (qRole === 'STAFF' || qRole === 'OWNER') {
+      if (qRole === 'STAFF' || qRole === 'OWNER' || qRole === 'CHIEF_ACCOUNTANT') {
         const sel = document.getElementById('access-role-select');
         if (sel) sel.value = qRole;
         applyAccessRole(qRole);
